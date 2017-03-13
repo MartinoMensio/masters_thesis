@@ -472,7 +472,129 @@
      Proposition: use tags to support user profiling. Tags connect entities directly, while collaborative filtering must search for relationships between user preferences and item attribute
     </span>
    </li>
+   <li>
+    <span>
+     Implementation:
+    </span>
+   </li>
   </ul>
+  <ul>
+   <li>
+    <span>
+     Types of tags (have different weights):
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Personal view: tags specified by the user
+    </span>
+   </li>
+   <li>
+    <span>
+     Social view: tags specified by the friends on the user contents
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Tag-to-Tag Matrix: correlations between person-attribute set (tags on user) and content-attribute set (tags on contents)
+    </span>
+   </li>
+   <li>
+    <span>
+     User-feature vector: for each idea mentioned in a specific content, the probability that the user has to like it. If it is above a threshold, it is recommended
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Experiment (using social bookmarking site del.icio.us):
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     A long-tail model applies (URLs are bookmarked by few people). Very low precision (2.77%) because there are not central topics to be defined. Also caused by dependence on order of visit (if user visits a better site before, decision about bookmarking a site on the same topic is lower)
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Cross Social Media Recommendation”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Proposition: merge data from different social networks (Twitter and Weibo) to remove biasing of models based on a single social network. Recommend twitter hashtag to weibo
+    </span>
+   </li>
+   <li>
+    <span>
+     Implementation:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     “Pseudo Global Social Media Network (PGSMN) model to interconnect users (with similar interests, not the same user because the sets are separate) and topics
+    </span>
+   </li>
+   <li>
+    <span>
+     Three layers: Twitter, Weibo and Wikipedia. The last one is a bridge. Each layer contains intra-layer links (users to tags or page to category) and inter-layer links (tags to pages/category)
+    </span>
+   </li>
+   <li>
+    <span>
+     Explicit Semantic Path Mining (ESPM), derived from Explicit Semantic Analysis (ESA), identifies semantic paths from Wikipedia hierarchical relationships
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Measurements of ranking performance:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Precision
+    </span>
+   </li>
+   <li>
+    <span>
+     Mean average precision
+    </span>
+   </li>
+   <li>
+    <span>
+     Normalized discounted cumulative gain
+    </span>
+   </li>
+  </ul>
+  <hr style="page-break-before:always;display:none;"/>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h2 id="h.hgsa5ws43gp9">
+   <span>
+    COTS
+   </span>
+  </h2>
   <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
