@@ -586,29 +586,110 @@
     <hr style="page-break-before:always;display:none;"/>
    </li>
   </ul>
-  <h2 id="h.6hnm5xchpggq">
+  <h2 id="h.1t8dpluzlftb">
    <span>
-    COTS
+    Types of bot
    </span>
   </h2>
   <p>
    <span>
-    Pandorabots (
-   </span>
-   <span>
-    <a href="http://www.pandorabots.com">
-     http://www.pandorabots.com
-    </a>
-   </span>
-   <span>
-    ) uses AIML
+    Dimensions to consider:
    </span>
   </p>
-  <h3 id="h.lxbz31wv66qa">
+  <ul>
+   <li>
+    <span>
+     Long or short conversations
+    </span>
+   </li>
+   <li>
+    <span>
+     Open or closed domain. Closed is the only feasible
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Important features / challenges:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Context: keep track of informations given by user
+    </span>
+   </li>
+   <li>
+    <span>
+     Coherent personality: since training is done on multiple users data (see “A persona-based neural conversation model”)
+    </span>
+   </li>
+   <li>
+    <span>
+     Evaluation (see “How NOT To Evaluate Your Dialogue System: An Empirical Study of Unsupervised Evaluation Metrics for Dialogue Response Generation”)
+    </span>
+   </li>
+   <li>
+    <span>
+     Intention and diversity: easy to fall into generic responses (see “A Diversity-Promoting Objective Function for Neural Conversation Models”) especially for open-domain systems
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.13wjijx5nwux">
+   <span>
+    Retrieval-based models
+   </span>
+  </h3>
+  <p>
+   <span>
+    This kind of bots use a set of predefined response templates and apply some heuristics in order to select the most suitable one. The selection criterion can be:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Simple rule-based (as in AIML)
+    </span>
+   </li>
+   <li>
+    <span>
+     More complex with machine learning classifiers
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     No grammatical mistakes
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Disadvantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Unseen cases cannot be handled
+    </span>
+   </li>
+  </ul>
+  <h4 id="h.lxbz31wv66qa">
    <span>
     AIML
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Is a language that describes how the bot replies to certain inputs. Inputs are evaluated against a set of patterns and the best match (category) is chosen. The actions performed by the category can be a simple response, or can also set variables and call other categories.
@@ -627,14 +708,173 @@
     targeting
    </span>
    <span>
-    : client inputs that find no match are collected using logs and the botmaster creates suitable responses. Targeting interface can also be exposed to clients, but with risks: not controlled by the only botmaster
+    : client inputs that find no match are collected using logs and the botmaster creates suitable responses. Targeting interface can also be exposed to clients, but with risks: not controlled by the botmaster
    </span>
   </p>
   <p>
    <span>
-    Context:
    </span>
   </p>
+  <p>
+   <span>
+    AIML can be used to build bots that simply do a pattern-matching job, it is only a stimulus-response system.
+   </span>
+  </p>
+  <p>
+   <span>
+    Main disadvantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     A big set of AIML rules need to be built: time consuming
+    </span>
+   </li>
+   <li>
+    <span>
+     Difficult to reply to complex queries
+    </span>
+   </li>
+   <li>
+    <span>
+     Not really understanding the language.
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Where it is used:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     ALICE based bots: Pandorabots is a service to host an AIML processor. Users can create files that contain the rules and test the bot
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h4 id="h.cfauph7t5emx">
+   <span>
+    Machine learning
+   </span>
+  </h4>
+  <p>
+   <span>
+    Data sets:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Ubuntu dialogue corpus:
+    </span>
+    <span>
+     <a href="https://github.com/rkadlec/ubuntu-ranking-dataset-creator">
+      https://github.com/rkadlec/ubuntu-ranking-dataset-creator
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Predictor:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Random
+    </span>
+   </li>
+   <li>
+    <span>
+     Using tf-idf: how important a word is important in a document. Documents with similar content have similar tf-idf vectors
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Examples:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Google smart reply
+    </span>
+    <span>
+     <a href="http://arxiv.org/abs/1606.04870">
+      http://arxiv.org/abs/1606.04870
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.3y4hjed0zgjs">
+   <span>
+    Generative models
+   </span>
+  </h3>
+  <p>
+   <span>
+    Real artificial intelligence, understanding the language. They don’t use pre-defined responses, but generate them from scratch. The technology is based on translation techniques.
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Can refer back to entities mentioned in the conversation
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Disadvantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Grammatical mistakes can occur
+    </span>
+   </li>
+   <li>
+    <span>
+     Require huge amounts of training data
+    </span>
+   </li>
+   <li>
+    <span>
+     Early stage of development
+    </span>
+   </li>
+   <li>
+    <span>
+     Can go off the rails (example of Microsoft Tay)
+    </span>
+   </li>
+  </ul>
   <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
@@ -689,11 +929,12 @@
     Validation
    </span>
   </h1>
-  <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
+    Have a look at “How NOT To Evaluate Your Dialogue System: An Empirical Study of Unsupervised Evaluation Metrics for Dialogue Response Generation”
    </span>
   </p>
+  <hr style="page-break-before:always;display:none;"/>
   <h1 id="h.b8i4k637cy5o">
    <span>
     Conclusion
