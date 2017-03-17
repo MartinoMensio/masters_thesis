@@ -1056,13 +1056,73 @@
      Mean average precision
     </span>
    </li>
+   <li>
+    <span>
+     Normalized discounted cumulative gain
+    </span>
+   </li>
   </ul>
   <p>
    <span>
-    Normalized discounted cumulative gain
+   </span>
+  </p>
+  <h3 id="h.tm5ee3a05f8l">
+   <span>
+    Accessing user data on facebook (discarding it for the moment)
+   </span>
+  </h3>
+  <p>
+   <span>
+    The data that is available directly from the messenger API is the following: first_name,last_name,profile_pic,locale,timezone,gender,is_payment_enabled
+   </span>
+  </p>
+  <p>
+   <span>
+    In order to be able to do personalization, there exists a way to link the messenger id (page-scoped) to other ids (also facebook id indirectly):
+   </span>
+   <span>
+    <a href="https://developers.facebook.com/docs/messenger-platform/account-linking">
+     https://developers.facebook.com/docs/messenger-platform/account-linking
+    </a>
+   </span>
+  </p>
+  <p>
+   <span>
+    Once the facebook id is retrieved, it is possible to use the facebook graph API.
+   </span>
+  </p>
+  <p>
+   <span>
+    To the external account the messenger platform sends a request to an url specified by the developer, adding account_linking_token and redirect_uri (page to redirect user after login). The external site, if login successful, redirects to redirect_uri with authentication_code custom (maybe put there the id in order to allow the bot to do the join)
+   </span>
+  </p>
+  <p>
+   <span>
+    From the other side, the oauth flow:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Redirect user to facebook oauth with client_id (the app id) and redirect_uri (where facebook will send the user)
+    </span>
+   </li>
+   <li>
+    <span>
+     After that user gives permissions, fb will redirect to redirect_uri with other parameters
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    The procedure seems quite complicated and requires a web server component that interacts on one side with messenger platform and on the other side handles the facebook login.
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
+  <p>
+   <span>
+   </span>
+  </p>
   <h1 id="h.ral1n0tuv49">
    <span>
     Approach
