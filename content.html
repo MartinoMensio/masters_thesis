@@ -1219,6 +1219,63 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Dealing with the new user cold-start problem in recommender systems: A comparative review”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Proposition: compare existing algorithms (collaborative filtering) on the cold-start problem. Types of systems:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Uses additional data sources (e.g. demographic data): a limitation of these systems is that sometimes data is not available (because user did not associate social profile)
+    </span>
+   </li>
+   <li>
+    <span>
+     Selects a group of analogous users (without additional data sources): construct a decision tree where nodes are questions. NHSM also takes into account the global preference of user behaviors, using three factors of similarity: Proximity (how much two ratings are near), Significance (how much distant from the median) and Singularity (how the two ratings are different from others). Limitations: how to choose the optimal number of groups and splitting criteria. Must have some rating from new user (bootstrap)
+    </span>
+   </li>
+   <li>
+    <span>
+     Hybrid methods:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     FARAMS: using multiple approaches (fuzzy sets and association rules).
+    </span>
+   </li>
+   <li>
+    <span>
+     HU-FCF: combines analysis on demographic data (fuzzy similarity matrix) and on rating data (hard similarity matrix)
+    </span>
+   </li>
+   <li>
+    <span>
+     Limitations: irrelevant users are still included in the computation of similarities
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Results: NHSM is the best one, both for accuracy and for computational time
+    </span>
+   </li>
+  </ul>
   <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
