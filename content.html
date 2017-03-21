@@ -803,7 +803,7 @@
   <hr style="page-break-before:always;display:none;"/>
   <h2 id="h.bhhmsohw8kph">
    <span>
-    Personalization
+    Personalization/Recommendation
    </span>
   </h2>
   <p>
@@ -1124,6 +1124,101 @@
     The procedure seems quite complicated and requires a web server component that interacts on one side with messenger platform and on the other side handles the facebook login.
    </span>
   </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.gjp0hmp20g33">
+   <span>
+    Cold start
+   </span>
+  </h3>
+  <p>
+   <span>
+    Another possible approach, without using the facebook data, would be to use a bootstrap in the
+   </span>
+   <span>
+    cold start
+   </span>
+   <span>
+    phase: a few questions to build a first model of the user. Then more informations can be
+   </span>
+   <span>
+    extracted as the conversation flows.
+   </span>
+  </p>
+  <p>
+   <span>
+    An explicit preference elicitation at the beginning, not too long, that then becomes implicit.
+   </span>
+  </p>
+  <p>
+   <span>
+    Other systems apply this procedure (e.g. netflix)
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Facing the cold start problem in recommender systems”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Proposition: find a good solution for the user-side cold start
+    </span>
+   </li>
+   <li>
+    <span>
+     Other approaches to the problem:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Content-based: requires ratings by user. Cold start problem
+    </span>
+   </li>
+   <li>
+    <span>
+     Collaborative-filtering: requires other users ratings
+    </span>
+   </li>
+   <li>
+    <span>
+     Explicit interview to new user about items (adapting new questions to the answers provided)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Implementation: three phases (Collaborative-filtering)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Classification of the new user in a specific group (based on demographic data): using C4.5 algorithm (decision tree) and Naive Bayes
+    </span>
+   </li>
+   <li>
+    <span>
+     Find “neighbours” of the new user inside the group: weighted average of demographic data
+    </span>
+   </li>
+   <li>
+    <span>
+     Calculation of outcome: prediction techniques
+    </span>
+   </li>
+  </ul>
   <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
