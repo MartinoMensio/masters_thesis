@@ -1304,14 +1304,224 @@
      NLP: extraction of intent and entities
     </span>
    </li>
+  </ul>
+  <ul>
    <li>
     <span>
-     Data retrieval (domain: bike sharing)
+     User intents:
+    </span>
+   </li>
+  </ul>
+  <ol start="1">
+   <li>
+    <span>
+     Search a bike
     </span>
    </li>
    <li>
     <span>
-     Personalization (bootstrap and collecting information into session)
+     Search a free slot
+    </span>
+   </li>
+   <li>
+    <span>
+     Plan a trip (1+2)
+    </span>
+   </li>
+  </ol>
+  <ul>
+   <li>
+    <span>
+     Data retrieval:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     bike sharing (easy part)
+    </span>
+   </li>
+   <li>
+    <span>
+     Context of the city: events, places. Possible source of data:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Foursquare
+    </span>
+    <span>
+     <a href="https://developer.foursquare.com/docs/venues/explore">
+      https://developer.foursquare.com/docs/venues/explore
+     </a>
+    </span>
+    <span>
+     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
+    </span>
+   </li>
+   <li>
+    <span>
+     Google places API
+    </span>
+    <span>
+     <a href="https://developers.google.com/places/web-service/search">
+      https://developers.google.com/places/web-service/search
+     </a>
+    </span>
+    <span>
+     provides similar features (1.000 requests per day)
+    </span>
+   </li>
+   <li>
+    <span>
+     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
+      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Weather forecasts: if bad weather is expected, tell user
+    </span>
+    <span>
+     <a href="https://www.wunderground.com/weather/api/">
+      https://www.wunderground.com/weather/api/
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Personalization:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Extract data to build user model:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Bootstrap questions (explicit or by social media) to extract relevant informations in cold start phase:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Age
+    </span>
+   </li>
+   <li>
+    <span>
+     Gender
+    </span>
+   </li>
+   <li>
+    <span>
+     Profession
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Habits (can be derived from interactions):
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Home location
+    </span>
+   </li>
+   <li>
+    <span>
+     Work/school location
+    </span>
+   </li>
+   <li>
+    <span>
+     Other recurring places
+    </span>
+   </li>
+   <li>
+    <span>
+     Timing informations
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Feedback from suggestions:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Attitude to recommendations (important)
+    </span>
+   </li>
+   <li>
+    <span>
+     Interests
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Suggestion engine:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Trip suggestion and reminders (must not be invasive):
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Previously used stations
+    </span>
+   </li>
+   <li>
+    <span>
+     Previous schemes/timetables
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Provide informations on the city context (not strictly related to domain)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Relevant (for the user) places on the way
     </span>
    </li>
   </ul>
@@ -1323,7 +1533,7 @@
    </li>
    <li>
     <span>
-     External profile data interface (consider technical difficulties) for more personalization
+     External profile data interface (consider technical difficulties) for more personalization and less explicit interview. If present, should be optional (not every user are on facebook, and also if they are, they may not want to share their profile)
     </span>
    </li>
   </ul>
