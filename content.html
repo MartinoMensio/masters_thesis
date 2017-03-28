@@ -1285,6 +1285,112 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Learning multiple-question decision trees for cold-start recommendation”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Proposition: find a solution to the cold-start recommendation problem that maximizes accuracy and minimizes user efforts. Problem of classic bootstrap is that user usually does not know items in the first interactions. The idea is to build a tree with multiple questions at each node.
+    </span>
+   </li>
+   <li>
+    <span>
+     Results:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Accuracy is better than single-question based system (because for each node/page more informations are extracted) and also better than linear-combination of multiple trees
+    </span>
+   </li>
+   <li>
+    <span>
+     Time increment to answer more questions per screen is sublinear
+    </span>
+   </li>
+   <li>
+    <span>
+     Time difference between rating scale and binary answer doesn’t have strong dependency on the number of questions
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Matrix Factorization Techniques for Recommender Systems”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Collaborative filtering Approaches:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Neighborhood methods:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     User-oriented: find similar users to the target user, and from them find the items that they like
+    </span>
+   </li>
+   <li>
+    <span>
+     Product-oriented: find items similar to the ones liked by the target user
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Latent factor models: characterize items and users on some factors (user/item vector) inferred from rating patterns (explicit or implicit feedback). Predicted rating is the dot product between the two vectors
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Learning algorithms for extracting the factor vectors:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Stochastic gradient descent: easier and faster
+    </span>
+   </li>
+   <li>
+    <span>
+     Alternating least squares: can be parallelized, better on sparse data
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Temporal dynamics: the model should be dynamic because some terms vary over time (item biases, user biases and user preferences)
+    </span>
+   </li>
+  </ul>
   <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
@@ -1447,7 +1553,38 @@
   <ul>
    <li>
     <span>
-     Extract data to build user model:
+     Model:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Design feature dimensions for users and places (latent variables):
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     health/sportive
+    </span>
+   </li>
+   <li>
+    <span>
+     Arts
+    </span>
+   </li>
+   <li>
+    <span>
+     Big five personality traits (feasible?)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Extract data to build user model (manifest variables):
     </span>
    </li>
   </ul>
@@ -1559,7 +1696,12 @@
   <ul>
    <li>
     <span>
-     Relevant (for the user) places on the way
+     User relevant places on the way
+    </span>
+   </li>
+   <li>
+    <span>
+     Time relevant (suggested place should be open)
     </span>
    </li>
   </ul>
