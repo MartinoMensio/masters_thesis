@@ -1474,6 +1474,11 @@
    </li>
    <li>
     <span>
+     Feedback (on recommendation/place/system)
+    </span>
+   </li>
+   <li>
+    <span>
      Informations on the bot (who are you? What can you do?)
     </span>
    </li>
@@ -1589,7 +1594,7 @@
   <ul>
    <li>
     <span>
-     Manifest variables: gender, age, profession, … &lt;- bootstrap/social
+     Manifest variables: gender, age, profession, … &lt;- may be irrelevant (bootstrap/social)
     </span>
    </li>
    <li>
@@ -1653,6 +1658,11 @@
    <li>
     <span>
      Profession
+    </span>
+   </li>
+   <li>
+    <span>
+     What the user wants to be recommended on
     </span>
    </li>
   </ul>
@@ -1862,7 +1872,7 @@
   <ol start="1">
    <li>
     <span>
-     Input: bootstrap/social data
+     Input: bootstrap/social data, episodic KB
     </span>
    </li>
    <li>
@@ -1881,7 +1891,7 @@
   <ol start="1">
    <li>
     <span>
-     Input: user features
+     Input: user features + stimulus (what type of recommendation)
     </span>
    </li>
    <li>
@@ -2039,21 +2049,17 @@
   </p>
   <p>
    <span>
-    Explicit rating:
+    Explicit rating: collecting user feedback after recommendation / bootstrap / unsolicited rating
    </span>
   </p>
   <p>
    <span>
-    User features: favorite/recurrent places, sportiveness, art interest
+    User features (built by the model): favorite/recurrent places, sportiveness, art interest
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO add link to enable querying recommender: e.g. tell me where I can take a coffee on my way
+    The stimulus link from the result provider to the recommender contains: trip information / direct question to the recommending system
    </span>
   </p>
   <p>
@@ -2069,25 +2075,6 @@
    </span>
    <span>
     , Name, Surname, sex, age
-   </span>
-  </p>
-  <p>
-   <span>
-    User_Position:
-   </span>
-   <span>
-    userID, (lat,long), time
-   </span>
-  </p>
-  <p>
-   <span>
-    User_property:
-   </span>
-   <span>
-    userID, propertyID, time
-   </span>
-   <span>
-    , value ← input to user modeler
    </span>
   </p>
   <p>
@@ -2109,7 +2096,7 @@
     placeID
    </span>
    <span>
-    , (lat,long), category, subcategory
+    , name, description, (lat,long), category, subcategory
    </span>
   </p>
   <p>
