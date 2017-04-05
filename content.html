@@ -1925,7 +1925,7 @@
   </p>
   <p>
    <span>
-    Utterance:
+    From utterance:
    </span>
    <span>
     utteranceID
@@ -1936,24 +1936,7 @@
   </p>
   <p>
    <span>
-    Entity:
-   </span>
-   <span>
-    entityID
-   </span>
-   <span>
-    , entityName
-   </span>
-  </p>
-  <p>
-   <span>
-    Utterance_entity:
-   </span>
-   <span>
-    utteranceID, entityID
-   </span>
-   <span>
-    , value
+    To: {intent,entities[type,value]}
    </span>
   </p>
   <p>
@@ -1967,7 +1950,7 @@
   </p>
   <p>
    <span>
-    From user modeler:
+    From user model:
    </span>
   </p>
   <ul>
@@ -1997,7 +1980,12 @@
   <ul>
    <li>
     <span>
-     Previous questions / topic: to understand messages without explicit intent and to resume inter
+     Previous questions / topic (field of dialogue): to understand messages without explicit intent and to resume interaction (stack of interactions: “i want a bike” PUSH “where are you?” -&gt; “i am at XXX” -&gt; “ok got it” POP “you can find 3 bikes at YYY”)
+    </span>
+   </li>
+   <li>
+    <span>
+     Special topic of bootstrap: activated at the beginning
     </span>
    </li>
   </ul>
@@ -2040,12 +2028,32 @@
   </p>
   <p>
    <span>
-    User property: user position, user mentioning a place/expressing evaluation
+    Episodic KB:
+   </span>
+   <span>
+    userID, location, time
+   </span>
+   <span>
+    , action (was at/took bike/left bike)
    </span>
   </p>
   <p>
    <span>
-    User features: favorite/recurrent places, sportiveness, art interest, willingness to pay,
+    Explicit rating:
+   </span>
+  </p>
+  <p>
+   <span>
+    User features: favorite/recurrent places, sportiveness, art interest
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO add link to enable querying recommender: e.g. tell me where I can take a coffee on my way
    </span>
   </p>
   <p>
