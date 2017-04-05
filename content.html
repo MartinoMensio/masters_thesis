@@ -1454,6 +1454,16 @@
    </li>
    <li>
     <span>
+     Get informations about a station
+    </span>
+   </li>
+   <li>
+    <span>
+     Find closest station to a certain point
+    </span>
+   </li>
+   <li>
+    <span>
      Search other information (restaurant, cafe, …)
     </span>
    </li>
@@ -1889,19 +1899,111 @@
    <span>
    </span>
   </p>
-  <h2 id="h.yfnf7lj22rxk">
+  <h2 id="h.wuq0ewq0udxm">
    <span>
     Data
    </span>
   </h2>
   <p>
    <span>
-    User property: user position, user mentioning a place/expressing evaluation
+    Request: {utterance: {userID, time, content}, NLP: {intent, entities:[type,value]}, context, info: {stations:[], places:[], meteo:[]}, recommendations: [type,value,confidence]}
    </span>
   </p>
   <p>
    <span>
-    User features: sportiveness, art interest, willingness to pay,
+    Is filled along the pipeline. Each stage is adding an element to it
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    NLP
+   </span>
+  </p>
+  <p>
+   <span>
+    Utterance:
+   </span>
+   <span>
+    utteranceID
+   </span>
+   <span>
+    , userID, time, content
+   </span>
+  </p>
+  <p>
+   <span>
+    Entity:
+   </span>
+   <span>
+    entityID
+   </span>
+   <span>
+    , entityName
+   </span>
+  </p>
+  <p>
+   <span>
+    Utterance_entity:
+   </span>
+   <span>
+    utteranceID, entityID
+   </span>
+   <span>
+    , value
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Contextualizer
+   </span>
+  </p>
+  <p>
+   <span>
+    From user modeler:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     User city
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     User position
+    </span>
+   </li>
+   <li>
+    <span>
+     User places: home, work/school
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Internal state:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Previous question / topic: to understand messages without explicit intent
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Updates intent and entities
    </span>
   </p>
   <p>
@@ -1934,6 +2036,20 @@
   <p>
    <span>
     Personalization:
+   </span>
+  </p>
+  <p>
+   <span>
+    User property: user position, user mentioning a place/expressing evaluation
+   </span>
+  </p>
+  <p>
+   <span>
+    User features: favorite/recurrent places, sportiveness, art interest, willingness to pay,
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -1974,7 +2090,7 @@
     userID, featureID
    </span>
    <span>
-    , value ← output of user modeler
+    , value ← output of user modeler, input to recommender
    </span>
   </p>
   <p>
@@ -2001,44 +2117,6 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    NLP:
-   </span>
-  </p>
-  <p>
-   <span>
-    Utterance:
-   </span>
-   <span>
-    utteranceID
-   </span>
-   <span>
-    , userID, time, content
-   </span>
-  </p>
-  <p>
-   <span>
-    Entity:
-   </span>
-   <span>
-    entityID
-   </span>
-   <span>
-    , entityName
-   </span>
-  </p>
-  <p>
-   <span>
-    Utterance_entity:
-   </span>
-   <span>
-    utteranceID, entityID
-   </span>
-   <span>
-    , value
    </span>
   </p>
   <p>
