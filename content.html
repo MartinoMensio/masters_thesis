@@ -3,6 +3,12 @@
   <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
  </head>
  <body>
+  <div>
+   <p>
+    <span>
+    </span>
+   </p>
+  </div>
   <h1 id="h.r79qs0qeni3s">
    <span>
     Introduction
@@ -2153,8 +2159,39 @@
     , value
    </span>
   </p>
+  <h2 id="h.kqqgd8as7rlg">
+   <span>
+    Use cases
+   </span>
+  </h2>
   <p>
    <span>
+    Search for informations:
+   </span>
+  </p>
+  <p>
+   <span>
+    The utterance is processed by the NLU module. The query understanding engine activates the contextual knowledge engine to get data that is related to the question, and in parallel records the event into the episodic knowledge. The contextual knowledge is composed of informations belonging to bike sharing, meteo, placesAPI. The results from the different sources are combined by the appropriate module. At this point the recommender is interrogated, in order to provide some personalized suggestions, if they have some metrics (appropriate and relevant). The structured information of the result that is going to be provided needs some elaboration to provide a natural-language feeling: this is the role of the sentence generation engine that, based on templates, puts the response in human-like format.
+   </span>
+  </p>
+  <p>
+   <span>
+    Expressing availability to talk (familiarization):
+   </span>
+  </p>
+  <p>
+   <span>
+    The user may be sending some messages that don’t have some needs inside. Also the first interaction, in which the user sends some “/start” or “hi“ messages can activate this use case. The NLU processes them as usual, and the query understanding engine detects the situation. Instead of using contextual knowledge, it interacts with the personalization module to find some questions for the user: what he expects from the bot, or asking some features (interests/…).
+   </span>
+  </p>
+  <p>
+   <span>
+    Sending messages without being asked:
+   </span>
+  </p>
+  <p>
+   <span>
+    Warning: this breaks the principle that bots should only interact when explicitly asked. For this reason this feature should be kept under full control of the user (opt-in proposition vs one-time test + asking if this is liked), that in any moment can decide to turn it off. The reminder/suggestion, based on explicit request to do that or because a pattern has been detected, is generated and sent. The feedback must always be measured. The activation may be defined by the user (e.g. “tomorrow at 5 p.m. give me informations about bikes to go home”) or when the expected time, derived from the detected pattern, is coming (e.g: user always asks for a bike between 8:10 and 8:30 to go to university, now it is 8:00, could be the right time to send him the suggestion).
    </span>
   </p>
   <p>
