@@ -2038,6 +2038,17 @@
   </p>
   <p>
    <span>
+    User:
+   </span>
+   <span>
+    userID
+   </span>
+   <span>
+    , Name, Surname, sex, age
+   </span>
+  </p>
+  <p>
+   <span>
     Episodic KB:
    </span>
    <span>
@@ -2049,7 +2060,7 @@
   </p>
   <p>
    <span>
-    Explicit rating: collecting user feedback after recommendation / bootstrap / unsolicited rating
+    Explicit rating: collecting user feedback after recommendation / bootstrap / unsolicited rating → needs to be investigated
    </span>
   </p>
   <p>
@@ -2057,6 +2068,30 @@
     User features (built by the model): favorite/recurrent places, sportiveness, art interest
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     RecurrentAction:
+    </span>
+    <span>
+     ID
+    </span>
+    <span>
+     , userID, type, frequency (days in week pattern), time of day, userPlaceID (external key to UserPlace)
+    </span>
+   </li>
+   <li>
+    <span>
+     UserPlaces:
+    </span>
+    <span>
+     userID, placeID
+    </span>
+    <span>
+     , role (home/work/school/other)
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     The stimulus link from the result provider to the recommender contains: trip information / direct question to the recommending system
@@ -2064,17 +2099,6 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    User:
-   </span>
-   <span>
-    userID
-   </span>
-   <span>
-    , Name, Surname, sex, age
    </span>
   </p>
   <p>
