@@ -1941,7 +1941,7 @@
   </h2>
   <p>
    <span>
-    Request: {utterance: {userID, time, content}, NLP: {intent, entities:[type,value]}, context, info: {stations:[], places:[], meteo:[]}, recommendations: [type,value,confidence]}
+    Request: {utterance: {userID, time, content}, NLP: {intent, entities:[type,value]}, context, info: {stations:[], places:[], meteo:[]}, recommendations: [type,value,confidence], decision: {}}
    </span>
   </p>
   <p>
@@ -2197,6 +2197,151 @@
   <p>
    <span>
     Another useful activation is user asks for station X→ give results now on X and activate watcher on station X → estimate user-arrival-time to X → if station X is becoming useless (no/few bikes/slots depending on user need) send message to warn user
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”)
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <a id="t.71a0e2fa70cdbe7755ed098f71cb0e74cbae0b17">
+  </a>
+  <a id="t.0">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        intent
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        dependencies
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        steps
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        decision
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Search bike/free slot
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Location / updated position
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Find station informations, check meteo. Collect event. Activate watcher on station. Interrogate recommender
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Station informations + meteo warning* + recommendation*
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Plan trip
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Location A+B
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Same as above, but twice because both station must be watched / both events need to be collected
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        As above
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span>
    </span>
   </p>
   <p>
