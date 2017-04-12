@@ -2065,7 +2065,7 @@
   <ul>
    <li>
     <span>
-     If the intent is not specified, look at the entity provided and if a previous state is saved. Based on these, derive a new intent
+     If the intent is not specified (or generic intent “approve”/”disapprove”), look at the entity provided and if a previous state is saved. Based on these, derive the intent
     </span>
    </li>
   </ul>
@@ -2086,14 +2086,21 @@
   <ul>
    <li>
     <span>
-     If some requirements are missing, save current state and ask for requirement
+     If requirements are ok, proceed with steps
     </span>
    </li>
   </ul>
   <ul>
    <li>
     <span>
-     If
+     If previous state, pop it
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     If some requirements are missing, save current state (push) and ask for requirement
     </span>
    </li>
   </ul>
