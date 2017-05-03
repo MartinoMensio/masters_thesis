@@ -1510,16 +1510,17 @@
   <ol start="1">
    <li>
     <span>
-     City
+     User favorite places (role → place)
     </span>
    </li>
    <li>
     <span>
-     User favorite place (role → place)
+     Enable/disable unsolicited messages
     </span>
    </li>
    <li>
     <span>
+     Customization
     </span>
    </li>
   </ol>
@@ -1534,6 +1535,11 @@
    <li>
     <span>
      location to/from
+    </span>
+   </li>
+   <li>
+    <span>
+     time
     </span>
    </li>
    <li>
@@ -1817,7 +1823,7 @@
   </ul>
   <p>
    <span>
-    Conversational agent separate from the messaging platform. Using a generic message-proxy that will handle all the specific features of the platforms. The conversational agent should be indipendent
+    Conversational agent separate from the messaging platform. Using a generic message-proxy (see botkit) that will handle all the specific features of the platforms. The conversational agent should be indipendent
    </span>
   </p>
   <ul>
@@ -1906,6 +1912,13 @@
    <li>
     <span>
      Variables (e.g. home, work)
+    </span>
+   </li>
+  </ol>
+  <ol start="5">
+   <li>
+    <span>
+     Checking required informations (do some questions if missing) and pass them to the modules that use them (bike-sharing, meteo, places, …)
     </span>
    </li>
   </ol>
@@ -2120,13 +2133,6 @@
    <li>
     <span>
      If the intent is not specified (or generic intent “approve”/”disapprove”), look at the entity provided and if a previous state is saved. Based on these, derive the intent
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     From the
     </span>
    </li>
   </ul>
