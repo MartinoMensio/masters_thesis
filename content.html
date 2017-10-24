@@ -70,14 +70,29 @@
   <ul>
    <li>
     <span>
+     Fake user profiles
+    </span>
+   </li>
+   <li>
+    <span>
+     Crawlers that analyze social profiles
+    </span>
+   </li>
+   <li>
+    <span>
+     Autonomous agents that provide some kind of service
     </span>
    </li>
   </ul>
-  <h2 id="h.43fer8dd1rjh">
+  <p>
    <span>
-    Bots and autonomous systems
    </span>
-  </h2>
+  </p>
+  <p>
+   <span>
+    Bots and autonomous systems papers
+   </span>
+  </p>
   <p>
    <span>
     “Turing’s red flag”
@@ -443,6 +458,23 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    Scope of dialogue:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     General chat
+    </span>
+   </li>
+   <li>
+    <span>
+     Task specific
+    </span>
+   </li>
+  </ul>
   <h3 id="h.13wjijx5nwux">
    <span>
     Retrieval-based models
@@ -495,7 +527,7 @@
   </ul>
   <h4 id="h.lxbz31wv66qa">
    <span>
-    AIML
+    AIML (rule based)
    </span>
   </h4>
   <p>
@@ -578,7 +610,7 @@
   </ul>
   <h4 id="h.cfauph7t5emx">
    <span>
-    Machine learning
+    Machine learning (completely
    </span>
   </h4>
   <p>
@@ -696,6 +728,28 @@
    <li>
     <span>
      Can go off the rails (example of Microsoft Tay)
+    </span>
+   </li>
+  </ul>
+  <h2 id="h.kvxdevcml2at">
+   <span>
+    Challenges
+   </span>
+  </h2>
+  <ul>
+   <li>
+    <span>
+     Understanding the user queries: intent + slot
+    </span>
+   </li>
+   <li>
+    <span>
+     Tracking the state of the dialogue
+    </span>
+   </li>
+   <li>
+    <span>
+     Provide relatively good answers to non-task specific interactions
     </span>
    </li>
   </ul>
@@ -860,14 +914,14 @@
    <span>
    </span>
   </p>
-  <h3 id="h.jiigs1td83gs">
+  <h3 id="h.uoizyk46db8c">
    <span>
     Goal
    </span>
   </h3>
   <p>
    <span>
-    There are mainly two goals:
+    The goals of a NLU module are mainly:
    </span>
   </p>
   <ul>
@@ -884,48 +938,92 @@
   </ul>
   <p>
    <span>
-    Approaches for entity extraction:
+    The first task corresponds to a classification of the user sentences to decide what is the intention of the user. Since a bot is usually designed to answer to different types of questions, this stage is responsible for finding the type of question. The slot filling task instead (also called NER) is a process that annotates some parts of the input sentences with the corresponding entity type. While the intent represents the type of question, the entities of a sentence are values that the bot must be able to extract from the sentences because they are used as parameters for the application logic.
+   </span>
+  </p>
+  <p>
+   <span>
+    Making a metaphor with programming languages, intents correspond to methods while entities are the arguments.
+   </span>
+  </p>
+  <p>
+   <span>
+    For intent classification different approaches can be used:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Syntactic-based: from the structure of the sentence
+     Key words
     </span>
    </li>
    <li>
     <span>
-     Statistical-based:
+     Syntactic based: the input features are hand-crafted (for example verb + object are taken into account)
     </span>
    </li>
    <li>
     <span>
-     Semantic-based: the values of the entities are used to detect the entities
+     Sequence modeling (see RNN)
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Joint SLU
+    There are different approaches for entity extraction:
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     Syntactic-based: from the structure of the sentence (usually as a tree), a model is built to observe and learn where usually a certain type of entity is
+    </span>
+   </li>
+   <li>
+    <span>
+     Statistical-based: instead of syntactically parsing the sentence, a model is built without hand-crafted features, only providing input sequence and output label sequence
+    </span>
+   </li>
+   <li>
+    <span>
+     Semantic-based: the values of the entities are used to detect the entities. The entity lookup and linking is a key point in this approach
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
-    Considering context (previous interactions)
+    The two tasks can be done independently, but some recent studies have shown that there can be benefits if they are performed together.
    </span>
   </p>
-  <h3 id="h.9nk1suvkt1c5">
+  <h3 id="h.m20m4wbp4ch1">
    <span>
-    Recurrent Neural Networks
+    Recurrent Neural Networks for joint entity extraction and intent classification
    </span>
   </h3>
-  <ul>
-   <li>
-    <span>
-     Why RNN
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    A neural-network approach can be used for the tasks of named entity extraction and intent detection. The inputs to the network are the words and the outputs are the labels of the considered task(s): intent label and/or entity labels.
+   </span>
+  </p>
+  <p>
+   <span>
+    As entity labels, a commonly used format is the IOB, where the O indicates “no entity”, the B is the beginning of an entity and the I is the label associated with a word that continues the entity of the previous word.
+   </span>
+  </p>
+  <h4 id="h.iuw0sa6gdxrl">
+   <span>
+    Why RNN
+   </span>
+  </h4>
+  <p>
+   <span>
+    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. A recurrent cell is a type of cell that takes as input also its previous output. Those types of neural networks have been designed for problems where the idea of a sequence can be used. For example, they are commonly used with sequence of words, characters, frames in a video and their goodness stands in modeling features that belong to the sequence. Unlike feed-forward nets, that consider the fixed set of inputs to generate the outputs, the recurrent nets are applied in different timesteps to elements belonging to a sequence and, thanks to the loops of their cells, keep informations from previous timesteps.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -982,11 +1080,16 @@
     </span>
    </li>
   </ul>
-  <hr style="page-break-before:always;display:none;"/>
   <p>
    <span>
    </span>
   </p>
+  <p>
+   <span>
+    Considering context (previous interactions) and multi-turn interactions
+   </span>
+  </p>
+  <hr style="page-break-before:always;display:none;"/>
   <h2 id="h.bhhmsohw8kph">
    <span>
     Personalization/Recommendation
