@@ -1072,12 +1072,70 @@
    </li>
    <li>
     <span>
-     Vanishing gradient: if some coefficients are near to 0, the network will quickly forget previous states
+     Vanishing gradient: if some coefficients are near to 0, the network will quickly forget previous inputs and the output won’t depend on them
     </span>
    </li>
   </ul>
   <p>
    <span>
+    Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
+   </span>
+   <sup>
+    <a href="#ftnt2" id="ftnt_ref2">
+     [2]
+    </a>
+   </sup>
+   <span>
+    and other types of cells have been proposed.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    LSTM
+   </span>
+   <sup>
+    <a href="#ftnt3" id="ftnt_ref3">
+     [3]
+    </a>
+   </sup>
+   <span>
+    is a solution that came out in 1997 in which a more complex cell is considered. The main idea is to have some gates that decide how much of the previous cell state to keep, and how much of the current input to consider for the calculation of the current state and current output.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 556.00px; height: 286.00px;">
+    <img alt="rnn (2).png" src="https://lh4.googleusercontent.com/VmRxc0aSR7AZOeJulPfTqmsqy4bm3SZLc1AMIBH8sxs6bxEIbgiFa3w0CSoWJnF9i4mSjSaplDp_60BRsJmOoHxooaMNtjqEkGSFdCJlXRMMvG5wfbvcY1BDY0HC-M927lvi9NTL" style="width: 556.00px; height: 286.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The gates are ft it and ot, that are:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Forget gate: decides how much of the previous hidden state to keep
+    </span>
+   </li>
+   <li>
+    <span>
+     Input gate: decides how much of the current input to consider
+    </span>
+   </li>
+   <li>
+    <span>
+     Output gate: decides how much of the hidden state is exposed to the output
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    All those gates are implemented with single layer feedforward networks. This type of RNN is able to manage better the long-term dependencies, at the expenses of having four times the parameters. But with sufficient training examples, the network is able to learn how to output the correct values and how to mix the different inputs.
    </span>
   </p>
   <h4 id="h.e8p21ryw643v">
@@ -3094,6 +3152,26 @@
      [1]
     </a>
     <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref2" id="ftnt2">
+     [2]
+    </a>
+    <span>
+     Bengio, et al. (1994) Learning long-term dependencies with gradient descent is difficult
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref3" id="ftnt3">
+     [3]
+    </a>
+    <span>
+     S Hochreiter, J Schmidhuber - Neural computation, 1997
     </span>
    </p>
   </div>
