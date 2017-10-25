@@ -759,7 +759,7 @@
   </p>
   <h2 id="h.n06dhtaupqp">
    <span>
-    NLP
+    NLP and NLU
    </span>
   </h2>
   <p>
@@ -907,6 +907,15 @@
   </p>
   <p>
    <span>
+    Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of bots
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
     A concept of the bot has been developed using wit.ai for doing intent detection and entity extraction. This can be used as a reference. The training data can be downloaded from the platform, useful for our model training.
    </span>
   </p>
@@ -914,25 +923,25 @@
    <span>
    </span>
   </p>
-  <h3 id="h.uoizyk46db8c">
+  <h3 id="h.xsg4ur5pp4av">
    <span>
     Goal
    </span>
   </h3>
   <p>
    <span>
-    The goals of a NLU module are mainly:
+    As said before, from the sentences we want to:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Intent classification
+     Classify the intent (what the user wants, against a set of pre-defined ones)
     </span>
    </li>
    <li>
     <span>
-     Slot filling / entity extractions
+     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot)
     </span>
    </li>
   </ul>
@@ -981,7 +990,7 @@
    </li>
    <li>
     <span>
-     Statistical-based: instead of syntactically parsing the sentence, a model is built without hand-crafted features, only providing input sequence and output label sequence
+     Statistical-based: instead of syntactically parsing the sentence, a model is built without hand-crafted features, only providing input sequences and output label sequences
     </span>
    </li>
    <li>
@@ -1017,41 +1026,81 @@
   </h4>
   <p>
    <span>
-    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. A recurrent cell is a type of cell that takes as input also its previous output. Those types of neural networks have been designed for problems where the idea of a sequence can be used. For example, they are commonly used with sequence of words, characters, frames in a video and their goodness stands in modeling features that belong to the sequence. Unlike feed-forward nets, that consider the fixed set of inputs to generate the outputs, the recurrent nets are applied in different timesteps to elements belonging to a sequence and, thanks to the loops of their cells, keep informations from previous timesteps.
+    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. A recurrent cell is a type of cell that takes as input also its previous output. Those types of neural networks have been designed for problems where the order of inputs matters, and the length of input sequence can vary. For example, they are commonly used with sequence of words, characters, frames in a video and their goodness stands in modeling features that belong to the sequence. Unlike feed-forward nets, that consider the fixed set of inputs to generate the outputs, the recurrent nets are applied in different timesteps to elements belonging to a sequence and, thanks to the loops of their cells, keep informations from previous timesteps and the output depends on them too.
    </span>
   </p>
   <p>
    <span>
+    Since the same network (and cells) are used in different timesteps, the analysis of RNN is usually performed on the unfolded version of the network: the single elements are considered different times and the looping links are therefore going from the element in the previous time to the next time.
+   </span>
+  </p>
+  <p>
+   <span>
+    The way backpropagation is applied to RNN is the so called backpropagation through time BPTT, in which the network is unfolded in time but all the copies of the same element have shared parameters.
+   </span>
+  </p>
+  <h4 id="h.wruksxks8hm">
+   <span>
+    Cell types (simple RNN, GRU, LSTM)
+   </span>
+  </h4>
+  <p>
+   <span>
+    The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax in this case).
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 386.00px; height: 276.00px;">
+    <img alt="rnn.png" src="https://lh6.googleusercontent.com/AZkM5BzOFANxoiegDMrhW79EXbl11EPFL08VkfsYqqU5cT2t3ZP2Kp156ps6-6kU0vjZ2sbbxBNtgw1F2-JkAzN9hBkYgmFMFBctYGdfGVVPkc8IxAbYWdSRTXe8mmzcnfralGp-" style="width: 386.00px; height: 276.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The two inputs are concatenated and passed through a single feed-forward layer, that corresponds to a linear transformation plus a non-linear function (e.g. tanh, sigma).
+   </span>
+  </p>
+  <p>
+   <span>
+    Since the same cell is applied many times in time, and the recurrence loop feeds back the output as inputs, there can easily be two kinds of problem due to the fact that the weight matrix coefficients are multiplied at each timestep:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Cell types (simple RNN, GRU, LSTM)
+     Exploding gradient: if some coefficients are greater than 1, the output values can become soon very big, making the network insensible to new inputs because is in some way saturated. The solution to this problem is using some non-linear function that limit the values
     </span>
    </li>
    <li>
     <span>
-     Word embeddings
-    </span>
-   </li>
-   <li>
-    <span>
-     Intent classification
-    </span>
-   </li>
-   <li>
-    <span>
-     Sequence to sequence models
+     Vanishing gradient: if some coefficients are near to 0, the network will quickly forget previous states
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h4 id="h.e8p21ryw643v">
+   <span>
+    Word embeddings
+   </span>
+  </h4>
+  <h4 id="h.qo6n6nf5uz8d">
+   <span>
+    Intent classification
+   </span>
+  </h4>
+  <h4 id="h.c1d8k7r13p0l">
+   <span>
+    Sequence to sequence models for slot tagging
+   </span>
+  </h4>
+  <p>
+   <span>
+    Simple RNN, bidirectional
+   </span>
+  </p>
   <ul>
-   <li>
-    <span>
-     Simple RNN, bidirectional
-    </span>
-   </li>
    <li>
     <span>
      Simple encoder-decoder
@@ -1070,13 +1119,6 @@
    <li>
     <span>
      Modeling output dependencies (local choice, feed the previous output together with the current input to decoding timestep, linear-chain CRF)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Joint intent+slots
     </span>
    </li>
   </ul>
