@@ -1306,6 +1306,11 @@
     The decoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage.
    </span>
   </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 311.00px; height: 366.00px;">
+    <img alt="rnn (6).png" src="https://lh5.googleusercontent.com/FlzKOjyPCM7CcZBkt2CI0zAwVu8_nS2P4vd3DGJSiccNRHsw9KmTAj13yx7KO1j4qvcyASg2oZfZsdSTfaxx7zbIb1vlJix1AsG4aEKHoDiwjR_EttAcJSqjFrllVlOIvyNartOo" style="width: 311.00px; height: 366.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
   <h5 id="h.ahu5xsb0fuvt">
    <span>
     Simple Encoder-Decoder
@@ -1317,31 +1322,114 @@
    </span>
   </p>
   <p>
-   <span>
-    I WAS THERE
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 402.00px; height: 349.00px;">
+    <img alt="rnn (8).png" src="https://lh5.googleusercontent.com/jRpx2GsVDJtyIgPL859hsPfg_FAGyK70u9kAHf-1zOkFkgKgzsn_deX75Ep1yZ_ezqFZoTnIERuVCm-qAi-RlYdW1zeFuaE5aNvaaxvLPkfFprg6gMxMjHO5W_lGKBEPf_yvhZIq" style="width: 402.00px; height: 349.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    Simple RNN, bidirectional
+    This model has some problems. First of all, the decoding part depends only on the sentence vector c, that must be able to keep all the informations on the input sequence, whose length can vary, in a fixed size. Then, the decoding steps may easily loose the relevant information from this vector, since the decoding can take a lot of decoding timesteps. But a much greater problem comes from the lack of constraint on the output sequence: in translation between different languages, this can be a good feature, but in our task of sequence labeling we want an output sequence with fixed length. The last observation we can make is that there is no alignment model between the input and output sequences. All the output depend on all the inputs, without having different encoded informations for the decoding of the output sequence.
+   </span>
+  </p>
+  <h5 id="h.w9da5qrt3zos">
+   <span>
+    Encoder-decoder keeping sentence vector
+   </span>
+  </h5>
+  <p>
+   <span>
+    This model comes from a study done in 2014
+   </span>
+   <sup>
+    <a href="#ftnt5" id="ftnt_ref5">
+     [5]
+    </a>
+   </sup>
+   <span>
+    on the task of neural machine translation. It is a enhanced version of the previously considered model because the sentence vector coming from the encoding stage is passed to all the decoding stages.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 401.00px; height: 350.00px;">
+    <img alt="rnn (9).png" src="https://lh5.googleusercontent.com/pZ6U9kWLWB6n7-fDkWukQt9uR9rdfWSJr-9oMvor_uNEVVtxEZOs03vY0NU3pntggFzemBVyhZmqXFlDGyCdF-7UC63vqfNlvqD_Wc80D5Z7ZptvSffEiEYvYVA5AjJSlZEJhs-Q" style="width: 401.00px; height: 350.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach helps the decoding stages that, receiving the sentence vector directly, can perform better in their task. However some problems are not solved: the output sequence length has no constraints and there is no alignment model.
+   </span>
+  </p>
+  <h5 id="h.u4i2e8o9kcra">
+   <span>
+    Encoder-decoder with aligned inputs
+   </span>
+  </h5>
+  <p>
+   <span>
+    This model was not born for the task of translation between languages, but has been proposed specifically for the sequence labeling problem (that can be applied for NER, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 476.00px; height: 399.00px;">
+    <img alt="rnn (10).png" src="https://lh4.googleusercontent.com/wZWau4rhltIDzvtE--fZx65Jjxp3m6b8A6Aj-JW68_u2CI8Dfvhn9zcX5hAye5ln0C1u70Jgx7QaOoOPIo-mmcceIZnFvQ-42xiUAggCvjkktrfZsD-2EpXJ8K2dMn6QzVEG0L3H" style="width: 476.00px; height: 399.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    This model fixes the output sequence length to the length of the input sequence. The alignment model is fixed: the decisions in decoding are done looking at current input word in the current left+right context.
+   </span>
+  </p>
+  <h5 id="h.g5uc72zc01b8">
+   <span>
+    Encoder-decoder with attention
+   </span>
+  </h5>
+  <p>
+   <span>
+    The idea of attention empowers recent studies on translation. The purpose is to decide which output of the encoder are more relevant for the current decoding step dynamically. On the previous model, always the aligned encoded input is used, but for language translation this can be a limitation.
+   </span>
+  </p>
+  <p>
+   <span>
+    Using the attention, that provides a dynamic alignment model, we can:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Simple encoder-decoder
+     Determine which are the encoded inputs that are more relevant
     </span>
    </li>
    <li>
     <span>
-     Context vector to each decoding timestep
+     Use them to provide a better translation
     </span>
    </li>
-   <li>
-    <span>
-     Attention (different context vector to each decoding timestep)
-    </span>
-   </li>
+  </ul>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 478.00px; height: 479.00px;">
+    <img alt="rnn (11).png" src="https://lh4.googleusercontent.com/bJjT-RS8B0wuc0-dWScWANiigB5p_D1All_tS9o4AESrcZyaCSna21LSzk-leuBrpzj8FdQths7bkQaBP383YHMAfvMy4ABHmHeNHZTe2RG7GsY36w4tbFGK_MCksiaXjk1lg1GZ" style="width: 478.00px; height: 479.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The attention model is quite advanced, and since a lot of other parameters are there in the network, a lot more of training samples must be used.
+   </span>
+  </p>
+  <p>
+   <span>
+    For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <ul>
    <li>
     <span>
      Modeling output dependencies (local choice, feed the previous output together with the current input to decoding timestep, linear-chain CRF)
@@ -3350,6 +3438,16 @@
     </a>
     <span>
      Cho, et al. (2014)
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref5" id="ftnt5">
+     [5]
+    </a>
+    <span>
+     K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
     </span>
    </p>
   </div>
