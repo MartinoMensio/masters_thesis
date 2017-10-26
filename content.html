@@ -1039,11 +1039,16 @@
     The way backpropagation is applied to RNN is the so called backpropagation through time BPTT, in which the network is unfolded in time but all the copies of the same element have shared parameters.
    </span>
   </p>
-  <h4 id="h.wruksxks8hm">
+  <h4 id="h.mtu9v8drnych">
    <span>
     Cell types (simple RNN, GRU, LSTM)
    </span>
   </h4>
+  <h5 id="h.1oe97uu0zy2z">
+   <span>
+    Simple RNN
+   </span>
+  </h5>
   <p>
    <span>
     The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax in this case).
@@ -1089,10 +1094,11 @@
     and other types of cells have been proposed.
    </span>
   </p>
-  <p>
+  <h5 id="h.blhs0tl2bxox">
    <span>
+    LSTM
    </span>
-  </p>
+  </h5>
   <p>
    <span>
     LSTM
@@ -1138,21 +1144,183 @@
     All those gates are implemented with single layer feedforward networks. This type of RNN is able to manage better the long-term dependencies, at the expenses of having four times the parameters. But with sufficient training examples, the network is able to learn how to output the correct values and how to mix the different inputs.
    </span>
   </p>
-  <h4 id="h.e8p21ryw643v">
+  <p>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=it%3D%CF%83%28Wi%5Ccdot%7B%7D%5Bht-1%2Cxt%5D%2Bbi%29%5C+..."/>
+  </p>
+  <h5 id="h.32ny97nh7agm">
+   <span>
+    GRU
+   </span>
+  </h5>
+  <p>
+   <span>
+    Later studies
+   </span>
+   <sup>
+    <a href="#ftnt4" id="ftnt_ref4">
+     [4]
+    </a>
+   </sup>
+   <span>
+    have proposed a new type of cell/unit GRU that has only two gates: reset gate and update gate that adaptively control how much each hidden unit remembers or forgets while reading/generating a sequence. The hidden state and the state cell are merged together and therefore the output gate is no more required.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 557.00px; height: 287.00px;">
+    <img alt="rnn (3).png" src="https://lh5.googleusercontent.com/0R2ILdqVuioopoMyzGhthdaELUESNy2-JBatSNcENB-3xKBr0o2kfUe9xAQHy8xK3XUqyE4lhK4dl1EEYh1PTXtxlZTSdJwosNY49D-67Bjv4PU-Vb-C1fzxzbgd64aydv-vH7fM" style="width: 557.00px; height: 287.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <h4 id="h.enwb9pvnygyi">
    <span>
     Word embeddings
    </span>
   </h4>
-  <h4 id="h.qo6n6nf5uz8d">
+  <p>
+   <span>
+    Since all neural networks only work with numbers, there must be a layer in the network that, given the input words, transforms them in numerical form.
+   </span>
+  </p>
+  <p>
+   <span>
+    The most simple and naive approach is to consider the “one-hot” vector of the words. This representation is an array with length corresponding to the length of the input dictionary and contains values that are all zeros except for the one whose index corresponds to the index of the word in the vocabulary. This is straightforward to implement, but has some problems because highly depends on the input dictionary and can’t work with words that are not contained. Also it does not consider the similarity between words.
+   </span>
+  </p>
+  <p>
+   <span>
+    A better approach is to consider a representation of words that consider semantics and syntactic informations. The hypothesis behind this method is the distributional semantics: words that appear in the same context (the context is there defined as the surrounding words) are considered similar, because somehow they can be exchanged the one for the other since they appear in similar contexts. Those representation of the words are called word embeddings and are made up of dense real vectors with a fixed dimension. This dimension is a lot smaller than the size of the input dictionary. The word embeddings are usually pre-trained on large corpuses of unlabeled data (for example the whole wikipedia). From those vectors it’s possible also to compute the similarity of two words and visualizing the word distribution on reduced dimensionality (for example plotting on a 2d plane).
+   </span>
+  </p>
+  <p>
+   <span>
+    There are different ways of producing those vectors: word2vec, glove.
+   </span>
+  </p>
+  <p>
+   <span>
+    Some have also derived word embeddings by looking at the single characters (look at fasttext).
+   </span>
+  </p>
+  <p>
+   <span>
+    Using word embeddings as inputs to the neural network has the advantages:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Reduced size of input arrays
+    </span>
+   </li>
+   <li>
+    <span>
+     Semantic and syntactic similarities of words are considered
+    </span>
+   </li>
+  </ul>
+  <h4 id="h.6cgwo7zeuk1q">
    <span>
     Intent classification
    </span>
   </h4>
-  <h4 id="h.c1d8k7r13p0l">
+  <p>
+   <span>
+    The intent classification task must take as input the sentence and provide on output a label that corresponds to the intent type of the sentence. It is a multi-class classification.
+   </span>
+  </p>
+  <h5 id="h.4hmj3bjv7gq3">
+   <span>
+    Keyword based
+   </span>
+  </h5>
+  <p>
+   <span>
+    The first approach that can be considered is keyword-based. In this approach, for each intent type we determine a set of keywords that, if present in the current input, give a score to the selected intent type. For example …
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach is not good enough because it looks only at some words in the current input sentence.
+   </span>
+  </p>
+  <p>
+   <span>
+    A better idea would be to compute a sentence-level representation that summarizes all the words and the meaning of the sentence, and from this vector do a classification on the output labels (intent types). For this sentence vector a lot of different approaches can be applied.
+   </span>
+  </p>
+  <h5 id="h.dazxotng1x74">
+   <span>
+    Average of word vectors
+   </span>
+  </h5>
+  <p>
+   <span>
+    First of all, given the word vectors for each word contained in the sentence, an average can be done. This strategy however is not good because it does not consider the order and the relationships between the words. The order matters a lot in natural language.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 316.00px; height: 381.00px;">
+    <img alt="rnn (4).png" src="https://lh5.googleusercontent.com/d23uIOBMF_uSPRxH6pfMp-jPIManjpqTRCNnUverdtYPgrWXG8dF72rl-D4uQGYoktXYAQKddFj--NM1i-0dQaSbfn6sY_F-uQ7j2fb8X-Fc55VrYXI-w4bgtSfHCsOyqLIn5J3A" style="width: 316.00px; height: 381.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <h5 id="h.6dcfrbpjww3p">
+   <span>
+    RNN approach
+   </span>
+  </h5>
+  <p>
+   <span>
+    To consider the order, a RNN can be used to summarize the sentence and produce a sentence representation that can be used in another layer to classify on the intent types. The output of the RNN is taken only at the end of the sequence. This approach, applied with bidirectional RNN, achieves good results as can be seen in the evaluation section.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 341.00px; height: 461.00px;">
+    <img alt="rnn (5).png" src="https://lh3.googleusercontent.com/4tSkMuhbLUAh53q779byGpesW0cEdLAhMiIFIEs8kTuWWP_zgRqWe0MQhZEWFiD5QSHVeO27Rj8dYQKAhkItvxcCEj48hGDJeeca50RhKviF_0V1Eg09YYtxjDA_r6HK0E15Kd9R" style="width: 341.00px; height: 461.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <h4 id="h.e7wkj7v9f1ma">
    <span>
     Sequence to sequence models for slot tagging
    </span>
   </h4>
+  <p>
+   <span>
+    The task of slot tagging / named entity recognition instead consists of generating an output sequence in which each element corresponds to a tag for the corresponding input word. The tag can be directly the entity type or the IOB format can be used. IOB can be useful when there is need to deal with multi-word slots.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    A lot of the architectures listed below have been created for the task of Neural Machine Translation. This task takes as input the sequence of words in the source language and outputs a sequence of words in another language. This is somehow similar to the task of sequence labeling, because it maps an input sequence to an output sequence, but has some differences that make it a lot different and require a different approach. The differences will be explained in details during the analysis.
+   </span>
+  </p>
+  <p>
+   <span>
+    A common characteristic of them is the presence of two key elements: an encoder and a decoder.
+   </span>
+  </p>
+  <p>
+   <span>
+    The decoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage.
+   </span>
+  </p>
+  <h5 id="h.ahu5xsb0fuvt">
+   <span>
+    Simple Encoder-Decoder
+   </span>
+  </h5>
+  <p>
+   <span>
+    The most simple approach is the one where the encoder collects all the word vectors and using a RNN computes a final representation of the sentence (as in the intent classification task). This representation is passed to the decoder RNN that for each timestep produces an output word.
+   </span>
+  </p>
+  <p>
+   <span>
+    I WAS THERE
+   </span>
+  </p>
   <p>
    <span>
     Simple RNN, bidirectional
@@ -3172,6 +3340,16 @@
     </a>
     <span>
      S Hochreiter, J Schmidhuber - Neural computation, 1997
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref4" id="ftnt4">
+     [4]
+    </a>
+    <span>
+     Cho, et al. (2014)
     </span>
    </p>
   </div>
