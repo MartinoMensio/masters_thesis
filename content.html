@@ -769,7 +769,7 @@
   </p>
   <p>
    <span>
-    The pipeline on input should contain:
+    The classic NLP pipeline:
    </span>
   </p>
   <ul>
@@ -817,7 +817,7 @@
   <ol start="1">
    <li>
     <span>
-     Question classification -&gt; use
+     Question classification and entity extraction
     </span>
    </li>
    <li>
@@ -936,7 +936,7 @@
   <ul>
    <li>
     <span>
-     Classify the intent (what the user wants, against a set of pre-defined ones)
+     Classify the intent (what the user wants, against a set of predefined ones)
     </span>
    </li>
    <li>
@@ -1001,7 +1001,23 @@
   </ul>
   <p>
    <span>
-    The two tasks can be done independently, but some recent studies have shown that there can be benefits if they are performed together.
+    The two tasks can be done independently, but some recent studies [this
+   </span>
+   <sup>
+    <a href="#ftnt2" id="ftnt_ref2">
+     [2]
+    </a>
+   </sup>
+   <span>
+    and this
+   </span>
+   <sup>
+    <a href="#ftnt3" id="ftnt_ref3">
+     [3]
+    </a>
+   </sup>
+   <span>
+    ] have shown that there can be benefits if they are performed together.
    </span>
   </p>
   <h3 id="h.m20m4wbp4ch1">
@@ -1017,6 +1033,11 @@
   <p>
    <span>
     As entity labels, a commonly used format is the IOB, where the O indicates “no entity”, the B is the beginning of an entity and the I is the label associated with a word that continues the entity of the previous word.
+   </span>
+  </p>
+  <p>
+   <span>
+    EXAMPLE
    </span>
   </p>
   <h4 id="h.iuw0sa6gdxrl">
@@ -1036,14 +1057,19 @@
   </p>
   <p>
    <span>
-    The way backpropagation is applied to RNN is the so called backpropagation through time BPTT, in which the network is unfolded in time but all the copies of the same element have shared parameters.
+    The way backpropagation is applied to RNN is the so called backpropagation through time BPTT, in which the network is unfolded in time but all the copies of the same element have shared parameters. On the unfolded network the backpropagation is then applied.
    </span>
   </p>
-  <h4 id="h.mtu9v8drnych">
+  <h4 id="h.wp9j82dyzgo5">
    <span>
     Cell types (simple RNN, GRU, LSTM)
    </span>
   </h4>
+  <p>
+   <span>
+    In this paragraph the mainly used cell/unit types are presented.
+   </span>
+  </p>
   <h5 id="h.1oe97uu0zy2z">
    <span>
     Simple RNN
@@ -1051,7 +1077,7 @@
   </h5>
   <p>
    <span>
-    The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax in this case).
+    The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax).
    </span>
   </p>
   <p>
@@ -1086,8 +1112,8 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt2" id="ftnt_ref2">
-     [2]
+    <a href="#ftnt4" id="ftnt_ref4">
+     [4]
     </a>
    </sup>
    <span>
@@ -1104,8 +1130,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt3" id="ftnt_ref3">
-     [3]
+    <a href="#ftnt5" id="ftnt_ref5">
+     [5]
     </a>
    </sup>
    <span>
@@ -1147,6 +1173,11 @@
   <p>
    <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=it%3D%CF%83%28Wi%5Ccdot%7B%7D%5Bht-1%2Cxt%5D%2Bbi%29%5C+..."/>
   </p>
+  <p>
+   <span>
+    MATH FORMULATION
+   </span>
+  </p>
   <h5 id="h.32ny97nh7agm">
    <span>
     GRU
@@ -1157,8 +1188,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt4" id="ftnt_ref4">
-     [4]
+    <a href="#ftnt6" id="ftnt_ref6">
+     [6]
     </a>
    </sup>
    <span>
@@ -1168,6 +1199,27 @@
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 557.00px; height: 287.00px;">
     <img alt="rnn (3).png" src="https://lh5.googleusercontent.com/0R2ILdqVuioopoMyzGhthdaELUESNy2-JBatSNcENB-3xKBr0o2kfUe9xAQHy8xK3XUqyE4lhK4dl1EEYh1PTXtxlZTSdJwosNY49D-67Bjv4PU-Vb-C1fzxzbgd64aydv-vH7fM" style="width: 557.00px; height: 287.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
+   </span>
+   <sup>
+    <a href="#ftnt7" id="ftnt_ref7">
+     [7]
+    </a>
+   </sup>
+   <span>
+    and this
+   </span>
+   <sup>
+    <a href="#ftnt8" id="ftnt_ref8">
+     [8]
+    </a>
+   </sup>
+   <span>
+    ].
    </span>
   </p>
   <h4 id="h.enwb9pvnygyi">
@@ -1217,6 +1269,11 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    The embeddings can be part of the model (in this case the weights of the embedding layer are trainable) or can be pre-computed on external bigger corpus. The first option is preferred when there size of the used corpus is big enough, and is thought to be comprehensive enough in terms of word coverage (no unexpected new words in prediction time). Instead when the corpus of the considered problem is not big enough to model the word distribution in terms of syntax and semantics, it’s better to use pre-trained word embeddings.
+   </span>
+  </p>
   <h4 id="h.6cgwo7zeuk1q">
    <span>
     Intent classification
@@ -1341,8 +1398,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt5" id="ftnt_ref5">
-     [5]
+    <a href="#ftnt9" id="ftnt_ref9">
+     [9]
     </a>
    </sup>
    <span>
@@ -1366,7 +1423,7 @@
   </h5>
   <p>
    <span>
-    This model was not born for the task of translation between languages, but has been proposed specifically for the sequence labeling problem (that can be applied for NER, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
+    This model was not born for the task of translation between languages, but has been proposed [3 B. Liu and I. Lane, 2016] specifically for the sequence labeling problem (that can be applied for NER, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
    </span>
   </p>
   <p>
@@ -1407,8 +1464,13 @@
    </li>
   </ul>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 478.00px; height: 479.00px;">
-    <img alt="rnn (11).png" src="https://lh4.googleusercontent.com/bJjT-RS8B0wuc0-dWScWANiigB5p_D1All_tS9o4AESrcZyaCSna21LSzk-leuBrpzj8FdQths7bkQaBP383YHMAfvMy4ABHmHeNHZTe2RG7GsY36w4tbFGK_MCksiaXjk1lg1GZ" style="width: 478.00px; height: 479.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 351.50px; height: 352.24px;">
+    <img alt="rnn (11).png" src="https://lh4.googleusercontent.com/bJjT-RS8B0wuc0-dWScWANiigB5p_D1All_tS9o4AESrcZyaCSna21LSzk-leuBrpzj8FdQths7bkQaBP383YHMAfvMy4ABHmHeNHZTe2RG7GsY36w4tbFGK_MCksiaXjk1lg1GZ" style="width: 351.50px; height: 352.24px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 402.00px; height: 446.00px;">
+    <img alt="rnn (12).png" src="https://lh5.googleusercontent.com/oLrVgiGmnoDt5yLp_6PU6F_c0GR23T6hFz9eMyHE02txtOSvafvrxenjgaaeoAef8ySyBfLmhkErn9EK3MByiJ9nifVWoMPr5avJSqATAvN8g0jAqmBCnlEyhOlMK2-bPCxWFYyu" style="width: 402.00px; height: 446.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -2037,18 +2099,21 @@
     Approach
    </span>
   </h1>
-  <h2 id="h.cof2o0hc8q7h">
+  <h2 id="h.p35bk62b32kr">
    <span>
-    Main components
+    Multichannel Support
    </span>
   </h2>
-  <ul>
-   <li>
-    <span>
-     Core
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    Conversational agent separate from the messaging platform. Using a generic message-proxy (see botkit) that will handle all the specific features of the platforms. The conversational agent should be independent.
+   </span>
+  </p>
+  <h2 id="h.dzssnlm4kvyj">
+   <span>
+    NLU
+   </span>
+  </h2>
   <ul>
    <li>
     <span>
@@ -2174,90 +2239,16 @@
     </span>
    </li>
   </ul>
-  <ul>
-   <li>
-    <span>
-     Data retrieval:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     bike sharing (easy part)
-    </span>
-   </li>
-   <li>
-    <span>
-     Context of the city: events, places. Possible source of data:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Foursquare
-    </span>
-    <span>
-     <a href="https://developer.foursquare.com/docs/venues/explore">
-      https://developer.foursquare.com/docs/venues/explore
-     </a>
-    </span>
-    <span>
-     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
-    </span>
-   </li>
-   <li>
-    <span>
-     Google places API
-    </span>
-    <span>
-     <a href="https://developers.google.com/places/web-service/search">
-      https://developers.google.com/places/web-service/search
-     </a>
-    </span>
-    <span>
-     provides similar features (1.000 requests per day)
-    </span>
-   </li>
-   <li>
-    <span>
-     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
-      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Weather forecasts: if bad weather is expected, tell user
-    </span>
-    <span>
-     <a href="https://www.wunderground.com/weather/api/">
-      https://www.wunderground.com/weather/api/
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Personalization:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Model:
-    </span>
-   </li>
-  </ul>
+  <h2 id="h.9vi2nf26bxcs">
+   <span>
+    Personalization
+   </span>
+  </h2>
+  <h3 id="h.2t419x4gurpa">
+   <span>
+    Content
+   </span>
+  </h3>
   <ul>
    <li>
     <span>
@@ -2435,16 +2426,86 @@
     </span>
    </li>
   </ul>
+  <h3 id="h.h3t6ly4gdrse">
+   <span>
+    Interaction
+   </span>
+  </h3>
+  <p>
+   <span>
+    Operative modes, ...
+   </span>
+  </p>
+  <h2 id="h.jvb587u3mpo8">
+   <span>
+    Data sources
+   </span>
+  </h2>
   <ul>
    <li>
     <span>
-     Messaging interface (towards which messenger platform?)
+     bike sharing (easy part)
+    </span>
+   </li>
+   <li>
+    <span>
+     Context of the city: events, places. Possible source of data:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Foursquare
+    </span>
+    <span>
+     <a href="https://developer.foursquare.com/docs/venues/explore">
+      https://developer.foursquare.com/docs/venues/explore
+     </a>
+    </span>
+    <span>
+     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
+    </span>
+   </li>
+   <li>
+    <span>
+     Google places API
+    </span>
+    <span>
+     <a href="https://developers.google.com/places/web-service/search">
+      https://developers.google.com/places/web-service/search
+     </a>
+    </span>
+    <span>
+     provides similar features (1.000 requests per day)
+    </span>
+   </li>
+   <li>
+    <span>
+     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
+      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Weather forecasts: if bad weather is expected, tell user
+    </span>
+    <span>
+     <a href="https://www.wunderground.com/weather/api/">
+      https://www.wunderground.com/weather/api/
+     </a>
+    </span>
+    <span>
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Conversational agent separate from the messaging platform. Using a generic message-proxy (see botkit) that will handle all the specific features of the platforms. The conversational agent should be indipendent
    </span>
   </p>
   <ul>
@@ -2635,10 +2696,6 @@
   <p>
    <span>
     Is filled along the pipeline. Each stage is adding an element to it
-   </span>
-  </p>
-  <p>
-   <span>
    </span>
   </p>
   <p>
@@ -3119,11 +3176,101 @@
    <span>
    </span>
   </p>
-  <h1 id="h.xrkimbz3muul">
+  <h1 id="h.sa57zp440c1i">
    <span>
     Implementation
    </span>
   </h1>
+  <h2 id="h.8zj60ofw3oog">
+   <span>
+    Interaction with chat platforms
+   </span>
+  </h2>
+  <p>
+   <span>
+    Decoupling botkit from core
+   </span>
+  </p>
+  <p>
+   <span>
+    Which ones
+   </span>
+  </p>
+  <p>
+   <span>
+    How
+   </span>
+  </p>
+  <p>
+   <span>
+    Getting the bike sharing informations
+   </span>
+  </p>
+  <p>
+   <span>
+    Getting places informations
+   </span>
+  </p>
+  <p>
+   <span>
+    Other data sources
+   </span>
+  </p>
+  <p>
+   <span>
+    Meteo
+   </span>
+  </p>
+  <p>
+   <span>
+    Magicsauce
+   </span>
+  </p>
+  <p>
+   <span>
+    NLU and keras for RNNs
+   </span>
+  </p>
+  <p>
+   <span>
+    Personalization
+   </span>
+  </p>
+  <p>
+   <span>
+    Bootstrap
+   </span>
+  </p>
+  <p>
+   <span>
+    Facebook login (why, how)
+   </span>
+  </p>
+  <p>
+   <span>
+    content
+   </span>
+  </p>
+  <p>
+   <span>
+    Foursquare (why, how)
+   </span>
+  </p>
+  <p>
+   <span>
+    From the user to the places
+   </span>
+  </p>
+  <p>
+   <span>
+    Interaction
+   </span>
+  </p>
+  <p>
+   <span>
+    Operative modes
+   </span>
+  </p>
   <p>
    <span>
    </span>
@@ -3417,7 +3564,7 @@
      [2]
     </a>
     <span>
-     Bengio, et al. (1994) Learning long-term dependencies with gradient descent is difficult
+     D Guo, G Tur, W Yih, G Zweig, “Joint semantic utterance classification and slot filling with recursive neural networks” in Spoken Language Technology Workshop (SLT), 2014
     </span>
    </p>
   </div>
@@ -3427,7 +3574,7 @@
      [3]
     </a>
     <span>
-     S Hochreiter, J Schmidhuber - Neural computation, 1997
+     B. Liu and I. Lane, “Attention-based recurrent neural network models for joint intent detection and slot filling,” in Proceedings of The 17th Annual Meeting of the International Speech Communication Association, 2016
     </span>
    </p>
   </div>
@@ -3437,7 +3584,7 @@
      [4]
     </a>
     <span>
-     Cho, et al. (2014)
+     Bengio, et al. (1994) Learning long-term dependencies with gradient descent is difficult
     </span>
    </p>
   </div>
@@ -3445,6 +3592,46 @@
    <p>
     <a href="#ftnt_ref5" id="ftnt5">
      [5]
+    </a>
+    <span>
+     S Hochreiter, J Schmidhuber - Neural computation, 1997, “LONG SHORT-TERM MEMORY”
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref6" id="ftnt6">
+     [6]
+    </a>
+    <span>
+     Cho, et al. (2014)
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref7" id="ftnt7">
+     [7]
+    </a>
+    <span>
+     R Jozefowicz, W Zaremba, I Sutskever - Proceedings of the 32nd …, 2015, “An Empirical Exploration of Recurrent Network Architectures”
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref8" id="ftnt8">
+     [8]
+    </a>
+    <span>
+     J Chung, C Gulcehre, KH Cho, Y Bengio - arXiv preprint arXiv:1412.3555, 2014, “Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling“
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref9" id="ftnt9">
+     [9]
     </a>
     <span>
      K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
