@@ -1270,16 +1270,6 @@
   </p>
   <p>
    <span>
-    There are different ways of producing those vectors: word2vec, glove.
-   </span>
-  </p>
-  <p>
-   <span>
-    Some have also derived word embeddings by looking at the single characters (look at fasttext).
-   </span>
-  </p>
-  <p>
-   <span>
     Using word embeddings as inputs to the neural network has the advantages:
    </span>
   </p>
@@ -1298,6 +1288,16 @@
   <p>
    <span>
     The embeddings can be part of the model (in this case the weights of the embedding layer are trainable) or can be pre-computed on external bigger corpus. The first option is preferred when there size of the used corpus is big enough, and is thought to be comprehensive enough in terms of word coverage (no unexpected new words in prediction time). Instead when the corpus of the considered problem is not big enough to model the word distribution in terms of syntax and semantics, it’s better to use pre-trained word embeddings.
+   </span>
+  </p>
+  <p>
+   <span>
+    There are different argorithms of producing those vectors: word2vec, glove.
+   </span>
+  </p>
+  <p>
+   <span>
+    Some have also derived word embeddings by looking at the single characters (look at fasttext).
    </span>
   </p>
   <h4 id="h.6cgwo7zeuk1q">
