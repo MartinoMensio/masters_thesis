@@ -460,7 +460,10 @@
   <ul>
    <li>
     <span>
-     Context: keep track of informations given by user
+     Context
+    </span>
+    <span>
+     : keep track of informations given by user
     </span>
    </li>
    <li>
@@ -629,11 +632,49 @@
     </span>
    </li>
   </ul>
-  <h4 id="h.cfauph7t5emx">
+  <h4 id="h.3r2mfopy3uiq">
    <span>
-    Machine learning (completely
+    Machine learning (for the understanding part)
    </span>
   </h4>
+  <p>
+   <span>
+    Better explained in NLU. This is the best approach for task-specific bots. The problem is understanding the user. Once the understanding is done, the system can use the domain rules and provide back a response. The part that gives back the response is better done programmatically
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Examples:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Google smart reply
+    </span>
+    <span>
+     <a href="http://arxiv.org/abs/1606.04870">
+      http://arxiv.org/abs/1606.04870
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.4yanc26b251y">
+   <span>
+    Generative models
+   </span>
+  </h3>
+  <p>
+   <span>
+    Approach: give a huge corpus of dialogue. The system will learn how to generate next sentence
+   </span>
+  </p>
   <p>
    <span>
     Data sets:
@@ -686,31 +727,7 @@
   </p>
   <p>
    <span>
-    Examples:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Google smart reply
-    </span>
-    <span>
-     <a href="http://arxiv.org/abs/1606.04870">
-      http://arxiv.org/abs/1606.04870
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <h3 id="h.3y4hjed0zgjs">
-   <span>
-    Generative models
-   </span>
-  </h3>
-  <p>
-   <span>
-    Real artificial intelligence, understanding the language. They don’t use pre-defined responses, but generate them from scratch. The technology is based on translation techniques.
+    Don’t use pre-defined responses, but generate them from scratch. The technology is based on translation techniques.
    </span>
   </p>
   <p>
@@ -752,9 +769,19 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    This approach has very good results for non-specific task dialogues, because the goal is simply to continue the dialogue and there is no need to introduce some task-specific informations (KBs).
+   </span>
+  </p>
+  <p>
+   <span>
+    The results are quite promising in this field, but we decided not to use such end2end systems but instead to apply the NLU strategy to map the user sentences to a pre-designed fixed set of intents.
+   </span>
+  </p>
   <h2 id="h.kvxdevcml2at">
    <span>
-    Challenges
+    Challenges, our goal
    </span>
   </h2>
   <ul>
@@ -790,7 +817,7 @@
   </p>
   <p>
    <span>
-    The classic NLP pipeline:
+    The classic NLP pipeline includes:
    </span>
   </p>
   <ul>
@@ -962,7 +989,7 @@
    </li>
    <li>
     <span>
-     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot)
+     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling
     </span>
    </li>
   </ul>
@@ -1068,17 +1095,39 @@
   </h4>
   <p>
    <span>
-    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. A recurrent cell is a type of cell that takes as input also its previous output. Those types of neural networks have been designed for problems where the order of inputs matters, and the length of input sequence can vary. For example, they are commonly used with sequence of words, characters, frames in a video and their goodness stands in modeling features that belong to the sequence. Unlike feed-forward nets, that consider the fixed set of inputs to generate the outputs, the recurrent nets are applied in different timesteps to elements belonging to a sequence and, thanks to the loops of their cells, keep informations from previous timesteps and the output depends on them too.
+    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. The recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of being able to remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
+   </span>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 241.33px;">
+    <img alt="" src="https://lh5.googleusercontent.com/HvnduF8wYNcp3zfwOqKoIaPhbvuY5XfOJp194XSBL6XAEHWrbAd5vpW_sRZNQ2AfURDFBLFs1dKuPyWiWxpxT-Awqq-5VJXo4Ssh-KeuQhoIOkgRJMis15RyfAQ7B4nikoAOTfJs" style="width: 602.00px; height: 241.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    Since the same network (and cells) are used in different timesteps, the analysis of RNN is usually performed on the unfolded version of the network: the single elements are considered different times and the looping links are therefore going from the element in the previous time to the next time.
    </span>
   </p>
   <p>
    <span>
-    The way backpropagation is applied to RNN is the so called backpropagation through time BPTT, in which the network is unfolded in time but all the copies of the same element have shared parameters. On the unfolded network the backpropagation is then applied.
+    A recurrent cell is a type of cell that takes as input also its previous output. Those types of neural networks have been designed for problems where the order of inputs matters, and the length of input sequence can vary. For example, they are commonly used with sequence of words, characters, frames in a video and their goodness stands in modeling features that belong to the sequence. Unlike feed-forward nets, that consider the fixed set of inputs to generate the outputs, the recurrent nets are applied in different timesteps to elements belonging to a sequence and, thanks to the loops of their cells, keep informations from previous timesteps and the output depends on them too.
+   </span>
+  </p>
+  <p>
+   <span>
+    Since the same network (and cells) are used in different timesteps, the analysis of RNN is usually performed on the unfolded version of the network: the single elements are repeated different times (one for each timestep) and the looping links are now going from the element in the previous time to the next time. In this way a recurrent network is transformed into a multi-layer feedforward network.
+   </span>
+  </p>
+  <h4 id="h.2p7ylki847vn">
+   <span>
+    Backpropagation
+   </span>
+  </h4>
+  <p>
+   <span>
+    Backpropagation is the algorithm used in neural networks to update the parameters, that is used also for the training of recurrent networks, with a slight modification. The name of the modified algorithm is BackPropagation Through Time (BPTT) and is basically the standard algorithm applied on the unrolled version of the network. The only difference is that, since the layers correspond to different timesteps of the same cell, the gradients must be summed up, because the parameters are the same.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 201.33px;">
+    <img alt="" src="https://lh6.googleusercontent.com/uF6S4ni9jiDhGj956-BgzLeW95wmEnPJ5Ob7IwWOhZNiNz_KvDybtef4dYCibFQ9k80qKe7ATBu-kFx7aI3oBLHdSMbIxVa-IXkmHAmATGD8ZYO02boF8FkUG_fkxRmllFtxN_OV" style="width: 602.00px; height: 201.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <h4 id="h.wp9j82dyzgo5">
