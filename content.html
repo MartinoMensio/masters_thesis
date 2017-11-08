@@ -989,18 +989,18 @@
    </li>
    <li>
     <span>
-     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling
+     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling, because the words that we want to extract may also not be entities.
     </span>
    </li>
   </ul>
   <p>
    <span>
-    The first task corresponds to a classification of the user sentences to decide what is the intention of the user. Since a bot is usually designed to answer to different types of questions, this stage is responsible for finding the type of question. The slot filling task instead (also called NER) is a process that annotates some parts of the input sentences with the corresponding entity type. While the intent represents the type of question, the entities of a sentence are values that the bot must be able to extract from the sentences because they are used as parameters for the application logic.
+    For example, for the sentence “Is Turin a supported city?” we may want to categorize it as a question that asks if a city is supported (this is the intent) and extract the word “Torino” that is the city the user is looking for (this is a slot that corresponds to an entity).
    </span>
   </p>
   <p>
    <span>
-    Making a metaphor with programming languages, intents correspond to methods while entities are the arguments.
+    The first task corresponds to a classification of the user sentences to decide what is the intention of the user. Since a bot is usually designed to answer to different types of questions, this stage is responsible for finding the type of question. The slot filling task instead (also called NER) is a process that annotates some parts of the input sentences with the name of the corresponding slot. A slot can be thought as a field in an online form. While the intent represents the type of question, the slots of a sentence are values that the bot must be able to extract from the sentences because they are used as parameters for the application logic.
    </span>
   </p>
   <p>
@@ -1049,6 +1049,11 @@
   </ul>
   <p>
    <span>
+    Once the intent and the slots have been analyzed on the current sentence, we can have some rules at the application level that can put some constraints. For example, for a certain type of question, one or more slots can be compulsory. In this case, the conversation should make the user provide the values by prompting him some questions.
+   </span>
+  </p>
+  <p>
+   <span>
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
@@ -1068,31 +1073,56 @@
     ] have shown that there can be benefits if they are performed together.
    </span>
   </p>
-  <h3 id="h.m20m4wbp4ch1">
+  <h3 id="h.iqkeiq1d8ogq">
    <span>
-    Recurrent Neural Networks for joint entity extraction and intent classification
+    NLU as a service
    </span>
   </h3>
   <p>
    <span>
-    A neural-network approach can be used for the tasks of named entity extraction and intent detection. The inputs to the network are the words and the outputs are the labels of the considered task(s): intent label and/or entity labels.
+    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box
+   </span>
+  </p>
+  <h3 id="h.m20m4wbp4ch1">
+   <span>
+    Joint slot filling and intent classification
+   </span>
+  </h3>
+  <p>
+   <span>
+    A neural-network approach can be used for the tasks of slot filling and intent detection. The first thing that needs to be done is to point out what are the inputs and outputs of the system. The inputs to the network are the words contained in the sentence and the outputs are the intent label (for the intent classification task) and the slot labels (for the slot filling task).
    </span>
   </p>
   <p>
    <span>
-    As entity labels, a commonly used format is the IOB, where the O indicates “no entity”, the B is the beginning of an entity and the I is the label associated with a word that continues the entity of the previous word.
+    As slot labels, the slot names can be used directly but, in order to better handle multi-word slots, a commonly used format is the IOB, where the O indicates “outside”, the B is the beginning of a slot and the I is the label associated with a word that continues the slot of the previous word. The IOB labels are prepended to the slot name.
    </span>
   </p>
   <p>
    <span>
-    EXAMPLE
+    For the previous example, the output annotations could be:
    </span>
   </p>
-  <h4 id="h.iuw0sa6gdxrl">
+  <p>
+   <span>
+    “Is(O) Turin(B-city) a(O) supported(O) city(O)?” intent=supported_city
+   </span>
+  </p>
+  <p>
+   <span>
+    Once defined the inputs and outputs, we can think of a component that implements the desired functionalities.
+   </span>
+  </p>
+  <h4 id="h.l6k85hs6qcqb">
    <span>
     Why RNN
    </span>
   </h4>
+  <p>
+   <span>
+    This section contains a description of the different structures of neural networks that have reached the State of the Art condition
+   </span>
+  </p>
   <p>
    <span>
     Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. The recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of being able to remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
