@@ -1080,14 +1080,53 @@
   </h3>
   <p>
    <span>
-    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box
+    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box.
    </span>
   </p>
-  <h3 id="h.m20m4wbp4ch1">
+  <p>
+   <span>
+    There have been some efforts to compare the performances of all those systems by SNIPS:
+   </span>
+   <span>
+    <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+     https://snips.ai/content/sdk-benchmark-visualisation/
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    <a href="https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19">
+     https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    <a href="https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017">
+     https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017
+    </a>
+   </span>
+   <span>
+    that tested a lot of those platforms to compare the results on intent and slots. Emphasis also on the detection of out-of-domain samples (things that the agent was not trained for), learning curve, language support, response time. Dataset used:
+   </span>
+   <span>
+    <a href="https://github.com/snipsco/nlu-benchmark">
+     https://github.com/snipsco/nlu-benchmark
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.jot16v735fof">
    <span>
     Joint slot filling and intent classification
    </span>
   </h3>
+  <p>
+   <span>
+    This section contains a description of the different structures of neural networks that have reached the State of the Art condition and have been described in literature.
+   </span>
+  </p>
   <p>
    <span>
     A neural-network approach can be used for the tasks of slot filling and intent detection. The first thing that needs to be done is to point out what are the inputs and outputs of the system. The inputs to the network are the words contained in the sentence and the outputs are the intent label (for the intent classification task) and the slot labels (for the slot filling task).
@@ -1120,12 +1159,7 @@
   </h4>
   <p>
    <span>
-    This section contains a description of the different structures of neural networks that have reached the State of the Art condition
-   </span>
-  </p>
-  <p>
-   <span>
-    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. The recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of being able to remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
+    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. The recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
    </span>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 241.33px;">
     <img alt="" src="https://lh5.googleusercontent.com/HvnduF8wYNcp3zfwOqKoIaPhbvuY5XfOJp194XSBL6XAEHWrbAd5vpW_sRZNQ2AfURDFBLFs1dKuPyWiWxpxT-Awqq-5VJXo4Ssh-KeuQhoIOkgRJMis15RyfAQ7B4nikoAOTfJs" style="width: 602.00px; height: 241.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
