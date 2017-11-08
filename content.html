@@ -1238,7 +1238,7 @@
   </p>
   <p>
    <span>
-    The name of the modified algorithm is BackPropagation Through Time (BPTT) and is basically the standard algorithm applied on the unrolled version of the network. The only difference is that, since the layers correspond to different timesteps of the same cell, the gradients must be summed up, because the parameters are the same.
+    The name of the modified algorithm is BackPropagation Through Time (BPTT) and is basically the standard algorithm applied on the unrolled version of the network. The only difference is that, since the layers correspond to different timesteps of the same cell, the weight updates in each instance are summed together.
    </span>
   </p>
   <p>
@@ -1284,7 +1284,7 @@
   <ul>
    <li>
     <span>
-     Exploding gradient: if some coefficients are greater than 1, the output values can become soon very big, making the network insensible to new inputs because is in some way saturated. The solution to this problem is using some non-linear function that limit the values
+     Exploding gradient: if some coefficients are greater than 1, the output values can become soon very big, making the network insensible to new inputs because is in some way saturated. The solution to this problem is using some non-linear function that limits the values
     </span>
    </li>
    <li>
@@ -1452,12 +1452,12 @@
   </ul>
   <p>
    <span>
-    The embeddings can be part of the model (in this case the weights of the embedding layer are trainable) or can be pre-computed on external bigger corpus. The first option is preferred when there size of the used corpus is big enough, and is thought to be comprehensive enough in terms of word coverage (no unexpected new words in prediction time). Instead when the corpus of the considered problem is not big enough to model the word distribution in terms of syntax and semantics, it’s better to use pre-trained word embeddings.
+    The embeddings can be part of the model (in this case the weights of the embedding layer are trainable) or can be pre-computed on external bigger corpus. The first option is preferred when the size of the used corpus is big enough, and is thought to be comprehensive enough in terms of word coverage (no unexpected new words in prediction time). Instead when the corpus of the considered problem is not big enough to model the word distribution in terms of syntax and semantics, it’s better to use pre-trained word embeddings.
    </span>
   </p>
   <p>
    <span>
-    There are different argorithms of producing those vectors: word2vec, glove.
+    There are different algorithms of producing those vectors: word2vec, glove.
    </span>
   </p>
   <p>
@@ -1551,9 +1551,36 @@
   </p>
   <p>
    <span>
-    The decoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage.
+    The encoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage.
    </span>
   </p>
+  <h6 id="h.qymdvyd42673">
+   <span>
+    Output dependencies
+   </span>
+  </h6>
+  <p>
+   <span>
+    Modeling output dependencies:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     local choice
+    </span>
+   </li>
+   <li>
+    <span>
+     feed the previous output together with the current input to decoding timestep (Jordan Network??)
+    </span>
+   </li>
+   <li>
+    <span>
+     linear-chain CRF
+    </span>
+   </li>
+  </ul>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 311.00px; height: 366.00px;">
     <img alt="rnn (6).png" src="https://lh5.googleusercontent.com/FlzKOjyPCM7CcZBkt2CI0zAwVu8_nS2P4vd3DGJSiccNRHsw9KmTAj13yx7KO1j4qvcyASg2oZfZsdSTfaxx7zbIb1vlJix1AsG4aEKHoDiwjR_EttAcJSqjFrllVlOIvyNartOo" style="width: 311.00px; height: 366.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
@@ -1614,7 +1641,7 @@
   </h5>
   <p>
    <span>
-    This model was not born for the task of translation between languages, but has been proposed [3 B. Liu and I. Lane, 2016] specifically for the sequence labeling problem (that can be applied for NER, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
+    This model was not born for the task of translation between languages, but has been proposed [3 B. Liu and I. Lane, 2016] specifically for the sequence labeling problem (that can be applied to NER/slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
    </span>
   </p>
   <p>
@@ -1666,6 +1693,21 @@
   </p>
   <p>
    <span>
+    With this network, used for translations, it is useful to show how the attention maps the words in the two languages. Using a matrix representation that says which input words were used to provide the corresponding output words.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 646.67px;">
+    <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+   <sup>
+    <a href="#ftnt10" id="ftnt_ref10">
+     [10]
+    </a>
+   </sup>
+  </p>
+  <p>
+   <span>
     The attention model is quite advanced, and since a lot of other parameters are there in the network, a lot more of training samples must be used.
    </span>
   </p>
@@ -1674,21 +1716,6 @@
     For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Modeling output dependencies (local choice, feed the previous output together with the current input to decoding timestep, linear-chain CRF)
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
    </span>
@@ -3831,6 +3858,16 @@
     </a>
     <span>
      K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref10" id="ftnt10">
+     [10]
+    </a>
+    <span>
+     “Neural Machine Translation By Jointly Learning To Align And Translate” Cho et Al, 2015
     </span>
    </p>
   </div>
