@@ -1186,7 +1186,59 @@
   </h4>
   <p>
    <span>
-    Backpropagation is the algorithm used in neural networks to update the parameters, that is used also for the training of recurrent networks, with a slight modification. The name of the modified algorithm is BackPropagation Through Time (BPTT) and is basically the standard algorithm applied on the unrolled version of the network. The only difference is that, since the layers correspond to different timesteps of the same cell, the gradients must be summed up, because the parameters are the same.
+    Backpropagation is the algorithm used in neural networks to update the weights, that is used also for the training of recurrent networks, with a slight modification.
+   </span>
+  </p>
+  <p>
+   <span>
+    The goal of the backpropagation training algorithm is to modify the weights of a neural network in order to minimize the error of the network outputs compared to some expected output in response to corresponding inputs.
+   </span>
+  </p>
+  <p>
+   <span>
+    It is a supervised learning algorithm that allows the network to be corrected with regard to the specific errors made.
+   </span>
+  </p>
+  <p>
+   <span>
+    The general algorithm is as follows:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Present a training input pattern and propagate it through the network to get an output
+    </span>
+   </li>
+   <li>
+    <span>
+     Compare the predicted outputs to the expected outputs and calculate the error
+    </span>
+   </li>
+   <li>
+    <span>
+     Calculate the derivatives of the error with respect to the network weights
+    </span>
+   </li>
+   <li>
+    <span>
+     Adjust the weights to minimize the error
+    </span>
+   </li>
+   <li>
+    <span>
+     Repeat
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    BPTT
+   </span>
+  </p>
+  <p>
+   <span>
+    The name of the modified algorithm is BackPropagation Through Time (BPTT) and is basically the standard algorithm applied on the unrolled version of the network. The only difference is that, since the layers correspond to different timesteps of the same cell, the gradients must be summed up, because the parameters are the same.
    </span>
   </p>
   <p>
