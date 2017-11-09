@@ -1554,11 +1554,16 @@
     The encoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage.
    </span>
   </p>
-  <h6 id="h.qymdvyd42673">
+  <h6 id="h.1zr6peoxh1xl">
    <span>
     Output dependencies
    </span>
   </h6>
+  <p>
+   <span>
+    Output labels of the words are correlated with the neighbors. For example a “I-ent” is always preceded by a “B-ent” or another “I-ent”. Also there can be some patterns that highlight that after a certain entity it is more probable to find another one. This is called output dependency, that occur at the decoding stage, just before the production of the outputs.
+   </span>
+  </p>
   <p>
    <span>
     Modeling output dependencies:
@@ -1567,17 +1572,17 @@
   <ul>
    <li>
     <span>
-     local choice
+     local choice: using this approach, each decoding step produces an output that is then projected to the labels. The decision about which label to assign is done locally, performing a simple softmax operation followed by a sampling
     </span>
    </li>
    <li>
     <span>
-     feed the previous output together with the current input to decoding timestep (Jordan Network??)
+     feed the previous output together with the current input to decoding timestep (Jordan Network??): in this approach, the output is fed back as input to the next timestep for the decoder network, and the network in training learns the output dependencies
     </span>
    </li>
    <li>
     <span>
-     linear-chain CRF
+     linear-chain CRF: an alternative to RNN for modeling the output dependencies is using a linear-chain CRF. This can substitute the decoder network, and use the encoder to produce its input features. CRF finds the paths with higher energy in a very similar way to RNN. In other words, it finds the output sequence that is mostly probable
     </span>
    </li>
   </ul>
