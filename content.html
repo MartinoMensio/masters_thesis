@@ -1718,7 +1718,17 @@
   </p>
   <p>
    <span>
-    For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN.
+    For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN, so the expected values for the attention distribution is that it will keep the inputs and outputs aligned. It can be kept together with the aligned model just to provide more features
+   </span>
+  </p>
+  <h4 id="h.2ijwzgcp6f7s">
+   <span>
+    Joint SLU
+   </span>
+  </h4>
+  <p>
+   <span>
+    The two tasks can be combined together in one single network in different ways and with a wide variety of additional things that can be added (for example attention mechanism, output dependencies). The approaches found in literature try to use a common encoding stage and then differentiate on the decoding, one for each task. The network has to fork at some point because the shape of the outputs is different: one single label for the intent and many slot labels, considering a single input sentence.
    </span>
   </p>
   <p>
