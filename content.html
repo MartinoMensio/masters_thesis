@@ -1733,10 +1733,32 @@
   </p>
   <p>
    <span>
-    The reference architecture is described in [3] and consists of a encoder-decoder model with aligned inputs and attention.
+    In [3] there are two different proposed architectures: one is based on the encoder-decoder adding the intent output, while the other collapses all in one single compact structure.
    </span>
+  </p>
+  <h5 id="h.b8fu65frdqly">
+   <span>
+    Encoder-decoder model with aligned inputs and attention
+   </span>
+  </h5>
+  <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 204.00px;">
     <img alt="rnn (14).png" src="https://lh5.googleusercontent.com/xBoY0TBhtB2zp_MwmZHFSqzF_ADAUkUgMwEdt2J1lmMPABMC0WeJysVtbKV7vX2qG8vRrjcfP_p9HOKZhZruozn-DyiYNO4g62YBqQIXHe77tAaMRGl3fQgb8ucarEuXv2Xoby2x" style="width: 602.00px; height: 204.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The intent classifier is added as a branch that takes the last state of the encoder and then projects to the intent space with a single layer feedforward.
+   </span>
+  </p>
+  <h5 id="h.3uq9pdvqemem">
+   <span>
+    Attention-based RNN model
+   </span>
+  </h5>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 458.00px; height: 492.00px;">
+    <img alt="rnn (15).png" src="https://lh6.googleusercontent.com/YB8miahDVN3fKIuWwNHowwbCGuQaswaAdV8iAUIaDXW8MvTlQFSYEc7GNJEGgYmflnBnHsZ0hH4kJe7AYLcMKSa4sr2laDq3BnqccIazWugKDUATsSDtI3BbXMtF7_8O_tltz9UT" style="width: 458.00px; height: 492.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
