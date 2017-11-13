@@ -1846,19 +1846,39 @@
     Instead in the end-to-end architectures, all the components are trained by dialog examples. The positive points is that there is no need to handwritten rules for the dialogue state tracker. The rules are inferred by the dialog corpus and the system learns what is the most appropriate answer to provide. Some parts are still not part of the trainable model: the module accessing the data and exposing some operations via some API. The trainable model learns when to issue API calls.
    </span>
   </p>
+  <h4 id="h.wttb2qhy3rtz">
+   <span>
+    Multi-turn SLU
+   </span>
+  </h4>
   <p>
    <span>
-    Store in the chat context and using some rules in the logic
+    Extract intent+entities
    </span>
   </p>
   <p>
    <span>
-    Merging current sentence with previous intent/entities to predict current
+    Literature: attention based yun_nung
    </span>
   </p>
+  <h4 id="h.13sbtqu88z5j">
+   <span>
+    Dialogue tracking systems
+   </span>
+  </h4>
   <p>
    <span>
-    Other models that involve memory of the intent/entities
+    Explain something about DSTC. Memory. Is this really different from end-to-end dialog?
+   </span>
+  </p>
+  <h4 id="h.5h19s2dnfiyp">
+   <span>
+    End to End Goal-oriented dialog (generative)
+   </span>
+  </h4>
+  <p>
+   <span>
+    As said before, this approach wants to overcome the need of domain-specific handcrafting in favour of a more generic system that can fastly be used for new domains. This approach has its origins in another type of setting: general chit-chat dialogs. From corpuses of discussions (forum threads / movie conversations) the system is trained in a end-to-end fashion to predict the next sentence. The porting from this scenario to goal-oriented ones has some issues, that generate from the fact that the conversation is intrinsically different in the purpose: the system is interrogated by the user and has to provide some information back. Beyond keeping the conversation smooth, the agent has to ask questions to the user to have a better formulation of the request, query the Knowledge Bases, interpreting the results and provide them to the user in the correct shape in order to complete a transaction.
    </span>
   </p>
   <p>
