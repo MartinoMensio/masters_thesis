@@ -1827,13 +1827,23 @@
    </li>
    <li>
     <span>
-     “Dialogue state tracking”: mostly known because of the Dialogue State Tracking Challenge. This refers to the last level of understanding a dialogue: represent the dialogue state and updating it as the conversation keeps going on
+     “Dialogue state tracking”: mostly known because of the Dialogue State Tracking Challenge. This refers to the last level of understanding a dialogue: represent the dialogue state and updating it as the conversation keeps going on. MORE ON DIALOG STATE TRACKING
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Different solutions exist and depend on where we want the neural network to come in contact with the application logic (what to establish as manual rules and what is inferred by the neural-network approach)
+    Different solutions exist and depend on where we want the neural network to come in contact with the application logic (what to establish as manual rules and what is inferred by the neural-network approach). Literature shows case studies where there is a strict separation between the understanding module and the management of the dialog state, but also cases where everything is put together in an end-to-end fashion in a way more independent from domain rules.
+   </span>
+  </p>
+  <p>
+   <span>
+    In the first type of systems, the NLU module contains the recurrent neural network stuff and produces in output intent+entities. Once they are extracted from the dialogue, another module “dialogue state tracker” keeps trace of the conversation and applying some handwritten rules decides the flow of the conversation and provides responses back to the user.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead in the end-to-end architectures, all the components are trained by dialog examples. The positive points is that there is no need to handwritten rules for the dialogue state tracker. The rules are inferred by the dialog corpus and the system learns what is the most appropriate answer to provide. Some parts are still not part of the trainable model: the module accessing the data and exposing some operations via some API. The trainable model learns when to issue API calls.
    </span>
   </p>
   <p>
@@ -2602,12 +2612,12 @@
   </h3>
   <p>
    <span>
-    Before describing the NLU module, it is important to understand a thing.
+    Before describing the NLU module, it is important to understand one thing.
    </span>
   </p>
   <p>
    <span>
-    Using NN for everything could be good only with lots of data. Something need to be handwritten. For example the fact that “to search for a bike you should provide a criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules.
+    Using NN for everything could be good only with lots of data. Something need to be handwritten. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog (multi-turn)
    </span>
   </p>
   <h2 id="h.9vi2nf26bxcs">
