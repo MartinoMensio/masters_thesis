@@ -1822,38 +1822,18 @@
      user follow-up questions
     </span>
     <span>
-     . Receiving some results from the agent, the user could ask for more details or to change some parameters. Example: “Find me a chinese restaurant” “Those are the results for chinese restaurants” “What about italian ones?”. In this case, the user refers to the previous query
+     . Receiving some results from the agent, the user could ask for more details or to change some parameters. Example: “Find me a chinese restaurant” “Those are the results for chinese restaurants” “What about italian ones?”. In this case, the user refers to the previous query and is only changing the type of restaurant.
+    </span>
+   </li>
+   <li>
+    <span>
+     “Dialogue state tracking”: mostly known because of the Dialogue State Tracking Challenge. This refers to the last level of understanding a dialogue: represent the dialogue state and updating it as the conversation keeps going on
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Also known as the multi-turn interaction problem
-   </span>
-  </p>
-  <p>
-   <span>
-    Adding entities to the initial intent to refine search parameters / missing parameters
-   </span>
-  </p>
-  <p>
-   <span>
-    Follow-up questions: a new intent on previously mentioned entities
-   </span>
-  </p>
-  <p>
-   <span>
-    Goal:
-   </span>
-  </p>
-  <p>
-   <span>
-    Better intent and entity recognition
-   </span>
-  </p>
-  <p>
-   <span>
-    Options:
+    Different solutions exist and depend on where we want the neural network to come in contact with the application logic (what to establish as manual rules and what is inferred by the neural-network approach)
    </span>
   </p>
   <p>
@@ -2611,6 +2591,25 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.bc96kppcy8e3">
+   <span>
+    Where the NN leaves the space to handwritten rules
+   </span>
+  </h3>
+  <p>
+   <span>
+    Before describing the NLU module, it is important to understand a thing.
+   </span>
+  </p>
+  <p>
+   <span>
+    Using NN for everything could be good only with lots of data. Something need to be handwritten. For example the fact that “to search for a bike you should provide a criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules.
+   </span>
+  </p>
   <h2 id="h.9vi2nf26bxcs">
    <span>
     Personalization
