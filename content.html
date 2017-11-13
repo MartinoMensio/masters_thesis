@@ -1765,9 +1765,9 @@
    <span>
    </span>
   </p>
-  <h3 id="h.rolokfq73gxw">
+  <h3 id="h.1lih8pa124nk">
    <span>
-    Dialogue state tracking
+    Dialogue state tracking / context
    </span>
   </h3>
   <p>
@@ -1775,7 +1775,111 @@
     Considering context (previous interactions) and multi-turn interactions
    </span>
   </p>
+  <p>
+   <span>
+    All the previously described networks only care about the current sentence, but human natural language understanding does not limit itself on this strict form. What happens when we meet some people that are already talking about something? It may take some time to understand the topic of the discussion, we need to collect some informations as the interaction goes on to get the point of the discussion. This happens because most of the sentences are not standalone, but belong to a context that goes beyond the single sentence. This feature can be seen as some kind of memory that actors in a conversation need to keep. The context is necessary to understand the dialogue at different levels:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Understand the role of some words in a sentence given some information contained in other sentences (e.g. “To the beach” is the name of a restaurant, because Mary asked John what was the name of it)
+    </span>
+   </li>
+   <li>
+    <span>
+     Understand the meaning of the current sentence (e.g. in this sentence John told Mary that the restaurant was not as good as he expected)
+    </span>
+   </li>
+   <li>
+    <span>
+     Understand the topic of the conversation (a synthesized attribute, e.g. John and Mary are talking their last experience in a restaurant)
+    </span>
+   </li>
+   <li>
+    <span>
+     Linking the meanings of all the things that were discussed, and being able to answer to some questions (test)
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    All those levels of understanding are challenges that are felt by the NLP community and have not a general established solution. They fall under different names:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     “multi-turn interactions”: specific to virtual assistants, is a name for the first level of understanding: the goal is to identify the intent in a dialogue where the user is not using a single sentence to ask for informations. It is the case where after the initial question of the user the
+    </span>
+    <span>
+     agent asks back for some clarifications / parameters
+    </span>
+    <span>
+     to refine the search. Example: “Send an email to Bob” “What would you like to write?” “Hi Bob, How are you?”. In this case the assistant should put together those sentences in a structure that says: send_email(to=”Bob”, body=”Hi Bob, How are You?”). Other common cases are
+    </span>
+    <span>
+     user follow-up questions
+    </span>
+    <span>
+     . Receiving some results from the agent, the user could ask for more details or to change some parameters. Example: “Find me a chinese restaurant” “Those are the results for chinese restaurants” “What about italian ones?”. In this case, the user refers to the previous query
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Also known as the multi-turn interaction problem
+   </span>
+  </p>
+  <p>
+   <span>
+    Adding entities to the initial intent to refine search parameters / missing parameters
+   </span>
+  </p>
+  <p>
+   <span>
+    Follow-up questions: a new intent on previously mentioned entities
+   </span>
+  </p>
+  <p>
+   <span>
+    Goal:
+   </span>
+  </p>
+  <p>
+   <span>
+    Better intent and entity recognition
+   </span>
+  </p>
+  <p>
+   <span>
+    Options:
+   </span>
+  </p>
+  <p>
+   <span>
+    Store in the chat context and using some rules in the logic
+   </span>
+  </p>
+  <p>
+   <span>
+    Merging current sentence with previous intent/entities to predict current
+   </span>
+  </p>
+  <p>
+   <span>
+    Other models that involve memory of the intent/entities
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <hr style="page-break-before:always;display:none;"/>
+  <p>
+   <span>
+   </span>
+  </p>
   <h2 id="h.bhhmsohw8kph">
    <span>
     Personalization/Recommendation
@@ -3506,11 +3610,12 @@
   </h3>
   <p>
    <span>
+    Keras vs Tensorflow
    </span>
   </p>
   <p>
    <span>
-    Keras vs Tensorflow
+    In this section there is a
    </span>
   </p>
   <p>
