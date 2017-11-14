@@ -1999,13 +1999,15 @@
    <span>
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Initialization of hidden state
-    </span>
-   </li>
-  </ul>
+  <h5 id="h.5i90rga9o2ug">
+   <span>
+    Initialization of hidden state / keeping the state
+   </span>
+  </h5>
+  <p>
+   <span>
+   </span>
+  </p>
   <h4 id="h.13sbtqu88z5j">
    <span>
     Dialogue tracking systems
@@ -2821,6 +2823,26 @@
   <p>
    <span>
     Using NN for everything could be good only with lots of data. Something need to be handwritten. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog (multi-turn)
+   </span>
+  </p>
+  <h3 id="h.4xv0kvc2etve">
+   <span>
+    Statefulness of architecture for multi-turn SLU
+   </span>
+  </h3>
+  <p>
+   <span>
+    For solving the problem of multi-turn SLU, after analyzing all the ideas about keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. About the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage
+   </span>
+  </p>
+  <p>
+   <span>
+    Identifying the sessions
+   </span>
+  </p>
+  <p>
+   <span>
+    Aligning (initializing with the previous state of the same session)
    </span>
   </p>
   <h2 id="h.9vi2nf26bxcs">
