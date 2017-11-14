@@ -1825,7 +1825,7 @@
   </p>
   <h3 id="h.1lih8pa124nk">
    <span>
-    Dialogue state tracking / context
+    Beyond the single sentence
    </span>
   </h3>
   <p>
@@ -1911,22 +1911,95 @@
   </h4>
   <p>
    <span>
-    Extract intent+entities
+    As said before, the goal of multi-turn SLU is simply to extract the intent and the entities when the user is not providing a sentence with all the required parameters. In a second moment, could be after the agent asks back for some parameters, other sentences complete the initial one with more entities that are used to refine the search. It can be seen as an iterative filling of a fixed-structure form. For this reason, a naive approach could be simply to classify the intent on the first sentence and then collecting the parameters in a key-value fashion (the key is the name of the slot, that is asked by the agent, and the value is the answer taken “as is”).
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 326.00px; height: 136.00px;">
+    <img alt="" src="https://lh4.googleusercontent.com/pdSLTBgzqcYwLkOBPsLY2t1jtzclpNaoeXCgcqmAd0Kt7sKL_InEE_qGYUBIaPL_W9o3Fw_2ULN-1wT-F8VCds2fgwq5IiMSFeUc8Y-JvHLadfvyklsobBqz_urhzYVTWXIs7fb2" style="width: 326.00px; height: 136.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach is quite simple but has some problems: this is not natural language. Natural language dialogue has not this fixed structure, and the system must be able to receive a sentence that contains more than a single entity. Another issue is that the user may change his mind in the middle of the interaction and start a new intent. For those reasons the SLU task should be expanded to the multi-turn environment by a more complete approach.
+   </span>
+  </p>
+  <h5 id="h.h5tesva7dlyr">
+   <span>
+    Contextual SLU [Chen et al. 2016
+   </span>
+   <sup>
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
+    </a>
+   </sup>
+   <span>
+    ]
+   </span>
+  </h5>
+  <p>
+   <span>
+    This is an approach that has been studied for the multi-turn SLU. The idea is to additionally incorporate contextual knowledge during slot tagging.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 324.00px;">
+    <img alt="" src="https://lh3.googleusercontent.com/3ae-Y63logbUiiUI-dpTT5F-hNHhWR1mrt9UDxG0yGv3KMXf4sYqxSvu-vW99N6exGBRRT2jA3Q75x1rKs8r1KiVjAZzknJIFLr9u_f5y2DIcZlwZtTzuv4LLje9IJoCvcNzeMrU" style="width: 602.00px; height: 324.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The main difference with the encoder-decoder structures that were previously explained is that also informations from the previous sentences are provided to the decoding stage. Those information are computed by doing a weighted sum of all the previous encoded sentences. To compute the weights, that represent the level of attention that has to be kept to the relative sentences, an inner product is performed to obtain a similarity score between the current sentence and the old ones. The hypothesis behind this scoring is that sentences that have similar encoded representation should be considered more than the ones that are different.
+   </span>
+  </p>
+  <p>
+   <span>
+    The results of this approach have been evaluated on a proprietary dataset and therefore the results cannot be compared with other studies on the field. Furthermore in the paper the intent network is not described at all. However, this study is interesting in the perspective of how the previous sentences are considered together with the current one for the slot-tagging task.
+   </span>
+  </p>
+  <p>
+   <span>
+    A problem of this architecture is that the agent sentences are not considered. But the agent sentences could contain some keywords that may help to identify the slot in the decoding stage. For example if a trip requires a source and a destination, the agent asked for the source and the user answered with that, it is very relevant for the task of slot filling to know that the agent asked for source and not for the destination.
+   </span>
+  </p>
+  <h5 id="h.hywob0csablx">
+   <span>
+    Considering time and roles [Chen et al. 2017
+   </span>
+   <sup>
+    <a href="#ftnt12" id="ftnt_ref12">
+     [12]
+    </a>
+   </sup>
+   <span>
+    ]
+   </span>
+  </h5>
+  <p>
+   <span>
+    Another study by the same group has been done on the value of time and roles in conversation. About the time, the idea is that most recent sentences count more, and an attention score is given with values that fade out as the time is more remote. Instead for the roles, two similar networks are used one for each role.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 258.67px;">
+    <img alt="" src="https://lh4.googleusercontent.com/EW59TRmjAztp0pSFyaGysYbl0iJx0jbQuSU8095V6vqWn4lmV9Uafbllus6LLRnlBMmpPTp7FW-t9__cswTsN-kYRk39KRY0wGzH1A9-cDPXQ4dcMh-BzI2mlRrIPvflL8cMssbi" style="width: 602.00px; height: 258.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    We can see from this picture that the history of sentences is encoded with different networks, one for the tourist and one for the agent. Two different mechanism of attention are used: one is the content-aware, that is computed in the same way as in the previous mentioned paper with a dot product in the embedding space; the second one is the time-aware, that gives higher importance to recent sentences.
+   </span>
+  </p>
+  <p>
+   <span>
+    In this case the work has been done on the DSTC4 dataset that contains human-to-human dialogues. One of them is a tourist and the other one is a guide.
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <ul>
-   <li>
-    <span>
-     Literature: attention based yun_nung
-    </span>
-    <span>
-     <a href="https://www.csie.ntu.edu.tw/~yvchen/doc/IS16_ContextualSLU_slide.pdf">
-      https://www.csie.ntu.edu.tw/~yvchen/doc/IS16_ContextualSLU_slide.pdf
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
    <li>
     <span>
      Initialization of hidden state
@@ -4265,6 +4338,26 @@
     </a>
     <span>
      “Neural Machine Translation By Jointly Learning To Align And Translate” Cho et Al, 2015
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref11" id="ftnt11">
+     [11]
+    </a>
+    <span>
+     Chen, et al., “End-to-End Memory Networks with Knowledge Carryover for Multi-Turn Spoken Language Understanding,” in Interspeech, 2016.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref12" id="ftnt12">
+     [12]
+    </a>
+    <span>
+     Chen, et al., “Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding”, 2017
     </span>
    </p>
   </div>
