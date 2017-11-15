@@ -1860,7 +1860,7 @@
   </h5>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 204.00px;">
-    <img alt="rnn (14).png" src="https://lh5.googleusercontent.com/xBoY0TBhtB2zp_MwmZHFSqzF_ADAUkUgMwEdt2J1lmMPABMC0WeJysVtbKV7vX2qG8vRrjcfP_p9HOKZhZruozn-DyiYNO4g62YBqQIXHe77tAaMRGl3fQgb8ucarEuXv2Xoby2x" style="width: 602.00px; height: 204.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    <img alt="rnn (16).png" src="https://lh3.googleusercontent.com/1MYU7QqZRUMWkROuJiquZP6tyZ13qqULM3D2nCsOQR6PActHzHsq7LLlGZRWHwT-fvspfStScOqsQg2NM_Fz0Vacqqb9pEEouwGzwFUbRyjBDPlFlVEn9Xwi8rHJE-EQye_dGfsj" style="width: 602.00px; height: 204.27px; margin-left: 0.00px; margin-top: -0.14px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -1875,7 +1875,7 @@
   </h5>
   <p>
    <span>
-    The other network proposed in the paper is
+    The other network proposed in the paper is a bit different. Instead of having a separate RNN for encoder and decoder, it has a single bidirectional RNN, that in the forward direction also has the modeling of slot label dependencies. The intent classification is done on top of the bidirectional RNN output, doing a mean pooling on the states at each timestep or, if attention is enabled, by using a weighted average.
    </span>
   </p>
   <p>
@@ -1915,7 +1915,7 @@
    </li>
    <li>
     <span>
-     Understand the topic of the conversation (a synthesized attribute, e.g. John and Mary are talking their last experience in a restaurant)
+     Understand the topic of the conversation (a synthesized attribute, e.g. John and Mary are talking about their last experience in a restaurant)
     </span>
    </li>
    <li>
@@ -1932,7 +1932,7 @@
   <ul>
    <li>
     <span>
-     “multi-turn interactions”: specific to virtual assistants, is a name for the first level of understanding: the goal is to identify the intent in a dialogue where the user is not using a single sentence to ask for informations. It is the case where after the initial question of the user the
+     “multi-turn interactions”: specific to virtual assistants, is a name for the first level of understanding: the goal is to identify the intent and entities in a dialogue where the user is not using a single sentence to ask for informations. It is the case where after the initial question of the user the
     </span>
     <span>
      agent asks back for some clarifications / parameters
@@ -1965,7 +1965,7 @@
   </p>
   <p>
    <span>
-    Instead in the end-to-end architectures, all the components are trained by dialog examples. The positive points is that there is no need to handwritten rules for the dialogue state tracker. The rules are inferred by the dialog corpus and the system learns what is the most appropriate answer to provide. Some parts are still not part of the trainable model: the module accessing the data and exposing some operations via some API. The trainable model learns when to issue API calls.
+    Instead in the end-to-end architectures, all the components are trained by dialog examples. The positive points is that there is no need to handwritten rules for the dialogue state tracker. The rules are inferred by the dialog corpus and the system learns what is the most appropriate answer to provide. Some parts are still not part of the trainable model: the module accessing the data exposes some operations via some API. The trainable model learns when to issue API calls.
    </span>
   </p>
   <h4 id="h.wttb2qhy3rtz">
@@ -1975,7 +1975,7 @@
   </h4>
   <p>
    <span>
-    As said before, the goal of multi-turn SLU is simply to extract the intent and the entities when the user is not providing a sentence with all the required parameters. In a second moment, could be after the agent asks back for some parameters, other sentences complete the initial one with more entities that are used to refine the search. It can be seen as an iterative filling of a fixed-structure form. For this reason, a naive approach could be simply to classify the intent on the first sentence and then collecting the parameters in a key-value fashion (the key is the name of the slot, that is asked by the agent, and the value is the answer taken “as is”).
+    As said before, the goal of multi-turn SLU is simply to extract the intent and the entities when the user is not providing a single sentence with all the required parameters. In a second moment, could be after the agent asks back for some parameters, other sentences complete the initial one with more entities that are used to refine the search. It can be seen as an iterative filling of a fixed-structure form. For this reason, a naive approach could be simply to classify the intent on the first sentence and then collecting the parameters in a key-value fashion (the key is the name of the slot, that is asked by the agent, and the value is the answer taken “as is”).
    </span>
   </p>
   <p>
@@ -2041,7 +2041,7 @@
   </h5>
   <p>
    <span>
-    Another study by the same group has been done on the value of time and roles in conversation. About the time, the idea is that most recent sentences count more, and an attention score is given with values that fade out as the time is more remote. Instead for the roles, two similar networks are used one for each role.
+    Another study by the same group has been done on the value of time and roles in conversation. About the time, the idea is that most recent sentences count more, and an attention score is given with values that fade out as the time is more remote. Instead for the roles, two similar networks are used, one for each role.
    </span>
   </p>
   <p>
@@ -2059,19 +2059,6 @@
     In this case the work has been done on the DSTC4 dataset that contains human-to-human dialogues. One of them is a tourist and the other one is a guide.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h5 id="h.5i90rga9o2ug">
-   <span>
-    Initialization of hidden state / keeping the state
-   </span>
-  </h5>
-  <p>
-   <span>
-   </span>
-  </p>
   <h4 id="h.13sbtqu88z5j">
    <span>
     Dialogue tracking systems
@@ -2079,7 +2066,12 @@
   </h4>
   <p>
    <span>
-    Explain something about DSTC. Memory. Is this really different from end-to-end dialog?
+    Explain something about DSTC.
+   </span>
+  </p>
+  <p>
+   <span>
+    The main goal for those systems is to keep track of a dialogue in terms of what is being said. The architectures always make use of some memory, usually RNN. Is this really different from end-to-end dialog? The answer should be yes, because now only tracking the state of the dialogue, in end-to-end dialog the goal is to predict next sentence/action.
    </span>
   </p>
   <h4 id="h.5h19s2dnfiyp">
@@ -2103,7 +2095,7 @@
   </p>
   <p>
    <span>
-    LEARNING END-TO-END GOAL-ORIENTED DIALOG
+    Learning end-to-end goal-oriented dialog
    </span>
   </p>
   <p>
@@ -2907,6 +2899,31 @@
   <p>
    <span>
     Aligning (initializing with the previous state of the same session)
+   </span>
+  </p>
+  <p>
+   <span>
+    Architecture:
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 388.00px;">
+    <img alt="rnn (17).png" src="https://lh3.googleusercontent.com/jEjFiEIYlfd86sGGbUf6RDU8Zqceb2U8fWFnehsLVxxXzvfeGHwnWHuHzGv56Y0vqm8xBYQISEB_DY1V66FZfSifwrsPQ3S2HtDegHSiX2u7xn-buC8iqJeb2IHA5mkPW7PL7EZi" style="width: 602.00px; height: 388.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. The paper [3] only used the last encoder state for the first proposed architecture, and in the second architecture used a mean pooling over the encoded states, additionally using an attention mechanism. An RNN was chosen because it can learn how to put together all the encoded states, and also because it is able to keep memory, that is what we want in a multi-turn environment.
+   </span>
+  </p>
+  <p>
+   <span>
+    For the memory between turns, the hidden states of the RNN cells are saved for each user, and are restored back in the cells when a new sentence is received from the same user. To also consider the agent turn, the network receives as inputs not only the current user turn words, but also the agent turn words. Those won’t produce in output slot labels, because is not our interest, but will affect the RNN cells in the forward direction.
+   </span>
+  </p>
+  <p>
+   <span>
+    Looking at the complete structure, it can be noticed that the memory of the states only initializes the forward cells. This is wanted, because in this way the new turn is affected by the old one, and the backward links are not connected through different turns because the decisions that have been taken in the past cannot be modified by next turns.
    </span>
   </p>
   <h2 id="h.9vi2nf26bxcs">
