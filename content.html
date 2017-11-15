@@ -779,11 +779,16 @@
     The results are quite promising in this field, but we decided not to use such end2end systems but instead to apply the NLU strategy to map the user sentences to a pre-designed fixed set of intents.
    </span>
   </p>
-  <h2 id="h.kvxdevcml2at">
+  <h2 id="h.34p3lqtcm9yp">
    <span>
-    Challenges, our goal
+    Main topics of the research phase
    </span>
   </h2>
+  <p>
+   <span>
+    NLU:
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -798,6 +803,18 @@
    <li>
     <span>
      Provide relatively good answers to non-task specific interactions
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Personalization:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     TODO
     </span>
    </li>
   </ul>
@@ -955,16 +972,7 @@
   </p>
   <p>
    <span>
-    Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of bots
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    A concept of the bot has been developed using wit.ai for doing intent detection and entity extraction. This can be used as a reference. The training data can be downloaded from the platform, useful for our model training.
+    Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of bots.
    </span>
   </p>
   <p>
@@ -1049,7 +1057,7 @@
   </ul>
   <p>
    <span>
-    Once the intent and the slots have been analyzed on the current sentence, we can have some rules at the application level that can put some constraints. For example, for a certain type of question, one or more slots can be compulsory. In this case, the conversation should make the user provide the values by prompting him some questions.
+    Once the intent and the slots have been analyzed on the current sentence, we can have some rules at the application level that can put some constraints. For example, for a certain type of question, one or more slots can be compulsory. In this case, the conversation should make the user provide the values by prompting him some questions. These types of constraint make the interaction model more complex and require an analysis over multiple user and machine turns, as will be seen in this section (reference to “Beyond the single sentence”)
    </span>
   </p>
   <p>
@@ -1134,7 +1142,7 @@
   </p>
   <p>
    <span>
-    As slot labels, the slot names can be used directly but, in order to better handle multi-word slots, a commonly used format is the IOB, where the O indicates “outside”, the B is the beginning of a slot and the I is the label associated with a word that continues the slot of the previous word. The IOB labels are prepended to the slot name.
+    As slot labels, the slot names can be used directly but, in order to better handle multi-word slots, a commonly used format is the IOB, where the O indicates “other”, the B is the beginning of a slot and the I is the label associated with a word that continues the slot of the previous word. The IOB labels are prepended to the slot name.
    </span>
   </p>
   <p>
@@ -1159,7 +1167,7 @@
   </h4>
   <p>
    <span>
-    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. The recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
+    Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential informations. In feed-forward networks the assumption is that each input-output pair is independent from the others. For RNN, the recurrence stays in performing the same task for every element of the sequence, making the output depend on the previous steps. This idea can be seen as the RNN having memory that keeps informations from the past iterations. Specifically on the ability of remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
    </span>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 241.33px;">
     <img alt="" src="https://lh5.googleusercontent.com/HvnduF8wYNcp3zfwOqKoIaPhbvuY5XfOJp194XSBL6XAEHWrbAd5vpW_sRZNQ2AfURDFBLFs1dKuPyWiWxpxT-Awqq-5VJXo4Ssh-KeuQhoIOkgRJMis15RyfAQ7B4nikoAOTfJs" style="width: 602.00px; height: 241.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
@@ -1176,7 +1184,7 @@
   </p>
   <p>
    <span>
-    Since the same network (and cells) are used in different timesteps, the analysis of RNN is usually performed on the unfolded version of the network: the single elements are repeated different times (one for each timestep) and the looping links are now going from the element in the previous time to the next time. In this way a recurrent network is transformed into a multi-layer feedforward network.
+    Since the same network (and cells) are used in different timesteps, the analysis of RNN is usually performed on the unfolded version of the network: the single elements are repeated different times (one for each timestep) and the looping links are now going from the element in the previous time to the next time. In this way a recurrent network is transformed into a multi-layer feedforward network, but keeping the same weights on the unfolded elements that generate from the same recurrent cell.
    </span>
   </p>
   <h4 id="h.2p7ylki847vn">
@@ -1263,7 +1271,7 @@
   </h5>
   <p>
    <span>
-    The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax).
+    The simplest recurrent cell type is a block with two inputs and two outputs. One input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The two outputs of the cell are equivalent, and is simply to put emphasis on the fact that one of them will go as input to the next timestep (this corresponds to the loop in the not-unfolded representation) and the other one can be passed to the next layer or used as output after applying some other functions (usually a softmax) and/or other layers (recurrent or not).
    </span>
   </p>
   <p>
@@ -1284,7 +1292,7 @@
   <ul>
    <li>
     <span>
-     Exploding gradient: if some coefficients are greater than 1, the output values can become soon very big, making the network insensible to new inputs because is in some way saturated. The solution to this problem is using some non-linear function that limits the values
+     Exploding gradient: if some coefficients are greater than 1, the output values can become soon very big, making the network insensible to new inputs because is in some way saturated. The solution to this problem is using some non-linear function that limits the values not to be over the value of 1
     </span>
    </li>
    <li>
@@ -1295,11 +1303,29 @@
   </ul>
   <p>
    <span>
+    There are two factors that can affect the magnitude of gradients - the weights and the activation functions (or more precisely, their derivatives) that the gradient passes through.
+   </span>
+  </p>
+  <p>
+   <span>
+    If either of these factors is smaller than 1, then the gradients may vanish in time; if larger than 1, then exploding might happen. For example, the tanh derivative is smaller than 1 for all inputs except 0; sigmoid is even worse and is always ≤0.25.
+   </span>
+  </p>
+  <p>
+   <span>
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
     <a href="#ftnt4" id="ftnt_ref4">
      [4]
+    </a>
+   </sup>
+   <span>
+    , Hochreiter et al. (1998)
+   </span>
+   <sup>
+    <a href="#ftnt5" id="ftnt_ref5">
+     [5]
     </a>
    </sup>
    <span>
@@ -1316,8 +1342,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt5" id="ftnt_ref5">
-     [5]
+    <a href="#ftnt6" id="ftnt_ref6">
+     [6]
     </a>
    </sup>
    <span>
@@ -1369,6 +1395,33 @@
   <p>
    <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=it%3D%CF%83%28Wi%5Ccdot%7B%7D%5Bht-1%2Cxt%5D%2Bbi%29%5C+..."/>
   </p>
+  <p>
+   <span>
+    How LSTM solve vanishing gradient problem:
+   </span>
+  </p>
+  <p>
+   <span>
+    In the recurrency of the LSTM the activation function is the identity function (the + from c
+   </span>
+   <span>
+    t-1
+   </span>
+   <span>
+    to c
+   </span>
+   <span>
+    t
+   </span>
+   <span>
+    ) with a derivative of 1.0. So, the backpropagated gradient neither vanishes or explodes when passing through, but remains constant.
+   </span>
+  </p>
+  <p>
+   <span>
+    The effective weight of the recurrency is equal to the forget gate activation. So, if the forget gate is on (activation close to 1.0), then the gradient does not vanish. Since the forget gate activation is never &gt;1.0, the gradient can't explode either.
+   </span>
+  </p>
   <h5 id="h.32ny97nh7agm">
    <span>
     GRU
@@ -1379,8 +1432,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt6" id="ftnt_ref6">
-     [6]
+    <a href="#ftnt7" id="ftnt_ref7">
+     [7]
     </a>
    </sup>
    <span>
@@ -1397,16 +1450,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt7" id="ftnt_ref7">
-     [7]
+    <a href="#ftnt8" id="ftnt_ref8">
+     [8]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt8" id="ftnt_ref8">
-     [8]
+    <a href="#ftnt9" id="ftnt_ref9">
+     [9]
     </a>
    </sup>
    <span>
@@ -1517,6 +1570,11 @@
   </p>
   <p>
    <span>
+    Also it is difficult to establish which are the keywords for each class in a way that the conflicts are minimized.
+   </span>
+  </p>
+  <p>
+   <span>
     A better idea would be to compute a sentence-level representation that summarizes all the words and the meaning of the sentence, and from this vector do a classification on the output labels (intent types). For this sentence vector a lot of different approaches can be applied.
    </span>
   </p>
@@ -1550,11 +1608,16 @@
     <img alt="rnn (5).png" src="https://lh3.googleusercontent.com/4tSkMuhbLUAh53q779byGpesW0cEdLAhMiIFIEs8kTuWWP_zgRqWe0MQhZEWFiD5QSHVeO27Rj8dYQKAhkItvxcCEj48hGDJeeca50RhKviF_0V1Eg09YYtxjDA_r6HK0E15Kd9R" style="width: 341.00px; height: 461.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
-  <h5 id="h.yh9c9gjdzyit">
+  <h5 id="h.6q4caqfmx7jf">
    <span>
     RNN + attention + other stuff
    </span>
   </h5>
+  <p>
+   <span>
+    An attention mechanism can be used to learn a distribution over time of words that tells how much relevant is this word for the task.
+   </span>
+  </p>
   <p>
    <span>
     Attention used for sentiment analysis: see there
@@ -1576,10 +1639,6 @@
      http://aclweb.org/anthology/D/D17/D17-1071.pdf
     </a>
    </span>
-   <span>
-   </span>
-  </p>
-  <p>
    <span>
    </span>
   </p>
@@ -1679,8 +1738,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt9" id="ftnt_ref9">
-     [9]
+    <a href="#ftnt10" id="ftnt_ref10">
+     [10]
     </a>
    </sup>
    <span>
@@ -1764,8 +1823,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt10" id="ftnt_ref10">
-     [10]
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
     </a>
    </sup>
   </p>
@@ -1809,11 +1868,16 @@
     The intent classifier is added as a branch that takes the last state of the encoder and then projects to the intent space with a single layer feedforward.
    </span>
   </p>
-  <h5 id="h.3uq9pdvqemem">
+  <h5 id="h.m8ph9y69kpg2">
    <span>
     Attention-based RNN model
    </span>
   </h5>
+  <p>
+   <span>
+    The other network proposed in the paper is
+   </span>
+  </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 458.00px; height: 492.00px;">
     <img alt="rnn (15).png" src="https://lh6.googleusercontent.com/YB8miahDVN3fKIuWwNHowwbCGuQaswaAdV8iAUIaDXW8MvTlQFSYEc7GNJEGgYmflnBnHsZ0hH4kJe7AYLcMKSa4sr2laDq3BnqccIazWugKDUATsSDtI3BbXMtF7_8O_tltz9UT" style="width: 458.00px; height: 492.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
@@ -1929,8 +1993,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt11" id="ftnt_ref11">
-     [11]
+    <a href="#ftnt12" id="ftnt_ref12">
+     [12]
     </a>
    </sup>
    <span>
@@ -1967,8 +2031,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt12" id="ftnt_ref12">
-     [12]
+    <a href="#ftnt13" id="ftnt_ref13">
+     [13]
     </a>
    </sup>
    <span>
@@ -3832,6 +3896,40 @@
     Meteo
    </span>
   </p>
+  <h2 id="h.b7qyoqg579vm">
+   <span>
+    Wit.ai prototype
+   </span>
+  </h2>
+  <p>
+   <span>
+    A concept of the bot has been developed using wit.ai for doing intent detection and entity extraction. This can be used as a reference. The training data can be downloaded from the platform, useful for our model training.
+   </span>
+  </p>
+  <p>
+   <span>
+    Objectives:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Experimenting
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Collect sentences and interaction sessions
+    </span>
+   </li>
+   <li>
+    <span>
+     Quick prototype to understand the user needs
+    </span>
+   </li>
+  </ul>
   <h2 id="h.rdt81o3mb6tf">
    <span>
     Neural Networks
@@ -4309,7 +4407,7 @@
      [5]
     </a>
     <span>
-     S Hochreiter, J Schmidhuber, Neural computation, 1997, “LONG SHORT-TERM MEMORY”
+     S Hochreiter - International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 1998 - World Scientific, “The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions”
     </span>
    </p>
   </div>
@@ -4319,7 +4417,7 @@
      [6]
     </a>
     <span>
-     Cho, et al. arXiv preprint arXiv (2014), “Learning phrase representations using RNN encoder-decoder for statistical machine translation”
+     S Hochreiter, J Schmidhuber, Neural computation, 1997, “LONG SHORT-TERM MEMORY”
     </span>
    </p>
   </div>
@@ -4329,7 +4427,7 @@
      [7]
     </a>
     <span>
-     R Jozefowicz, W Zaremba, I Sutskever - Proceedings of the 32nd …, 2015, “An Empirical Exploration of Recurrent Network Architectures”
+     Cho, et al. arXiv preprint arXiv (2014), “Learning phrase representations using RNN encoder-decoder for statistical machine translation”
     </span>
    </p>
   </div>
@@ -4339,7 +4437,7 @@
      [8]
     </a>
     <span>
-     J Chung, C Gulcehre, KH Cho, Y Bengio - arXiv preprint arXiv:1412.3555, 2014, “Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling“
+     R Jozefowicz, W Zaremba, I Sutskever - Proceedings of the 32nd …, 2015, “An Empirical Exploration of Recurrent Network Architectures”
     </span>
    </p>
   </div>
@@ -4349,7 +4447,7 @@
      [9]
     </a>
     <span>
-     K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
+     J Chung, C Gulcehre, KH Cho, Y Bengio - arXiv preprint arXiv:1412.3555, 2014, “Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling“
     </span>
    </p>
   </div>
@@ -4359,7 +4457,7 @@
      [10]
     </a>
     <span>
-     “Neural Machine Translation By Jointly Learning To Align And Translate” Cho et Al, 2015
+     K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
     </span>
    </p>
   </div>
@@ -4369,7 +4467,7 @@
      [11]
     </a>
     <span>
-     Chen, et al., “End-to-End Memory Networks with Knowledge Carryover for Multi-Turn Spoken Language Understanding,” in Interspeech, 2016.
+     “Neural Machine Translation By Jointly Learning To Align And Translate” Cho et Al, 2015
     </span>
    </p>
   </div>
@@ -4377,6 +4475,16 @@
    <p>
     <a href="#ftnt_ref12" id="ftnt12">
      [12]
+    </a>
+    <span>
+     Chen, et al., “End-to-End Memory Networks with Knowledge Carryover for Multi-Turn Spoken Language Understanding,” in Interspeech, 2016.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref13" id="ftnt13">
+     [13]
     </a>
     <span>
      Chen, et al., “Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding”, 2017
