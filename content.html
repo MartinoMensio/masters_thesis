@@ -2885,19 +2885,26 @@
   </h3>
   <p>
    <span>
-    For solving the problem of multi-turn SLU, after analyzing all the ideas about keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. About the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage
+    For solving the problem of multi-turn SLU, after analyzing all the ideas about keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. And specifically for the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage. Since the model is a single one, the agent turn words are used in both the intent classification and in the slot filling networks.
    </span>
   </p>
   <p>
    <span>
-    Identifying the sessions
+    Additional work on the dataset:
    </span>
   </p>
-  <p>
-   <span>
-    Aligning (initializing with the previous state of the same session)
-   </span>
-  </p>
+  <ul>
+   <li>
+    <span>
+     Identifying the sessions
+    </span>
+   </li>
+   <li>
+    <span>
+     Aligning (initializing with the previous state of the same session)
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     Architecture:
@@ -2905,7 +2912,7 @@
   </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 388.00px;">
-    <img alt="rnn (17).png" src="https://lh3.googleusercontent.com/jEjFiEIYlfd86sGGbUf6RDU8Zqceb2U8fWFnehsLVxxXzvfeGHwnWHuHzGv56Y0vqm8xBYQISEB_DY1V66FZfSifwrsPQ3S2HtDegHSiX2u7xn-buC8iqJeb2IHA5mkPW7PL7EZi" style="width: 602.00px; height: 388.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    <img alt="" src="https://lh6.googleusercontent.com/8q8Knq2ZX_N8t0rFvgwzKHbza37RH0sjAwLc7Ku0zyFQ1agFJj8M5WVQLQYoDF9_lqz3-F0vYvAh6D2Y1gLJglKUGfbAgGzuQ2DjXxuEySL-c9vPjbD2-r1M7hyBDG_N-KwxC2_-" style="width: 602.00px; height: 391.23px; margin-left: 0.00px; margin-top: -1.62px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -2921,6 +2928,11 @@
   <p>
    <span>
     Looking at the complete structure, it can be noticed that the memory of the states only initializes the forward cells. This is wanted, because in this way the new turn is affected by the old one, and the backward links are not connected through different turns because the decisions that have been taken in the past cannot be modified by next turns.
+   </span>
+  </p>
+  <p>
+   <span>
+    A critical point where this model should prove the goodness of the chosen cell, is when two completely uncorrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, the batch size has been reduced to 1 and all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
    </span>
   </p>
   <h2 id="h.9vi2nf26bxcs">
