@@ -2969,7 +2969,7 @@
   </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 388.00px;">
-    <img alt="" src="https://lh6.googleusercontent.com/8q8Knq2ZX_N8t0rFvgwzKHbza37RH0sjAwLc7Ku0zyFQ1agFJj8M5WVQLQYoDF9_lqz3-F0vYvAh6D2Y1gLJglKUGfbAgGzuQ2DjXxuEySL-c9vPjbD2-r1M7hyBDG_N-KwxC2_-" style="width: 602.00px; height: 391.23px; margin-left: 0.00px; margin-top: -1.62px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    <img alt="" src="https://lh3.googleusercontent.com/hPOJ7glI3EQi0OVAOQYS6u0WgDA_CgeWEG4uUHanTlqJQ7NKYuFMEmihEI61dts-1q3Kw_A3zrRAvWzm9pfgAcKb-Qv7ZcViaCUmznmY10oTTZEcKyyP29eZhIdGYecTFX6hBJDQ" style="width: 602.00px; height: 391.23px; margin-left: 0.00px; margin-top: -1.62px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -2992,6 +2992,42 @@
     A critical point where this model should prove the goodness of the chosen cell, is when two completely uncorrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, the batch size has been reduced to 1 and all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
    </span>
   </p>
+  <p>
+   <span>
+    Batch_size=1
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     The order of samples is chosen in the program flow
+    </span>
+   </li>
+   <li>
+    <span>
+     Can avoid padding:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     No mess with masks
+    </span>
+   </li>
+   <li>
+    <span>
+     In stateful RNN padding is likely to deteriorate performances
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Performance decreases (only at training/evaluation time, not in usage because sentences to the bot are likely not to arrive all together)
+    </span>
+   </li>
+  </ul>
   <h2 id="h.9vi2nf26bxcs">
    <span>
     Personalization
@@ -4022,93 +4058,137 @@
   </p>
   <p>
    <span>
-    In this section there is a comparison between the
+    In this section there is a comparison between the two most popular neural network libraries.
    </span>
   </p>
   <p>
    <span>
-    Keras:
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     High level
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Easy
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Less cells/layers available
-    </span>
-   </li>
-   <li>
-    <span>
-     Less customizable
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Rapid prototyping
-    </span>
-   </li>
-  </ul>
+  <a id="t.522a20e01ac7b3f467e4103ac499479fb019deb7">
+  </a>
+  <a id="t.1">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Keras
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Tensorflow
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        High level
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Low level access, but also high level API
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        easy
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        More difficult
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Less cells/layers available
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Lot of already defined classes, contrib package
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Less customizable
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Highly customizable and flexible
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Rapid prototyping
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Advanced operations
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Documentation good for what’s implemented
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Documentation gap between trivial and advanced
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
   <p>
    <span>
-    Tensorflow
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Low level
-    </span>
-   </li>
-   <li>
-    <span>
-     Difficult
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Contrib package, lot of already defined stuff
-    </span>
-   </li>
-   <li>
-    <span>
-     Customizable/flexible
-    </span>
-   </li>
-   <li>
-    <span>
-     Community
-    </span>
-   </li>
-   <li>
-    <span>
-     Advanced operations
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Less documentation, gap between trivial and advanced
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
     Keras is more like LEGO, build from blocks. On tensorflow can customize operations.
@@ -4258,9 +4338,36 @@
    <span>
    </span>
   </p>
+  <h4 id="h.a08x42jk1qdf">
+   <span>
+    Decision
+   </span>
+  </h4>
   <p>
    <span>
-    For all those reasons, and considering that the model chosen for implementation needs some non-trivial definition of the neural network (such as output dependencies, manipulation of cell states), the choice has been to use the native tensorflow APIs for building the solution.
+    The objectives of the decision are:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Ability to build the proposed network without too much headache. Especially for the decoding stage, some advanced wiring is needed and would like not to start from scratch (error-prone) but have some support from the library
+    </span>
+   </li>
+   <li>
+    <span>
+     Code readability/maintainability: possibly using quite high level operations, no reinventing the wheel (in a buggy version)
+    </span>
+   </li>
+   <li>
+    <span>
+     Quite good performances
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Considering those objectives, the choice has been to use the native tensorflow APIs for building the solution, using the seq2seq package for faster implementation
    </span>
   </p>
   <h2 id="h.txecykd802tw">
