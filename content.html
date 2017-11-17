@@ -2081,7 +2081,9 @@
     </span>
     <span>
     </span>
-    <img/>
+    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 526.00px; height: 338.00px;">
+     <img alt="" src="https://lh6.googleusercontent.com/eloQnhOcbiuZD4YhNqG-ZQCBbyYPpU4oTldCI_mV_cLSqBjlvPCaN7kEQ6trxUZug6fCEgUE-AWcerLK8tZKvb0ra-6ItoRCmmVHwmxG8UNn53UebG5tOpTG_pHxG74FE7lV3Nob" style="width: 526.00px; height: 338.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    </span>
    </li>
    <li>
     <span>
@@ -2115,6 +2117,52 @@
   <p>
    <span>
     The main goal for those systems is to keep track of a dialogue in terms of what is being said. The architectures always make use of some memory, usually RNN. Is this really different from end-to-end dialog? The answer should be yes, because now only tracking the state of the dialogue, in end-to-end dialog the goal is to predict next sentence/action.
+   </span>
+  </p>
+  <h4 id="h.kuqp0e77ccoi">
+   <span>
+    Semantic Question Answering
+   </span>
+  </h4>
+  <p>
+   <span>
+    Instead of doing a classification of sentences on some pre-defined intents, the goal of those systems is to transform the user sentence in a database query. This requires a strong relation between the NL module and the Information Retrieval module. Informations are in the form of RDF (Resource description framework).
+   </span>
+  </p>
+  <p>
+   <span>
+    The sentences are analyzed using some parsers and the sentence is mapped to a set of linguistic patterns.
+   </span>
+  </p>
+  <p>
+   <span>
+    Main problem:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Lexical gap: the same meaning can be expressed in different ways
+    </span>
+   </li>
+   <li>
+    <span>
+     Manually designed features: the linguistic patterns are created by a domain expert
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    The systems represented are good for question answering systems where the questions are related to known facts and actors that are publicly known and retrievable using URIs.
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web">
+     http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web
+    </a>
+   </span>
+   <span>
    </span>
   </p>
   <h4 id="h.5h19s2dnfiyp">
