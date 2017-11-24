@@ -1535,12 +1535,29 @@
   </p>
   <p>
    <span>
+    Pre-trained word embeddings can also be fine-tuned. Fine-tuning has as main advantage to reduce the loss on the desired task, but can also have some disadvantages: if two words are “near” in the pre-trained embedding space, and only one of them is used in a neural network and fine-tuning is applied, the position in the embedding space can change and move far from the other word, not trained in the model. If the other word occurs in model testing (inference), the network will have some problems because the two words are no more similar.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
     There are different algorithms of producing those vectors: word2vec, glove.
    </span>
   </p>
   <p>
    <span>
     Some have also derived word embeddings by looking at the single characters (look at fasttext).
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -4481,6 +4498,10 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
    </span>
