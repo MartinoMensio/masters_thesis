@@ -1563,6 +1563,26 @@
     Pre-trained word embeddings can also be fine-tuned. Fine-tuning has as main advantage to reduce the loss on the desired task, but can also have some disadvantages: if two words are “near” in the pre-trained embedding space, and only one of them is used in a neural network and fine-tuning is applied, the position in the embedding space can change and move far from the other word, not trained in the model. If the other word occurs in model testing (inference), the network will have some problems because the two words are no more similar.
    </span>
   </p>
+  <h5 id="h.ghm3u8bbffns">
+   <span>
+    Out-of-vocabulary
+   </span>
+  </h5>
+  <p>
+   <span>
+    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed] or from the context the word belongs). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
+   </span>
+  </p>
+  <h5 id="h.22j2kzqci3l">
+   <span>
+    Punctuation importance
+   </span>
+  </h5>
+  <p>
+   <span>
+    An approach based only on words may be good for scenarios where the users don’t have the time to write complex punctuations and other stuff. But when punctuation is provided, it would be a pity to throw it away. In text: punctuation, in voice: accents and other stuff; those are additional features that may be useful for doing a better classification.
+   </span>
+  </p>
   <p>
    <span>
    </span>
