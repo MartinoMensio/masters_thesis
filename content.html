@@ -1528,11 +1528,16 @@
     ].
    </span>
   </p>
-  <h4 id="h.enwb9pvnygyi">
+  <h4 id="h.ebzdpoueqlqy">
    <span>
     Word embeddings
    </span>
   </h4>
+  <p>
+   <span>
+    Let’s start from the inputs to our system: sentences. Sentences are made up of words and we would like to use those words as inputs to the classifier network.
+   </span>
+  </p>
   <p>
    <span>
     Since all neural networks only work with numbers, there must be a layer in the network that, given the input words, transforms them in numerical form.
@@ -1540,7 +1545,7 @@
   </p>
   <p>
    <span>
-    The most simple and naive approach is to consider the “one-hot” vector of the words. This representation is an array with length corresponding to the length of the input dictionary and contains values that are all zeros except for the one whose index corresponds to the index of the word in the vocabulary. This is straightforward to implement, but has some problems because highly depends on the input dictionary and can’t work with words that are not contained. Also it does not consider the similarity between words.
+    The most simple and naive approach is to consider the “one-hot” vector of the words. This representation is an array with length corresponding to the length of the input dictionary and contains values that are all zeros except for the one whose index corresponds to the index of the word in the vocabulary. In other words, a dictionary is built and the representation of the i-th word in the dictionary is an array with a single non-zero value on the i-th value. This is straightforward to implement, but has some problems because highly depends on the input dictionary: the length of one-hot vectors is the same as the length of the dictionary. Any network following this representations will have a big problem: different words, with similar meanings, will be completely different so any parameter that can be learnt on one words will not be applicable to a similar word. This approach can’t work with words that are not contained in the training set.
    </span>
   </p>
   <p>
@@ -1572,7 +1577,7 @@
   </p>
   <p>
    <span>
-    Pre-trained word embeddings can also be fine-tuned. Fine-tuning has as main advantage to reduce the loss on the desired task, but can also have some disadvantages: if two words are “near” in the pre-trained embedding space, and only one of them is used in a neural network and fine-tuning is applied, the position in the embedding space can change and move far from the other word, not trained in the model. If the other word occurs in model testing (inference), the network will have some problems because the two words are no more similar.
+    Pre-trained word embeddings can also be fine-tuned. Fine-tuning has as main advantage to reduce the loss on the desired task, but can also have some disadvantages: if two words are “near” in the pre-trained embedding space, and only one of them is used in a neural network and fine-tuning is applied, the position in the embedding space can change and move far from the other word, not trained in the model. If the other word occurs in model testing (inference), the network will have some problems because the two words are not anymore similar.
    </span>
   </p>
   <h5 id="h.ghm3u8bbffns">
@@ -1582,7 +1587,12 @@
   </h5>
   <p>
    <span>
-    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed] or from the context the word belongs). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
+    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed to mimicking OOV] or from the context the word belongs). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
+   </span>
+  </p>
+  <p>
+   <span>
+    This is unfeasible because slows down all the process (see spacy context vectors, that are completely another type of vectors, not related and with different dimension), and in general is not required since OOV will be very few and the model should work also with them. OOV will be mainly on entity values, the main part of the sentence should be covered by vocabulary.
    </span>
   </p>
   <h5 id="h.22j2kzqci3l">
