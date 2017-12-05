@@ -33,12 +33,71 @@
   </ul>
   <p>
    <span>
+   </span>
+  </p>
+  <p>
+   <span>
     Brief summary of previous works
    </span>
   </p>
   <p>
    <span>
+   </span>
+  </p>
+  <p>
+   <span>
     Specific objectives
+   </span>
+  </p>
+  <p>
+   <span>
+    The goal of the thesis is two-fold:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     conduct a survey of technologies enabling to build a textual chatbot
+    </span>
+   </li>
+   <li>
+    <span>
+     develop the system able to handle a basic conversation providing pre-computed answers
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    depending on the user profile. For example, the system while informing about factual
+   </span>
+  </p>
+  <p>
+   <span>
+    information, will offer additional and personalized information concerning the user's preferences
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Focus on:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     NLU
+    </span>
+   </li>
+   <li>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -1322,6 +1381,16 @@
     Only to entertain user
    </span>
   </p>
+  <p>
+   <span>
+    Some examples: ALICE, ELIZA, …
+   </span>
+  </p>
+  <p>
+   <span>
+    Common tricks to be seen as human
+   </span>
+  </p>
   <h4 id="h.3usm4x1qzj0y">
    <span>
     Domain specific bot
@@ -1330,6 +1399,31 @@
   <p>
    <span>
     Provide a service on a restricted domain
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead of call centers or apps
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages for the user
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages for the companies
+   </span>
+  </p>
+  <p>
+   <span>
+    Combined with NLU: all current bots that use intents and entities/slots
+   </span>
+  </p>
+  <p>
+   <span>
+    Seq2seq fashion: creating a FAQ bot from support transcripts
    </span>
   </p>
   <h4 id="h.iddu7jin8o5t">
@@ -2130,7 +2224,7 @@
   </h5>
   <p>
    <span>
-    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed to mimicking OOV] or from the context the word belongs). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
+    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed to mimicking OOV] or from the context the word belongs or as in fastText considering the character n-grams). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
    </span>
   </p>
   <p>
@@ -2415,7 +2509,15 @@
   </h5>
   <p>
    <span>
-    This model was not born for the task of translation between languages, but has been proposed [3 B. Liu and I. Lane, 2016] specifically for the sequence labeling problem (that can be applied to NER/slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
+    This model was not born for the task of translation between languages, but has been proposed
+   </span>
+   <sup>
+    <a href="#ftnt14" id="ftnt_ref14">
+     [14]
+    </a>
+   </sup>
+   <span>
+    specifically for the sequence labeling problem (that can be applied to NER/slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
    </span>
   </p>
   <p>
@@ -2475,8 +2577,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt14" id="ftnt_ref14">
-     [14]
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
     </a>
    </sup>
   </p>
@@ -2502,7 +2604,15 @@
   </p>
   <p>
    <span>
-    In [3] there are two different proposed architectures: one is based on the encoder-decoder adding the intent output, while the other collapses all in one single compact structure.
+    In [Guo et al.
+   </span>
+   <sup>
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
+    </a>
+   </sup>
+   <span>
+    ] there are two different proposed architectures: one is based on the encoder-decoder adding the intent output, while the other collapses all in one single compact structure.
    </span>
   </p>
   <h5 id="h.b8fu65frdqly">
@@ -2645,8 +2755,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
@@ -2687,8 +2797,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
@@ -2786,9 +2896,22 @@
    </span>
   </p>
   <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 539.00px; height: 71.00px;">
+    <img alt="" src="https://lh6.googleusercontent.com/2h2uKHN6Fa-2Bd3rLpruXzHvz1-DZ-aFoAR4lU0EFgzPrCJlIc5UN208NHksf1FZs1ORJSiQMjEgXgEmXCE5A-J1lu5Ddl0ajBwLxQTJ6csBzuLHtnSZpJcxS4_0_Wkoxe7TQ3Sx" style="width: 539.00px; height: 71.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
    <span>
     Store each turn in memory
    </span>
+   <sup>
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
+    </a>
+   </sup>
+   <span>
+    . Each turn is composed of a triple: subject+verb+object
+   </span>
   </p>
   <p>
    <span>
@@ -2796,7 +2919,7 @@
   </p>
   <p>
    <span>
-    The main goal for those systems is to keep track of a dialogue in terms of what is being said. The architectures always make use of some memory, usually RNN. Is this really different from end-to-end dialog? The answer should be yes, because now only tracking the state of the dialogue, in end-to-end dialog the goal is to predict next sentence/action.
+    The main goal for those systems is to keep track of a dialogue in terms of what is being said. The architecture makes use of some memory, that is a kind of “soft” hash table. It stores key-values pairs. The output of a lookup is a weighted sum of the values, where the weights are attention weights derived by the training procedure.
    </span>
   </p>
   <h4 id="h.5h19s2dnfiyp">
@@ -2849,6 +2972,28 @@
   </p>
   <p>
    <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
+   </span>
+   <sup>
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
+    </a>
+   </sup>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Those kind of system make use of the memory, as the dialogue tracking systems, but with some differences. While the DST are only tracking the state of the dialogue to provide an answer at the end, that corresponds to a value in the memory, those systems are linked to a KB and can issue some API calls or simply give back the next sentence.
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
@@ -3618,7 +3763,15 @@
   </p>
   <p>
    <span>
-    The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. The paper [3] only used the last encoder state for the first proposed architecture, and in the second architecture used a mean pooling over the encoded states, additionally using an attention mechanism. An RNN was chosen because it can learn how to put together all the encoded states, and also because it is able to keep memory, that is what we want in a multi-turn environment.
+    The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
+   </span>
+   <sup>
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
+    </a>
+   </sup>
+   <span>
+    ] only used the last encoder state for the first proposed architecture, and in the second architecture used a mean pooling over the encoded states, additionally using an attention mechanism. An RNN was chosen because it can learn how to put together all the encoded states, and also because it is able to keep memory, that is what we want in a multi-turn environment.
    </span>
   </p>
   <p>
@@ -4970,8 +5123,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
@@ -5469,7 +5622,13 @@
      [1]
     </a>
     <span>
-     “Computing Machinery and Intelligence” -  AM Turing - Mind, 1950 - JSTOR
+     Turing, A. (1950).
+    </span>
+    <span>
+     Computing Machinery and Intelligence
+    </span>
+    <span>
+     . Mind
     </span>
    </p>
   </div>
@@ -5479,14 +5638,13 @@
      [2]
     </a>
     <span>
-     “Why Neurons Have Thousands of Synapses, A Theory of Sequence Memory in Neocortex” J Hawkins, S Ahmad - Frontiers in neural circuits, 2016
+     Hawkins, J. and Ahmad, S. (2016).
     </span>
     <span>
-     <a href="https://arxiv.org/pdf/1511.00083.pdf">
-      https://arxiv.org/pdf/1511.00083.pdf
-     </a>
+     Why Neurons Have Thousands of Synapses, A Theory of Sequence Memory in Neocortex
     </span>
     <span>
+     . Frontiers in neural circuits
     </span>
    </p>
   </div>
@@ -5515,7 +5673,13 @@
      [5]
     </a>
     <span>
-     D Guo, G Tur, W Yih, G Zweig, “Joint semantic utterance classification and slot filling with recursive neural networks” in Spoken Language Technology Workshop (SLT), 2014
+     Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
+    </span>
+    <span>
+     Joint semantic utterance classification and slot filling with recursive neural networks
+    </span>
+    <span>
+     . Proceedings of the IEEE SLT Workshop
     </span>
    </p>
   </div>
@@ -5525,7 +5689,13 @@
      [6]
     </a>
     <span>
-     B. Liu and I. Lane, “Attention-based recurrent neural network models for joint intent detection and slot filling,” in Proceedings of The 17th Annual Meeting of the International Speech Communication Association, 2016
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -5535,7 +5705,13 @@
      [7]
     </a>
     <span>
-     Bengio, et al. (1994), IEEE Transactions on Neural Networks, “Learning long-term dependencies with gradient descent is difficult”
+     Bengio, Y., Simard, P., Frasconi, P. (1994).
+    </span>
+    <span>
+     Learning long-term dependencies with gradient descent is difficult
+    </span>
+    <span>
+     . IEEE Transactions on Neural Networks and Learning Systems
     </span>
    </p>
   </div>
@@ -5545,7 +5721,13 @@
      [8]
     </a>
     <span>
-     S Hochreiter - International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 1998 - World Scientific, “The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions”
+     Hochreiter, S. (1998).
+    </span>
+    <span>
+     The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions
+    </span>
+    <span>
+     . International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems
     </span>
    </p>
   </div>
@@ -5555,7 +5737,13 @@
      [9]
     </a>
     <span>
-     S Hochreiter, J Schmidhuber, Neural computation, 1997, “LONG SHORT-TERM MEMORY”
+     Hochreiter, S., Schmidhuber, J. (1997).
+    </span>
+    <span>
+     Long short-term memory
+    </span>
+    <span>
+     . Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -5565,7 +5753,13 @@
      [10]
     </a>
     <span>
-     Cho, et al. arXiv preprint arXiv (2014), “Learning phrase representations using RNN encoder-decoder for statistical machine translation”
+     Cho, K. et al. (2014).
+    </span>
+    <span>
+     Learning phrase representations using RNN encoder-decoder for statistical machine translation
+    </span>
+    <span>
+     . Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -5575,7 +5769,13 @@
      [11]
     </a>
     <span>
-     R Jozefowicz, W Zaremba, I Sutskever - Proceedings of the 32nd …, 2015, “An Empirical Exploration of Recurrent Network Architectures”
+     Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
+    </span>
+    <span>
+     An empirical exploration of recurrent network architectures
+    </span>
+    <span>
+     . Proceedings of the 32nd International Conference on Machine Learning, pages 2342–2350
     </span>
    </p>
   </div>
@@ -5585,7 +5785,13 @@
      [12]
     </a>
     <span>
-     J Chung, C Gulcehre, KH Cho, Y Bengio - arXiv preprint arXiv:1412.3555, 2014, “Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling“
+     Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
+    </span>
+    <span>
+     Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling
+    </span>
+    <span>
+     . NIPS Deep Learning Workshop
     </span>
    </p>
   </div>
@@ -5595,7 +5801,13 @@
      [13]
     </a>
     <span>
-     K. Cho, 2014, Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
+     Cho, K. et al. (2014).
+    </span>
+    <span>
+     Learning phrase representations using RNN encoder-decoder for statistical machine translation
+    </span>
+    <span>
+     . Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -5605,7 +5817,13 @@
      [14]
     </a>
     <span>
-     “Neural Machine Translation By Jointly Learning To Align And Translate” Cho et Al, 2015
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -5615,7 +5833,13 @@
      [15]
     </a>
     <span>
-     Chen, et al., “End-to-End Memory Networks with Knowledge Carryover for Multi-Turn Spoken Language Understanding,” in Interspeech, 2016.
+     Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
+    </span>
+    <span>
+     Neural machine translation by jointly learning to align and translate
+    </span>
+    <span>
+     . Proc. International Conference on Learning Representations
     </span>
    </p>
   </div>
@@ -5625,7 +5849,13 @@
      [16]
     </a>
     <span>
-     Chen, et al., “Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding”, 2017
+     Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
+    </span>
+    <span>
+     Joint semantic utterance classification and slot filling with recursive neural networks
+    </span>
+    <span>
+     . Proceedings of the IEEE SLT Workshop
     </span>
    </p>
   </div>
@@ -5633,6 +5863,86 @@
    <p>
     <a href="#ftnt_ref17" id="ftnt17">
      [17]
+    </a>
+    <span>
+     Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
+    </span>
+    <span>
+     End-to-end memory networks with knowledge carryover for multi-turn spoken language understanding
+    </span>
+    <span>
+     . Proceedings of Interspeech
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
+    </a>
+    <span>
+     Chen, P., Chi, T., Su, S., Chen, Y. (2017).
+    </span>
+    <span>
+     Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding
+    </span>
+    <span>
+     . Proceedings of 2017 IEEE Workshop on Automatic Speech Recognition and Understanding
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
+    </a>
+    <span>
+     Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
+    </span>
+    <span>
+     End-to-end memory networks
+    </span>
+    <span>
+     . Proceedings of NIPS
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
+    </a>
+    <span>
+     Eric, M. and Manning, C. (2017).
+    </span>
+    <span>
+     Key-value retrieval networks for task-oriented dialogue
+    </span>
+    <span>
+     . SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
+    </a>
+    <span>
+     Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
+    </span>
+    <span>
+     Joint semantic utterance classification and slot filling with recursive neural networks
+    </span>
+    <span>
+     . Proceedings of the IEEE SLT Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
     </span>
