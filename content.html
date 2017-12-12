@@ -1041,7 +1041,65 @@
   </h2>
   <p>
    <span>
-    focus on chatbots, interaction between human and machine
+    Focusing more on the interaction between humans and machines, starting from the formulation of the Turing test, the problem has been analyzed and different solution have been analyzed. The terms that are commonly used for them are chatbots, conversational interfaces, virtual assistants.
+   </span>
+  </p>
+  <p>
+   <span>
+    Their evolution started long time ago, with first systems that were built to emulate a natural conversation, and has lead to today’s virtual assistants that live on our smartphones and are ready to complete tasks for us.
+   </span>
+  </p>
+  <p>
+   <span>
+    The approaches that have been used have evolved through time to fit different needs and to overcome challenges that arise while developing such systems.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    The choices of the approach to use depend a lot on the purpose of the bot. Bots can be designed to entertain the user in a conversation or can be designed to provide informations on a specific field.
+   </span>
+  </p>
+  <p>
+   <span>
+    The discussion will first cover the common purposes of chatbots and then will focus on the main approaches used.
+   </span>
+  </p>
+  <h3 id="h.81vd2y4ukovb">
+   <span>
+    Different chatbots for different purposes of dialogue
+   </span>
+  </h3>
+  <p>
+   <span>
+    See
+   </span>
+   <span>
+    <a href="https://web.stanford.edu/class/cs124/lec/chatbot17.pdf">
+     https://web.stanford.edu/class/cs124/lec/chatbot17.pdf
+    </a>
+   </span>
+   <span>
+    for detailed analysis
+   </span>
+  </p>
+  <p>
+   <span>
+    For frame-based and another introduction see
+   </span>
+   <span>
+    <a href="https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf">
+     https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -1050,6 +1108,11 @@
    </span>
   </p>
   <ul>
+   <li>
+    <span>
+     Virtual assistants
+    </span>
+   </li>
    <li>
     <span>
      Assistance of customers instead of call-centers. Investigate adv/disadvantages for both sides
@@ -1077,33 +1140,131 @@
   </ul>
   <p>
    <span>
-    Then do this classification
    </span>
   </p>
   <p>
    <span>
+    A classification can be done on the purpose of the chatbot. Mainly we have three types: the first is a general one that, inspired by the imitation game, is oriented to keep a natural language conversation with the user. No knowledge of specific domains. The focus there is on the interaction and its smoothness. Another type is the domain specific bot, that is used to reach some informations about a specific service. The last one is a type of bot that has knowledge about the world and can navigate a set of linked Knowledge Bases to provide factual informations.
+   </span>
+  </p>
+  <h4 id="h.d9uvaj4tqp1g">
+   <span>
+    Chit-chat
+   </span>
+  </h4>
+  <p>
+   <span>
+    Only to entertain user
    </span>
   </p>
   <p>
    <span>
-    Dimensions to consider:
+    Some examples: ALICE, ELIZA, …
+   </span>
+  </p>
+  <p>
+   <span>
+    Common tricks to be seen as human
+   </span>
+  </p>
+  <h4 id="h.3usm4x1qzj0y">
+   <span>
+    Domain specific bot
+   </span>
+  </h4>
+  <p>
+   <span>
+    Provide a service on a restricted domain
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead of call centers or apps
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages for the user
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages for the companies
+   </span>
+  </p>
+  <p>
+   <span>
+    Combined with NLU: all current bots that use intents and entities/slots
+   </span>
+  </p>
+  <p>
+   <span>
+    Seq2seq fashion: creating a FAQ bot from support transcripts
+   </span>
+  </p>
+  <h4 id="h.iddu7jin8o5t">
+   <span>
+    Semantic Question Answering
+   </span>
+  </h4>
+  <p>
+   <span>
+    This kind of bots tries to provide a natural language interface towards a linked Knowledge Base. The fixed-structure intent based approach seems not to be optimal when the number of possible intents is very high and cannot be predetermined. If the system allows questions with a high level of complexity, requiring the linking of informations, the number of intents quickly can explode.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead of doing a classification of sentences on some pre-defined intents, the goal of those systems is to transform the user sentence in a database query. This requires a strong relation between the NL module and the Information Retrieval module. Informations are in the form of RDF (Resource description framework).
+   </span>
+  </p>
+  <p>
+   <span>
+    The sentences are analyzed using some parsers and the sentence is mapped to a set of linguistic patterns.
+   </span>
+  </p>
+  <p>
+   <span>
+    Main problem:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Long or short conversations
+     Lexical gap: the same meaning can be expressed in different ways
     </span>
    </li>
    <li>
     <span>
-     Open or closed domain. Closed is the only feasible
+     Manually designed features: the linguistic patterns are created by a domain expert
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Important features / challenges:
+    The systems represented are good for question answering systems where the questions are related to known facts and actors that are publicly known and retrievable using URIs.
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web">
+     http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.94anv2bk45xx">
+   <span>
+    Where handcrafted rules meet the automatic
+   </span>
+  </h3>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    THE CHALLENGES
    </span>
   </p>
   <ul>
@@ -1133,56 +1294,63 @@
   </ul>
   <p>
    <span>
-    Scope of dialogue:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     General chat
-    </span>
-   </li>
-   <li>
-    <span>
-     Task specific
-    </span>
-   </li>
-   <li>
-    <span>
-     Semantic question answering
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    See
-   </span>
-   <span>
-    <a href="https://web.stanford.edu/class/cs124/lec/chatbot17.pdf">
-     https://web.stanford.edu/class/cs124/lec/chatbot17.pdf
-    </a>
-   </span>
-   <span>
-    for detailed analysis
    </span>
   </p>
   <p>
    <span>
-    For frame-based and another introduction see
+    THE EVOLUTION
    </span>
+  </p>
+  <p>
    <span>
-    <a href="https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf">
-     https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf
-    </a>
+    The first chatbot, ELIZA, was built in 1966, and it simply matched the input sentences with some keywords and responded in a way to make the conversation look natural. From this, a lot of other agents grew up with the same technique: pattern matching. With this approach, lots of bot have been built and even a specific markup language has been developed to express the patterns and link them to some responses.
    </span>
+  </p>
+  <p>
+   <span>
+    More recent approaches instead tend to abandon the handcrafted rules towards an automatic learning from a dialogue corpus. This can be applied both to the part of natural language understanding (turn the user sentences into structured data) both to the response generation (querying Knowledge Bases and formulate responses).
+   </span>
+  </p>
+  <p>
    <span>
    </span>
   </p>
-  <h3 id="h.35x4qpdqz5d0">
+  <p>
    <span>
-    Where handcrafted rules meet the automatic
+    INTRO TO THIS CLASSIFICATION
    </span>
-  </h3>
+  </p>
+  <p>
+   <span>
+    More recent approaches can be split into two categories: declarative ( better for task oriented) vs generative (for more general conversations). In the declarative approaches the sentences of the user are categorized on a range of pre-defined tasks and some key entities are extracted. This is done by applying NLP techniques and the results of this stage are applied to the conversation manager that manages the state of the conversation and provides back answers and questions.
+   </span>
+  </p>
+  <p>
+   <span>
+    In the generative ones, sequence-to-sequence models are applied and therefore the responses depend on the training dataset heavily, instead of depending on the logic decided by the conversation manager.
+   </span>
+  </p>
+  <p>
+   <span>
+    The two approaches can be used together and instead of doing a rough division there can be a tunable mix of the two. For the first type of bots, for example, may be useful to understand to some question that were not designed. Or the bot could use the history of interactions with the user in order to understand better the current sentence.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     We can do a classification of chatbot system based on how much has to be specified
@@ -1625,119 +1793,7 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.81vd2y4ukovb">
-   <span>
-    Different chatbots for different purposes of dialogue
-   </span>
-  </h3>
   <p>
-   <span>
-    Another classification can be done on the purpose of the chatbot. Mainly we have three types: the first is a general one that, inspired by the imitation game, is oriented to keep a natural language conversation with the user. No knowledge of specific domains. The focus there is on the interaction and its smoothness. Another type is the domain specific bot, that is used to reach some informations about a specific service. The last one is a type of bot that has knowledge about the world and can navigate a set of linked Knowledge Bases to provide factual informations.
-   </span>
-  </p>
-  <h4 id="h.d9uvaj4tqp1g">
-   <span>
-    Chit-chat
-   </span>
-  </h4>
-  <p>
-   <span>
-    Only to entertain user
-   </span>
-  </p>
-  <p>
-   <span>
-    Some examples: ALICE, ELIZA, …
-   </span>
-  </p>
-  <p>
-   <span>
-    Common tricks to be seen as human
-   </span>
-  </p>
-  <h4 id="h.3usm4x1qzj0y">
-   <span>
-    Domain specific bot
-   </span>
-  </h4>
-  <p>
-   <span>
-    Provide a service on a restricted domain
-   </span>
-  </p>
-  <p>
-   <span>
-    Instead of call centers or apps
-   </span>
-  </p>
-  <p>
-   <span>
-    Advantages for the user
-   </span>
-  </p>
-  <p>
-   <span>
-    Advantages for the companies
-   </span>
-  </p>
-  <p>
-   <span>
-    Combined with NLU: all current bots that use intents and entities/slots
-   </span>
-  </p>
-  <p>
-   <span>
-    Seq2seq fashion: creating a FAQ bot from support transcripts
-   </span>
-  </p>
-  <h4 id="h.iddu7jin8o5t">
-   <span>
-    Semantic Question Answering
-   </span>
-  </h4>
-  <p>
-   <span>
-    This kind of bots tries to provide a natural language interface towards a linked Knowledge Base. The fixed-structure intent based approach seems not to be optimal when the number of possible intents is very high and cannot be predetermined. If the system allows questions with a high level of complexity, requiring the linking of informations, the number of intents quickly can explode.
-   </span>
-  </p>
-  <p>
-   <span>
-    Instead of doing a classification of sentences on some pre-defined intents, the goal of those systems is to transform the user sentence in a database query. This requires a strong relation between the NL module and the Information Retrieval module. Informations are in the form of RDF (Resource description framework).
-   </span>
-  </p>
-  <p>
-   <span>
-    The sentences are analyzed using some parsers and the sentence is mapped to a set of linguistic patterns.
-   </span>
-  </p>
-  <p>
-   <span>
-    Main problem:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Lexical gap: the same meaning can be expressed in different ways
-    </span>
-   </li>
-   <li>
-    <span>
-     Manually designed features: the linguistic patterns are created by a domain expert
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The systems represented are good for question answering systems where the questions are related to known facts and actors that are publicly known and retrievable using URIs.
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web">
-     http://www.semantic-web-journal.net/content/survey-challenges-question-answering-semantic-web
-    </a>
-   </span>
    <span>
    </span>
   </p>
@@ -2033,55 +2089,6 @@
    </sup>
    <span>
     ] have shown that there can be benefits if they are performed together.
-   </span>
-  </p>
-  <h3 id="h.iqkeiq1d8ogq">
-   <span>
-    NLU as a service
-   </span>
-  </h3>
-  <p>
-   <span>
-    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box.
-   </span>
-  </p>
-  <p>
-   <span>
-    There have been some efforts to compare the performances of all those systems by SNIPS:
-   </span>
-   <span>
-    <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
-     https://snips.ai/content/sdk-benchmark-visualisation/
-    </a>
-   </span>
-   <span>
-   </span>
-   <span>
-    <a href="https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19">
-     https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19
-    </a>
-   </span>
-   <span>
-   </span>
-   <span>
-    <a href="https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017">
-     https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017
-    </a>
-   </span>
-   <span>
-    that tested a lot of those platforms to compare the results on intent and slots. Emphasis also on the detection of out-of-domain samples (things that the agent was not trained for), learning curve, language support, response time. Dataset used:
-   </span>
-   <span>
-    <a href="https://github.com/snipsco/nlu-benchmark">
-     https://github.com/snipsco/nlu-benchmark
-    </a>
-   </span>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    EXTEND THIS SECTION
    </span>
   </p>
   <h3 id="h.jot16v735fof">
@@ -3193,23 +3200,26 @@
   </h4>
   <p>
    <span>
-    As
-   </span>
-   <span>
-    said
-   </span>
-   <sup>
-    <a href="#cmnt1" id="cmnt_ref1">
-     [a]
-    </a>
-   </sup>
-   <span>
-    before, this approach wants to overcome the need of domain-specific handcrafting in favour of a more generic system that can fastly be used for new domains. This approach has its origins in another type of setting: general chit-chat dialogs. From corpuses of discussions (forum threads / movie conversations) the system is trained in a end-to-end fashion to predict the next sentence. The porting from this scenario to goal-oriented ones has some issues, that generate from the fact that the conversation is intrinsically different in the purpose: the system is interrogated by the user and has to provide some information back. Beyond keeping the conversation smooth, the agent has to ask questions to the user to have a better formulation of the request, query the Knowledge Bases, interpreting the results and provide them to the user in the correct shape in order to complete a transaction.
+    As mentioned before, this approach wants to overcome the need of domain-specific handcrafting in favour of a more generic system that can fastly be used for new domains. This approach has its origins in another type of setting: general chit-chat dialogs. From corpuses of discussions (forum threads / movie conversations) the system is trained in a end-to-end fashion to predict the next sentence. The porting from this scenario to goal-oriented ones has some issues, that generate from the fact that the conversation is intrinsically different in the purpose: the system is interrogated by the user and has to provide some information back. Beyond keeping the conversation smooth, the agent has to ask questions to the user to have a better formulation of the request, query the Knowledge Bases, interpreting the results and provide them to the user in the correct shape in order to complete a transaction.
    </span>
   </p>
   <p>
    <span>
     In this type of system the prediction are both the agent responses and the API calls.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Using this approach, not only the understanding part is turned from handcrafted rules to an
+   </span>
+   <span>
+   </span>
+   <span>
+    optimization problem, but also the replying part. The API to call are determined without using fixed rules, but with a model that is determined by the training corpus. The same applies to the response generation: there aren’t fixed rules deciding what to say in responses.
    </span>
   </p>
   <p>
@@ -3296,6 +3306,111 @@
    </span>
    <span>
     done with interactive learning mode, providing feedback on each step.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.iqkeiq1d8ogq">
+   <span>
+    NLU as a service
+   </span>
+  </h3>
+  <p>
+   <span>
+    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Which ones:
+   </span>
+  </p>
+  <p>
+   <span>
+    TALK about wit.ai, dialogflow, LUIS, IBM, ...
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Features provided:
+   </span>
+  </p>
+  <p>
+   <span>
+    On the features provided by those platforms, usually only the natural language understanding is provided, with an approach that is not trained in a end-to-end way. The provided features turn the user sentences in structured data. Some platforms offer a way to force the user to provide some parameters (compulsory entities for some intents), managing the questions that the bot should ask when they are missing and call the fulfillment endpoint (the service owned by the developers of the bot, receiving the structured data) only when those parameters have been provided. The programmers are left to the role of handling the dialogue state, retrieving the informations and providing a response.
+   </span>
+  </p>
+  <p>
+   <span>
+    But this does not scale well when the dialogue can have lots of different states and the user is left to change the topic of conversation in every moment. In those situations the task of handcrafting rules to track the state of the conversation can become quite difficult. When something in the behaviour of the bot is not correct, the investigation of the problem is quite difficult.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead if the dialogue-state-tracking and the dialogue itself is trained end-to-end, changing the behaviour is as easy as adding a new example to the training corpus.
+   </span>
+  </p>
+  <p>
+   <span>
+    This kind of end-to-end dialogue is supported on the shelf by RASA, an open source tool that has two main components: the NLU and the core. The first one turns sentences into intents and entities, while the second one manages the state of the conversation and determines responses and API calls without handcrafted rules. The developers of a bot using this libraries have to define the intents, entities, the actions (that correspond to some methods) and templates (for the responses) and provide examples for training both the NLU and the Core.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Measurement of the performances:
+   </span>
+  </p>
+  <p>
+   <span>
+    There have been some efforts to compare the performances of all those systems by SNIPS:
+   </span>
+   <span>
+    <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+     https://snips.ai/content/sdk-benchmark-visualisation/
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    <a href="https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19">
+     https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    <a href="https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017">
+     https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017
+    </a>
+   </span>
+   <span>
+    that tested a lot of those platforms to compare the results on intent and slots. Emphasis also on the detection of out-of-domain samples (things that the agent was not trained for), learning curve, language support, response time. Dataset used:
+   </span>
+   <span>
+    <a href="https://github.com/snipsco/nlu-benchmark">
+     https://github.com/snipsco/nlu-benchmark
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    EXTEND THIS SECTION
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
@@ -6419,16 +6534,6 @@
      </a>
     </span>
     <span>
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#cmnt_ref1" id="cmnt1">
-     [a]
-    </a>
-    <span>
-     s/said/mentioned
     </span>
    </p>
   </div>
