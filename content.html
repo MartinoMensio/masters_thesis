@@ -1068,34 +1068,24 @@
     The discussion will first cover the common purposes of chatbots and then will focus on the main approaches used.
    </span>
   </p>
-  <h3 id="h.81vd2y4ukovb">
+  <h3 id="h.k02dvyfqdk5k">
    <span>
     Different chatbots for different purposes of dialogue
    </span>
   </h3>
   <p>
    <span>
-    See
+    There are fields in which using apps can be quite frustrating for users. User interface forces you to fill up informations in a form-like structure. When finally you try to submit, you find out that you missed one required field. A conversational interface could simplify a lot this process, even though you are simply doing slot-filling and asking one input after the other.
    </span>
-   <span>
-    <a href="https://web.stanford.edu/class/cs124/lec/chatbot17.pdf">
-     https://web.stanford.edu/class/cs124/lec/chatbot17.pdf
+   <sup>
+    <a href="#cmnt1" id="cmnt_ref1">
+     [a]
     </a>
-   </span>
-   <span>
-    for detailed analysis
-   </span>
+   </sup>
   </p>
   <p>
    <span>
-    For frame-based and another introduction see
-   </span>
-   <span>
-    <a href="https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf">
-     https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf
-    </a>
-   </span>
-   <span>
+    From the point of view of the companies, relations with the customer is the main channel to acquire and maintain customers. It is where the effort to understand user's needs should be maximum, and in many cases opting for offshore call centers may not be good. In these situations, having an automated responder could provide the service in the way you want in a scalable way.
    </span>
   </p>
   <p>
@@ -1104,37 +1094,32 @@
   </p>
   <p>
    <span>
-    Fields where they can be useful
+    Chatbots are also used in the field of virtual assistants. Using voice or text, we can interact on mobile devices with something that can quickly do things for us: adding events to the calendar, making phone calls and searching informations on the web. Virtual assistants provide a fast way to interact with the device, useful in situations where the users can be impossibled to interact in the visual way, for example while driving.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    All those scenarios can be grouped together and three main needs can be extracted:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Virtual assistants
+     Maintain a general conversation with the user without the knowledge of a domain (chit-chat)
     </span>
    </li>
    <li>
     <span>
-     Assistance of customers instead of call-centers. Investigate adv/disadvantages for both sides
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     FAQ
+     Provide informations on a specific domain (domain specific).
     </span>
    </li>
    <li>
     <span>
-     support
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     More natural interfacing in place of apps
+     Be able to connect to different sources of information and combine them to provide rich answers (semantic question answering)
     </span>
    </li>
   </ul>
@@ -1144,37 +1129,74 @@
   </p>
   <p>
    <span>
-    A classification can be done on the purpose of the chatbot. Mainly we have three types: the first is a general one that, inspired by the imitation game, is oriented to keep a natural language conversation with the user. No knowledge of specific domains. The focus there is on the interaction and its smoothness. Another type is the domain specific bot, that is used to reach some informations about a specific service. The last one is a type of bot that has knowledge about the world and can navigate a set of linked Knowledge Bases to provide factual informations.
+    Those three needs have been analyzed and different solutions have been proposed.
    </span>
   </p>
-  <h4 id="h.d9uvaj4tqp1g">
+  <h4 id="h.xtuxn5hkhwl2">
    <span>
     Chit-chat
    </span>
   </h4>
   <p>
    <span>
-    Only to entertain user
+    For the first need, that correspond to the native setting of the turing test because the goal is to entertain the user making him believe that the machine really understands the conversation, the history of chatbots is quite long.
    </span>
   </p>
   <p>
    <span>
-    Some examples: ALICE, ELIZA, …
+    The first chatbot ELIZA, that was built in 1966, is of this kind. It was created mainly to demonstrate the superficiality of communications and the illusion to be understood by a system that is simply applying a set of pattern-matching rules and a substitution methodology.
    </span>
   </p>
   <p>
    <span>
-    Common tricks to be seen as human
+    ELIZA simulates a psychotherapist and, thanks to the trick of representing to the interlocutor some contents that have been previously mentioned, keeps the conversation without having an understanding of what really is said. ELIZA can be easily tested inside the text editor Emacs with the command doctor (meta-x doctor). At the time when ELIZA came out, some people even attributed human-like feelings to the bot.
    </span>
   </p>
-  <h4 id="h.3usm4x1qzj0y">
+  <p>
+   <span>
+    A lot of other computer programs have been inspired by ELIZA. Even a markup language has been created to express the rules that drive the conversation (
+   </span>
+   <span>
+    <a href="#h.lxbz31wv66qa">
+     see AIML paragraph
+    </a>
+   </span>
+   <span>
+    ).
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Common tricks to be seen as human:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Substitution rules
+    </span>
+   </li>
+   <li>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <h4 id="h.lofizn2zbeuf">
    <span>
     Domain specific bot
    </span>
   </h4>
   <p>
    <span>
-    Provide a service on a restricted domain
+    Another completely different type of bots is the one that provides a service on a restricted domain. It can be a natural language interface to a set of static Frequently Asked Questions, or can be linked to some dynamic content using some defined APIs.
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -6534,6 +6556,21 @@
      </a>
     </span>
     <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref1" id="cmnt1">
+     [a]
+    </a>
+    <span>
+     See https://web.stanford.edu/class/cs124/lec/chatbot17.pdf for detailed analysis
+    </span>
+   </p>
+   <p>
+    <span>
+     For frame-based and another introduction see https://web.stanford.edu/class/cs224s/lectures/224s.17.lec10.pdf
     </span>
    </p>
   </div>
