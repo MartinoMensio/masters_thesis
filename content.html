@@ -1167,7 +1167,7 @@
   </ul>
   <p>
    <span>
-    The usage of rule-based chatbots will be explained in more detail in
+    The details of rule-based chatbots will be explained in more detail in
    </span>
    <span>
     <a href="#h.y6rpo5m0ow5g">
@@ -1325,9 +1325,9 @@
    <span>
    </span>
   </p>
-  <h3 id="h.94anv2bk45xx">
+  <h3 id="h.9cp2ldxeokmq">
    <span>
-    Where handcrafted rules meet the automatic
+    Where handcrafted rules meet the automatic (the approaches)
    </span>
   </h3>
   <p>
@@ -1339,26 +1339,43 @@
     THE CHALLENGES
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Context
-    </span>
-    <span>
-     : keep track of informations given by user
-    </span>
-   </li>
-   <li>
-    <span>
-     Coherent personality: since training is done on multiple users data (see “A persona-based neural conversation model”)
-    </span>
-   </li>
-   <li>
-    <span>
-     Intention and diversity: easy to fall into generic responses (see “A Diversity-Promoting Objective Function for Neural Conversation Models”) especially for open-domain systems
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    For the different purposes that have been analyzed, different challenges arise depending also on the type of bot that is going to be implemented. The focus will be on the bots specific to a certain domain.
+   </span>
+  </p>
+  <p>
+   <span>
+    The most important point is to classify the user sentences and to reconduct them to a set of questions that have a response by design. This challenge of understanding the user is made up of two components: one is relative to the natural language understanding of the current sentence, while the other one is relative to the contextualization of the current sentence in the environment of the dialogue. While talking, humans tend to refer to previously mentioned things, and the understanding of sentences is often difficult without placing it into its
+   </span>
+   <span>
+    context
+   </span>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
+    Another challenge that arises, especially on generative approaches, is the
+   </span>
+   <span>
+    coherence
+   </span>
+   <span>
+    of the sentences that are said. Since the training of those models is done on dialogues between multiple users with different visions and different behaviour, it may be difficult to establish a coherent personality of the bot. This issue is not present if the approach chosen makes the response generation in a static way: in this case it is sufficient to keep a coherent personality among the people writing the response templates.
+   </span>
+  </p>
+  <p>
+   <span>
+    Another big issue is how to deal with unexpected questions, for which a response has not been prepared. This problem is present in rule-based approaches, in NLU empowered bots and even in generative approaches.
+   </span>
+  </p>
+  <p>
+   <span>
+    The approaches used are mainly three, and their first use belongs to different epochs.
+   </span>
+  </p>
   <p>
    <span>
    </span>
@@ -1370,26 +1387,17 @@
   </p>
   <p>
    <span>
-    The first chatbot, ELIZA, was built in 1966, and it simply matched the input sentences with some keywords and responded in a way to make the conversation look natural. From this, a lot of other agents grew up with the same technique: pattern matching. With this approach, lots of bot have been built and even a specific markup language has been developed to express the patterns and link them to some responses.
+    The first wave of chatbot, as mentioned before, simply matched the input sentences with some keywords and responded in a way to make the conversation look natural. From this, a lot of other agents grew up with the same technique: pattern matching. With this approach, lots of bot have been built and even a specific markup language has been developed to express the patterns and link them to some responses.
    </span>
   </p>
   <p>
    <span>
-    More recent approaches instead tend to abandon the handcrafted rules towards an automatic learning from a dialogue corpus. This can be applied both to the part of natural language understanding (turn the user sentences into structured data) both to the response generation (querying Knowledge Bases and formulate responses).
+    More recent approaches instead tend to abandon the handcrafted rules towards an automatic learning from a dialogue corpus. This can be applied both to the part of natural language understanding (turn the user sentences into structured data) and to the response generation (querying Knowledge Bases and formulate responses).
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    INTRO TO THIS CLASSIFICATION
-   </span>
-  </p>
-  <p>
-   <span>
-    More recent approaches can be split into two categories: declarative ( better for task oriented) vs generative (for more general conversations). In the declarative approaches the sentences of the user are categorized on a range of pre-defined tasks and some key entities are extracted. This is done by applying NLP techniques and the results of this stage are applied to the conversation manager that manages the state of the conversation and provides back answers and questions.
+    Depending on how responses are generated, those approaches can be split into two categories: declarative (that are mostly used for domain specific bots) and generative (for more general conversations). In the declarative approaches the sentences of the user are categorized on a range of pre-defined intents and some key entities are extracted. This is done by applying NLP techniques and the results of this stage are applied to the conversation manager that manages the state of the conversation and provides back answers and questions.
    </span>
   </p>
   <p>
@@ -1399,7 +1407,7 @@
   </p>
   <p>
    <span>
-    The two approaches can be used together and instead of doing a rough division there can be a tunable mix of the two. For the first type of bots, for example, may be useful to understand to some question that were not designed. Or the bot could use the history of interactions with the user in order to understand better the current sentence.
+    The two approaches can be used together and instead of doing a rough division there can be a tunable mix of the two. For a domain specific bot, for example, may be useful to understand to some question that were not designed: having a supporting chit-chat model could come in help instead of replying with a generic fallback response. Or the bot could use the history of interactions with the user in order to understand better the current sentence.
    </span>
   </p>
   <p>
@@ -1408,34 +1416,19 @@
   </p>
   <p>
    <span>
+    We can do a classification of chatbot systems based on how much has to be specified and defined in a static way versus a dynamic approach that learns from the examples provided. The two main points where this choice can be done are: the first one on the understanding and classification of responses, the second one on the generation of responses.
+   </span>
+  </p>
+  <p>
+   <span>
+    In the following table we can see how the decisions on those two points define the approach used.
    </span>
   </p>
   <p>
    <span>
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    We can do a classification of chatbot system based on how much has to be specified
-   </span>
-  </p>
-  <p>
-   <span>
-    Manual specification of rules for generating responses, towards manual specification of what are the tasks, until a completely generative approach (anything manually specified, only learnt from examples
-   </span>
-   <span>
-    )
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <a id="t.beb26c9220e441e5f9e3eff1813e24e7f5805e16">
+  <a id="t.4d93a4d1ffbcc9bb52fe3bb06c855d8196ae5efc">
   </a>
   <a id="t.0">
   </a>
@@ -1445,7 +1438,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        type
+        approach
        </span>
       </p>
      </td>
@@ -1459,7 +1452,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Generation of responses
+        generation of responses
        </span>
       </p>
      </td>
@@ -1541,7 +1534,7 @@
   </p>
   <p>
    <span>
-    The choice between those possibilities has to be done based on the available data (e.g. if transcripts of existing human conversations exists), on the purpose of the system (see below, between chit-chat, service-oriented, ...).
+    The choice between those possibilities has to be done based on the available data (e.g. if transcripts of existing human conversations exists), on the purpose of the system (see above, between chit-chat, service-oriented, ...).
    </span>
   </p>
   <p>
@@ -1557,7 +1550,7 @@
    </li>
    <li>
     <span>
-     Natural Language Generation: from templates to be filled to seq2seq models
+     Natural Language Generation: from templates to be filled, to generative models
     </span>
    </li>
   </ul>
@@ -1573,7 +1566,12 @@
   </h4>
   <p>
    <span>
-    The first type. Everything is specified as a very long list of rules. This approach was firstly used for chit-chat systems.
+    The first approach has both the understanding part and the response generation specified as rules. This approach was firstly used for chit-chat systems, and the number of rules can be quite big. Those rules can define theirself a response or can refer to other rules in order to reduce the amount of different actions. However this strategy is not very good because a lot of rules must be written in order to span all the possible variations of sentences. Moreover, since the majority of the work is to write those rules, and the rules highly depend on the language analyzed, this approach can hardly be applied on different languages and the process of migration from one to another requires the rewriting of the whole set of rules.
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach was firstly used by ELIZA. Then when used by ALICE, an extended version of ELIZA, there has been the release of AIML, that is the markup language used for expressing the rules. With the release of AIML, lots of implementations of chatbots used this approach.
    </span>
   </p>
   <h5 id="h.lxbz31wv66qa">
@@ -1583,23 +1581,41 @@
   </h5>
   <p>
    <span>
-    Is a language that describes how the bot replies to certain inputs. Inputs are evaluated against a set of patterns and the best match (category) is chosen. The actions performed by the category can be a simple response, or can also set variables and call other categories.
+    AIML stands for Artificial Intelligence Markup Language, and is a language that describes how the bot replies to certain inputs. Inputs are evaluated against a set of patterns and the best match (category) is chosen. The actions performed by the category can be a simple response, or can also set variables and call other categories.
    </span>
   </p>
   <p>
    <span>
-    Bot creation:
+    Those rules determine together the classification of the sentences and the response generation.
    </span>
   </p>
   <p>
    <span>
-    Cyclical process called
+    A rule (in the AIML jargon called category) is made up of a pattern and a template. The pattern is responsible to identify the sentences that activate the rule, while the template is the part that manages the response: a template can be both a sentence that will be sent to the user or can be a redirection towards another rule.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 184.00px;">
+    <img alt="" src="https://lh6.googleusercontent.com/R-niRLWA_Roo9Poc5T2Bm7SPFog1jJew6o6AYHrozNpgn-L4vIhOw4tbs-ECfLM-S2to3t7C9XY_BTLt0fI1glEA5YBqGO-vH4bbMohJywbWRn58Q5VsJ2-zy009TSeMxT1PmBWd" style="width: 602.00px; height: 184.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+   <span>
+    In addition to those two elements, some actions to manage the state of the conversation can be added: variables can be set and read to manage the FSM and to conditionally activate rules.
+   </span>
+  </p>
+  <p>
+   <span>
+    While writing those rules can be quite easy, the problem is that a lot of them must be written to manage the variations on the natural language.
+   </span>
+  </p>
+  <p>
+   <span>
+    In fact the strategy used for managing the development cycle of bots empowered by AIML is a cyclical process: starting with a model with some rules, the system is tested against a group of test users collecting the interactions; at the end of the test session, the logs are analyzed and the botmasters modify and add rules to provide suitable responses. This process is called
    </span>
    <span>
     targeting
    </span>
    <span>
-    : client inputs that find no match are collected using logs and the botmaster creates suitable responses. Targeting interface can also be exposed to clients, but with risks: not controlled by the botmaster
+    . The botmaster role can be separated from the role of tester, or testers can be given privileges to modify the rules on their own.
    </span>
   </p>
   <p>
@@ -1608,103 +1624,58 @@
   </p>
   <p>
    <span>
-    AIML can be used to build bots that simply do a pattern-matching job, it is only a stimulus-response system.
+    The disadvantages of using AIML are many. First of all, being a rule based system, a big set of rules need to be built and so a big fraction of time is spent analyzing the possible variation of the sentences instead of leaving it for more important tasks, such as focusing on the data available. A lot of rules are also needed to perform reduction on other rules. Those additional rules make very difficult to understand what is wrong when multiple reduction rules have been applied. Other problems come when the sentences contains complex queries. In this situation, it’s possible that more parameters need to be extracted from a single sentence, and since every pattern can contain a maximum of one wild character some tricks must be used.
    </span>
   </p>
   <p>
    <span>
-    Main disadvantages:
+    In general this is an approach that is good only for toy examples, and does not scale well to more complex bots.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     A big set of AIML rules need to be built: time consuming. A lot of rules are also needed to perform reduction
-    </span>
-   </li>
-   <li>
-    <span>
-     Difficult to reply to complex queries
-    </span>
-   </li>
-   <li>
-    <span>
-     Not really understanding the language.
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
    </span>
   </p>
   <p>
    <span>
-    Where it is used:
+    AIML is used on bots based on ALICE. Being the markup language released under GNU GPL license, a lot of open source tools exist, only requiring the botmasters to produce a set of AIML rules. Even online services exist that can be used to deploy an AIML bot in very few steps (for example pandorabots).
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     ALICE based bots: Pandorabots is a service to host an AIML processor. Users can create files that contain the rules and test the bot
-    </span>
-   </li>
-   <li>
-    <span>
-     <a href="https://github.com/keiffster/program-y">
-      https://github.com/keiffster/program-y
-     </a>
-    </span>
-    <span>
-     is an implementation of AIML 2.0 using python 3
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
    </span>
   </p>
   <p>
    <span>
-    “Towards the implementation of a Topic specific dialogue based Natural Language Chatbot as an Undergraduate Advisor”
+    Also if AIML was born for generic chit-chat systems and the Loebner Prize, it has been used also in domain specific bots. For example, to provide answers to Frequently Asked Questions in the domain of student support in Universities
+   </span>
+   <sup>
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
+    </a>
+   </sup>
+   <span>
+    . The information contained in the FAQ are relative to admissions and courses informations. The AIML rules for managing conversations on these topics have been added to a base ALICE bot, and a change in the state transition management has been done in order to make the conversation stay on the desired topics, using weighted transitions that make the bot prefer to stay on the university domain. This system has been tested on students, establishing some evaluations on their satisfaction and also on the topic switching rate, in order to have some measures on the state transition management.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: develop a chatbot to help students in University with admission and course information (FAQ) using AIML. Weights of state transitions are tuned to make the conversation stay on topic.
-    </span>
-   </li>
-   <li>
-    <span>
-     Metrics for performance:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Satisfaction: user vote if the answer is appropriate in the context
-    </span>
-   </li>
-   <li>
-    <span>
-     Topic switching rate: how much the dialogue is switched from on-topic to off-topic
-    </span>
-   </li>
-   <li>
-    <span>
-     Correction rate: responses that are corrected by the user
-    </span>
-   </li>
-  </ul>
-  <h4 id="h.3r2mfopy3uiq">
+  <h4 id="h.4fbixuxd9req">
    <span>
     NLU empowered
    </span>
   </h4>
   <p>
    <span>
-    Better explained in NLU. This is the best approach for task-specific bots. The problem is understanding the user. Once the understanding is done, the system can use the domain rules and provide back a response. The part that gives back the response is better done programmatically.
+    Another approach that can be used to develop chatbots, instead of manually matching sentences with patterns, is to have a Natural Language Understanding engine that performs this classification in a smarter way. In this approach, instead of building rules and analyzing the structure of the sentence in order to span the different variation of sentences that should be grouped together, the objective is to have a classifier that can be trained to make this task automatically using machine learning techniques (feeding training examples, letting the internal parameters to be adjusted automatically to obtain the desired outputs).
+   </span>
+  </p>
+  <p>
+   <span>
+    Natural Language Understanding however applies only to the task of understanding the sentences (turn natural language sentences into structured data), and not to the response generation. NLU is composed of two tasks: sentence classification, also called intent detection, that finds for each input sentence a predetermined type that expresses what the user wants to communicate or ask; entity extraction, also called slot filling, that is responsible to obtain from sentences some parameters that have been previously defined in their type.
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach is born for domain specific bots and responds to a problem that is inborn to this kind of bots: exists a big difference between the natural language and the information with fixed structure stored in Knowledge Bases. Using Natural Language Understanding techniques, an intermediate representation can be built starting from the sentences in natural language and from this representation, composed of intent and entities, it is easier to interface with the fixed structure informations that are usually reachable using some static APIs (information retrieval) and also manage the state of the dialogue, recording which intents and entities have occurred (dialogue manager).
    </span>
   </p>
   <p>
@@ -1713,33 +1684,33 @@
   </p>
   <p>
    <span>
-    Decoupling: natural language to fixed-structure data. Done to interface humans that interact in free forms, with data reachable with fixed interfaces.
+    Maybe some examples?
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Examples:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <h4 id="h.4yanc26b251y">
+  <h4 id="h.ufp22pmcw3dd">
    <span>
     Generative models
    </span>
   </h4>
   <p>
    <span>
-    Approach: give a huge corpus of dialogue. The system will learn how to generate next sentence
+    Going further with automation techniques that learn from examples, if the management of the state of the dialogue and the information retrieval and the response generation are managed without writing static rules, the approach is said to be generative. Using this approach removes the intermediate point of contact between natural language and rule based systems that is used in NLU systems. Everything is trained together in a end-to-end fashion: from the input sentences to the output sentences.
    </span>
+  </p>
+  <p>
+   <span>
+    This approach was born in the chit-chat domain, and has its strength when combined with a huge corpus of dialogues. Given the dialogues, that are sequences of sentences said by different actors, the system is trained to generate the next sentence given the current dialogue history.
+   </span>
+  </p>
+  <p>
+   <span>
+    The first implementation of this strategy was trained on tweets
+   </span>
+   <sup>
+    <a href="#ftnt12" id="ftnt_ref12">
+     [12]
+    </a>
+   </sup>
   </p>
   <p>
    <span>
@@ -1835,6 +1806,31 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Keep attention on:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Coherent personality: since training is done on multiple users data (see “A persona-based neural conversation model”)
+    </span>
+   </li>
+   <li>
+    <span>
+     Intention and diversity: easy to fall into generic responses (see “A Diversity-Promoting Objective Function for Neural Conversation Models”) especially for open-domain systems
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     This approach has very good results for non-specific task dialogues, because the goal is simply to continue the dialogue and there is no need to introduce some task-specific informations (KBs).
@@ -2160,16 +2156,16 @@
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
-    <a href="#ftnt11" id="ftnt_ref11">
-     [11]
+    <a href="#ftnt13" id="ftnt_ref13">
+     [13]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt12" id="ftnt_ref12">
-     [12]
+    <a href="#ftnt14" id="ftnt_ref14">
+     [14]
     </a>
    </sup>
    <span>
@@ -2371,16 +2367,16 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt13" id="ftnt_ref13">
-     [13]
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
     </a>
    </sup>
    <span>
     , Hochreiter et al. (1998)
    </span>
    <sup>
-    <a href="#ftnt14" id="ftnt_ref14">
-     [14]
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
     </a>
    </sup>
    <span>
@@ -2397,8 +2393,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
@@ -2487,8 +2483,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
@@ -2505,16 +2501,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt18" id="ftnt_ref18">
-     [18]
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
     </a>
    </sup>
    <span>
@@ -2840,8 +2836,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt19" id="ftnt_ref19">
-     [19]
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
     </a>
    </sup>
    <span>
@@ -2868,8 +2864,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt20" id="ftnt_ref20">
-     [20]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
@@ -2933,8 +2929,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt21" id="ftnt_ref21">
-     [21]
+    <a href="#ftnt23" id="ftnt_ref23">
+     [23]
     </a>
    </sup>
   </p>
@@ -2963,8 +2959,8 @@
     In [Guo et al.
    </span>
    <sup>
-    <a href="#ftnt22" id="ftnt_ref22">
-     [22]
+    <a href="#ftnt24" id="ftnt_ref24">
+     [24]
     </a>
    </sup>
    <span>
@@ -3111,8 +3107,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt23" id="ftnt_ref23">
-     [23]
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
     </a>
    </sup>
    <span>
@@ -3153,8 +3149,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt24" id="ftnt_ref24">
-     [24]
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
     </a>
    </sup>
    <span>
@@ -3261,8 +3257,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
@@ -3349,8 +3345,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
@@ -4268,8 +4264,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
    </span>
    <sup>
-    <a href="#ftnt27" id="ftnt_ref27">
-     [27]
+    <a href="#ftnt29" id="ftnt_ref29">
+     [29]
     </a>
    </sup>
    <span>
@@ -5670,8 +5666,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt28" id="ftnt_ref28">
-     [28]
+    <a href="#ftnt30" id="ftnt_ref30">
+     [30]
     </a>
    </sup>
    <span>
@@ -6366,6 +6362,32 @@
      [11]
     </a>
     <span>
+     Ghose, S., Barua, J. (2013). Toward the Implementation of a Topic Specific Dialogue-Based Natural Language Chatbot as an Undergraduate Advisor.
+    </span>
+    <span>
+     Proceeds of the International Conference on Informatics, Electronics, and Vision
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref12" id="ftnt12">
+     [12]
+    </a>
+    <span>
+     Ritter, A., Cherry, C., Dolan, W. (2011). Data-driven response generation in social media.
+    </span>
+    <span>
+     EMNLP
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref13" id="ftnt13">
+     [13]
+    </a>
+    <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
     </span>
     <span>
@@ -6378,8 +6400,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref12" id="ftnt12">
-     [12]
+    <a href="#ftnt_ref14" id="ftnt14">
+     [14]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6394,8 +6416,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref13" id="ftnt13">
-     [13]
+    <a href="#ftnt_ref15" id="ftnt15">
+     [15]
     </a>
     <span>
      Bengio, Y., Simard, P., Frasconi, P. (1994).
@@ -6410,8 +6432,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref14" id="ftnt14">
-     [14]
+    <a href="#ftnt_ref16" id="ftnt16">
+     [16]
     </a>
     <span>
      Hochreiter, S. (1998).
@@ -6426,8 +6448,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref15" id="ftnt15">
-     [15]
+    <a href="#ftnt_ref17" id="ftnt17">
+     [17]
     </a>
     <span>
      Hochreiter, S., Schmidhuber, J. (1997).
@@ -6442,8 +6464,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref16" id="ftnt16">
-     [16]
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6458,8 +6480,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref17" id="ftnt17">
-     [17]
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
     </a>
     <span>
      Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
@@ -6474,8 +6496,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref18" id="ftnt18">
-     [18]
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
     </a>
     <span>
      Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
@@ -6490,8 +6512,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref19" id="ftnt19">
-     [19]
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6506,8 +6528,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref20" id="ftnt20">
-     [20]
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6522,8 +6544,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref21" id="ftnt21">
-     [21]
+    <a href="#ftnt_ref23" id="ftnt23">
+     [23]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -6538,8 +6560,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref22" id="ftnt22">
-     [22]
+    <a href="#ftnt_ref24" id="ftnt24">
+     [24]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6554,8 +6576,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref23" id="ftnt23">
-     [23]
+    <a href="#ftnt_ref25" id="ftnt25">
+     [25]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -6570,8 +6592,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref24" id="ftnt24">
-     [24]
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -6586,8 +6608,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref25" id="ftnt25">
-     [25]
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -6602,8 +6624,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -6618,8 +6640,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref27" id="ftnt27">
-     [27]
+    <a href="#ftnt_ref29" id="ftnt29">
+     [29]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6634,8 +6656,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref28" id="ftnt28">
-     [28]
+    <a href="#ftnt_ref30" id="ftnt30">
+     [30]
     </a>
     <span>
     </span>
