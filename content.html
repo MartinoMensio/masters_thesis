@@ -198,59 +198,6 @@
     For this reason, after giving a brief introduction to Artificial Intelligence and autonomous agents, the discussion will go on some guidelines that are of common sense and have been analyzed in scientific literature (papers).
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    PROBLEM:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Want to do an history of AI and extract some guidelines
-    </span>
-   </li>
-   <li>
-    <span>
-     Guidelines for something that has not yet been defined is not ok
-    </span>
-   </li>
-   <li>
-    <span>
-     State of AI today would be better after, just before restricting the field to chatbots. Now keep the discussion at simpler levels
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    SOLUTION:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Here define what artificial intelligence is
-    </span>
-   </li>
-   <li>
-    <span>
-     Continue with non technical things and go to guidelines
-    </span>
-   </li>
-   <li>
-    <span>
-     After explore the field of artificial intelligence. The difference between general and specific AI, what can be done today in specific fields and how the scientific community sees the journey towards general AI
-    </span>
-   </li>
-   <li>
-    <span>
-     Then restrict the field on interaction and chatbots and go to classification
-    </span>
-   </li>
-  </ul>
   <h3 id="h.ana2zm6bt6x">
    <span>
     Artificial Intelligence and autonomous systems
@@ -305,7 +252,7 @@
     </a>
    </sup>
    <span>
-    and this will be covered in the next section [Guidelines]. Secondly, the questioning of how much of this robot is real Artificial Intelligence and how much is just the emblematic representation of AI hype, that will be covered in the section [AI of today] to examine the big question of Artificial General Intelligence
+    and this will be covered in the next section [Guidelines]. Secondly, the questioning of how much of this robot is real Artificial Intelligence and how much is just the emblematic representation of AI hype, that will be covered in the section [AI of today] to examine the big question of Artificial General Intelligence.
    </span>
   </p>
   <p>
@@ -1167,24 +1114,83 @@
   </p>
   <p>
    <span>
+    A competition has been created to reward the progresses in this field: the Loebner Prize, an annual challenge that stands in the format of the Turing tests, but restricting the topics of conversation. Judges keep parallel conversations, one with a human and one with a computer program. Judges are chosen with the criterion that they “should respond naturally, as they would in a conversation with another person”, in a way to avoid excessive sophistication. At the end the winner is the computer program that mostly convinced the judges (even without passing the Turing test). There are two more prizes in this competition: one is for the Turing test in text only interactions, the last one (the biggest one) is for passing the Turing test including visual and auditory inputs. This competition was first held in 1991, and with the years advancing the challengers have became more and more complex.
    </span>
   </p>
   <p>
    <span>
-    Common tricks to be seen as human:
+    The Loebner Prize has been criticized by experts in the field because it rewards the usage of some tricks
+   </span>
+   <sup>
+    <a href="#ftnt9" id="ftnt_ref9">
+     [9]
+    </a>
+   </sup>
+   <span>
+    , pointing the focus on imitation instead of intelligence.
+   </span>
+  </p>
+  <p>
+   <span>
+    The common tricks used are
+   </span>
+   <sup>
+    <a href="#ftnt10" id="ftnt_ref10">
+     [10]
+    </a>
+   </sup>
+   <span>
+    :
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Substitution rules
+     Let the conversation to be driven by the interlocutor. This works because most people like to talk about themselves and only want someone that listens
     </span>
    </li>
    <li>
     <span>
+     Give the illusion to be listening and understanding, by including substrings of the user input
+    </span>
+   </li>
+   <li>
+    <span>
+     Changing the topic when not understanding, that sometimes can be seen as paranoid
+    </span>
+   </li>
+   <li>
+    <span>
+     Simulated typing, delaying the responses
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    The usage of rule-based chatbots will be explained in more detail in
+   </span>
+   <span>
+    <a href="#h.y6rpo5m0ow5g">
+     this paragraph (rule based)
+    </a>
+   </span>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
+    The evolution of chit-chat bots has recently evolved from a rule-based one to a generative approach. The key idea is to imitate existing conversation, and generate a response in a way that reflects both the training corpus both the current user turn (used as a stimulus). This approach, that will be discussed deeper in
+   </span>
+   <span>
+    <a href="#h.4yanc26b251y">
+     this paragraph (generative models)
+    </a>
+   </span>
+   <span>
+    , has its roots in using Statistical Machine Translation. The importance of the dialogue corpus, that dynamically establishes how the responses are generated, makes their availability a key element for a successful bot. For this reason these models are trained on the few datasets publicly available: tweets, reddit discussions, ubuntu dialog corpus.
+   </span>
+  </p>
   <h4 id="h.lofizn2zbeuf">
    <span>
     Domain specific bot
@@ -1192,7 +1198,33 @@
   </h4>
   <p>
    <span>
-    Another completely different type of bots is the one that provides a service on a restricted domain. It can be a natural language interface to a set of static Frequently Asked Questions, or can be linked to some dynamic content using some defined APIs.
+    Another completely different type of bots is the one that provides a service on a restricted domain. It can be a natural language interface to a set of static Frequently Asked Questions, or can be linked to some dynamic content using some defined APIs. Those systems need to define the list of things they can do, and in some way map the user requests to some actions.
+   </span>
+  </p>
+  <p>
+   <span>
+    Using those systems, the user should be aware of what the system can do and what cannot. Letting the user know that the bot he is interacting with can provide informations only on the domain it is built for, should be a goal of the ideators. Responses for a little chit-chat conversation can also be added to the system, but they should be used only to avoid a general “I don’t know”/”I didn’t understand”.
+   </span>
+  </p>
+  <p>
+   <span>
+    Those kind of bots can provide a more natural way of interacting with companies, both in the field of customer support and in search for informations. The informations can be statically defined as pairs of questions-answers. In this case the bot has to classify the user requests and provide the answer that mostly fits it. Or there can be some dynamic information that need to be extracted from the request. In this case, in addition to sentence classification, a parameter extraction needs to be performed. These tasks are the ones that this thesis will later focus on, and are the main part of the Natural Language Understanding process, that is introduced better in
+   </span>
+   <span>
+    <a href="#h.3r2mfopy3uiq">
+     NLU empowered
+    </a>
+   </span>
+   <span>
+    and analyzed in detail in
+   </span>
+   <span>
+    <a href="#h.n06dhtaupqp">
+     NLP and NLU
+    </a>
+   </span>
+   <span>
+    .
    </span>
   </p>
   <p>
@@ -1201,37 +1233,55 @@
   </p>
   <p>
    <span>
-    Instead of call centers or apps
+    INSTEAD OF CALL CENTERS
    </span>
   </p>
   <p>
    <span>
-    Advantages for the user
+    The advantages of having those systems instead of dedicated people in call centers for customer support are many. First of all, the companies can support more customers because of the high scalability of those systems. For the majority of support requests, an automated response can be helpful. In case the system does not understand well the requests, a backup human solution can be called into action: in this way, also some very specific responses that were not designed in the requirements can be provided. The second major advantage for companies is that in this way they can have a set of responses more aligned with their guidelines. Establishing how the system should answer some types of questions once and for all, instead of having possible disinformation and misalignment of human employees.
    </span>
   </p>
   <p>
    <span>
-    Advantages for the companies
    </span>
   </p>
   <p>
    <span>
-    Combined with NLU: all current bots that use intents and entities/slots
+    INSTEAD OF APPS
    </span>
   </p>
   <p>
    <span>
-    Seq2seq fashion: creating a FAQ bot from support transcripts
+    From the point of view of customers, the main advantages of conversational interfaces can be found when interacting with structured data whose criterion of navigability and search are not well known. Having an interlocutor that progressively helps refining our search, instead of filling a large form in a app, can help being more productive. Moreover, voice commands can be used also without need to look and use hands, for situations where our attention is needed for other tasks.
    </span>
   </p>
-  <h4 id="h.iddu7jin8o5t">
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    VIRTUAL ASSISTANTS
+   </span>
+  </p>
+  <p>
+   <span>
+    Also virtual assistants mainly fall into this category. On pre-determined domains (such as agenda management, meteo, sending messages) or also with external domains integrated by third-party apps (such as Alexa Skills, Cortana integration, ...) the assistant can help on a set of intents.
+   </span>
+  </p>
+  <p>
+   <span>
+    As will be seen in the following section, a commonly used approach for this kind of bot is NLU based. However some less handmade approaches, more generative ones, are coming also in this field, inspired by the chit-chat domain.
+   </span>
+  </p>
+  <h4 id="h.gpa5vfh7ly2m">
    <span>
     Semantic Question Answering
    </span>
   </h4>
   <p>
    <span>
-    This kind of bots tries to provide a natural language interface towards a linked Knowledge Base. The fixed-structure intent based approach seems not to be optimal when the number of possible intents is very high and cannot be predetermined. If the system allows questions with a high level of complexity, requiring the linking of informations, the number of intents quickly can explode.
+    As last type of chatbots, we can consider a more rich version of the domain specific bot. Instead of limiting on a very restricted domain, and predetermining the abilities with a static design of intents, this kind of bots tries to provide a natural language interface towards a linked Knowledge Base. The fixed-structure intent based approach seems not to be optimal when the number of possible intents is very high and cannot be predetermined. If the system allows questions with a high level of complexity, requiring the linking of informations, the number of intents quickly can explode.
    </span>
   </p>
   <p>
@@ -1659,7 +1709,16 @@
   </h4>
   <p>
    <span>
-    Better explained in NLU. This is the best approach for task-specific bots. The problem is understanding the user. Once the understanding is done, the system can use the domain rules and provide back a response. The part that gives back the response is better done programmatically
+    Better explained in NLU. This is the best approach for task-specific bots. The problem is understanding the user. Once the understanding is done, the system can use the domain rules and provide back a response. The part that gives back the response is better done programmatically.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Decoupling: natural language to fixed-structure data. Done to interface humans that interact in free forms, with data reachable with fixed interfaces.
    </span>
   </p>
   <p>
@@ -2011,6 +2070,15 @@
     Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of bots.
    </span>
   </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    NLP is also used for processing tweets (TALK HERE ABOUT SOCIAL BOTS, crawlers)
+   </span>
+  </p>
   <h3 id="h.xsg4ur5pp4av">
    <span>
     Goal
@@ -2097,16 +2165,16 @@
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
-    <a href="#ftnt9" id="ftnt_ref9">
-     [9]
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt10" id="ftnt_ref10">
-     [10]
+    <a href="#ftnt12" id="ftnt_ref12">
+     [12]
     </a>
    </sup>
    <span>
@@ -2308,16 +2376,16 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt11" id="ftnt_ref11">
-     [11]
+    <a href="#ftnt13" id="ftnt_ref13">
+     [13]
     </a>
    </sup>
    <span>
     , Hochreiter et al. (1998)
    </span>
    <sup>
-    <a href="#ftnt12" id="ftnt_ref12">
-     [12]
+    <a href="#ftnt14" id="ftnt_ref14">
+     [14]
     </a>
    </sup>
    <span>
@@ -2334,8 +2402,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt13" id="ftnt_ref13">
-     [13]
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
     </a>
    </sup>
    <span>
@@ -2424,8 +2492,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt14" id="ftnt_ref14">
-     [14]
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
     </a>
    </sup>
    <span>
@@ -2442,16 +2510,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
@@ -2777,8 +2845,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
     </a>
    </sup>
    <span>
@@ -2805,8 +2873,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt18" id="ftnt_ref18">
-     [18]
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
     </a>
    </sup>
    <span>
@@ -2870,8 +2938,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt19" id="ftnt_ref19">
-     [19]
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
     </a>
    </sup>
   </p>
@@ -2900,8 +2968,8 @@
     In [Guo et al.
    </span>
    <sup>
-    <a href="#ftnt20" id="ftnt_ref20">
-     [20]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
@@ -3048,8 +3116,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt21" id="ftnt_ref21">
-     [21]
+    <a href="#ftnt23" id="ftnt_ref23">
+     [23]
     </a>
    </sup>
    <span>
@@ -3090,8 +3158,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt22" id="ftnt_ref22">
-     [22]
+    <a href="#ftnt24" id="ftnt_ref24">
+     [24]
     </a>
    </sup>
    <span>
@@ -3198,8 +3266,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt23" id="ftnt_ref23">
-     [23]
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
     </a>
    </sup>
    <span>
@@ -3286,8 +3354,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt24" id="ftnt_ref24">
-     [24]
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
     </a>
    </sup>
    <span>
@@ -4205,8 +4273,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
@@ -5607,8 +5675,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
@@ -6277,6 +6345,32 @@
      [9]
     </a>
     <span>
+     Shieber, S. (1992). Lessons from a Restricted Turing Test.
+    </span>
+    <span>
+     Technical Report TR-19-92, Harvard University
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref10" id="ftnt10">
+     [10]
+    </a>
+    <span>
+     Mauldin, M. L. (1994). Chatterbots, TinyMUDs and the Turing Test: Entering the Loebner Prize Competition.
+    </span>
+    <span>
+     Proc. AAAI-94
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref11" id="ftnt11">
+     [11]
+    </a>
+    <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
     </span>
     <span>
@@ -6289,8 +6383,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref10" id="ftnt10">
-     [10]
+    <a href="#ftnt_ref12" id="ftnt12">
+     [12]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6305,8 +6399,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref11" id="ftnt11">
-     [11]
+    <a href="#ftnt_ref13" id="ftnt13">
+     [13]
     </a>
     <span>
      Bengio, Y., Simard, P., Frasconi, P. (1994).
@@ -6321,8 +6415,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref12" id="ftnt12">
-     [12]
+    <a href="#ftnt_ref14" id="ftnt14">
+     [14]
     </a>
     <span>
      Hochreiter, S. (1998).
@@ -6337,8 +6431,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref13" id="ftnt13">
-     [13]
+    <a href="#ftnt_ref15" id="ftnt15">
+     [15]
     </a>
     <span>
      Hochreiter, S., Schmidhuber, J. (1997).
@@ -6353,8 +6447,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref14" id="ftnt14">
-     [14]
+    <a href="#ftnt_ref16" id="ftnt16">
+     [16]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6369,8 +6463,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref15" id="ftnt15">
-     [15]
+    <a href="#ftnt_ref17" id="ftnt17">
+     [17]
     </a>
     <span>
      Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
@@ -6385,8 +6479,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref16" id="ftnt16">
-     [16]
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
     </a>
     <span>
      Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
@@ -6401,8 +6495,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref17" id="ftnt17">
-     [17]
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6417,8 +6511,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref18" id="ftnt18">
-     [18]
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6433,8 +6527,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref19" id="ftnt19">
-     [19]
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -6449,8 +6543,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref20" id="ftnt20">
-     [20]
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6465,8 +6559,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref21" id="ftnt21">
-     [21]
+    <a href="#ftnt_ref23" id="ftnt23">
+     [23]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -6481,8 +6575,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref22" id="ftnt22">
-     [22]
+    <a href="#ftnt_ref24" id="ftnt24">
+     [24]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -6497,8 +6591,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref23" id="ftnt23">
-     [23]
+    <a href="#ftnt_ref25" id="ftnt25">
+     [25]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -6513,8 +6607,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref24" id="ftnt24">
-     [24]
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -6529,8 +6623,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref25" id="ftnt25">
-     [25]
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6545,8 +6639,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
     </span>
