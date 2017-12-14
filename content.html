@@ -746,11 +746,98 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.xpmt355fg5r">
+  <h3 id="h.5i54nl66kdim">
    <span>
     AI of today
    </span>
   </h3>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    PLAN FOR THIS SECTION:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     What AI can do, explore some key fields, no technicism:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Image processing
+    </span>
+   </li>
+   <li>
+    <span>
+     Games
+    </span>
+   </li>
+   <li>
+    <span>
+     NLU
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Define the levels of machine learning
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     1: see examples, normal ML
+    </span>
+   </li>
+   <li>
+    <span>
+     2: do → RL
+    </span>
+   </li>
+   <li>
+    <span>
+     3: reasoning, not yet studied
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Towards general AI
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Use the cambridge paper
+    </span>
+    <span>
+     <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A9535B1D745A0377E16C590E14B94993/S0140525X16001837a.pdf/div-class-title-building-machines-that-learn-and-think-like-people-div.pdf">
+      https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A9535B1D745A0377E16C590E14B94993/S0140525X16001837a.pdf/div-class-title-building-machines-that-learn-and-think-like-people-div.pdf
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+   <li>
+    <span>
+     Mention the hype
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     As today, artificial intelligence has become a common expression.
@@ -974,6 +1061,65 @@
   <p>
    <span>
     Also the news about reinforcement learning, that learns from itself how to do tasks, is misleading because the fields this is applied is always defined a priori and the learning always occurr following a predefined rule. For example on the task of playing a specific game, a rewarding function is defined and the machine learns how to play better by challenging itself.
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993">
+     https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993
+    </a>
+   </span>
+   <span>
+    Building machines that learn and think like people. Suggests “concrete challenges and promising routes toward these goals that can combine the strengths of recent neural network advances with more structured cognitive models”. Analyzes how “despite their biological inspiration and performance achievements, these systems differ from human intelligence in crucial ways” → READ IT, high number of citations
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Levels of machine learning
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="https://medium.com/intuitionmachine/embodied-learning-is-essential-to-artificial-intelligence-ad1e27425972">
+     https://medium.com/intuitionmachine/embodied-learning-is-essential-to-artificial-intelligence-ad1e27425972
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    <a href="http://web.cs.ucla.edu/~kaoru/theoretical-impediments.pdf">
+     http://web.cs.ucla.edu/~kaoru/theoretical-impediments.pdf
+    </a>
+   </span>
+   <span>
+   </span>
+   <span>
+    analyzes threee main levels of machine learning:
+   </span>
+  </p>
+  <ol start="1">
+   <li>
+    <span>
+     Conventional machine learning: see random examples, reduce loss between expected output and true outputs (association - seeing)
+    </span>
+   </li>
+   <li>
+    <span>
+     Reinforcement learning: ability to interact with the environment (intervention - doing), rewarding function
+    </span>
+   </li>
+   <li>
+    <span>
+     Counterfactual reasoning: associational questions, understand causes and consequences
+    </span>
+   </li>
+  </ol>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -1771,6 +1917,28 @@
     </a>
    </sup>
    <span>
+    . Using this solution, a clear decrease in the proportion of generic responses can be observed on the outputs.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    This approach has shown good results for non-specific task dialogues, because the goal is simply to continue the dialogue and there is no need to introduce some task-specific informations (KBs).
+   </span>
+  </p>
+  <p>
+   <span>
+    As an example of this approach in action, Google Smart Reply applies it to generate short email responses that can selected and completed. The implementation takes in account the incoming email to generate responses that may be used to replay
+   </span>
+   <sup>
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
+    </a>
+   </sup>
+   <span>
     .
    </span>
   </p>
@@ -1778,94 +1946,24 @@
    <span>
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Intention and diversity: easy to fall into generic responses (see “A Diversity-Promoting Objective Function for Neural Conversation Models”) especially for open-domain systems
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    In the field of domain specific bots, usually the responses are not generated completely from sequence to sequence models. The approaches usually make use of templates, that can be chosen by rules or by a dynamic classifier. But in some way templates are always used to provide the answers to domain-specific questions.
+   </span>
+  </p>
   <p>
    <span>
    </span>
   </p>
   <p>
    <span>
-    This approach has very good results for non-specific task dialogues, because the goal is simply to continue the dialogue and there is no need to introduce some task-specific informations (KBs).
    </span>
   </p>
   <p>
    <span>
-    The results are quite promising in this field, but we decided not to use such end2end systems but instead to apply the NLU strategy to map the user sentences to a pre-designed fixed set of intents.
+    The next chapter will investigate the natural language techniques that are used for domain specific bots, focusing on the tasks of intent recognition and entity extraction and how to manage a dialogue in a multi-turn environment.
    </span>
   </p>
-  <p>
-   <span>
-    Examples:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Google smart reply
-    </span>
-    <span>
-     <a href="http://arxiv.org/abs/1606.04870">
-      http://arxiv.org/abs/1606.04870
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-   <li>
-    <span>
-     Other chatbots for chit-chat
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h2 id="h.34p3lqtcm9yp">
-   <span>
-    Main topics of the research phase (remove me)
-   </span>
-  </h2>
-  <p>
-   <span>
-    NLU:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Understanding the user queries: intent + slot
-    </span>
-   </li>
-   <li>
-    <span>
-     Tracking the state of the dialogue
-    </span>
-   </li>
-   <li>
-    <span>
-     Provide relatively good answers to non-task specific interactions
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    Personalization:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     TODO
-    </span>
-   </li>
-  </ul>
   <h2 id="h.n06dhtaupqp">
    <span>
     NLP and NLU
@@ -2114,16 +2212,16 @@
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
@@ -2325,16 +2423,16 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
     , Hochreiter et al. (1998)
    </span>
    <sup>
-    <a href="#ftnt18" id="ftnt_ref18">
-     [18]
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
     </a>
    </sup>
    <span>
@@ -2351,8 +2449,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt19" id="ftnt_ref19">
-     [19]
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
     </a>
    </sup>
    <span>
@@ -2441,8 +2539,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt20" id="ftnt_ref20">
-     [20]
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
     </a>
    </sup>
    <span>
@@ -2459,16 +2557,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt21" id="ftnt_ref21">
-     [21]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt22" id="ftnt_ref22">
-     [22]
+    <a href="#ftnt23" id="ftnt_ref23">
+     [23]
     </a>
    </sup>
    <span>
@@ -2794,8 +2892,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt23" id="ftnt_ref23">
-     [23]
+    <a href="#ftnt24" id="ftnt_ref24">
+     [24]
     </a>
    </sup>
    <span>
@@ -2822,8 +2920,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt24" id="ftnt_ref24">
-     [24]
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
     </a>
    </sup>
    <span>
@@ -2887,8 +2985,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
     </a>
    </sup>
   </p>
@@ -2917,8 +3015,8 @@
     In [Guo et al.
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
@@ -3065,8 +3163,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt27" id="ftnt_ref27">
-     [27]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
@@ -3107,8 +3205,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt28" id="ftnt_ref28">
-     [28]
+    <a href="#ftnt29" id="ftnt_ref29">
+     [29]
     </a>
    </sup>
    <span>
@@ -3215,8 +3313,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt29" id="ftnt_ref29">
-     [29]
+    <a href="#ftnt30" id="ftnt_ref30">
+     [30]
     </a>
    </sup>
    <span>
@@ -3303,8 +3401,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt30" id="ftnt_ref30">
-     [30]
+    <a href="#ftnt31" id="ftnt_ref31">
+     [31]
     </a>
    </sup>
    <span>
@@ -4222,8 +4320,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
    </span>
    <sup>
-    <a href="#ftnt31" id="ftnt_ref31">
-     [31]
+    <a href="#ftnt32" id="ftnt_ref32">
+     [32]
     </a>
    </sup>
    <span>
@@ -5624,8 +5722,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt32" id="ftnt_ref32">
-     [32]
+    <a href="#ftnt33" id="ftnt_ref33">
+     [33]
     </a>
    </sup>
    <span>
@@ -6372,6 +6470,19 @@
      [15]
     </a>
     <span>
+     Kannan, A., Kurach, K., Ravi, S., Kaufmann, T., Tomkins, A., Miklos, B., Corrado, G., Lukacs, L., Ganea, M., et al. (2016). Smart reply: Automated response suggestion for email.
+    </span>
+    <span>
+     ACM SIGKDD
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref16" id="ftnt16">
+     [16]
+    </a>
+    <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
     </span>
     <span>
@@ -6384,8 +6495,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref16" id="ftnt16">
-     [16]
+    <a href="#ftnt_ref17" id="ftnt17">
+     [17]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6400,8 +6511,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref17" id="ftnt17">
-     [17]
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
     </a>
     <span>
      Bengio, Y., Simard, P., Frasconi, P. (1994).
@@ -6416,8 +6527,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref18" id="ftnt18">
-     [18]
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
     </a>
     <span>
      Hochreiter, S. (1998).
@@ -6432,8 +6543,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref19" id="ftnt19">
-     [19]
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
     </a>
     <span>
      Hochreiter, S., Schmidhuber, J. (1997).
@@ -6448,8 +6559,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref20" id="ftnt20">
-     [20]
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6464,8 +6575,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref21" id="ftnt21">
-     [21]
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
      Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
@@ -6480,8 +6591,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref22" id="ftnt22">
-     [22]
+    <a href="#ftnt_ref23" id="ftnt23">
+     [23]
     </a>
     <span>
      Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
@@ -6496,8 +6607,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref23" id="ftnt23">
-     [23]
+    <a href="#ftnt_ref24" id="ftnt24">
+     [24]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6512,8 +6623,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref24" id="ftnt24">
-     [24]
+    <a href="#ftnt_ref25" id="ftnt25">
+     [25]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6528,8 +6639,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref25" id="ftnt25">
-     [25]
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -6544,8 +6655,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6560,8 +6671,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref27" id="ftnt27">
-     [27]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -6576,8 +6687,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref28" id="ftnt28">
-     [28]
+    <a href="#ftnt_ref29" id="ftnt29">
+     [29]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -6592,8 +6703,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref29" id="ftnt29">
-     [29]
+    <a href="#ftnt_ref30" id="ftnt30">
+     [30]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -6608,8 +6719,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref30" id="ftnt30">
-     [30]
+    <a href="#ftnt_ref31" id="ftnt31">
+     [31]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -6624,8 +6735,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref31" id="ftnt31">
-     [31]
+    <a href="#ftnt_ref32" id="ftnt32">
+     [32]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6640,8 +6751,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref32" id="ftnt32">
-     [32]
+    <a href="#ftnt_ref33" id="ftnt33">
+     [33]
     </a>
     <span>
     </span>
