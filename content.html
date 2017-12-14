@@ -1816,7 +1816,7 @@
   </p>
   <p>
    <span>
-    Natural Language Understanding however applies only to the task of understanding the sentences (turn natural language sentences into structured data), and not to the response generation. NLU is composed of two tasks: sentence classification, also called intent detection, that finds for each input sentence a predetermined type that expresses what the user wants to communicate or ask; entity extraction, also called slot filling, that is responsible to obtain from sentences some parameters that have been previously defined in their type.
+    Natural Language Understanding however applies only to the task of understanding the sentences (turn natural language sentences into structured data), and not to the response generation. NLU is composed of two tasks: sentence classification, also called intent detection, that finds for each input sentence a predetermined type that expresses what the user wants to communicate or ask; slot filling, also called entity extraction, that is responsible to obtain from sentences some parameters that have been previously defined in their type.
    </span>
   </p>
   <p>
@@ -1961,83 +1961,65 @@
   </p>
   <p>
    <span>
-    The next chapter will investigate the natural language techniques that are used for domain specific bots, focusing on the tasks of intent recognition and entity extraction and how to manage a dialogue in a multi-turn environment.
+    The next chapter will investigate the natural language techniques that are used for domain specific bots, focusing on the tasks of intent recognition and slot filling and how to manage a dialogue in a multi-turn environment.
    </span>
   </p>
-  <h2 id="h.n06dhtaupqp">
+  <h2 id="h.y0t2ac4xdn82">
    <span>
     Natural Language Understanding
    </span>
   </h2>
   <p>
    <span>
-    The most important part is to understand the user message. Instead to do a simple rule-matching, there are libraries that can process sentences and extract their structure, together with named entities.
+    As introduced previously, NLU is the process of turning sentences into structured informations.
+   </span>
+   <span>
+    The two tasks that involves are intent classification and slot filling. Usually those tasks are performed in statistical way, not applying a static set of rules as was done with AIML and similars.
    </span>
   </p>
   <p>
    <span>
-    The classic NLP pipeline includes:
+    Natural Language Understanding belongs to the NL Processing family. NLP components are involved in text processing in very different ways.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Spell check
-    </span>
-   </li>
-   <li>
-    <span>
-     Tokenize (sentences, words)
-    </span>
-   </li>
-   <li>
-    <span>
-     POS recognition
-    </span>
-   </li>
-   <li>
-    <span>
-     Lemmatize (reconduct to base form, requires lexica) and reduce synonyms / stemming (more rude, simply removing suffixes, not context-aware, rule-based)
-    </span>
-   </li>
-   <li>
-    <span>
-     Entity recognition
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    Starting from the easiest component, tokenizers are part of this family. The role of a tokenizer is to split texts into tokens, that correspond to words and also punctuation (if punctuation is relevant for the current problem, or can be removed by the tokenizer).
+   </span>
+  </p>
+  <p>
+   <span>
+    Another important component of NLP is Part Of Speech recognizer, that is responsible to parse (this term is also used when elaborating source code; some approaches can be taken from source code parsing, but usually the natural language grammar is more complex and is better analyzed by statistical parsing) the sentence and individuate the grammatical roles of the words.
+   </span>
+  </p>
+  <p>
+   <span>
+    Another commonly used component of NLP is the Lemmatizer: its role is to reconduct to the base form all the words that derive from others. This is used to reduce the cardinality of vocabularies and simplify some tasks, for example finding the topic of the conversation.
+   </span>
+  </p>
+  <p>
+   <span>
+    Another thing that is done using NLP is Named Entity Recognition: this finds occurrences in the text of some entities that belong to some types: common types are Person, Organization, Country, Location, Date, Time, Numbers, Currencies. This component usually mixes an approach based on the POS combining them with a Knowledge Base that enumerates in some way what belongs to each entity type. The Slot Filling task is quite similar to NER, and the differences will be analyzed soon.
+   </span>
+  </p>
+  <p>
+   <span>
+    Other components are more focused on the sentence as a whole: Sentiment Analysis that tells if a sentence is positive negative or neutral, Summarization, Sentence Classification to find topic/complexity level/…. The intent detection task can be put in this last group.
+   </span>
+  </p>
   <p>
    <span>
    </span>
   </p>
   <p>
    <span>
-    Once the input is processed, there should be a logic that based on the informations extracted (entities and relationships) understands the
-   </span>
-   <span>
-    root-level intent
-   </span>
-   <span>
-    of the person and decides what actions need to be performed:
+    For doing this wide range of NLP tasks, a lot of NLP frameworks exist, using different programming languages and different approaches.
    </span>
   </p>
-  <ol start="1">
-   <li>
-    <span>
-     Question classification and entity extraction
-    </span>
-   </li>
-   <li>
-    <span>
-     Information retrieval
-    </span>
-   </li>
-   <li>
-    <span>
-     Answer extraction
-    </span>
-   </li>
-  </ol>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     NLP frameworks:
@@ -2126,6 +2108,38 @@
     NLP is also used for processing tweets (TALK HERE ABOUT SOCIAL BOTS, crawlers)
    </span>
   </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Once the input is processed, there should be a logic that based on the informations extracted (entities and relationships) understands the
+   </span>
+   <span>
+    root-level intent
+   </span>
+   <span>
+    of the person and decides what actions need to be performed:
+   </span>
+  </p>
+  <ol start="1">
+   <li>
+    <span>
+     Question classification and entity extraction
+    </span>
+   </li>
+   <li>
+    <span>
+     Information retrieval
+    </span>
+   </li>
+   <li>
+    <span>
+     Answer generation
+    </span>
+   </li>
+  </ol>
   <h3 id="h.xsg4ur5pp4av">
    <span>
     Goal
@@ -2144,7 +2158,7 @@
    </li>
    <li>
     <span>
-     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling, because the words that we want to extract may also not be entities. “The slot filling task is to search a document collection to fill in values for predefined slots (attributes) for a given entity.”
+     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling, because the words that we want to extract may also not be entities. “The slot filling task is to search a document collection to fill in values for predefined slots (attributes) for a given entity.” DIFFERENCE BETWEEN SLOT FILLING AND NER
     </span>
    </li>
   </ul>
@@ -2182,7 +2196,7 @@
   </ul>
   <p>
    <span>
-    There are different approaches for entity extraction:
+    There are different approaches for slot filling:
    </span>
   </p>
   <ul>
