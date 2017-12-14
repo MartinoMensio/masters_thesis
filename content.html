@@ -1680,6 +1680,16 @@
   </p>
   <p>
    <span>
+    NLU can also be used when the dialogue manager is not statically defined, but is trained to provide the correct responses and call the right APIs over a predefined set. In this solution there are not rules defining how to track the state of the conversation, because they are inferred from the training corpus. This technique is investigated in
+   </span>
+   <span>
+    <a href="#h.5h19s2dnfiyp">
+     End to End Goal-Oriented dialog
+    </a>
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -1711,116 +1721,64 @@
      [12]
     </a>
    </sup>
-  </p>
-  <p>
    <span>
-    Data sets:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Ubuntu dialogue corpus:
-    </span>
-    <span>
-     <a href="https://github.com/rkadlec/ubuntu-ranking-dataset-creator">
-      https://github.com/rkadlec/ubuntu-ranking-dataset-creator
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-   <li>
-    <span>
-     Twitter
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    Predictor:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Random. Very poor performance
-    </span>
-   </li>
-   <li>
-    <span>
-     Using tf-idf: how important a word is important in a document. Documents with similar content have similar tf-idf vectors. Responses don’t need to be similar to the context to be correct
-    </span>
-   </li>
-   <li>
-    <span>
-     Deep learning: dual-encoder LSTM network / seq2seq. Both are recurrent neural networks
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
+    , but other works have been trained on Ubuntu Dialogue Corpus[CIT NEEDED] and many other datasets.
    </span>
   </p>
   <p>
    <span>
-    Don’t use pre-defined responses, but generate them from scratch. The technology is based on translation techniques.
+    The technology used is the one that is used to provide translations, with some modifications. The model for the generation is trained on the corpus and learns how to generate the next sentence from the previous ones with an encoder-decoder structure. This structure, as will be seen in detail when
+   </span>
+   <span>
+    <a href="#h.l6k85hs6qcqb">
+     recurrent neural networks will be analyzed (link to why RNN)
+    </a>
+   </span>
+   <span>
+    , uses LSTM cells, that can capture features of sequences adaptively using some kind of memory. The encoder network collects the useful features while the decoder, given an initial state from the encoder and given a stimulus, begins the generation of the new sentence and stops when appropriate.
    </span>
   </p>
   <p>
    <span>
-    Advantages:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Can refer back to entities mentioned in the conversation
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    Disadvantages:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Grammatical mistakes can occur
-    </span>
-   </li>
-   <li>
-    <span>
-     Require huge amounts of training data
-    </span>
-   </li>
-   <li>
-    <span>
-     Early stage of development
-    </span>
-   </li>
-   <li>
-    <span>
-     Can go off the rails (example of Microsoft Tay)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
+    The main advantage of this approach is that responses are generated completely in automatic way and thanks to LSTM cells can contain elements that were previously mentioned in the conversation. Being generative, they always produce an output, also with unexpected inputs. This can be good, but is in principle unpredictable. This unpredictability is the main disadvantage, that also reflects on the grammatical structure of the output sentences: also with huge corpus errors can occur. Another big disadvantage is the quantity of dialogues required to have good performances.
    </span>
   </p>
   <p>
    <span>
-    Keep attention on:
+    To overcome those problems, some reinforcement strategies can be applied, in order to learn in a online settings also from the dialogues that occur at runtime. This is a good strategy in general, but can lead to some unwanted effects of polarity of the responses if there isn’t a supervision: the example of Microsoft Tay, that after 16 hours on Twitter was shut down because of the offensive tweets that was generating.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having a model trained on a wide variety of dialogues also rises the problem of the coherence of the responses: it’s easy that, without filtering and post-processing the responses, the bot replies in different ways to questions inherent to the same topic. For this reason a persona-based model can be built in order to consider also some more inputs to the generator of the responses, that can model some features of the speaker, such as background informations and speaking style
+   </span>
+   <sup>
+    <a href="#ftnt13" id="ftnt_ref13">
+     [13]
+    </a>
+   </sup>
+   <span>
+    . Those features can be encoded into distributed embeddings and be provided to the generator both in the training and in the inference time.
+   </span>
+  </p>
+  <p>
+   <span>
+    Another common problem of this approach is that it tends to generate commonplace responses, because is trained to maximize the likelihood of the output for the given input. It is like providing an average response that fits the current input. A proposed solution to reduce this effect is to use Maximum Mutual Information as objective function in the neural model. This will try “to take into account not only the dependency of responses on messages, but also the inverse, the likelihood that a message will be provided to a given response”
+   </span>
+   <sup>
+    <a href="#ftnt14" id="ftnt_ref14">
+     [14]
+    </a>
+   </sup>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <ul>
-   <li>
-    <span>
-     Coherent personality: since training is done on multiple users data (see “A persona-based neural conversation model”)
-    </span>
-   </li>
    <li>
     <span>
      Intention and diversity: easy to fall into generic responses (see “A Diversity-Promoting Objective Function for Neural Conversation Models”) especially for open-domain systems
@@ -2156,16 +2114,16 @@
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
-    <a href="#ftnt13" id="ftnt_ref13">
-     [13]
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt14" id="ftnt_ref14">
-     [14]
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
     </a>
    </sup>
    <span>
@@ -2367,16 +2325,16 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
     , Hochreiter et al. (1998)
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
@@ -2393,8 +2351,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
     </a>
    </sup>
    <span>
@@ -2483,8 +2441,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt18" id="ftnt_ref18">
-     [18]
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
     </a>
    </sup>
    <span>
@@ -2501,16 +2459,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt19" id="ftnt_ref19">
-     [19]
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt20" id="ftnt_ref20">
-     [20]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
@@ -2836,8 +2794,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt21" id="ftnt_ref21">
-     [21]
+    <a href="#ftnt23" id="ftnt_ref23">
+     [23]
     </a>
    </sup>
    <span>
@@ -2864,8 +2822,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt22" id="ftnt_ref22">
-     [22]
+    <a href="#ftnt24" id="ftnt_ref24">
+     [24]
     </a>
    </sup>
    <span>
@@ -2929,8 +2887,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt23" id="ftnt_ref23">
-     [23]
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
     </a>
    </sup>
   </p>
@@ -2959,8 +2917,8 @@
     In [Guo et al.
    </span>
    <sup>
-    <a href="#ftnt24" id="ftnt_ref24">
-     [24]
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
     </a>
    </sup>
    <span>
@@ -3107,8 +3065,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
@@ -3149,8 +3107,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
@@ -3257,8 +3215,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt27" id="ftnt_ref27">
-     [27]
+    <a href="#ftnt29" id="ftnt_ref29">
+     [29]
     </a>
    </sup>
    <span>
@@ -3345,8 +3303,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt28" id="ftnt_ref28">
-     [28]
+    <a href="#ftnt30" id="ftnt_ref30">
+     [30]
     </a>
    </sup>
    <span>
@@ -4264,8 +4222,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
    </span>
    <sup>
-    <a href="#ftnt29" id="ftnt_ref29">
-     [29]
+    <a href="#ftnt31" id="ftnt_ref31">
+     [31]
     </a>
    </sup>
    <span>
@@ -5666,8 +5624,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt30" id="ftnt_ref30">
-     [30]
+    <a href="#ftnt32" id="ftnt_ref32">
+     [32]
     </a>
    </sup>
    <span>
@@ -6388,6 +6346,32 @@
      [13]
     </a>
     <span>
+     Li, J., Galley, M., Brockett, C., Gao, J., Bill, D. (2016). A persona-based neural conversation model.
+    </span>
+    <span>
+     ACL, pages 994–1003
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref14" id="ftnt14">
+     [14]
+    </a>
+    <span>
+     Li, J., Galley, M., Brockett, C., Gao, J., and Dolan, B. (2015). A diversity-promoting objective function for neural conversation models.
+    </span>
+    <span>
+     CoRR abs/1510.03055.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref15" id="ftnt15">
+     [15]
+    </a>
+    <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
     </span>
     <span>
@@ -6400,8 +6384,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref14" id="ftnt14">
-     [14]
+    <a href="#ftnt_ref16" id="ftnt16">
+     [16]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6416,8 +6400,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref15" id="ftnt15">
-     [15]
+    <a href="#ftnt_ref17" id="ftnt17">
+     [17]
     </a>
     <span>
      Bengio, Y., Simard, P., Frasconi, P. (1994).
@@ -6432,8 +6416,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref16" id="ftnt16">
-     [16]
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
     </a>
     <span>
      Hochreiter, S. (1998).
@@ -6448,8 +6432,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref17" id="ftnt17">
-     [17]
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
     </a>
     <span>
      Hochreiter, S., Schmidhuber, J. (1997).
@@ -6464,8 +6448,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref18" id="ftnt18">
-     [18]
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6480,8 +6464,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref19" id="ftnt19">
-     [19]
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
     </a>
     <span>
      Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
@@ -6496,8 +6480,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref20" id="ftnt20">
-     [20]
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
      Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
@@ -6512,8 +6496,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref21" id="ftnt21">
-     [21]
+    <a href="#ftnt_ref23" id="ftnt23">
+     [23]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -6528,8 +6512,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref22" id="ftnt22">
-     [22]
+    <a href="#ftnt_ref24" id="ftnt24">
+     [24]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6544,8 +6528,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref23" id="ftnt23">
-     [23]
+    <a href="#ftnt_ref25" id="ftnt25">
+     [25]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -6560,8 +6544,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref24" id="ftnt24">
-     [24]
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6576,8 +6560,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref25" id="ftnt25">
-     [25]
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -6592,8 +6576,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -6608,8 +6592,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref27" id="ftnt27">
-     [27]
+    <a href="#ftnt_ref29" id="ftnt29">
+     [29]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -6624,8 +6608,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref28" id="ftnt28">
-     [28]
+    <a href="#ftnt_ref30" id="ftnt30">
+     [30]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -6640,8 +6624,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref29" id="ftnt29">
-     [29]
+    <a href="#ftnt_ref31" id="ftnt31">
+     [31]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6656,8 +6640,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref30" id="ftnt30">
-     [30]
+    <a href="#ftnt_ref32" id="ftnt32">
+     [32]
     </a>
     <span>
     </span>
