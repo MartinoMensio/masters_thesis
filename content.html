@@ -210,7 +210,18 @@
   </p>
   <p>
    <span>
-    The development of artificial intelligence has its roots back in the 50s. The idea is to build an artificial brain, inspired by the human brain. Empowered by the studies carried in those years about neurons and synapses, imitating those elements and their connection became an active topic of research. The first machines trying to achieve this task didn’t use computers, but were completely controlled by analog circuitry. The first neural network machine was built by Marvin Minsky in 1951 [SNARC].
+    The development of artificial intelligence has its roots back in the 50s. The idea is to build an artificial brain, inspired by the human
+   </span>
+   <span>
+    brain
+   </span>
+   <sup>
+    <a href="#cmnt1" id="cmnt_ref1">
+     [a]
+    </a>
+   </sup>
+   <span>
+    . Empowered by the studies carried in those years about neurons and synapses, imitating those elements and their connection became an active topic of research. The first machines trying to achieve this task didn’t use computers, but were completely controlled by analog circuitry. The first neural network machine was built by Marvin Minsky in 1951 [SNARC].
    </span>
   </p>
   <p>
@@ -854,8 +865,8 @@
     There are fields in which using apps can be quite frustrating for users. User interface forces you to fill up informations in a form-like structure. When finally you try to submit, you find out that you missed one required field. A conversational interface could simplify a lot this process, even though you are simply doing slot-filling and asking one input after the other.
    </span>
    <sup>
-    <a href="#cmnt1" id="cmnt_ref1">
-     [a]
+    <a href="#cmnt2" id="cmnt_ref2">
+     [b]
     </a>
    </sup>
   </p>
@@ -1757,7 +1768,7 @@
   </p>
   <p>
    <span>
-    NLP is also used for processing tweets (TALK HERE ABOUT SOCIAL BOTS, crawlers)
+    NLP techniques are also used for processing tweets (TALK HERE ABOUT SOCIAL BOTS, crawlers)
    </span>
   </p>
   <p>
@@ -1883,41 +1894,17 @@
   </p>
   <p>
    <span>
-    Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of bots.
+    Those NLP framework can be used for the specific task of NLU (that corresponds to turning the sentences into intent+entities). The other NLP tasks (syntactical analysis, POS tagging) are not main interests in the field of text understanding. However other NLP tools, such as sentiment analysis, can be used to detect the mood of the writer, as will be discussed in the personalization
+   </span>
+   <span>
+    <a href="#h.xsjwxr36vaqb">
+     section
+    </a>
+   </span>
+   <span>
+    .
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Once the input is processed, there should be a logic that based on the informations extracted (entities and relationships) understands the
-   </span>
-   <span>
-    root-level intent
-   </span>
-   <span>
-    of the person and decides what actions need to be performed:
-   </span>
-  </p>
-  <ol start="1">
-   <li>
-    <span>
-     Question classification and entity extraction
-    </span>
-   </li>
-   <li>
-    <span>
-     Information retrieval
-    </span>
-   </li>
-   <li>
-    <span>
-     Answer generation
-    </span>
-   </li>
-  </ol>
   <h3 id="h.xsg4ur5pp4av">
    <span>
     Goal
@@ -1936,18 +1923,18 @@
    </li>
    <li>
     <span>
-     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling, because the words that we want to extract may also not be entities. “The slot filling task is to search a document collection to fill in values for predefined slots (attributes) for a given entity.” DIFFERENCE BETWEEN SLOT FILLING AND NER
+     Extract the entities mentioned (we may want to care about only a specific set of entity types that are relevant to the abilities of the bot). This task is somewhere called slot filling, because the words that we want to extract may also not be entities. “The slot filling task is to search a document collection to fill in values for predefined slots (attributes) for a given entity.” Moreover, slots in a sentence can be designed to have a role (in order to be able to discriminate between multiple instances of the same type of entity). This feature is not present in the Named Entity Recognition task because the objective is only to recognize the entities, not to give them a role as a parameter in a programming language. For this reason the name of this task can be both “slot filling” and “entity extraction” with preference for the first one that gives more the idea of roles, while “named entity recognition” is quite unappropriate.
     </span>
    </li>
   </ul>
   <p>
    <span>
-    For example, for the sentence “is Turin a supported city?” we may want to categorize it as a question that asks if a city is supported (this is the intent) and extract the word “Torino” that is the city the user is looking for (this is a slot that corresponds to an entity).
+    For example, for the sentence “is Turin a supported city?” we may want to categorize it as a question that asks if a city is supported (this is the intent) and extract the word “Torino” that is the city the user is looking for (this is a slot that corresponds to an entity of type CITY or simply LOCATION depending on the granularity of entities defined).
    </span>
   </p>
   <p>
    <span>
-    The first task corresponds to a classification of the user sentences to decide what is the intention of the user. Since a bot is usually designed to answer to different types of questions, this stage is responsible for finding the type of question. The slot filling task instead (also called NER) is a process that annotates some parts of the input sentences with the name of the corresponding slot. A slot can be thought as a field in an online form. While the intent represents the type of question, the slots of a sentence are values that the bot must be able to extract from the sentences because they are used as parameters for the application logic.
+    The first task corresponds to a classification of the user sentences to decide what is the intention of the user. Since a bot is usually designed to answer to different types of questions, this stage is responsible for finding the type of question. The slot filling task instead is a process that annotates some parts of the input sentences with the name of the corresponding slot. A slot can be thought as a field in an online form. While the intent represents the type of question, the slots of a sentence are values that the bot must be able to extract from the sentences because they are used as parameters for the application logic.
    </span>
   </p>
   <p>
@@ -1985,7 +1972,13 @@
    </li>
    <li>
     <span>
-     Statistical-based: instead of syntactically parsing the sentence, a model is built without hand-crafted features, only providing input sequences and output label sequences
+     Statistical-based: instead of
+    </span>
+    <span>
+     syntactically
+    </span>
+    <span>
+     parsing the sentence, a model is built without hand-crafted features, only providing input sequences and output label sequences
     </span>
    </li>
    <li>
@@ -2136,6 +2129,11 @@
   </ul>
   <p>
    <span>
+    MAKE AN EASY EXAMPLE WITH NUMBERS IN A EASY COMPUTATIONAL GRAPH (+-/*)
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -2181,6 +2179,11 @@
   <p>
    <span>
     The two inputs are concatenated and passed through a single feed-forward layer, that corresponds to a linear transformation plus a non-linear function (e.g. tanh, sigma).
+   </span>
+  </p>
+  <p>
+   <span>
+    MATH FORMULATION
    </span>
   </p>
   <p>
@@ -2365,19 +2368,29 @@
     ].
    </span>
   </p>
-  <h4 id="h.ebzdpoueqlqy">
+  <p>
+   <span>
+    MATH FORMULATION
+   </span>
+  </p>
+  <h4 id="h.i4cpdnpdhslm">
    <span>
     Word embeddings
    </span>
   </h4>
   <p>
    <span>
-    Let’s start from the inputs to our system: sentences. Sentences are made up of words and we would like to use those words as inputs to the classifier network.
+    Now that the bases of recurrent networks have been described, let’s focus on a very important point: inputs. The choice of the inputs to the neural network is very important and can affect a lot its performances.
    </span>
   </p>
   <p>
    <span>
-    Since all neural networks only work with numbers, there must be a layer in the network that, given the input words, transforms them in numerical form.
+    Why we need to define the inputs? We already have them: sentences. Sentences are made up of words and we would like to use those words as inputs to the classifier network.
+   </span>
+  </p>
+  <p>
+   <span>
+    But since all neural networks only work with numbers, there must be a layer at the beginning that, given the input words, transforms them in numerical form.
    </span>
   </p>
   <p>
@@ -3641,6 +3654,17 @@
   <p>
    <span>
     NLP techniques applied to personality analysis
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Sentiment analysis
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -6646,6 +6670,30 @@
    <p>
     <a href="#cmnt_ref1" id="cmnt1">
      [a]
+    </a>
+    <span>
+     forse ne parli dopo, c'e' un progetto EU molto grande https://www.humanbrainproject.eu/en/
+    </span>
+   </p>
+   <p>
+    <span>
+    </span>
+   </p>
+   <p>
+    <span>
+     e ce n'e' anche uno americano analogo
+    </span>
+   </p>
+   <p>
+    <span>
+     https://www.nsf.gov/awardsearch/showAward?AWD_ID=0134732
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref2" id="cmnt2">
+     [b]
     </a>
     <span>
      See https://web.stanford.edu/class/cs124/lec/chatbot17.pdf for detailed analysis
