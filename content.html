@@ -2400,7 +2400,7 @@
   </p>
   <p>
    <span>
-    A better approach is to consider a representation of words that consider semantics and syntactic informations. The hypothesis behind this method is the distributional semantics: words that appear in the same context (the context is there defined as the surrounding words) are considered similar, because somehow they can be exchanged the one for the other since they appear in similar contexts. Those representation of the words are called word embeddings and are made up of dense real vectors with a fixed dimension. This dimension is a lot smaller than the size of the input dictionary. The word embeddings are usually pre-trained on large corpuses of unlabeled data (for example the whole wikipedia). From those vectors it’s possible also to compute the similarity of two words and visualizing the word distribution on reduced dimensionality (for example plotting on a 2d plane).
+    A better approach is to use a representation of words that considers semantics and syntactic informations. The hypothesis behind this method is the distributional semantics: words that appear in the same context (the context is there defined as the surrounding words) are considered similar, because somehow they can be exchanged the one for the other since they appear in similar contexts. Those representation of the words are called word embeddings and are made up of dense real vectors with a fixed dimension. This dimension is a lot smaller than the size of the input dictionary. The word embeddings are usually pre-trained on large corpuses of unlabeled data (for example wikipedia or the bigger CommonCrawl). From those vectors it’s possible also to compute the similarity of two words and visualizing the word distribution on reduced dimensionality (for example plotting on a 2d plane).
    </span>
   </p>
   <p>
@@ -2437,7 +2437,23 @@
   </h5>
   <p>
    <span>
-    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words [citation needed to mimicking OOV] or from the context the word belongs or as in fastText considering the character n-grams). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
+    Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words
+   </span>
+   <sup>
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
+    </a>
+   </sup>
+   <span>
+    or from the context the word belongs or as in fastText considering the character n-grams
+   </span>
+   <sup>
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
+    </a>
+   </sup>
+   <span>
+    ). Considering the local context of a word could also be useful for words that may have different meanings depending on the surrounding context.
    </span>
   </p>
   <p>
@@ -2447,7 +2463,7 @@
   </p>
   <h5 id="h.22j2kzqci3l">
    <span>
-    Punctuation importance
+    Not only words
    </span>
   </h5>
   <p>
@@ -2455,12 +2471,15 @@
     An approach based only on words may be good for scenarios where the users don’t have the time to write complex punctuations and other stuff. But when punctuation is provided, it would be a pity to throw it away. In text: punctuation, in voice: accents and other stuff; those are additional features that may be useful for doing a better classification.
    </span>
   </p>
-  <h5 id="h.k7r3xo6umdtn">
+  <h5 id="h.utduqnbomopx">
    <span>
     Truecasing
    </span>
   </h5>
   <p>
+   <span>
+    A useful feature of words can also be how uppercase/lowercase is used. Simpler approaches that discard this feature do a lowercase of all the words. But capital letters can be useful in tasks like Named Entity Extraction. On the other side, beginning of sentences have capital letters that should be lowercased. For this reason truecasing model have been proposed
+   </span>
    <span>
     <a href="https://dl.acm.org/citation.cfm?id%3D1075096.1075116">
      https://dl.acm.org/citation.cfm?id=1075096.1075116
@@ -2473,14 +2492,19 @@
    <span>
    </span>
   </p>
+  <h5 id="h.jm5x275vcg9p">
+   <span>
+    The algorithms
+   </span>
+  </h5>
   <p>
    <span>
-    There are different algorithms of producing those vectors: word2vec (CBOW or skipgram), glove.
+    There are different algorithms of producing word vectors: word2vec (CBOW or skipgram), glove.
    </span>
   </p>
   <p>
    <span>
-    Some have also derived word embeddings by looking at the single characters (look at fasttext).
+    Some have also derived word embeddings by looking at the single characters (look at fastText).
    </span>
   </p>
   <p>
@@ -2516,14 +2540,14 @@
     <img alt="" src="https://lh3.googleusercontent.com/90HtZION8cUpWoIgOVzcAyiUNNZqNmZ9S-wyS7Vaakky9ogLrbJIY0dyz_j96aE14SlQ0NmCUNuE6alNT-mfVGfpM2gxsdj0ZXhuugLxhwcsrSv8YRpjHjPvHTXjD9uxDanZDrc0" style="width: 417.14px; height: 467.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
-  <h4 id="h.6cgwo7zeuk1q">
+  <h4 id="h.xe8uo79i8lhz">
    <span>
     Intent classification
    </span>
   </h4>
   <p>
    <span>
-    The intent classification task must take as input the sentence and provide on output a label that corresponds to the intent type of the sentence. It is a multi-class classification.
+    Let’s talk here about approaches for the first task of NLU, intent classification, that takes as input the sentence and provides on output a label that corresponds to the intent type of the sentence. It is a multi-class classification.
    </span>
   </p>
   <h5 id="h.4hmj3bjv7gq3">
@@ -2534,6 +2558,11 @@
   <p>
    <span>
     The first approach that can be considered is keyword-based. In this approach, for each intent type we determine a set of keywords that, if present in the current input, give a score to the selected intent type. For example …
+   </span>
+  </p>
+  <p>
+   <span>
+    EXAMPLE
    </span>
   </p>
   <p>
@@ -2651,7 +2680,7 @@
   </h6>
   <p>
    <span>
-    Output labels of the words are correlated with the neighbors. For example a “I-ent” is always preceded by a “B-ent” or another “I-ent”. Also there can be some patterns that highlight that after a certain entity it is more probable to find another one. This is called output dependency, that occur at the decoding stage, just before the production of the outputs.
+    Output labels of the words are correlated with the neighbors. For example a “I-ent” is always preceded by a “B-ent” or another “I-ent”. Also there can be some patterns that highlight that after a certain entity it is more probable to find another one. This is called output dependency, that occurs at the decoding stage, just before the production of the outputs.
    </span>
   </p>
   <p>
@@ -2698,7 +2727,7 @@
   </p>
   <p>
    <span>
-    This model has some problems. First of all, the decoding part depends only on the sentence vector c, that must be able to keep all the informations on the input sequence, whose length can vary, in a fixed size. Then, the decoding steps may easily loose the relevant information from this vector, since the decoding can take a lot of decoding timesteps. But a much greater problem comes from the lack of constraint on the output sequence: in translation between different languages, this can be a good feature, but in our task of sequence labeling we want an output sequence with fixed length. The last observation we can make is that there is no alignment model between the input and output sequences. All the output depend on all the inputs, without having different encoded informations for the decoding of the output sequence.
+    This model has some problems. First of all, the decoding part depends only on the sentence vector c, that must be able to keep all the informations on the input sequence, whose length can vary, in a fixed size. Then, the decoding steps may easily lose the relevant information from this vector, since the decoding can take a lot of decoding timesteps. But a much greater problem comes from the lack of constraint on the output sequence: in translation between different languages, this can be a good feature, but in our task of sequence labeling we want an output sequence with fixed length. The last observation we can make is that there is no alignment model between the input and output sequences. All the output depend on all the inputs, without having different encoded informations for the decoding of the output sequence.
    </span>
   </p>
   <h5 id="h.w9da5qrt3zos">
@@ -2711,8 +2740,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
@@ -2739,12 +2768,12 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
-    specifically for the sequence labeling problem (that can be applied to NER/slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
+    specifically for the sequence labeling problem (that can be applied to slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end.
    </span>
   </p>
   <p>
@@ -2769,7 +2798,7 @@
   </p>
   <p>
    <span>
-    Using the attention, that provides a dynamic alignment model, we can:
+    Using the attention, that provides a dynamic alignment model, it’s possible to:
    </span>
   </p>
   <ul>
@@ -2804,8 +2833,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt27" id="ftnt_ref27">
-     [27]
+    <a href="#ftnt29" id="ftnt_ref29">
+     [29]
     </a>
    </sup>
   </p>
@@ -2834,8 +2863,8 @@
     In [Guo et al.
    </span>
    <sup>
-    <a href="#ftnt28" id="ftnt_ref28">
-     [28]
+    <a href="#ftnt30" id="ftnt_ref30">
+     [30]
     </a>
    </sup>
    <span>
@@ -2982,8 +3011,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt29" id="ftnt_ref29">
-     [29]
+    <a href="#ftnt31" id="ftnt_ref31">
+     [31]
     </a>
    </sup>
    <span>
@@ -3024,8 +3053,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt30" id="ftnt_ref30">
-     [30]
+    <a href="#ftnt32" id="ftnt_ref32">
+     [32]
     </a>
    </sup>
    <span>
@@ -3052,20 +3081,28 @@
     In this case the work has been done on the DSTC4 dataset that contains human-to-human dialogues. One of them is a tourist and the other one is a guide.
    </span>
   </p>
-  <h5 id="h.exv78bh8rv9v">
+  <h5 id="h.ohlmco880bb0">
    <span>
     Other contextual SLU
    </span>
   </h5>
+  <p>
+   <span>
+    The following two papers show other ways to include informations from previous sentences to perform some work on the current one.
+   </span>
+  </p>
   <ul>
    <li>
     <span>
-     Contextual domain classification in SLU using RNN
+     Contextual domain classification in SLU using RNN:
     </span>
     <span>
      <a href="https://www.clsp.jhu.edu/~puyang/papers/rnn_dom.pdf">
       https://www.clsp.jhu.edu/~puyang/papers/rnn_dom.pdf
      </a>
+    </span>
+    <span>
+     the previous domain classification is fed together with every word input to the CNN classifier
     </span>
     <span>
     </span>
@@ -3075,7 +3112,7 @@
    </li>
    <li>
     <span>
-     Easy contextual intent prediction and slot detection
+     Easy contextual intent prediction and slot detection: using CRF and HMM
     </span>
     <span>
      <a href="https://pdfs.semanticscholar.org/cd2f/0c6aac6cdf98f96984ac37d106afc599d99d.pdf">
@@ -3132,8 +3169,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt31" id="ftnt_ref31">
-     [31]
+    <a href="#ftnt33" id="ftnt_ref33">
+     [33]
     </a>
    </sup>
    <span>
@@ -3151,7 +3188,7 @@
   </p>
   <h4 id="h.5h19s2dnfiyp">
    <span>
-    End to End Goal-oriented dialog (generative)
+    End to End Goal-oriented dialog
    </span>
   </h4>
   <p>
@@ -3220,8 +3257,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt32" id="ftnt_ref32">
-     [32]
+    <a href="#ftnt34" id="ftnt_ref34">
+     [34]
     </a>
    </sup>
    <span>
@@ -3261,7 +3298,7 @@
     </a>
    </span>
    <span>
-    done with interactive learning mode, providing feedback on each step.
+    done with interactive learning mode, providing feedback on each step to quickly reinforce the model for calling actions.
    </span>
   </p>
   <p>
@@ -3374,11 +3411,73 @@
    <span>
    </span>
   </p>
-  <h2 id="h.xsjwxr36vaqb">
+  <h2 id="h.vlw0i0tybygq">
    <span>
     Personalization/Recommendation
    </span>
   </h2>
+  <p>
+   <span>
+    On this section
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Determining features
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Big 5 personality traits
+    </span>
+   </li>
+   <li>
+    <span>
+     Text analysis: sentiment detection
+    </span>
+   </li>
+   <li>
+    <span>
+     ?
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Approaches
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Content based
+    </span>
+   </li>
+   <li>
+    <span>
+     Collaborative
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Common problems:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Cold start
+    </span>
+   </li>
+  </ul>
   <h3 id="h.u8tq13sl1jy8">
    <span>
     Papers (remove me)
@@ -4175,8 +4274,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Guo et al
    </span>
    <sup>
-    <a href="#ftnt33" id="ftnt_ref33">
-     [33]
+    <a href="#ftnt35" id="ftnt_ref35">
+     [35]
     </a>
    </sup>
    <span>
@@ -5577,8 +5676,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt34" id="ftnt_ref34">
-     [34]
+    <a href="#ftnt36" id="ftnt_ref36">
+     [36]
     </a>
    </sup>
    <span>
@@ -6512,6 +6611,35 @@
      [25]
     </a>
     <span>
+     Pinter,Y., Guthrie, R., Eisenstein, J. (2017). Mimicking word embeddings using subword rnns.
+    </span>
+    <span>
+     Proceedings of EMNLP
+    </span>
+    <span>
+     .
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
+    </a>
+    <span>
+     Bojanowski, Piotr and Grave, Edouard and Joulin, Armand and Mikolov, Tomas. (2016). Enriching Word Vectors with Subword Information.
+    </span>
+    <span>
+     arXiv preprint arXiv:1607.04606
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
+    </a>
+    <span>
      Cho, K. et al. (2014).
     </span>
     <span>
@@ -6524,8 +6652,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -6540,8 +6668,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref27" id="ftnt27">
-     [27]
+    <a href="#ftnt_ref29" id="ftnt29">
+     [29]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -6556,8 +6684,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref28" id="ftnt28">
-     [28]
+    <a href="#ftnt_ref30" id="ftnt30">
+     [30]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6572,8 +6700,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref29" id="ftnt29">
-     [29]
+    <a href="#ftnt_ref31" id="ftnt31">
+     [31]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -6588,8 +6716,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref30" id="ftnt30">
-     [30]
+    <a href="#ftnt_ref32" id="ftnt32">
+     [32]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -6604,8 +6732,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref31" id="ftnt31">
-     [31]
+    <a href="#ftnt_ref33" id="ftnt33">
+     [33]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -6620,8 +6748,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref32" id="ftnt32">
-     [32]
+    <a href="#ftnt_ref34" id="ftnt34">
+     [34]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -6636,8 +6764,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref33" id="ftnt33">
-     [33]
+    <a href="#ftnt_ref35" id="ftnt35">
+     [35]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -6652,8 +6780,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref34" id="ftnt34">
-     [34]
+    <a href="#ftnt_ref36" id="ftnt36">
+     [36]
     </a>
     <span>
     </span>
