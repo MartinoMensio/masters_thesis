@@ -4088,6 +4088,23 @@
     Cover here some common scenarios the bot has been designed for.
    </span>
   </p>
+  <p>
+   <span>
+    TODOs
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     this stuff needs to be explained in less messy way, without details on the modules
+    </span>
+   </li>
+   <li>
+    <span>
+     A high level model of the system has to be explained
+    </span>
+   </li>
+  </ul>
   <h3 id="h.5b37239td2lm">
    <span>
     Search for bike stations informations
@@ -4101,6 +4118,14 @@
   <p>
    <span>
     For the first case, the queries can be to find an available bike or a free parking slot given the current user position or another location. Instead for the second case, the user may want to ask for direction between two points: this involves finding a bike near the source and finding a place where to leave it near the destination.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -4284,31 +4309,302 @@
    <span>
    </span>
   </p>
-  <h2 id="h.g0r279her0tt">
+  <h2 id="h.bwv3zlnhzl7g">
+   <span>
+    High level model
+   </span>
+  </h2>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 189.33px;">
+    <img alt="" src="https://lh3.googleusercontent.com/j8EreU0Xyiban3VFyilt9-vmTTYF86HZf_CoXMZJvRYX_FKIWGtUBOdkWgaAz6Ekr8Yzvfwh4J4CDygNTpQByEffn4ZZmprRDTfv0jD5yNDRUZEATvuPVTnjakgvRvGjNZ_C0XPQ" style="width: 602.00px; height: 189.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <h2 id="h.t6vk6kn3atxd">
    <span>
     Omnichannel Support
    </span>
   </h2>
+  <p>
+   <span>
+    Chatbots live on messaging platforms. Nowadays there are so many different messaging platforms available and every one of them has different features. There are even some of them that don’t allow bot users. For example, the most widely used chat platform WhatsApp strictly forbids non-human accounts, punishing with permanent banning.
+   </span>
+  </p>
+  <p>
+   <span>
+    Starting with one of the first platform to support bots with official API, Telegram Messenger is surely the easiest platform to create bots on, allowing them since June 2015. Bot accounts can easily be created in few seconds with the only principle that the username should end with “bot” in order to be recognizable. User can interact with bots using text, voice, buttons of different kind, images (any kind of file can be sent) and including them also in chat groups. On mobile devices users can also send their location. This platform is the most friendly for bots, but is not widely used by non-geeks.
+   </span>
+  </p>
+  <p>
+   <span>
+    A very commonly used platform is Facebook Messenger, that opened to bots in April 2016. This platform is widely spread because is part of Facebook, and is available for every devices, also from web browsers. On Facebook Messengers the features are text/voice exchange, buttons of different kind, images and even attaching the user location. Facebook Bots have their Facebook Page and a few configuration steps need to be done to be able to set up a new bot. Other chat platforms that allow bots are Skype, Slack, Kik and many others.
+   </span>
+  </p>
+  <p>
+   <span>
+    Other interesting communication channels are arising with expandible virtual assistants, that focus more on the use of the voice. Expandible in the sense that developers can develop some abilities for some domains and users are allowed to select them and add to the behaviour of the virtual assistant. We are talking about Alexa Skills and Cortana Skills. For these platforms the interaction with the user is quite different because instead of communicating directly with the user, the virtual assistant manages the conversation.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    There are so many different platforms that it would be quite restricted to focus only on a single one. Furthermore the APIs change a lot between them, and even between different versions of the same platform.
+   </span>
+  </p>
+  <p>
+   <span>
+    Since all the details of the API are only an implementation detail, that will be fastly covered in the implementation chapter, here we will give only the motivation that lead the design of the system to be split into two parts: one will manage the channels and communication from and towards them, while the other will handle the important conversation stages (comprehension with NLU, dialogue state management, information retrieval, personalization). The message exchange between the two parts is done using a neutral representation, not dependent on any of the destination platforms.
+   </span>
+  </p>
+  <p>
+   <span>
+    This is what is intended with the term Omnichannel Support: the core of the chatbot can be put in communication with any messaging platforms, given that the message-proxy component (the part of the two that depends on the specific platform) is correctly configured. This component can make use of one of the many available solutions to manage different channels: Microsoft Bot Framework, Recast.AI Bot Connector, or start from scratch the implementation of the different endpoints. As will be seen in the implementation chapter, having this component has many advantages.
+   </span>
+  </p>
+  <h2 id="h.loyigzz2moom">
+   <span>
+    Main steps (remove me)
+   </span>
+  </h2>
+  <p>
+   <span>
+    This section will disappear. Move the contents between this chapter (approach) and the chapter of implementation
+   </span>
+  </p>
   <ul>
    <li>
     <span>
-     Nowadays many messenger platforms
+     bike sharing (easy part)
     </span>
    </li>
    <li>
     <span>
-     Need to reduce high coupling and dependence to specific features of some platforms
+     Context of the city: events, places. Possible source of data:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Foursquare
+    </span>
+    <span>
+     <a href="https://developer.foursquare.com/docs/venues/explore">
+      https://developer.foursquare.com/docs/venues/explore
+     </a>
+    </span>
+    <span>
+     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
     </span>
    </li>
    <li>
     <span>
-     Needs of having a public webserver for configuring webhooks
+     Google places API
+    </span>
+    <span>
+     <a href="https://developers.google.com/places/web-service/search">
+      https://developers.google.com/places/web-service/search
+     </a>
+    </span>
+    <span>
+     provides similar features (1.000 requests per day)
+    </span>
+   </li>
+   <li>
+    <span>
+     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
+      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Weather forecasts: if bad weather is expected, tell user
+    </span>
+    <span>
+     <a href="https://www.wunderground.com/weather/api/">
+      https://www.wunderground.com/weather/api/
+     </a>
+    </span>
+    <span>
     </span>
    </li>
   </ul>
   <p>
    <span>
-    Conversational agent separate from the messaging platform. Using a generic message-proxy (see botkit) that will handle all the specific features of the platforms. The conversational agent should be independent.
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     External profile data interface (consider technical difficulties) for more personalization and less explicit interview. If present, should be optional (not every user are on facebook, and also if they are, they may not want to share their profile)
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.j4qm78dpama7">
+   <span>
+    Language understanding process
+   </span>
+  </h3>
+  <ol start="1">
+   <li>
+    <span>
+     Reduction to patterns: NLP with spaCy
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     get the grammatical relevant structure
+    </span>
+   </li>
+   <li>
+    <span>
+     Reduce synonyms, reducing separately the Parts Of Speech
+    </span>
+   </li>
+  </ol>
+  <ol start="2">
+   <li>
+    <span>
+     From patterns to intents
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Applying a classifier (RNN LSTM or simple NN)
+    </span>
+   </li>
+  </ol>
+  <ol start="3">
+   <li>
+    <span>
+     Intent processing
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Get entities
+    </span>
+   </li>
+  </ol>
+  <ol start="4">
+   <li>
+    <span>
+     Contextualization
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Disambiguate (non-global entities contextualized)
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Incomplete names (e.g. a store name, where multiple stores with this name exist)
+    </span>
+   </li>
+   <li>
+    <span>
+     Variables (e.g. home, work)
+    </span>
+   </li>
+  </ol>
+  <ol start="5">
+   <li>
+    <span>
+     Checking required informations (do some questions if missing) and pass them to the modules that use them (bike-sharing, meteo, places, …)
+    </span>
+   </li>
+  </ol>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.m202m0o42x2b">
+   <span>
+    Recommendation phases
+   </span>
+  </h3>
+  <ol start="1">
+   <li>
+    <span>
+     SSH (social sciences and humanities):
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Input: bootstrap/social data, episodic KB
+    </span>
+   </li>
+   <li>
+    <span>
+     Output: user features (can be described and are kind of explicit dimensions)
+    </span>
+   </li>
+  </ol>
+  <ol start="2">
+   <li>
+    <span>
+     Recommender system:
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Input: user features + stimulus (what type of recommendation)
+    </span>
+   </li>
+   <li>
+    <span>
+     Output: recommendation
+    </span>
+   </li>
+   <li>
+    <span>
+     Internally using user profile vector that contains model-generated dimensions (can match or not the user features)
+    </span>
+   </li>
+  </ol>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Finding recurrent actions:
+   </span>
+  </p>
+  <p>
+   <span>
+    The EpisodicKB of actions describes events like: “on day DD/MM/YYYY time HH:MM user XXX searched for a bike at place PPP”. The place is not a simple position but is an external key to a Place row. Those places contain info that come from the contextual knowledge derived from some PlacesAPI (externally stored), or are stations or other specific positions with a role (home/work/school) (internally stored)
+   </span>
+  </p>
+  <p>
+   <span>
+    This table is monitored to find patterns that are then stored in the RecurrentAction table
    </span>
   </p>
   <h2 id="h.ghozw046tswg">
@@ -4773,250 +5069,6 @@
     Operative modes, ...
    </span>
   </p>
-  <h2 id="h.loyigzz2moom">
-   <span>
-    Main steps (remove me)
-   </span>
-  </h2>
-  <p>
-   <span>
-    This section will disappear. Move the contents between this chapter (approach) and the chapter of implementation
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     bike sharing (easy part)
-    </span>
-   </li>
-   <li>
-    <span>
-     Context of the city: events, places. Possible source of data:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Foursquare
-    </span>
-    <span>
-     <a href="https://developer.foursquare.com/docs/venues/explore">
-      https://developer.foursquare.com/docs/venues/explore
-     </a>
-    </span>
-    <span>
-     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
-    </span>
-   </li>
-   <li>
-    <span>
-     Google places API
-    </span>
-    <span>
-     <a href="https://developers.google.com/places/web-service/search">
-      https://developers.google.com/places/web-service/search
-     </a>
-    </span>
-    <span>
-     provides similar features (1.000 requests per day)
-    </span>
-   </li>
-   <li>
-    <span>
-     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
-      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Weather forecasts: if bad weather is expected, tell user
-    </span>
-    <span>
-     <a href="https://www.wunderground.com/weather/api/">
-      https://www.wunderground.com/weather/api/
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     External profile data interface (consider technical difficulties) for more personalization and less explicit interview. If present, should be optional (not every user are on facebook, and also if they are, they may not want to share their profile)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.j4qm78dpama7">
-   <span>
-    Language understanding process
-   </span>
-  </h3>
-  <ol start="1">
-   <li>
-    <span>
-     Reduction to patterns: NLP with spaCy
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     get the grammatical relevant structure
-    </span>
-   </li>
-   <li>
-    <span>
-     Reduce synonyms, reducing separately the Parts Of Speech
-    </span>
-   </li>
-  </ol>
-  <ol start="2">
-   <li>
-    <span>
-     From patterns to intents
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Applying a classifier (RNN LSTM or simple NN)
-    </span>
-   </li>
-  </ol>
-  <ol start="3">
-   <li>
-    <span>
-     Intent processing
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Get entities
-    </span>
-   </li>
-  </ol>
-  <ol start="4">
-   <li>
-    <span>
-     Contextualization
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Disambiguate (non-global entities contextualized)
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Incomplete names (e.g. a store name, where multiple stores with this name exist)
-    </span>
-   </li>
-   <li>
-    <span>
-     Variables (e.g. home, work)
-    </span>
-   </li>
-  </ol>
-  <ol start="5">
-   <li>
-    <span>
-     Checking required informations (do some questions if missing) and pass them to the modules that use them (bike-sharing, meteo, places, …)
-    </span>
-   </li>
-  </ol>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.m202m0o42x2b">
-   <span>
-    Recommendation phases
-   </span>
-  </h3>
-  <ol start="1">
-   <li>
-    <span>
-     SSH (social sciences and humanities):
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: bootstrap/social data, episodic KB
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: user features (can be described and are kind of explicit dimensions)
-    </span>
-   </li>
-  </ol>
-  <ol start="2">
-   <li>
-    <span>
-     Recommender system:
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: user features + stimulus (what type of recommendation)
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: recommendation
-    </span>
-   </li>
-   <li>
-    <span>
-     Internally using user profile vector that contains model-generated dimensions (can match or not the user features)
-    </span>
-   </li>
-  </ol>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Finding recurrent actions:
-   </span>
-  </p>
-  <p>
-   <span>
-    The EpisodicKB of actions describes events like: “on day DD/MM/YYYY time HH:MM user XXX searched for a bike at place PPP”. The place is not a simple position but is an external key to a Place row. Those places contain info that come from the contextual knowledge derived from some PlacesAPI (externally stored), or are stations or other specific positions with a role (home/work/school) (internally stored)
-   </span>
-  </p>
-  <p>
-   <span>
-    This table is monitored to find patterns that are then stored in the RecurrentAction table
-   </span>
-  </p>
   <h2 id="h.78zc2qf1izjb">
    <span>
     Data
@@ -5379,6 +5431,47 @@
     How
    </span>
   </p>
+  <p>
+   <span>
+    Advantages of public webserver detached:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Free https and nameserver
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Required for some messaging platforms in webhook mode
+    </span>
+   </li>
+   <li>
+    <span>
+     Required to do facebook login
+    </span>
+   </li>
+   <li>
+    <span>
+     Better in terms of security, no plaintext interactions
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Low-power consuming on webserver, more computing power on the brain
+    </span>
+   </li>
+   <li>
+    <span>
+     Implement link rewriting with fixed nameserver
+    </span>
+   </li>
+  </ul>
   <h2 id="h.4sq87epw7a2r">
    <span>
     Data sources
