@@ -4070,24 +4070,267 @@
   </p>
   <p>
    <span>
-    The idea is to provide useful informations to the users in a spatial-context-aware setting. For this reason
+    The idea is to provide useful informations to the users in a spatial-context-aware setting. To provide this, the bot should analyze the area relative to the informations and provide some suggestions to the user.
    </span>
   </p>
-  <h2 id="h.p35bk62b32kr">
+  <p>
+   <span>
+    The following sections will be structured in this way: first giving an idea of the informations and use cases this bot aims to address, then talking about the platform independence of the core of the bot, then analyzing the Natural Language Understanding in both single turn interactions and in multi turn interactions, then going on more high level functionalities like the personalization.
+   </span>
+  </p>
+  <h2 id="h.bi6zv7oh1003">
+   <span>
+    Scenarios
+   </span>
+  </h2>
+  <p>
+   <span>
+    Cover here some common scenarios the bot has been designed for.
+   </span>
+  </p>
+  <h3 id="h.5b37239td2lm">
+   <span>
+    Search for bike stations informations
+   </span>
+  </h3>
+  <p>
+   <span>
+    The main scenario is the one where a user asks for informations about bikes and available parking slots. This can be expressed by a search of one station given some parameters or by a search that includes more stations.
+   </span>
+  </p>
+  <p>
+   <span>
+    For the first case, the queries can be to find an available bike or a free parking slot given the current user position or another location. Instead for the second case, the user may want to ask for direction between two points: this involves finding a bike near the source and finding a place where to leave it near the destination.
+   </span>
+  </p>
+  <p>
+   <span>
+    The utterance is processed by the NLU module. The query understanding engine activates the contextual knowledge engine to get data that is related to the question, and in parallel records the event into the episodic knowledge. The contextual knowledge is composed of informations belonging to bike sharing, meteo, placesAPI. The results from the different sources are combined by the appropriate module. At this point the recommender is interrogated, in order to provide some personalized suggestions, if they have some metrics (telling that the suggestion is appropriate and relevant). The structured information of the result that is going to be provided needs some elaboration to provide a natural-language feeling: this is the role of the sentence generation engine that, based on templates, puts the response in human-like format.
+   </span>
+  </p>
+  <p>
+   <span>
+    Expressing availability to talk (familiarization):
+   </span>
+  </p>
+  <p>
+   <span>
+    The user may be sending some messages that don’t have some needs inside. Also the first interaction, in which the user sends some “/start” or “hi“ messages can activate this use case. The NLU processes them as usual, and the query understanding engine detects the situation. Instead of using contextual knowledge, it interacts with the personalization module to find some questions for the user: what he expects from the bot, or asking some features (interests/…).
+   </span>
+  </p>
+  <p>
+   <span>
+    Sending messages without being asked:
+   </span>
+  </p>
+  <p>
+   <span>
+    Warning: this breaks the principle that bots should only interact when explicitly asked. For this reason this feature should be kept under full control of the user (opt-in proposition vs one-time test + asking if this is liked), that in any moment can decide to turn it off. The reminder/suggestion, based on explicit request to do that or because a pattern has been detected, is generated and sent. The feedback must always be measured. The activation may be defined by the user (e.g. “tomorrow at 5 p.m. give me informations about bikes to go home”) or when the expected time, derived from the detected pattern, is coming (e.g: user always asks for a bike between 8:10 and 8:30 to go to university, now it is 8:00, could be the right time to send him the suggestion).
+   </span>
+  </p>
+  <p>
+   <span>
+    Another useful activation is user asks for station X→ give results now on X and activate watcher on station X → estimate user-arrival-time to X → if station X is becoming useless (no/few bikes/slots depending on user need) send message to warn user
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”). If the dependency is not fulfilled, a way of skip
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <a id="t.2c97474fc09cd2758e0b91a19c5cfdca72f43631">
+  </a>
+  <a id="t.1">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        intent
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        dependencies
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        steps
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        decision
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Search bike/free slot
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Location / updated position
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Find station informations, check meteo. Collect event. Activate watcher on station. Interrogate recommender
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Station informations + meteo warning* + recommendation*
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Plan trip
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Location A+B
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Same as above, but twice because both station must be watched / both events need to be collected
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        As above
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        If i will go home in 30 minutes, will I get wet?
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        OMG
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h2 id="h.g0r279her0tt">
    <span>
     Omnichannel Support
    </span>
   </h2>
+  <ul>
+   <li>
+    <span>
+     Nowadays many messenger platforms
+    </span>
+   </li>
+   <li>
+    <span>
+     Need to reduce high coupling and dependence to specific features of some platforms
+    </span>
+   </li>
+   <li>
+    <span>
+     Needs of having a public webserver for configuring webhooks
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     Conversational agent separate from the messaging platform. Using a generic message-proxy (see botkit) that will handle all the specific features of the platforms. The conversational agent should be independent.
    </span>
   </p>
-  <h2 id="h.dzssnlm4kvyj">
+  <h2 id="h.ghozw046tswg">
    <span>
     NLU
    </span>
   </h2>
+  <h3 id="h.ujlxf9t9kbms">
+   <span>
+    Intents
+   </span>
+  </h3>
+  <p>
+   <span>
+    The intents have to cover the desired scenarios, to provide categories to user sentences
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -5076,202 +5319,6 @@
     , value
    </span>
   </p>
-  <h2 id="h.bi6zv7oh1003">
-   <span>
-    Scenarios
-   </span>
-  </h2>
-  <p>
-   <span>
-    Cover here some common scenarios the bot has been designed for.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Search for informations:
-   </span>
-  </p>
-  <p>
-   <span>
-    The utterance is processed by the NLU module. The query understanding engine activates the contextual knowledge engine to get data that is related to the question, and in parallel records the event into the episodic knowledge. The contextual knowledge is composed of informations belonging to bike sharing, meteo, placesAPI. The results from the different sources are combined by the appropriate module. At this point the recommender is interrogated, in order to provide some personalized suggestions, if they have some metrics (telling that the suggestion is appropriate and relevant). The structured information of the result that is going to be provided needs some elaboration to provide a natural-language feeling: this is the role of the sentence generation engine that, based on templates, puts the response in human-like format.
-   </span>
-  </p>
-  <p>
-   <span>
-    Expressing availability to talk (familiarization):
-   </span>
-  </p>
-  <p>
-   <span>
-    The user may be sending some messages that don’t have some needs inside. Also the first interaction, in which the user sends some “/start” or “hi“ messages can activate this use case. The NLU processes them as usual, and the query understanding engine detects the situation. Instead of using contextual knowledge, it interacts with the personalization module to find some questions for the user: what he expects from the bot, or asking some features (interests/…).
-   </span>
-  </p>
-  <p>
-   <span>
-    Sending messages without being asked:
-   </span>
-  </p>
-  <p>
-   <span>
-    Warning: this breaks the principle that bots should only interact when explicitly asked. For this reason this feature should be kept under full control of the user (opt-in proposition vs one-time test + asking if this is liked), that in any moment can decide to turn it off. The reminder/suggestion, based on explicit request to do that or because a pattern has been detected, is generated and sent. The feedback must always be measured. The activation may be defined by the user (e.g. “tomorrow at 5 p.m. give me informations about bikes to go home”) or when the expected time, derived from the detected pattern, is coming (e.g: user always asks for a bike between 8:10 and 8:30 to go to university, now it is 8:00, could be the right time to send him the suggestion).
-   </span>
-  </p>
-  <p>
-   <span>
-    Another useful activation is user asks for station X→ give results now on X and activate watcher on station X → estimate user-arrival-time to X → if station X is becoming useless (no/few bikes/slots depending on user need) send message to warn user
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”). If the dependency is not fulfilled, a way of skip
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <a id="t.2c97474fc09cd2758e0b91a19c5cfdca72f43631">
-  </a>
-  <a id="t.1">
-  </a>
-  <table>
-   <tbody>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        intent
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        dependencies
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        steps
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        decision
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Search bike/free slot
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Location / updated position
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Find station informations, check meteo. Collect event. Activate watcher on station. Interrogate recommender
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Station informations + meteo warning* + recommendation*
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Plan trip
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Location A+B
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Same as above, but twice because both station must be watched / both events need to be collected
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        As above
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        If i will go home in 30 minutes, will I get wet?
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        OMG
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-    </tr>
-   </tbody>
-  </table>
-  <p>
-   <span>
-   </span>
-  </p>
   <p>
    <span>
    </span>
@@ -5827,6 +5874,52 @@
    <span>
    </span>
   </p>
+  <h3 id="h.scnyotsag2iy">
+   <span>
+    Datasets
+   </span>
+  </h3>
+  <p>
+   <span>
+    For single turn:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     ATIS
+    </span>
+   </li>
+   <li>
+    <span>
+     NLU_benchmark
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Multi-turn:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Kvret dataset
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Problems: intent per session; slots are quite messy, overlapping, both in driver and car turns
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    See also validation
+   </span>
+  </p>
   <p>
    <span>
    </span>
@@ -5971,11 +6064,11 @@
     NLU evaluation
    </span>
   </h2>
-  <p>
+  <h3 id="h.mmb42f81ek3g">
    <span>
     Datasets
    </span>
-  </p>
+  </h3>
   <ul>
    <li>
     <span>
@@ -6005,15 +6098,22 @@
   <ul>
    <li>
     <span>
-     kvret
+     Kvret:
     </span>
    </li>
   </ul>
-  <p>
+  <ul>
+   <li>
+    <span>
+     Problems: intent per session; slots are quite messy, overlapping, both in driver and car turns
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.scboixtw2zz2">
    <span>
     Measures
    </span>
-  </p>
+  </h3>
   <p>
    <span>
     Comparison with state of the art and other benchmarks
