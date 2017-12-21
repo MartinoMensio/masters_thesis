@@ -3766,11 +3766,16 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.d5iuiku6krhj">
+  <h3 id="h.9h7eamoxeywn">
    <span>
     Personality analysis
    </span>
   </h3>
+  <p>
+   <span>
+    Explicit vs implicit user profiling
+   </span>
+  </p>
   <p>
    <span>
     Big5
@@ -4963,11 +4968,16 @@
     </span>
    </li>
   </ul>
-  <h2 id="h.ycl7s8xb1vf8">
+  <h2 id="h.wkd8mmsq8hx8">
+   <span>
+    Managing the dialogue and providing informations
+   </span>
+  </h2>
+  <h3 id="h.ycl7s8xb1vf8">
    <span>
     Dialogue State Management
    </span>
-  </h2>
+  </h3>
   <p>
    <span>
     TODO tell something about:
@@ -4980,6 +4990,41 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.h6o8pzps7nue">
+   <span>
+    Getting the informations
+   </span>
+  </h3>
+  <p>
+   <span>
+    About bikes. Lack of open data. Every city and company has different ways to interact and get informations. Some libraries (pybikes) or some APIs
+   </span>
+   <span>
+    <a href="https://api.citybik.es/v2/">
+     https://api.citybik.es/v2/
+    </a>
+   </span>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
+    How to find a path between two points: fastest feasible on bike vs other approaches that consider beauty, smells of places (
+   </span>
+   <span>
+    <a href="http://goodcitylife.org/happymaps/">
+     http://goodcitylife.org/happymaps/
+    </a>
+   </span>
+   <span>
+    )
+   </span>
+  </p>
   <h2 id="h.p32l2grv4p6t">
    <span>
     Personalization
@@ -5007,141 +5052,71 @@
   </p>
   <p>
    <span>
-    To find this category, a bit of profiling of the user needs to be done.
+    To find this category, a bit of user modeling needs to be done.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Manifest variables: gender, age, profession, … &lt;- may be irrelevant (bootstrap/social)
-    </span>
-   </li>
-   <li>
-    <span>
-     Habits variables: recurrent locations with roles &lt;- interaction
-    </span>
-   </li>
-   <li>
-    <span>
-     Latent/hidden variables:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     health/sportive
-    </span>
-   </li>
-   <li>
-    <span>
-     Arts
-    </span>
-   </li>
-   <li>
-    <span>
-     Big five personality traits (feasible?)
-    </span>
-   </li>
-   <li>
-    <span>
-     Pre-defined or internally created by the model
-    </span>
-   </li>
-   <li>
-    <span>
-     <a href="http://goodcitylife.org/happymaps/">
-      http://goodcitylife.org/happymaps/
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Extract data to build user model (manifest variables):
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Bootstrap questions (explicit or by social media) to extract relevant informations in cold start phase:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Age
-    </span>
-   </li>
-   <li>
-    <span>
-     Gender
-    </span>
-   </li>
-   <li>
-    <span>
-     Profession
-    </span>
-   </li>
-   <li>
-    <span>
-     What the user wants to be recommended on
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Habits (can be derived from interactions):
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Home location
-    </span>
-   </li>
-   <li>
-    <span>
-     Work/school location
-    </span>
-   </li>
-   <li>
-    <span>
-     Other recurring places
-    </span>
-   </li>
-   <li>
-    <span>
-     Timing informations
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Feedback from suggestions:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Attitude to recommendations (important)
-    </span>
-   </li>
-   <li>
-    <span>
-     Interests
-    </span>
-   </li>
-  </ul>
+  <h4 id="h.9j2yq7sjjkvs">
+   <span>
+    User modeling
+   </span>
+  </h4>
+  <p>
+   <span>
+    What variables to collect. How to build the user model (features)
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    First of all, it is important to understand which variables need to be collected to build the user model. Some manifest variables like gender, age, profession, religion, political orientation are used for many profiling techniques, but for the task of giving recommendations on places the utility of these features can be not so much. Moreover, from a bot that is giving bike sharing informations it is strange to be asked for those values, and can only make the user stop using the bot because it’s asking strange questions. For these reasons, those information are not even asked to the user.
+   </span>
+  </p>
+  <p>
+   <span>
+    As explicit data collection, some questions can be asked to the user in a more appropriate way, relatively to bike sharing. For example asking why the user makes use of bike sharing, to go to school, work or simply to run errands around the city. These informations can be collected at the beginning as bootstrap questions, or also after some dialogue with the user has been done. In this way the user can soon use the service without being blocked by bootstrap questions, but after some minutes of inactivity he can be sent some questions in order to improve the service.
+   </span>
+  </p>
+  <p>
+   <span>
+    Other explicit informations can be collected when the recommendation is in act, as feedback to the suggestions: feedback can be positive or negative, collected through specific buttons or intercepting the user clicking on the informations of the place. The feedback can help refining the user interest and also understanding his attitude towards recommendations (as will be seen in the “tailored communication”).
+   </span>
+  </p>
+  <p>
+   <span>
+    As implicit user modeling, observing the patterns (temporal and spatial) of the queries performed can help find users similarity and improve the collaborative filtering approach (see the following on recommendation paths). The patterns in the spatial dimension correspond to frequent places, while in the temporal dimension can be interpreted as habits.
+   </span>
+  </p>
+  <p>
+   <span>
+    Other optional sources of data may come from social networks. On social networks people usually show their interests towards different kind of things: checkins, places, music, films, and many others. This can be very helpful to user modeling, both providing user features both providing item (places in this case) features. The inputs in this case are the interests of the user, that can be provided by doing a login on the desired social network. This login is proposed to the user as optional and if denied must not preclude any functionalities of the bot. Simply the model for this user won’t be accurate and more generic recommendation will be provided.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Once these inputs are collected, different recommendation paths can be used to suggest the categories of places.
+   </span>
+  </p>
+  <h4 id="h.seno7d4pqxiv">
+   <span>
+    Recommendation paths
+   </span>
+  </h4>
+  <p>
+   <span>
+    Hybrid content-based and collaborative.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -5194,12 +5169,17 @@
   </h3>
   <p>
    <span>
-    Operative modes, ...
+    Operative modes, …
+   </span>
+  </p>
+  <p>
+   <span>
+    From feedback (which ones) to understanding attitude towards recommendations
    </span>
   </p>
   <h2 id="h.78zc2qf1izjb">
    <span>
-    Data
+    Data modeling
    </span>
   </h2>
   <p>
