@@ -3425,11 +3425,20 @@
    <span>
    </span>
   </p>
-  <h2 id="h.vlw0i0tybygq">
+  <h2 id="h.ltq6wupkvj0h">
    <span>
     Personalization
    </span>
   </h2>
+  <p>
+   <span>
+    This section analyzes the state of the art of personalization, starting on how to profile users and determine their features, and considering the existing approaches for recommender systems and their problems.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     On this section
@@ -3504,97 +3513,6 @@
     Papers (remove me)
    </span>
   </h3>
-  <p>
-   <span>
-    “Computer-based personality judgments are more accurate than those made by humans”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: compare accuracy of personality judgment done by computers against those made by humans. Using likes to judge five traits: openness, agreeableness, extraversion, conscientiousness and neuroticism
-    </span>
-   </li>
-   <li>
-    <span>
-     Criterions:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Self-other agreement: how much external judger (computer or human) agrees with self-rating
-    </span>
-   </li>
-   <li>
-    <span>
-     Interjudge agreement: similarity of rating given by two external judger (human or computer-&gt;training set divided in two parts)
-    </span>
-   </li>
-   <li>
-    <span>
-     External validity: measuring the prediction on life outcomes (facts that can be verified) based on the traits of personality computed (computer) or self-assigned (human)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Results: computer are more accurate. But there are some differences:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Computer-based judgments can take into account a very big quantity of data and use statistical modeling
-    </span>
-   </li>
-   <li>
-    <span>
-     Humans can capture more subtle cues
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Private traits and attributes are predictable from digital records of human behavior”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: using data of social network profiles (user likes) analyze the prediction rate of non-published personal data -&gt; 10-fold cross-validation
-    </span>
-   </li>
-   <li>
-    <span>
-     Results: the majority of informations are accurately predicted. Especially the ethnicity, gender, age. The accuracy increases with the number of likes available, but even with a small data set, the prediction is accurate for some attributes
-    </span>
-   </li>
-   <li>
-    <span>
-     Implications of being highly predictive:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Recommendation services can be improved, without explicitly asking some information but inferring them
-    </span>
-   </li>
-   <li>
-    <span>
-     Unwilling use of details that user wanted to hide, considered as personal. This implies a decrease in trust of online services
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
    </span>
@@ -3766,21 +3684,122 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.9h7eamoxeywn">
+  <h3 id="h.2del0db8mgct">
    <span>
     User features and Personality analysis
    </span>
   </h3>
   <p>
    <span>
-    Explicit vs implicit user profiling
+    A personalization or recommender system in order to provide some outputs needs in input some information about the user. Those information can be provided explicitly by the user, for example by asking him to fill up a questionnaire, or can be collected implicitly, analyzing his behaviour and doing some forecasts.
    </span>
   </p>
   <p>
    <span>
-    Big5 from social media data
+    While having those features provided directly by the user is straightforward to be done, the implicit discovery is a bit more challenging. However users may not want to tell their personal details to the system to receive targeted recommendation. Is something that is not seen as good, because personal details are sensible data and no one wants to share them. Also when receiving explicit self-judgement from users, a big problem is how to trust them. For those reasons the implicit discovery of some features may help in different ways: looking at some available data and behaviour of the user, personal details can be estimated and users can be clustered together considering some dimensions that may reflect sensible data and their personality.
    </span>
   </p>
+  <p>
+   <span>
+    With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal informations. The most common nowadays, Facebook, stores informations of any kind about users: from age, occupation, and other personal informations to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources.
+   </span>
+  </p>
+  <p>
+   <span>
+    For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset
+   </span>
+   <sup>
+    <a href="#ftnt35" id="ftnt_ref35">
+     [35]
+    </a>
+   </sup>
+   <span>
+    . Born as an application to take psychometrics tests and allowing users to give access to their personal data on Facebook, the Cambridge researchers built managed to build a model that, thanks to 6 milions volunteers, is able to predict some informations of users simply by looking at what are the Likes or by looking at some text.
+   </span>
+  </p>
+  <p>
+   <span>
+    The personality is usually analyzed in five dimensions, in a model that has been widely shared, discussed and applied both in academic environments and in empirical ones. The “Big-Five Factors”, formulated by [McCrae and Costa]
+   </span>
+   <sup>
+    <a href="#ftnt36" id="ftnt_ref36">
+     [36]
+    </a>
+   </sup>
+   <span>
+    and their development traced by Goldberg
+   </span>
+   <sup>
+    <a href="#ftnt37" id="ftnt_ref37">
+     [37]
+    </a>
+   </sup>
+   <span>
+    , are the following:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Openness to experience
+    </span>
+   </li>
+   <li>
+    <span>
+     Conscientiousness
+    </span>
+   </li>
+   <li>
+    <span>
+     Extraversion
+    </span>
+   </li>
+   <li>
+    <span>
+     Agreeableness
+    </span>
+   </li>
+   <li>
+    <span>
+     Neuroticism
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Having good values for those traits is not an easy task, because self-judgement and also human judgement can be easily polarized. To obtain values that are somewhat objective, different criteria can be used. [YouYou et Al.]
+   </span>
+   <sup>
+    <a href="#ftnt38" id="ftnt_ref38">
+     [38]
+    </a>
+   </sup>
+   <span>
+    in their study used three different criteria.
+   </span>
+  </p>
+  <p>
+   <span>
+    The first one, called “self-other agreement” is based on how much an external judger agrees with self-rating. The second one is the “interjudge agreement”, that evaluates the similarity of the ratings given by two external judger. The last one is the “external validity”, that measures the prediction on life outcomes: based on observation of facts that can be verified, a comparison is done between the personality score provided by the different actors. This last criterion is not easy to use and not always applicable.
+   </span>
+  </p>
+  <p>
+   <span>
+    In this paper, their objective was to measure the accuracy of personality judgement done by computers against those made by humans. The dataset they used was myPersonality, based on user likes and attached personality tests. The results they produced established that computer-based judgements are more accurate, because they can take in account a very big quantity of data using them in statistical modeling, However human judgement can capture more subtle cues that may be ignored by automated systems.
+   </span>
+  </p>
+  <p>
+   <span>
+    Big5 from social media data: myPersonality dataset (cambridge). Goodness of personality estimation proven by:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Papers 1 and 2
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     NLP techniques applied to personality analysis
@@ -3806,6 +3825,44 @@
    <span>
    </span>
   </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Private traits and attributes are predictable from digital records of human behavior”
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Proposition: using data of social network profiles (user likes) analyze the prediction rate of non-published personal data -&gt; 10-fold cross-validation
+    </span>
+   </li>
+   <li>
+    <span>
+     Results: the majority of informations are accurately predicted. Especially the ethnicity, gender, age. The accuracy increases with the number of likes available, but even with a small data set, the prediction is accurate for some attributes
+    </span>
+   </li>
+   <li>
+    <span>
+     Implications of being highly predictive:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Recommendation services can be improved, without explicitly asking some information but inferring them
+    </span>
+   </li>
+   <li>
+    <span>
+     Unwilling use of details that user wanted to hide, considered as personal. This implies a decrease in trust of online services
+    </span>
+   </li>
+  </ul>
   <h3 id="h.7lh2cw7lz5zf">
    <span>
     Approaches
@@ -4811,8 +4868,8 @@
     The solution that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
-    <a href="#ftnt35" id="ftnt_ref35">
-     [35]
+    <a href="#ftnt39" id="ftnt_ref39">
+     [39]
     </a>
    </sup>
    <span>
@@ -4829,8 +4886,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt36" id="ftnt_ref36">
-     [36]
+    <a href="#ftnt40" id="ftnt_ref40">
+     [40]
     </a>
    </sup>
    <span>
@@ -4909,8 +4966,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt37" id="ftnt_ref37">
-     [37]
+    <a href="#ftnt41" id="ftnt_ref41">
+     [41]
     </a>
    </sup>
    <span>
@@ -5924,8 +5981,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt38" id="ftnt_ref38">
-     [38]
+    <a href="#ftnt42" id="ftnt_ref42">
+     [42]
     </a>
    </sup>
    <span>
@@ -6091,8 +6148,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt39" id="ftnt_ref39">
-      [39]
+     <a href="#ftnt43" id="ftnt_ref43">
+      [43]
      </a>
     </sup>
    </li>
@@ -7118,6 +7175,55 @@
      [35]
     </a>
     <span>
+     https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref36" id="ftnt36">
+     [36]
+    </a>
+    <span>
+     Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
+    </span>
+    <span>
+     Odessa, FL: Psychological Assessment Resources
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref37" id="ftnt37">
+     [37]
+    </a>
+    <span>
+     Goldberg, L. R. (1993). The structure of phenotypic personality traits.
+    </span>
+    <span>
+     American Psychologist. 48: 26–34. doi:10.1037/0003-066x.48.1.26
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref38" id="ftnt38">
+     [38]
+    </a>
+    <span>
+     Youyou, W., Kosinski, M., Stillwell, D. (2015). Computer-based personality judgments are more accurate than those made by humans.
+    </span>
+    <span>
+     PNAS pp. 1–5
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref39" id="ftnt39">
+     [39]
+    </a>
+    <span>
      Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
     </span>
     <span>
@@ -7127,8 +7233,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref36" id="ftnt36">
-     [36]
+    <a href="#ftnt_ref40" id="ftnt40">
+     [40]
     </a>
     <span>
     </span>
@@ -7143,8 +7249,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref37" id="ftnt37">
-     [37]
+    <a href="#ftnt_ref41" id="ftnt41">
+     [41]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7159,8 +7265,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref38" id="ftnt38">
-     [38]
+    <a href="#ftnt_ref42" id="ftnt42">
+     [42]
     </a>
     <span>
     </span>
@@ -7175,8 +7281,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref39" id="ftnt39">
-     [39]
+    <a href="#ftnt_ref43" id="ftnt43">
+     [43]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
