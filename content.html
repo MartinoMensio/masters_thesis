@@ -93,6 +93,7 @@
    </li>
    <li>
     <span>
+     Personalization?
     </span>
    </li>
   </ul>
@@ -3426,7 +3427,7 @@
   </p>
   <h2 id="h.vlw0i0tybygq">
    <span>
-    Personalization/Recommendation
+    Personalization
    </span>
   </h2>
   <p>
@@ -3434,6 +3435,13 @@
     On this section
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     Recommendation (personalized content)
+    </span>
+   </li>
+  </ul>
   <ul>
    <li>
     <span>
@@ -3758,11 +3766,16 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.5caafocz8hnq">
+  <h3 id="h.d5iuiku6krhj">
    <span>
-    Big5 and personality analysis
+    Personality analysis
    </span>
   </h3>
+  <p>
+   <span>
+    Big5
+   </span>
+  </p>
   <p>
    <span>
     NLP techniques applied to personality analysis
@@ -3788,6 +3801,41 @@
    <span>
    </span>
   </p>
+  <h3 id="h.7lh2cw7lz5zf">
+   <span>
+    Approaches
+   </span>
+  </h3>
+  <h4 id="h.ek306jf4lynj">
+   <span>
+    Content-based filtering
+   </span>
+  </h4>
+  <p>
+   <span>
+    Based on the content. Creating a model of the user’s preferences. History of interactions. Goal: match the user representation with the items representations
+   </span>
+  </p>
+  <h4 id="h.npg08ioyklcj">
+   <span>
+    Collaborative filtering
+   </span>
+  </h4>
+  <p>
+   <span>
+    What user will like based on similarities of other users. Doesn’t require “understanding” the items. Can be done using user similarity and/or items similarity.
+   </span>
+  </p>
+  <p>
+   <span>
+    Assumption: people who agreed in the past will agree in the future
+   </span>
+  </p>
+  <h4 id="h.ceqcivfparu">
+   <span>
+    Hybrid
+   </span>
+  </h4>
   <h3 id="h.gjp0hmp20g33">
    <span>
     Cold start
@@ -4932,16 +4980,36 @@
     </span>
    </li>
   </ul>
-  <h2 id="h.9vi2nf26bxcs">
+  <h2 id="h.p32l2grv4p6t">
    <span>
     Personalization
    </span>
   </h2>
-  <h3 id="h.2t419x4gurpa">
+  <p>
    <span>
-    Content
+    This section explains how the personalization techniques can be applied to the interactions with a chatbot, providing personalized content recommendations in a tailored communication fashion. This approach is composed of two main parts: content recommendation, that is usually analyzed in the RecSys community, and in this specific case the contents that are provided as recommendations are places around the user that he could be interested in. The second part instead is relative to the interaction itself: the goal is to change the behaviour of the bot relatively to the mood the user is in, in a dynamic way.
+   </span>
+  </p>
+  <h3 id="h.kic1lrz03qac">
+   <span>
+    Content recommendation
    </span>
   </h3>
+  <p>
+   <span>
+    For giving content recommendations, the objective of the recommender is to provide interesting places for the user around his trip. The area of search is therefore established by the results of the informations: different strategies could be used to determine this surface, but the fastest one, that helps also querying providers of places informations (e.g. Foursquare, Facebook Places, Google Places), is to use a circle determined by its center (the mean point between the source and the destination) and its radius (chosen to cover the source and destination, with some margin).
+   </span>
+  </p>
+  <p>
+   <span>
+    Determined the valid surface, the places in it are candidates for the recommendation. To restrict the places list and provide one as recommendation, the strategy to be applied is to determine a category that the user could be interested in.
+   </span>
+  </p>
+  <p>
+   <span>
+    To find this category, a bit of profiling of the user needs to be done.
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -5121,7 +5189,7 @@
   </ul>
   <h3 id="h.h3t6ly4gdrse">
    <span>
-    Interaction
+    Tailored communication
    </span>
   </h3>
   <p>
