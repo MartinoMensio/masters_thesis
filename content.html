@@ -3435,255 +3435,6 @@
     This section analyzes the state of the art of personalization, starting on how to profile users and determine their features, and considering the existing approaches for recommender systems and their problems.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    On this section
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Recommendation (personalized content)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Determining features
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Big 5 personality traits
-    </span>
-   </li>
-   <li>
-    <span>
-     Text analysis: sentiment detection
-    </span>
-   </li>
-   <li>
-    <span>
-     ?
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Approaches
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Content based
-    </span>
-   </li>
-   <li>
-    <span>
-     Collaborative
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Common problems:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Cold start
-    </span>
-   </li>
-  </ul>
-  <h3 id="h.u8tq13sl1jy8">
-   <span>
-    Papers (remove me)
-   </span>
-  </h3>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Share Like Recommend”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: analyze news as social activity
-    </span>
-   </li>
-   <li>
-    <span>
-     Results:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     users receive news from friends on social networks, a lot more than directly from news agencies. Friends act like a filter, by sharing news.
-    </span>
-   </li>
-   <li>
-    <span>
-     News as a shared social experience is appealing for customers. Main reason for using social networks is sharing content: events, news
-    </span>
-   </li>
-   <li>
-    <span>
-     Journalists on social network seem to be important for users
-    </span>
-   </li>
-   <li>
-    <span>
-     Using social media for retrieving news is not done at expenses of mainstream media outlets
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Tag-Based User Profiling for Social Media Recommendation”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: use tags to support user profiling. Tags connect entities directly, while collaborative filtering must search for relationships between user preferences and item attribute
-    </span>
-   </li>
-   <li>
-    <span>
-     Implementation:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Types of tags (have different weights):
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Personal view: tags specified by the user
-    </span>
-   </li>
-   <li>
-    <span>
-     Social view: tags specified by the friends on the user contents
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Tag-to-Tag Matrix: correlations between person-attribute set (tags on user) and content-attribute set (tags on contents)
-    </span>
-   </li>
-   <li>
-    <span>
-     User-feature vector: for each idea mentioned in a specific content, the probability that the user has to like it. If it is above a threshold, it is recommended
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Experiment (using social bookmarking site del.icio.us):
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     A long-tail model applies (URLs are bookmarked by few people). Very low precision (2.77%) because there are not central topics to be defined. Also caused by dependence on order of visit (if user visits a better site before, decision about bookmarking a site on the same topic is lower)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Cross Social Media Recommendation”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: merge data from different social networks (Twitter and Weibo) to remove biasing of models based on a single social network. Recommend twitter hashtag to weibo
-    </span>
-   </li>
-   <li>
-    <span>
-     Implementation:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     “Pseudo Global Social Media Network (PGSMN) model to interconnect users (with similar interests, not the same user because the sets are separate) and topics
-    </span>
-   </li>
-   <li>
-    <span>
-     Three layers: Twitter, Weibo and Wikipedia. The last one is a bridge. Each layer contains intra-layer links (users to tags or page to category) and inter-layer links (tags to pages/category)
-    </span>
-   </li>
-   <li>
-    <span>
-     Explicit Semantic Path Mining (ESPM), derived from Explicit Semantic Analysis (ESA), identifies semantic paths from Wikipedia hierarchical relationships
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Measurements of ranking performance:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Precision
-    </span>
-   </li>
-   <li>
-    <span>
-     Mean average precision
-    </span>
-   </li>
-   <li>
-    <span>
-     Normalized discounted cumulative gain
-    </span>
-   </li>
-  </ul>
   <h3 id="h.2del0db8mgct">
    <span>
     User features and Personality analysis
@@ -3701,7 +3452,15 @@
   </p>
   <p>
    <span>
-    With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal informations. The most common nowadays, Facebook, stores informations of any kind about users: from age, occupation, and other personal informations to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources.
+    With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal informations. The most common nowadays, Facebook, stores informations of any kind about users: from age, occupation, and other personal informations to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources. Specially on the fields of social sciences and personality analysis
+   </span>
+   <sup>
+    <a href="#ftnt35" id="ftnt_ref35">
+     [35]
+    </a>
+   </sup>
+   <span>
+    .
    </span>
   </p>
   <p>
@@ -3709,8 +3468,8 @@
     For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset
    </span>
    <sup>
-    <a href="#ftnt35" id="ftnt_ref35">
-     [35]
+    <a href="#ftnt36" id="ftnt_ref36">
+     [36]
     </a>
    </sup>
    <span>
@@ -3722,16 +3481,16 @@
     The personality is usually analyzed in five dimensions, in a model that has been widely shared, discussed and applied both in academic environments and in empirical ones. The “Big-Five Factors”, formulated by [McCrae and Costa]
    </span>
    <sup>
-    <a href="#ftnt36" id="ftnt_ref36">
-     [36]
+    <a href="#ftnt37" id="ftnt_ref37">
+     [37]
     </a>
    </sup>
    <span>
     and their development traced by Goldberg
    </span>
    <sup>
-    <a href="#ftnt37" id="ftnt_ref37">
-     [37]
+    <a href="#ftnt38" id="ftnt_ref38">
+     [38]
     </a>
    </sup>
    <span>
@@ -3770,8 +3529,8 @@
     Having good values for those traits is not an easy task, because self-judgement and also human judgement can be easily polarized. To obtain values that are somewhat objective, different criteria can be used. [YouYou et Al.]
    </span>
    <sup>
-    <a href="#ftnt38" id="ftnt_ref38">
-     [38]
+    <a href="#ftnt39" id="ftnt_ref39">
+     [39]
     </a>
    </sup>
    <span>
@@ -3790,28 +3549,43 @@
   </p>
   <p>
    <span>
-    Big5 from social media data: myPersonality dataset (cambridge). Goodness of personality estimation proven by:
+    Another study
+   </span>
+   <sup>
+    <a href="#ftnt40" id="ftnt_ref40">
+     [40]
+    </a>
+   </sup>
+   <span>
+    , also exploiting the same dataset, makes use of the Facebook profiles in order to predict some private user information, such as ethnicity, gender and age that may be unpublished. Given other available digital traces, such as user likes, the system is able to predict accurately those informations. For recommender systems needing those features, it is no more necessary to explicitly ask them to the user, but simply knowing what a person likes those values can be inferred.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Papers 1 and 2
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
-    NLP techniques applied to personality analysis
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Sentiment analysis
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    All those works on unwilling profiling, especially considering details that users may want to hide (such as sexual and political orientation), implies a decrease in trust of online services by people that have a bit of knowledge about it.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Other works, explore ways of profiling the users given some text they produced. Different things can be discovered, from the sentiments the user is feeling to their personality
+   </span>
+   <sup>
+    <a href="#ftnt41" id="ftnt_ref41">
+     [41]
+    </a>
+   </sup>
+   <span>
+    . The requirement is having more than few words and know the environment the text belongs to, in order to remove the environmental bias. This approach applies better on social networks that are more text-based, like Twitter. Since usually the tweets are openly available, analysis on text can be easily done.
+   </span>
+  </p>
   <p>
    <span>
    </span>
@@ -3829,45 +3603,25 @@
    <span>
    </span>
   </p>
-  <p>
+  <h3 id="h.kfp5i756qgiq">
    <span>
-    “Private traits and attributes are predictable from digital records of human behavior”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: using data of social network profiles (user likes) analyze the prediction rate of non-published personal data -&gt; 10-fold cross-validation
-    </span>
-   </li>
-   <li>
-    <span>
-     Results: the majority of informations are accurately predicted. Especially the ethnicity, gender, age. The accuracy increases with the number of likes available, but even with a small data set, the prediction is accurate for some attributes
-    </span>
-   </li>
-   <li>
-    <span>
-     Implications of being highly predictive:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Recommendation services can be improved, without explicitly asking some information but inferring them
-    </span>
-   </li>
-   <li>
-    <span>
-     Unwilling use of details that user wanted to hide, considered as personal. This implies a decrease in trust of online services
-    </span>
-   </li>
-  </ul>
-  <h3 id="h.7lh2cw7lz5zf">
-   <span>
-    Approaches
+    Recommendation Approaches
    </span>
   </h3>
+  <p>
+   <span>
+    Given some representation of the users, different approaches can be used to recommend items to the users.
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="https://www.quora.com/What-is-the-difference-between-content-based-filtering-and-collaborative-filtering">
+     https://www.quora.com/What-is-the-difference-between-content-based-filtering-and-collaborative-filtering
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
   <h4 id="h.ek306jf4lynj">
    <span>
     Content-based filtering
@@ -4868,8 +4622,8 @@
     The solution that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
-    <a href="#ftnt39" id="ftnt_ref39">
-     [39]
+    <a href="#ftnt42" id="ftnt_ref42">
+     [42]
     </a>
    </sup>
    <span>
@@ -4886,8 +4640,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt40" id="ftnt_ref40">
-     [40]
+    <a href="#ftnt43" id="ftnt_ref43">
+     [43]
     </a>
    </sup>
    <span>
@@ -4966,8 +4720,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt41" id="ftnt_ref41">
-     [41]
+    <a href="#ftnt44" id="ftnt_ref44">
+     [44]
     </a>
    </sup>
    <span>
@@ -5981,8 +5735,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt42" id="ftnt_ref42">
-     [42]
+    <a href="#ftnt45" id="ftnt_ref45">
+     [45]
     </a>
    </sup>
    <span>
@@ -6148,8 +5902,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt43" id="ftnt_ref43">
-      [43]
+     <a href="#ftnt46" id="ftnt_ref46">
+      [46]
      </a>
     </sup>
    </li>
@@ -7175,7 +6929,7 @@
      [35]
     </a>
     <span>
-     https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
+     Kosinski, M., Matz, S. C., &amp; Gosling, S. D. (2015). Facebook as a research tool for the social sciences. American Psychologist, 70(6), 543–556. doi:10.1037/a0039210
     </span>
    </p>
   </div>
@@ -7183,6 +6937,16 @@
    <p>
     <a href="#ftnt_ref36" id="ftnt36">
      [36]
+    </a>
+    <span>
+     https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref37" id="ftnt37">
+     [37]
     </a>
     <span>
      Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
@@ -7194,8 +6958,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref37" id="ftnt37">
-     [37]
+    <a href="#ftnt_ref38" id="ftnt38">
+     [38]
     </a>
     <span>
      Goldberg, L. R. (1993). The structure of phenotypic personality traits.
@@ -7207,8 +6971,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref38" id="ftnt38">
-     [38]
+    <a href="#ftnt_ref39" id="ftnt39">
+     [39]
     </a>
     <span>
      Youyou, W., Kosinski, M., Stillwell, D. (2015). Computer-based personality judgments are more accurate than those made by humans.
@@ -7220,8 +6984,34 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref39" id="ftnt39">
-     [39]
+    <a href="#ftnt_ref40" id="ftnt40">
+     [40]
+    </a>
+    <span>
+     Kosinski, M., Stillwell, D., Graepel, Y. (2013). Private traits and attributes are predictable from digital records of human behavior.
+    </span>
+    <span>
+     Proceedings of the National Academy of Sciences (PNAS).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref41" id="ftnt41">
+     [41]
+    </a>
+    <span>
+     F. Mairesse, M.A. Walker, M.R. Mehl, and R.K. Moore. (2007). Using linguistic cues for the automatic recognition of personality in conversation and text.
+    </span>
+    <span>
+     Journal of Artificial Intelligence Research, 30(1):457–500
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref42" id="ftnt42">
+     [42]
     </a>
     <span>
      Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
@@ -7233,8 +7023,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref40" id="ftnt40">
-     [40]
+    <a href="#ftnt_ref43" id="ftnt43">
+     [43]
     </a>
     <span>
     </span>
@@ -7249,8 +7039,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref41" id="ftnt41">
-     [41]
+    <a href="#ftnt_ref44" id="ftnt44">
+     [44]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7265,8 +7055,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref42" id="ftnt42">
-     [42]
+    <a href="#ftnt_ref45" id="ftnt45">
+     [45]
     </a>
     <span>
     </span>
@@ -7281,8 +7071,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref43" id="ftnt43">
-     [43]
+    <a href="#ftnt_ref46" id="ftnt46">
+     [46]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
