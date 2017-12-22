@@ -227,7 +227,7 @@
   </p>
   <p>
    <span>
-    With the goal of exploring how the human brain works, the neuroscience community has done a lot of progresses with the advance of years, and the studies are still open trying to find the biological basis of information processing.
+    With the goal of exploring how the human brain works, the neuroscience community has done a lot of progresses with the advance of years, and the studies are still open trying to find the biological basis of information processing (take a look at Towards general AI about the “human brain project”).
    </span>
   </p>
   <p>
@@ -451,11 +451,16 @@
     In this subsection the topic of the evolution of Artificial Intelligence will be expanded a bit: starting from the good results it has achieved in some narrow tasks, a description of emerging Machine Learning techniques will open the path to the General Intelligence topic.
    </span>
   </p>
-  <h4 id="h.51ui7eyh2unq">
+  <h4 id="h.sdw3y7hhmz3n">
    <span>
     What AI can do
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     explore some key fields, no technicism:
@@ -537,11 +542,16 @@
     </span>
    </li>
   </ul>
-  <h4 id="h.g9l3xor92xer">
+  <h4 id="h.vq46acbre51d">
    <span>
     The evolution of machine learning
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     A bit more technical
@@ -668,11 +678,16 @@
    <span>
    </span>
   </p>
-  <h4 id="h.rrffvreedevx">
+  <h4 id="h.3iu5jydokzt4">
    <span>
     Towards general AI
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <ul>
    <li>
     <span>
@@ -1200,7 +1215,13 @@
   </p>
   <p>
    <span>
-    The most important point is to classify the user sentences and to reconduct them to a set of questions that have a response by design. This challenge of understanding the user is made up of two components: one is relative to the natural language understanding of the current sentence, while the other one is relative to the contextualization of the current sentence in the environment of the dialogue. While talking, humans tend to refer to previously mentioned things, and the understanding of sentences is often difficult without placing it into its
+    The most important point is to classify the user sentences and to reconduct them to a set of questions that have a response by design. This challenge of
+   </span>
+   <span>
+    understanding
+   </span>
+   <span>
+    the user is made up of two components: one is relative to the natural language understanding of the current sentence, while the other one is relative to the contextualization of the current sentence in the environment of the dialogue. While talking, humans tend to refer to previously mentioned things, and the understanding of sentences is often difficult without placing it into its
    </span>
    <span>
     context
@@ -1576,7 +1597,7 @@
     </a>
    </sup>
    <span>
-    , but other works have been trained on Ubuntu Dialogue Corpus[CIT NEEDED] and many other datasets.
+    , but other works have been trained on Ubuntu Dialogue Corpus [CIT NEEDED] and many other datasets.
    </span>
   </p>
   <p>
@@ -1751,12 +1772,12 @@
    </li>
    <li>
     <span>
-     Syntaxnet: a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains prebuilt models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths
+     Syntaxnet: a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains pre-built models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths
     </span>
    </li>
    <li>
     <span>
-     SpaCy: an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with prebuilt models, and also fast
+     SpaCy: an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with pre-built models, and also fast
     </span>
    </li>
   </ul>
@@ -2506,11 +2527,16 @@
    <span>
    </span>
   </p>
-  <h5 id="h.jm5x275vcg9p">
+  <h5 id="h.i1ebf8cnkswp">
    <span>
     The algorithms
    </span>
   </h5>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     There are different algorithms of producing word vectors: word2vec (CBOW or skipgram), glove.
@@ -3622,11 +3648,16 @@
    <span>
    </span>
   </p>
-  <h4 id="h.ek306jf4lynj">
+  <h4 id="h.gaetitna0e6a">
    <span>
     Content-based filtering
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     Based on the content. Creating a model of the user’s preferences. History of interactions. Goal: match the user representation with the items representations
@@ -4482,6 +4513,13 @@
     </span>
    </li>
   </ol>
+  <ol start="3">
+   <li>
+    <span>
+     Put the Dialogue manager here?
+    </span>
+   </li>
+  </ol>
   <h3 id="h.ujlxf9t9kbms">
    <span>
     Intents and slots
@@ -4712,6 +4750,16 @@
   </p>
   <p>
    <span>
+    TODO explain why saving to memory and restoring stops the backpropagation. The training has to be done without save/restore. Only problem: backward RNN in train is connected, in test the arcs across turns are disconnected.
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO define better how to use masks to train slots only over user turns.
+   </span>
+  </p>
+  <p>
+   <span>
     TODO remove intent decoding RNN, explaining that the performances on single turn were better without it.
    </span>
   </p>
@@ -4907,6 +4955,11 @@
   </p>
   <p>
    <span>
+    Given the social network footprints, a prediction on the Big5 personality traits can be done using some online available APIs: the big5 will be user features, together with “concentration” on different areas. Mention where those model come from.
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -4922,6 +4975,38 @@
   <p>
    <span>
     Hybrid content-based and collaborative.
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO explain here the different flows:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Exploiting social login
+    </span>
+   </li>
+   <li>
+    <span>
+     Exploiting feedback
+    </span>
+   </li>
+   <li>
+    <span>
+     Training the mapping between user features and places categories
+    </span>
+   </li>
+   <li>
+    <span>
+     Exploiting neighbors (collaborative)
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    Selection of category given a distribution: analyze how a concept of “temperature” can model more randomness versus a fixed output (sampling)
    </span>
   </p>
   <p>
@@ -5441,7 +5526,7 @@
   <ul>
    <li>
     <span>
-     Collect sentences and interaction sessions
+     Collect sentences and interactions for single turn
     </span>
    </li>
    <li>
@@ -5912,6 +5997,11 @@
      NLU_benchmark
     </span>
    </li>
+   <li>
+    <span>
+     Botcycle it/en single turn collection
+    </span>
+   </li>
   </ul>
   <p>
    <span>
@@ -5921,7 +6011,7 @@
   <ul>
    <li>
     <span>
-     Kvret dataset
+     Kvret dataset TODO
     </span>
    </li>
   </ul>
@@ -5929,6 +6019,13 @@
    <li>
     <span>
      Problems: intent per session; slots are quite messy, overlapping, both in driver and car turns
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Botcycle multiturn TODO
     </span>
    </li>
   </ul>
@@ -5988,7 +6085,7 @@
   </p>
   <h3 id="h.tm5ee3a05f8l">
    <span>
-    Accessing user data on facebook (discarding it for the moment) (implementation)
+    Accessing user data on facebook
    </span>
   </h3>
   <p>
@@ -6104,11 +6201,16 @@
      Nlu-benchmark
     </span>
    </li>
+   <li>
+    <span>
+     Botcycle (no baseline available)
+    </span>
+   </li>
   </ul>
   <ul>
    <li>
     <span>
-     Multi-turn:
+     Multi-turn (problem of comparison with results by other):
     </span>
    </li>
   </ul>
@@ -6136,6 +6238,40 @@
     Comparison with state of the art and other benchmarks
    </span>
   </p>
+  <p>
+   <span>
+    For intents:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     F1 measure
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    For entities:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     F1 based on single words
+    </span>
+   </li>
+   <li>
+    <span>
+     F1 based on entities
+    </span>
+   </li>
+   <li>
+    <span>
+     Error rate
+    </span>
+   </li>
+  </ul>
   <h4 id="h.9m2ky1sgb9v1">
    <span>
     Word embeddings
