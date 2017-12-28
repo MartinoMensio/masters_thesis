@@ -540,12 +540,12 @@
   </p>
   <p>
    <span>
-    The principle at the basis of supervised ML techniques is to show examples to a system that learns how to obtain the desired output. Different approaches exist, from decision trees
+    The principle at the basis of supervised ML techniques is to show examples to a system that learns how to obtain the desired output. Different approaches exist: decision trees, association rules, neural networks, ...
    </span>
   </p>
   <p>
    <span>
-    by using the Backpropagation algorithm. From the errors on the predictions with respect to the true values, the source of errors is found by evaluating the backpropagation of the gradients, and the tunable parameters are modified in order to reduce this error by using some Gradient Descent techniques.
+    About Artificial Neural Networks, their power stands in being able to model non-linear relationships and for this reason are very general and applicable in different ways. They have tunable parameters that are learnt by using the Backpropagation algorithm. From the errors on the predictions with respect to the true values, the source of errors is found by evaluating the backpropagation of the gradients, and the tunable parameters are modified in order to reduce this error by using some Gradient Descent techniques.
    </span>
   </p>
   <p>
@@ -555,7 +555,7 @@
   </p>
   <p>
    <span>
-    Given this mechanism to automatically learn from examples, the applications need to define what is fed into the network as input/outputs and the structure of the network
+    Given this mechanism to automatically learn from examples, there has been an evolution considering the structure itself of the network (adding more and more layers), on the training algorithms and on the kind of input that are fed.
    </span>
   </p>
   <p>
@@ -564,46 +564,44 @@
   </p>
   <p>
    <span>
-    From features to deep ML
+    From features to deep ML techniques
    </span>
   </p>
   <p>
    <span>
-    Th
+    Neural Networks come in the field of Artificial Intelligence as systems that can model some non-linear functions and substitute handcrafted rules in classification tasks. The first generation of this approach was based on a strong definition of input features, that were defined manually and inputs are annotated with a lot of them. This manual specification of input features requires a lot of effort in their design and in data annotation, and for this reason is not easily applicable to new problems. For some problems the features themselves can become quite complex and difficult to generate.
    </span>
   </p>
   <p>
    <span>
-    Evolution of the algorithms:
+    Given those reasons, and also considering the advances of hardware that allow more computation power at reduced costs, the trend of Machine Learning has gone towards Deep Learning that uses several layers of computation in the networks. This increase in number of layers and in complexity of the computational graph allows to reduce the work done on input features, allowing rawer data to be fed into the networks. In Deep Learning techniques, features to more high level layers are extracted by the lower levels of the network. This reduces the work of feature engineering but on the other hand requires more training samples in order to understand how to extract the relevant features.
    </span>
   </p>
   <p>
    <span>
-    Fundamentals of supervised learning: set of tunable parameters. As train samples are fed in, the backpropagation algorithm computes the gradients and stochastic gradient descent is applied to modify the parameters. On the shape of the inputs and on the number of layers used in NN, an evolution can be seen as:
+    This shift from simple networks with complex and elaborated features towards complex networks with simpler inputs can be observed also in the fields of Natural Language Understanding, that will be covered in
+   </span>
+   <span>
+    <a href="#h.y0t2ac4xdn82">
+     this section [link to nlu]
+    </a>
+   </span>
+   <span>
+    .
    </span>
   </p>
   <p>
    <span>
-    AI→ machine learning → deep learning
    </span>
   </p>
   <p>
    <span>
-    1. First systems: rule-based in a very specific context. Not scalable to bigger contexts, every rule is programmed by hand.
+    Evolution of the approaches
    </span>
   </p>
   <p>
    <span>
-    2. Manual features: defined by hand. Optimization done by training on big datasets of data annotated with features and labels. Still on specific context. Lot of handwork: features. On some problems difficult to decide and describe the features (e.g. image features: how is a image of a dog?)
-   </span>
-  </p>
-  <p>
-   <span>
-    3. Moving feature definition from static (by-hand) to dynamic (determined by the training).
-   </span>
-  </p>
-  <p>
-   <span>
+    From ML to RL
    </span>
   </p>
   <ul>
@@ -694,6 +692,19 @@
   <p>
    <span>
     TODO
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    “Intelligence can be generally described as the ability to perceive information, and retain it as knowledge to be applied towards adaptive behaviors within an environment or context” from Wikipedia
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <ul>
@@ -2665,6 +2676,26 @@
   </p>
   <p>
    <span>
+    <a href="https://www.quora.com/How-is-GloVe-different-from-word2vec">
+     https://www.quora.com/How-is-GloVe-different-from-word2vec
+    </a>
+   </span>
+   <span>
+    predictive vs count-based
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example">
+     https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
+    </a>
+   </span>
+   <span>
+    other explaination
+   </span>
+  </p>
+  <p>
+   <span>
     Some have also derived word embeddings by looking at the single characters (look at fastText).
    </span>
   </p>
@@ -3487,7 +3518,7 @@
   </p>
   <p>
    <span>
-    TALK about wit.ai, dialogflow, LUIS, IBM, ...
+    TALK about wit.ai, dialogflow, LUIS, IBM, …, kitt.ai
    </span>
   </p>
   <p>
@@ -3565,6 +3596,21 @@
   <p>
    <span>
     EXTEND THIS SECTION
+   </span>
+  </p>
+  <p>
+   <span>
+    How to bootstrap a new NLU to a new domain with limited data? Transfer Learning, pretrained embeddings,
+   </span>
+  </p>
+  <p>
+   <span>
+    <a href="https://www.researchgate.net/profile/Avraham_Shinnar/publication/321664993_Bootstrapping_Chatbots_for_Novel_Domains/links/5a29ff24a6fdccfbbf81994a/Bootstrapping-Chatbots-for-Novel-Domains.pdf">
+     https://www.researchgate.net/profile/Avraham_Shinnar/publication/321664993_Bootstrapping_Chatbots_for_Novel_Domains/links/5a29ff24a6fdccfbbf81994a/Bootstrapping-Chatbots-for-Novel-Domains.pdf
+    </a>
+   </span>
+   <span>
+    explores intent+slots from swagger documentation
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
