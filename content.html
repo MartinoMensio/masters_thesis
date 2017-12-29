@@ -495,6 +495,16 @@
      ) learns to play large classes of simple video games from just frames of pixels and the game score
     </span>
    </li>
+   <li>
+    <span>
+     AlphaGo
+    </span>
+    <sup>
+     <a href="#ftnt7" id="ftnt_ref7">
+      [7]
+     </a>
+    </sup>
+   </li>
   </ul>
   <ul>
    <li>
@@ -664,7 +674,15 @@
   </p>
   <p>
    <span>
-    Another approach that is relevant to mention is the Reinforcement Learning, that instead of statically seeing examples is more active also in the training epochs. Being able to act and observing the consequences on some rewarding functions it is able to learn what’s good and what’s not towards a certain goal. This is the field where computers recently have defeated human opponents in popular games, such as AlphaGo. In this example the reinforcement was applied also to matches between two computers.
+    Another approach that is relevant to mention is the Reinforcement Learning, that instead of statically seeing examples is more active also in the training epochs. Being able to act and observing the consequences on some rewarding functions it is able to learn what’s good and what’s not towards a certain goal. This is the field where computers recently have defeated human opponents in popular games, such as AlphaGo
+   </span>
+   <sup>
+    <a href="#ftnt8" id="ftnt_ref8">
+     [8]
+    </a>
+   </sup>
+   <span>
+    . In this example the reinforcement was applied also to matches between two computers.
    </span>
   </p>
   <p>
@@ -682,8 +700,8 @@
     As [Pearl]
    </span>
    <sup>
-    <a href="#ftnt7" id="ftnt_ref7">
-     [7]
+    <a href="#ftnt9" id="ftnt_ref9">
+     [9]
     </a>
    </sup>
    <span>
@@ -705,8 +723,8 @@
     The term Artificial General Intelligence, with its meaning of being able to perform tasks like humans, “involves the ability to reason, plan, solve problems, think abstractly, comprehend complex ideas, learn quickly and learn from experience. It is not merely book learning, a narrow academic skill, or test-taking smarts. Rather, it reflects a broader and deeper capability for comprehending our surroundings—"catching on," "making sense" of things, or "figuring out" what to do”.
    </span>
    <sup>
-    <a href="#ftnt8" id="ftnt_ref8">
-     [8]
+    <a href="#ftnt10" id="ftnt_ref10">
+     [10]
     </a>
    </sup>
   </p>
@@ -720,8 +738,8 @@
     The main capabilities that are missing, as [Lake et al.]
    </span>
    <sup>
-    <a href="#ftnt9" id="ftnt_ref9">
-     [9]
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
     </a>
    </sup>
    <span>
@@ -750,17 +768,33 @@
     The first point is the same that has been analyzed by [Pearl]
    </span>
    <sup>
-    <a href="#ftnt10" id="ftnt_ref10">
-     [10]
+    <a href="#ftnt12" id="ftnt_ref12">
+     [12]
     </a>
    </sup>
    <span>
-    , and underlines the fact that mostly AI is applied to solving pattern recognition problems.
+    , and underlines the fact that mostly AI is applied to solving pattern recognition problems. Instead the human brain can build structured casual models thanks to the properties of the neocortex
+   </span>
+   <sup>
+    <a href="#ftnt13" id="ftnt_ref13">
+     [13]
+    </a>
+   </sup>
+   <span>
+    . This difference makes possible to recognize things also if they appear from different perspectives: for example in object recognition, rotated images can be misclassified simply because at training time the system was not trained from that point of view. Instead, having a richer model that simulates the 3d shape of objects helps to predict correctly also in those situations.
    </span>
   </p>
   <p>
    <span>
-    Instead the second one describes how, having a prior knowledge of some general rules, can help understand better and faster the observation done on the domain. For example, learning to track an object knowing that it is solid and coherent, can help focusing on more important features, such as the shape of the its trajectory. Or for the psychological principles, observing a video gamer knowing that is trying to seek rewards while avoiding punishment can help focusing on his tactics and more advanced features.
+    The second point extends this characteristics: a prior knowledge of some general rules, in the example of rotated objects those rules are geometrical, can help understand better and faster the observation done on the domain. For example, learning to track an object knowing that it is solid and coherent, can help focusing on more important features, such as the trajectory, stability
+   </span>
+   <sup>
+    <a href="#ftnt14" id="ftnt_ref14">
+     [14]
+    </a>
+   </sup>
+   <span>
+    . Or for the psychological principles, observing a video gamer knowing that is trying to seek rewards while avoiding punishment can help focusing on his tactics and more advanced features.
    </span>
   </p>
   <p>
@@ -773,7 +807,33 @@
   </p>
   <p>
    <span>
-    From concepts, the human brain is able not only to do the pattern recognition task, but also to generate new examples and explain what are the major discriminator of the output classes.
+    From concepts, the human brain is able not only to do the pattern recognition task, but also to generate new examples and explain what are the major discriminator of the output classes. And those concepts are transferred along different problems thanks to the human memory.
+   </span>
+  </p>
+  <p>
+   <span>
+    Machine Learning instead suffers that for every different problem it is trained from scratch. Because the learning network is designed for the current narrow process, the learning it has acquired is difficult to transfer to new applications. Humans, when trained on a completely new task, can exploit their previous experience on other problems and the richly structured knowledge they have been acquiring since their birth. This is also caused by the structure of the connections, that between artificial neurons are fixed. The brain instead, forming new synapses can quickly learn new things without affecting previous learnings.
+   </span>
+   <sup>
+    <a href="#ftnt15" id="ftnt_ref15">
+     [15]
+    </a>
+   </sup>
+  </p>
+  <p>
+   <span>
+    Following the article by [Pearl et al.], the way to achieve better AI is to include physical and psychological fundamentals and generate models that capture the causality of the world. With those models as basis, new concepts could be learnt fast (thanks to Transfer Learning) and the training process could be really more efficient and require less examples.
+   </span>
+  </p>
+  <p>
+   <span>
+    A very important feature of future machine learning, in the opinion of the authors, is to use
+   </span>
+   <span>
+    compositionality
+   </span>
+   <span>
+    (to put together the learned models from different problems) to build a single causal model that is able to learn new things and generalize faster.
    </span>
   </p>
   <p>
@@ -785,8 +845,8 @@
     The scientific communities are quite divided in opinion about if and when AGI will be reached but from some surveys, completed by participants of conferences (Philosophy and Theory of AI 2011, AGI 12) and members of associations like EETN and “The 100 Top authors in artificial intelligence by citation in all years”, the opinion seems to be that it will be reached in this century
    </span>
    <sup>
-    <a href="#ftnt11" id="ftnt_ref11">
-     [11]
+    <a href="#ftnt16" id="ftnt_ref16">
+     [16]
     </a>
    </sup>
    <span>
@@ -798,16 +858,16 @@
     The opinions can be so positive about the reachability of this objective thanks to all the research that has been done in order to understand how the human brain works. Different projects exist today, both European
    </span>
    <sup>
-    <a href="#ftnt12" id="ftnt_ref12">
-     [12]
+    <a href="#ftnt17" id="ftnt_ref17">
+     [17]
     </a>
    </sup>
    <span>
     and American
    </span>
    <sup>
-    <a href="#ftnt13" id="ftnt_ref13">
-     [13]
+    <a href="#ftnt18" id="ftnt_ref18">
+     [18]
     </a>
    </sup>
    <span>
@@ -820,101 +880,12 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Use the cambridge paper
-    </span>
-    <span>
-     <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A9535B1D745A0377E16C590E14B94993/S0140525X16001837a.pdf/div-class-title-building-machines-that-learn-and-think-like-people-div.pdf">
-      https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A9535B1D745A0377E16C590E14B94993/S0140525X16001837a.pdf/div-class-title-building-machines-that-learn-and-think-like-people-div.pdf
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-   <li>
-    <span>
-     Mention the hype and some examples
-    </span>
-    <span>
-     <a href="https://dl.acm.org/citation.cfm?id%3D2770869">
-      https://dl.acm.org/citation.cfm?id=2770869
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
+    The term AI is becoming quite commercial, and is unfortunately generating a lot of examples that use the expression simply because they employ some statistical models but are far from the advanced pillars that have been described. The goal is simply to exploit the trending topic and generate some hype to promote products that are mostly based on rules or highly handcrafted features. It is the example of some Humanoid robots, that are remarkable good examples of progresses in human appearance and movements, but from the intelligent point of view are mainly well featured programs, far from the general intelligence.
    </span>
   </p>
   <p>
    <span>
-    As today, artificial intelligence has become a common expression.
-   </span>
-  </p>
-  <p>
-   <span>
-    But a discussion has to be done on the usage of this term: from using it with anything that contains a machine learning approach (narrow/basic AI), to the Artificial General Intelligence. Those two different uses also reflect on the division of what has been already done in very narrow tasks (that reaches very good and measurable results) versus the fuzziness of AGI.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Towards generic AI?
-   </span>
-  </p>
-  <p>
-   <span>
-    Deep learning systems only work on very limited narrow tasks. They are not general purpose. To make them more general the approach seems to be: imitate how the human brain works.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://medium.com/@Numenta/the-secret-to-strong-ai-61d153e26273">
-     https://medium.com/@Numenta/the-secret-to-strong-ai-61d153e26273
-    </a>
-   </span>
-   <span>
-    :
-   </span>
-  </p>
-  <p>
-   <span>
-    Similarities/differences between artificial neural networks and the brain. Neurons use most of their synapses to make prediction. Rich predictions. The brain learns by forming new synapses. In deep learning, the connections between artificial neurons are fixed. The brain, forming new synapses can quickly learn new things without affecting previous learnings.
-   </span>
-   <sup>
-    <a href="#ftnt14" id="ftnt_ref14">
-     [14]
-    </a>
-   </sup>
-  </p>
-  <p>
-   <span>
-    A deep learning network can learn patterns from a lot of examples, as also the human brain does. But there is one big difference: the human brain really understands and is more able to generalize. Let’s take the image recognition process as an example. If a deep learning network is trained on recognizing the objects contained with lots of examples, at inference time there can be some test samples that are not recognized simply because the image is rotated or comes from a different perspective. Instead the human brain is more likely to recognize it correctly anyway. This seems to be because the brain learns a structured representation of the world that has not yet been imitated by deep learning
-   </span>
-   <sup>
-    <a href="#ftnt15" id="ftnt_ref15">
-     [15]
-    </a>
-   </sup>
-   <span>
-    .
-   </span>
-  </p>
-  <p>
-   <span>
+    TODO finish
    </span>
   </p>
   <p>
@@ -932,8 +903,8 @@
     Sophia is a combination of a wide number of AI methods: face tracking, emotion recognition, and robotic movements generated by deep neural networks
    </span>
    <sup>
-    <a href="#ftnt16" id="ftnt_ref16">
-     [16]
+    <a href="#ftnt19" id="ftnt_ref19">
+     [19]
     </a>
    </sup>
    <span>
@@ -947,17 +918,7 @@
   </p>
   <p>
    <span>
-    Also the news about reinforcement learning, that learns from itself how to do tasks, is misleading because the fields this is applied is always defined a priori and the learning always occurr following a predefined rule. For example on the task of playing a specific game, a rewarding function is defined and the machine learns how to play better by challenging itself.
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993">
-     https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993
-    </a>
-   </span>
-   <span>
-    Building machines that learn and think like people. Suggests “concrete challenges and promising routes toward these goals that can combine the strengths of recent neural network advances with more structured cognitive models”. Analyzes how “despite their biological inspiration and performance achievements, these systems differ from human intelligence in crucial ways” → READ IT, high number of citations
+    Also the news about reinforcement learning, that learns from itself how to do tasks, is misleading because the fields this is applied is always defined a priori and the learning always occurs following a predefined rule. For example on the task of playing a specific game, a rewarding function is defined and the machine learns how to play better by challenging itself.
    </span>
   </p>
   <p>
@@ -1205,8 +1166,8 @@
     The Loebner Prize has been criticized by experts in the field because it rewards the usage of some tricks
    </span>
    <sup>
-    <a href="#ftnt17" id="ftnt_ref17">
-     [17]
+    <a href="#ftnt20" id="ftnt_ref20">
+     [20]
     </a>
    </sup>
    <span>
@@ -1218,8 +1179,8 @@
     The common tricks used are
    </span>
    <sup>
-    <a href="#ftnt18" id="ftnt_ref18">
-     [18]
+    <a href="#ftnt21" id="ftnt_ref21">
+     [21]
     </a>
    </sup>
    <span>
@@ -1747,8 +1708,8 @@
     Also if AIML was born for generic chit-chat systems and the Loebner Prize, it has been used also in domain specific bots. For example, to provide answers to Frequently Asked Questions in the domain of student support in Universities
    </span>
    <sup>
-    <a href="#ftnt19" id="ftnt_ref19">
-     [19]
+    <a href="#ftnt22" id="ftnt_ref22">
+     [22]
     </a>
    </sup>
    <span>
@@ -1814,8 +1775,8 @@
     The first implementation of this strategy was trained on tweets
    </span>
    <sup>
-    <a href="#ftnt20" id="ftnt_ref20">
-     [20]
+    <a href="#ftnt23" id="ftnt_ref23">
+     [23]
     </a>
    </sup>
    <span>
@@ -1850,8 +1811,8 @@
     Having a model trained on a wide variety of dialogues also rises the problem of the coherence of the responses: it’s easy that, without filtering and post-processing the responses, the bot replies in different ways to questions inherent to the same topic. For this reason a persona-based model can be built in order to consider also some more inputs to the generator of the responses, that can model some features of the speaker, such as background informations and speaking style
    </span>
    <sup>
-    <a href="#ftnt21" id="ftnt_ref21">
-     [21]
+    <a href="#ftnt24" id="ftnt_ref24">
+     [24]
     </a>
    </sup>
    <span>
@@ -1863,8 +1824,8 @@
     Another common problem of this approach is that it tends to generate commonplace responses, because is trained to maximize the likelihood of the output for the given input. It is like providing an average response that fits the current input. A proposed solution to reduce this effect is to use Maximum Mutual Information as objective function in the neural model. This will try “to take into account not only the dependency of responses on messages, but also the inverse, the likelihood that a message will be provided to a given response”
    </span>
    <sup>
-    <a href="#ftnt22" id="ftnt_ref22">
-     [22]
+    <a href="#ftnt25" id="ftnt_ref25">
+     [25]
     </a>
    </sup>
    <span>
@@ -1885,8 +1846,8 @@
     As an example of this approach in action, Google Smart Reply applies it to generate short email responses that can selected and completed. The implementation takes in account the incoming email to generate responses that may be used to replay
    </span>
    <sup>
-    <a href="#ftnt23" id="ftnt_ref23">
-     [23]
+    <a href="#ftnt26" id="ftnt_ref26">
+     [26]
     </a>
    </sup>
    <span>
@@ -2254,16 +2215,16 @@
     The two tasks can be done independently, but some recent studies [this
    </span>
    <sup>
-    <a href="#ftnt24" id="ftnt_ref24">
-     [24]
+    <a href="#ftnt27" id="ftnt_ref27">
+     [27]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt25" id="ftnt_ref25">
-     [25]
+    <a href="#ftnt28" id="ftnt_ref28">
+     [28]
     </a>
    </sup>
    <span>
@@ -2475,16 +2436,16 @@
     Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
    </span>
    <sup>
-    <a href="#ftnt26" id="ftnt_ref26">
-     [26]
+    <a href="#ftnt29" id="ftnt_ref29">
+     [29]
     </a>
    </sup>
    <span>
     , Hochreiter et al. (1998)
    </span>
    <sup>
-    <a href="#ftnt27" id="ftnt_ref27">
-     [27]
+    <a href="#ftnt30" id="ftnt_ref30">
+     [30]
     </a>
    </sup>
    <span>
@@ -2501,8 +2462,8 @@
     LSTM
    </span>
    <sup>
-    <a href="#ftnt28" id="ftnt_ref28">
-     [28]
+    <a href="#ftnt31" id="ftnt_ref31">
+     [31]
     </a>
    </sup>
    <span>
@@ -2591,8 +2552,8 @@
     Later studies
    </span>
    <sup>
-    <a href="#ftnt29" id="ftnt_ref29">
-     [29]
+    <a href="#ftnt32" id="ftnt_ref32">
+     [32]
     </a>
    </sup>
    <span>
@@ -2609,16 +2570,16 @@
     The advantage of this type of element with respect to LSTM is that less parameters are used. Being more recent, less studies have used them, but from the performance point of view, they seem to be of the same order of LSTM [this
    </span>
    <sup>
-    <a href="#ftnt30" id="ftnt_ref30">
-     [30]
+    <a href="#ftnt33" id="ftnt_ref33">
+     [33]
     </a>
    </sup>
    <span>
     and this
    </span>
    <sup>
-    <a href="#ftnt31" id="ftnt_ref31">
-     [31]
+    <a href="#ftnt34" id="ftnt_ref34">
+     [34]
     </a>
    </sup>
    <span>
@@ -2697,16 +2658,16 @@
     Having word embeddings is a good starting point. But for words that are not present in the training corpus it would be fine to have some way to infer some embeddings (maybe from the similarity to known words
    </span>
    <sup>
-    <a href="#ftnt32" id="ftnt_ref32">
-     [32]
+    <a href="#ftnt35" id="ftnt_ref35">
+     [35]
     </a>
    </sup>
    <span>
     or from the context the word belongs or as in fastText considering the character n-grams
    </span>
    <sup>
-    <a href="#ftnt33" id="ftnt_ref33">
-     [33]
+    <a href="#ftnt36" id="ftnt_ref36">
+     [36]
     </a>
    </sup>
    <span>
@@ -3022,8 +2983,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt34" id="ftnt_ref34">
-     [34]
+    <a href="#ftnt37" id="ftnt_ref37">
+     [37]
     </a>
    </sup>
    <span>
@@ -3050,8 +3011,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt35" id="ftnt_ref35">
-     [35]
+    <a href="#ftnt38" id="ftnt_ref38">
+     [38]
     </a>
    </sup>
    <span>
@@ -3115,8 +3076,8 @@
     <img alt="Screen-Shot-2015-12-30-at-1.23.48-PM.png" src="https://lh4.googleusercontent.com/4unbZt4D8t_7wToG1hZX7rAWjSgW5s28WptmDgQXCRznBdibjM1oWCsn1PnYVNkhsryroQ2GzmmLA01H6wGmbPI86tdpRkUO9Aj2Xnv2gdmFqgc5csPzjEOYcO31DfbD2SVUx_PR" style="width: 602.00px; height: 646.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
    <sup>
-    <a href="#ftnt36" id="ftnt_ref36">
-     [36]
+    <a href="#ftnt39" id="ftnt_ref39">
+     [39]
     </a>
    </sup>
   </p>
@@ -3145,8 +3106,8 @@
     In [Liu et al.
    </span>
    <sup>
-    <a href="#ftnt37" id="ftnt_ref37">
-     [37]
+    <a href="#ftnt40" id="ftnt_ref40">
+     [40]
     </a>
    </sup>
    <span>
@@ -3293,8 +3254,8 @@
     Contextual SLU [Chen et al. 2016
    </span>
    <sup>
-    <a href="#ftnt38" id="ftnt_ref38">
-     [38]
+    <a href="#ftnt41" id="ftnt_ref41">
+     [41]
     </a>
    </sup>
    <span>
@@ -3335,8 +3296,8 @@
     Considering time and roles [Chen et al. 2017
    </span>
    <sup>
-    <a href="#ftnt39" id="ftnt_ref39">
-     [39]
+    <a href="#ftnt42" id="ftnt_ref42">
+     [42]
     </a>
    </sup>
    <span>
@@ -3451,8 +3412,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt40" id="ftnt_ref40">
-     [40]
+    <a href="#ftnt43" id="ftnt_ref43">
+     [43]
     </a>
    </sup>
    <span>
@@ -3539,8 +3500,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt41" id="ftnt_ref41">
-     [41]
+    <a href="#ftnt44" id="ftnt_ref44">
+     [44]
     </a>
    </sup>
    <span>
@@ -3738,8 +3699,8 @@
     With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal informations. The most common nowadays, Facebook, stores informations of any kind about users: from age, occupation, and other personal informations to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources. Specially on the fields of social sciences and personality analysis
    </span>
    <sup>
-    <a href="#ftnt42" id="ftnt_ref42">
-     [42]
+    <a href="#ftnt45" id="ftnt_ref45">
+     [45]
     </a>
    </sup>
    <span>
@@ -3751,8 +3712,8 @@
     For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset
    </span>
    <sup>
-    <a href="#ftnt43" id="ftnt_ref43">
-     [43]
+    <a href="#ftnt46" id="ftnt_ref46">
+     [46]
     </a>
    </sup>
    <span>
@@ -3764,16 +3725,16 @@
     The personality is usually analyzed in five dimensions, in a model that has been widely shared, discussed and applied both in academic environments and in empirical ones. The “Big-Five Factors”, formulated by [McCrae and Costa]
    </span>
    <sup>
-    <a href="#ftnt44" id="ftnt_ref44">
-     [44]
+    <a href="#ftnt47" id="ftnt_ref47">
+     [47]
     </a>
    </sup>
    <span>
     and their development traced by Goldberg
    </span>
    <sup>
-    <a href="#ftnt45" id="ftnt_ref45">
-     [45]
+    <a href="#ftnt48" id="ftnt_ref48">
+     [48]
     </a>
    </sup>
    <span>
@@ -3812,8 +3773,8 @@
     Having good values for those traits is not an easy task, because self-judgement and also human judgement can be easily polarized. To obtain values that are somewhat objective, different criteria can be used. [YouYou et Al.]
    </span>
    <sup>
-    <a href="#ftnt46" id="ftnt_ref46">
-     [46]
+    <a href="#ftnt49" id="ftnt_ref49">
+     [49]
     </a>
    </sup>
    <span>
@@ -3835,8 +3796,8 @@
     Another study
    </span>
    <sup>
-    <a href="#ftnt47" id="ftnt_ref47">
-     [47]
+    <a href="#ftnt50" id="ftnt_ref50">
+     [50]
     </a>
    </sup>
    <span>
@@ -3861,8 +3822,8 @@
     Other works, explore ways of profiling the users given some text they produced. Different things can be discovered, from the sentiments the user is feeling to their personality
    </span>
    <sup>
-    <a href="#ftnt48" id="ftnt_ref48">
-     [48]
+    <a href="#ftnt51" id="ftnt_ref51">
+     [51]
     </a>
    </sup>
    <span>
@@ -4929,8 +4890,8 @@
     The solution that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
-    <a href="#ftnt49" id="ftnt_ref49">
-     [49]
+    <a href="#ftnt52" id="ftnt_ref52">
+     [52]
     </a>
    </sup>
    <span>
@@ -4947,8 +4908,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt50" id="ftnt_ref50">
-     [50]
+    <a href="#ftnt53" id="ftnt_ref53">
+     [53]
     </a>
    </sup>
    <span>
@@ -5037,8 +4998,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt51" id="ftnt_ref51">
-     [51]
+    <a href="#ftnt54" id="ftnt_ref54">
+     [54]
     </a>
    </sup>
    <span>
@@ -6089,8 +6050,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt52" id="ftnt_ref52">
-     [52]
+    <a href="#ftnt55" id="ftnt_ref55">
+     [55]
     </a>
    </sup>
    <span>
@@ -6256,8 +6217,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt53" id="ftnt_ref53">
-      [53]
+     <a href="#ftnt56" id="ftnt_ref56">
+      [56]
      </a>
     </sup>
    </li>
@@ -6925,6 +6886,26 @@
      [7]
     </a>
     <span>
+     Chouard, T. (2016). The Go files: AI computer wraps up 4–1 victory against human champion. Nature, doi, 10.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref8" id="ftnt8">
+     [8]
+    </a>
+    <span>
+     Chouard, T. (2016). The Go files: AI computer wraps up 4–1 victory against human champion. Nature, doi, 10.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref9" id="ftnt9">
+     [9]
+    </a>
+    <span>
      Pearl, J. (2017).
     </span>
     <span>
@@ -6937,8 +6918,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref8" id="ftnt8">
-     [8]
+    <a href="#ftnt_ref10" id="ftnt10">
+     [10]
     </a>
     <span>
      Gottfredson, L. S. (1997).
@@ -6953,8 +6934,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref9" id="ftnt9">
-     [9]
+    <a href="#ftnt_ref11" id="ftnt11">
+     [11]
     </a>
     <span>
      Lake, Brenden M and Ullman, Tomer D and Tenenbaum, Joshua B and Gershman, Samuel J. (2017). Building machines that learn and think like people. Behavioral and Brain Sciences
@@ -6963,8 +6944,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref10" id="ftnt10">
-     [10]
+    <a href="#ftnt_ref12" id="ftnt12">
+     [12]
     </a>
     <span>
      Pearl, J. (2017). Theoretical Impediments to Machine Learning. cse-lab.ethz.ch
@@ -6973,8 +6954,44 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref11" id="ftnt11">
-     [11]
+    <a href="#ftnt_ref13" id="ftnt13">
+     [13]
+    </a>
+    <span>
+     “A Theory of How Columns in the Neocortex Enable Learning the Structure of the World” J Hawkins, S Ahmad, Y Cui - Frontiers in Neural Circuits, 2017
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref14" id="ftnt14">
+     [14]
+    </a>
+    <span>
+     Lerer, Adam and Gross, Sam and Fergus, Rob. (2016). Learning physical intuition of block towers by example. arXiv preprint arXiv:1603.01312
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref15" id="ftnt15">
+     [15]
+    </a>
+    <span>
+     Hawkins, J. and Ahmad, S. (2016).
+    </span>
+    <span>
+     Why Neurons Have Thousands of Synapses, A Theory of Sequence Memory in Neocortex
+    </span>
+    <span>
+     . Frontiers in neural circuits
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref16" id="ftnt16">
+     [16]
     </a>
     <span>
      Müller, V., Bostrom, N. (2016).
@@ -6989,8 +7006,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref12" id="ftnt12">
-     [12]
+    <a href="#ftnt_ref17" id="ftnt17">
+     [17]
     </a>
     <span>
      Human Brain Project,
@@ -7006,8 +7023,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref13" id="ftnt13">
-     [13]
+    <a href="#ftnt_ref18" id="ftnt18">
+     [18]
     </a>
     <span>
     </span>
@@ -7022,34 +7039,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref14" id="ftnt14">
-     [14]
-    </a>
-    <span>
-     Hawkins, J. and Ahmad, S. (2016).
-    </span>
-    <span>
-     Why Neurons Have Thousands of Synapses, A Theory of Sequence Memory in Neocortex
-    </span>
-    <span>
-     . Frontiers in neural circuits
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref15" id="ftnt15">
-     [15]
-    </a>
-    <span>
-     “A Theory of How Columns in the Neocortex Enable Learning the Structure of the World” J Hawkins, S Ahmad, Y Cui - Frontiers in Neural Circuits, 2017
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref16" id="ftnt16">
-     [16]
+    <a href="#ftnt_ref19" id="ftnt19">
+     [19]
     </a>
     <span>
     </span>
@@ -7064,8 +7055,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref17" id="ftnt17">
-     [17]
+    <a href="#ftnt_ref20" id="ftnt20">
+     [20]
     </a>
     <span>
      Shieber, S. (1992). Lessons from a Restricted Turing Test.
@@ -7077,8 +7068,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref18" id="ftnt18">
-     [18]
+    <a href="#ftnt_ref21" id="ftnt21">
+     [21]
     </a>
     <span>
      Mauldin, M. L. (1994). Chatterbots, TinyMUDs and the Turing Test: Entering the Loebner Prize Competition.
@@ -7090,8 +7081,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref19" id="ftnt19">
-     [19]
+    <a href="#ftnt_ref22" id="ftnt22">
+     [22]
     </a>
     <span>
      Ghose, S., Barua, J. (2013). Toward the Implementation of a Topic Specific Dialogue-Based Natural Language Chatbot as an Undergraduate Advisor.
@@ -7103,8 +7094,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref20" id="ftnt20">
-     [20]
+    <a href="#ftnt_ref23" id="ftnt23">
+     [23]
     </a>
     <span>
      Ritter, A., Cherry, C., Dolan, W. (2011). Data-driven response generation in social media.
@@ -7116,8 +7107,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref21" id="ftnt21">
-     [21]
+    <a href="#ftnt_ref24" id="ftnt24">
+     [24]
     </a>
     <span>
      Li, J., Galley, M., Brockett, C., Gao, J., Bill, D. (2016). A persona-based neural conversation model.
@@ -7129,8 +7120,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref22" id="ftnt22">
-     [22]
+    <a href="#ftnt_ref25" id="ftnt25">
+     [25]
     </a>
     <span>
      Li, J., Galley, M., Brockett, C., Gao, J., and Dolan, B. (2015). A diversity-promoting objective function for neural conversation models.
@@ -7142,8 +7133,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref23" id="ftnt23">
-     [23]
+    <a href="#ftnt_ref26" id="ftnt26">
+     [26]
     </a>
     <span>
      Kannan, A., Kurach, K., Ravi, S., Kaufmann, T., Tomkins, A., Miklos, B., Corrado, G., Lukacs, L., Ganea, M., et al. (2016). Smart reply: Automated response suggestion for email.
@@ -7155,8 +7146,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref24" id="ftnt24">
-     [24]
+    <a href="#ftnt_ref27" id="ftnt27">
+     [27]
     </a>
     <span>
      Guo, D., Tur, G., Yih, W., Zweig, G. (2014).
@@ -7171,8 +7162,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref25" id="ftnt25">
-     [25]
+    <a href="#ftnt_ref28" id="ftnt28">
+     [28]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7187,8 +7178,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref26" id="ftnt26">
-     [26]
+    <a href="#ftnt_ref29" id="ftnt29">
+     [29]
     </a>
     <span>
      Bengio, Y., Simard, P., Frasconi, P. (1994).
@@ -7203,8 +7194,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref27" id="ftnt27">
-     [27]
+    <a href="#ftnt_ref30" id="ftnt30">
+     [30]
     </a>
     <span>
      Hochreiter, S. (1998).
@@ -7219,8 +7210,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref28" id="ftnt28">
-     [28]
+    <a href="#ftnt_ref31" id="ftnt31">
+     [31]
     </a>
     <span>
      Hochreiter, S., Schmidhuber, J. (1997).
@@ -7235,8 +7226,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref29" id="ftnt29">
-     [29]
+    <a href="#ftnt_ref32" id="ftnt32">
+     [32]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -7251,8 +7242,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref30" id="ftnt30">
-     [30]
+    <a href="#ftnt_ref33" id="ftnt33">
+     [33]
     </a>
     <span>
      Jozefowicz, R., Zaremba, W., Sutskever, I. (2015).
@@ -7267,8 +7258,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref31" id="ftnt31">
-     [31]
+    <a href="#ftnt_ref34" id="ftnt34">
+     [34]
     </a>
     <span>
      Chung, J., Gulcehre, C., Cho, K., Bengio, Y. (2014).
@@ -7283,8 +7274,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref32" id="ftnt32">
-     [32]
+    <a href="#ftnt_ref35" id="ftnt35">
+     [35]
     </a>
     <span>
      Pinter,Y., Guthrie, R., Eisenstein, J. (2017). Mimicking word embeddings using subword rnns.
@@ -7299,8 +7290,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref33" id="ftnt33">
-     [33]
+    <a href="#ftnt_ref36" id="ftnt36">
+     [36]
     </a>
     <span>
      Bojanowski, Piotr and Grave, Edouard and Joulin, Armand and Mikolov, Tomas. (2016). Enriching Word Vectors with Subword Information.
@@ -7312,8 +7303,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref34" id="ftnt34">
-     [34]
+    <a href="#ftnt_ref37" id="ftnt37">
+     [37]
     </a>
     <span>
      Cho, K. et al. (2014).
@@ -7328,8 +7319,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref35" id="ftnt35">
-     [35]
+    <a href="#ftnt_ref38" id="ftnt38">
+     [38]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7344,8 +7335,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref36" id="ftnt36">
-     [36]
+    <a href="#ftnt_ref39" id="ftnt39">
+     [39]
     </a>
     <span>
      Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
@@ -7360,8 +7351,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref37" id="ftnt37">
-     [37]
+    <a href="#ftnt_ref40" id="ftnt40">
+     [40]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7376,8 +7367,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref38" id="ftnt38">
-     [38]
+    <a href="#ftnt_ref41" id="ftnt41">
+     [41]
     </a>
     <span>
      Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016).
@@ -7392,8 +7383,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref39" id="ftnt39">
-     [39]
+    <a href="#ftnt_ref42" id="ftnt42">
+     [42]
     </a>
     <span>
      Chen, P., Chi, T., Su, S., Chen, Y. (2017).
@@ -7408,8 +7399,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref40" id="ftnt40">
-     [40]
+    <a href="#ftnt_ref43" id="ftnt43">
+     [43]
     </a>
     <span>
      Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -7424,8 +7415,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref41" id="ftnt41">
-     [41]
+    <a href="#ftnt_ref44" id="ftnt44">
+     [44]
     </a>
     <span>
      Eric, M. and Manning, C. (2017).
@@ -7440,8 +7431,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref42" id="ftnt42">
-     [42]
+    <a href="#ftnt_ref45" id="ftnt45">
+     [45]
     </a>
     <span>
      Kosinski, M., Matz, S. C., &amp; Gosling, S. D. (2015). Facebook as a research tool for the social sciences. American Psychologist, 70(6), 543–556. doi:10.1037/a0039210
@@ -7450,8 +7441,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref43" id="ftnt43">
-     [43]
+    <a href="#ftnt_ref46" id="ftnt46">
+     [46]
     </a>
     <span>
      https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
@@ -7460,8 +7451,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref44" id="ftnt44">
-     [44]
+    <a href="#ftnt_ref47" id="ftnt47">
+     [47]
     </a>
     <span>
      Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
@@ -7473,8 +7464,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref45" id="ftnt45">
-     [45]
+    <a href="#ftnt_ref48" id="ftnt48">
+     [48]
     </a>
     <span>
      Goldberg, L. R. (1993). The structure of phenotypic personality traits.
@@ -7486,8 +7477,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref46" id="ftnt46">
-     [46]
+    <a href="#ftnt_ref49" id="ftnt49">
+     [49]
     </a>
     <span>
      Youyou, W., Kosinski, M., Stillwell, D. (2015). Computer-based personality judgments are more accurate than those made by humans.
@@ -7499,8 +7490,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref47" id="ftnt47">
-     [47]
+    <a href="#ftnt_ref50" id="ftnt50">
+     [50]
     </a>
     <span>
      Kosinski, M., Stillwell, D., Graepel, Y. (2013). Private traits and attributes are predictable from digital records of human behavior.
@@ -7512,8 +7503,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref48" id="ftnt48">
-     [48]
+    <a href="#ftnt_ref51" id="ftnt51">
+     [51]
     </a>
     <span>
      F. Mairesse, M.A. Walker, M.R. Mehl, and R.K. Moore. (2007). Using linguistic cues for the automatic recognition of personality in conversation and text.
@@ -7525,8 +7516,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref49" id="ftnt49">
-     [49]
+    <a href="#ftnt_ref52" id="ftnt52">
+     [52]
     </a>
     <span>
      Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
@@ -7538,8 +7529,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref50" id="ftnt50">
-     [50]
+    <a href="#ftnt_ref53" id="ftnt53">
+     [53]
     </a>
     <span>
     </span>
@@ -7554,8 +7545,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref51" id="ftnt51">
-     [51]
+    <a href="#ftnt_ref54" id="ftnt54">
+     [54]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -7570,8 +7561,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref52" id="ftnt52">
-     [52]
+    <a href="#ftnt_ref55" id="ftnt55">
+     [55]
     </a>
     <span>
     </span>
@@ -7586,8 +7577,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref53" id="ftnt53">
-     [53]
+    <a href="#ftnt_ref56" id="ftnt56">
+     [56]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
