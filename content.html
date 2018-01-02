@@ -91,6 +91,15 @@
      NLU
     </span>
    </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     italian
+    </span>
+   </li>
+  </ul>
+  <ul>
    <li>
     <span>
      Personalization?
@@ -4387,6 +4396,22 @@
      Implementation
     </a>
    </span>
+   <span>
+    .
+   </span>
+  </p>
+  <p>
+   <span>
+    An important point of the approach chosen is the multi-linguality: the agent, being developed in Torino, is supposed to be able to understand not only the english language, but also the italian one. English may be considered the international language, but the support to local languages is essential. For the sentences of the agent the solution is simply to have both italian and english template responses. Instead for the language understanding part, as will be seen in
+   </span>
+   <span>
+    <a href="#h.wwhr5qye57xb">
+     Word Embeddings
+    </a>
+   </span>
+   <span>
+    , it requires having the requested disjointed models.
+   </span>
   </p>
   <h2 id="h.bi6zv7oh1003">
    <span>
@@ -4518,11 +4543,16 @@
     Those messages must be in some way controllable from the user. The suggested way of making them available is to test them once on the user and then getting the feedback: if the user reacts positively (measured by explicit response or interacting with the generated content) the feature can be kept on, otherwise the system will remember not to use the feature with the current user.
    </span>
   </p>
-  <h2 id="h.bwv3zlnhzl7g">
+  <h2 id="h.noidpm90bc79">
    <span>
     High level model
    </span>
   </h2>
+  <p>
+   <span>
+    Given the main scenarios and given the fact that no publicly available corpus exists for the selected domain, the choice of the approach couldn’t be in favour of an end-to-end system with dynamic response generation, but towards a NLU-based understanding. About the Information Retrieval, the data comes from external fixed set of APIs so it has been chosen to keep this approach instead of turning all the information in explorable graph of connected entities. These choices, together with the delineed scenarios, require the presence and cooperation of different components.
+   </span>
+  </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 233.33px;">
     <img alt="" src="https://lh5.googleusercontent.com/BUJVgrPNZZ7u_BrhRzBnNrfHUDxNBZ8sAYyE0_xtMkUWCoTQzAoSsaDQnSZBkx2T_mnFSPM96qRDH2KibeYZoVX1OPYAvJu7BXH0wSklIa22Y4-_aRhNtlB4wTXms8r8lz6lrM5t" style="width: 602.00px; height: 233.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
@@ -4530,7 +4560,7 @@
   </p>
   <p>
    <span>
-    The main scenarios that have been described require the presence and cooperation of different components. First of all, one to interface with the different messaging platforms. This is responsible to make messages arrive to the “brain” of the bot and to deliver responses back. Something about this component will be told in the
+    First of all, one to interface with the different messaging platforms. This is responsible to make messages arrive to the “brain” of the bot and to deliver responses back. Something about this component will be told in the
    </span>
    <span>
     <a href="#h.t6vk6kn3atxd">
@@ -4692,168 +4722,217 @@
     </span>
    </li>
   </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.m202m0o42x2b">
-   <span>
-    Recommendation phases
-   </span>
-  </h3>
-  <ol start="1">
-   <li>
-    <span>
-     SSH (social sciences and humanities):
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: bootstrap/social data, episodic KB
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: user features (can be described and are kind of explicit dimensions)
-    </span>
-   </li>
-  </ol>
-  <ol start="2">
-   <li>
-    <span>
-     Recommender system:
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: user features + stimulus (what type of recommendation)
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: recommendation
-    </span>
-   </li>
-   <li>
-    <span>
-     Internally using user profile vector that contains model-generated dimensions (can match or not the user features)
-    </span>
-   </li>
-  </ol>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Finding recurrent actions:
-   </span>
-  </p>
-  <p>
-   <span>
-    The EpisodicKB of actions describes events like: “on day DD/MM/YYYY time HH:MM user XXX searched for a bike at place PPP”. The place is not a simple position but is an external key to a Place row. Those places contain info that come from the contextual knowledge derived from some PlacesAPI (externally stored), or are stations or other specific positions with a role (home/work/school) (internally stored)
-   </span>
-  </p>
-  <p>
-   <span>
-    This table is monitored to find patterns that are then stored in the RecurrentAction table
-   </span>
-  </p>
-  <h2 id="h.tdcu8bfg7czy">
+  <h2 id="h.cftgacplng26">
    <span>
     NLU
    </span>
   </h2>
   <p>
    <span>
-    The subcomponents:
+    Before describing the NLU module, it is important to remember the approach that has been chosen: it is NLU based, not generative. For this reason the dialogue management is still done using rules and the responses are provided by filling some templates.
    </span>
   </p>
-  <ol start="1">
-   <li>
-    <span>
-     Intent + slot filling (RNN)
-    </span>
-   </li>
-   <li>
-    <span>
-     Entity resolver
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     from words to structured objects, e.g. place name → lat,lng,full_name,...
-    </span>
-   </li>
-   <li>
-    <span>
-     Disambiguation when multiple results
-    </span>
-   </li>
-   <li>
-    <span>
-     Contextualization to current city
-    </span>
-   </li>
-   <li>
-    <span>
-     Variables (e.g. home, work, school)
-    </span>
-   </li>
-  </ol>
-  <ol start="3">
-   <li>
-    <span>
-     Put the Dialogue manager here?
-    </span>
-   </li>
-  </ol>
-  <h3 id="h.ujlxf9t9kbms">
+  <p>
    <span>
-    Intents and slots
+    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify slots.
+   </span>
+  </p>
+  <h3 id="h.n3l5xxexfx34">
+   <span>
+    Intent and slot types
    </span>
   </h3>
   <p>
    <span>
-    The intents have to cover the desired scenarios, to provide categories to user sentences
+    From an analysis of the scenarios, an hypothesis of the common user intents has been done, and from them also the slot types have been modeled. Intent and slot types have been successively refined in successive iterations by observing the transcript of some test users.
    </span>
   </p>
   <p>
    <span>
-    Intent types:
+    The results can be seen in this table:
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <a id="t.5e682606462ad8f12660676dff54d11b868a73d9">
+  </a>
+  <a id="t.2">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Intent type
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Example
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Slots
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        search_bike
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Find me a bike near Central Park
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        LOCATION(‘Central Park’)
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        search_slot
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Where can I leave the bike near Big Ben
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        LOCATION(‘Big Ben’)
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        plan_trip
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        I want to go from Piazza Castello to Porta Susa
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        FROM.LOCATION(‘Piazza Castello’) TO.LOCATION(‘Porta Susa’)
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        set_location
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        I am in Rue de France, Nice
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        LOCATION(‘Rue de France, Nice’)
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        greet
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Hi there!
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        info
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Who are you?
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Other intent types have been designed but are not implemented:
    </span>
   </p>
   <ul>
-   <li>
-    <span>
-     Search a bike
-    </span>
-   </li>
-   <li>
-    <span>
-     Search a free slot
-    </span>
-   </li>
-   <li>
-    <span>
-     Plan a trip (1+2)
-    </span>
-   </li>
-   <li>
-    <span>
-     Communicate location
-    </span>
-   </li>
    <li>
     <span>
      Get informations about a station
@@ -4871,17 +4950,7 @@
    </li>
    <li>
     <span>
-     Basic interactions (greet/thank)
-    </span>
-   </li>
-   <li>
-    <span>
      Feedback (on recommendation/place/system)
-    </span>
-   </li>
-   <li>
-    <span>
-     Informations on the bot (who are you? What can you do?)
     </span>
    </li>
    <li>
@@ -4909,48 +4978,47 @@
   </ul>
   <p>
    <span>
-    Entity types:
    </span>
   </p>
-  <ul>
+  <p>
+   <span>
+    On the entities some work needs to be done by the entity resolver, in order to recognize some values (such as home/work) and to disambiguate in a way to provide the best result in the current location context.
+   </span>
+  </p>
+  <p>
+   <span>
+    Entity resolver
+   </span>
+  </p>
+  <ol start="1">
    <li>
     <span>
-     Location (with roles → slot types LOCATION_FROM, LOCATION_TO, LOCATION)
+     from words to structured objects, e.g. place name → lat,lng,full_name,...
     </span>
    </li>
    <li>
     <span>
-     Time
+     Disambiguation when multiple results
     </span>
    </li>
-  </ul>
+   <li>
+    <span>
+     Contextualization to current city
+    </span>
+   </li>
+   <li>
+    <span>
+     Variables (e.g. home, work, school)
+    </span>
+   </li>
+  </ol>
   <p>
    <span>
-    On the entities some work needs to be done by the entity resolver, in order to recognize some values (such as home/work) and to disambiguate in a way to provide the best result in the current location context
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”). If the dependency is not fulfilled, a way of skip
-   </span>
-  </p>
-  <h3 id="h.bc96kppcy8e3">
-   <span>
-    Where the NN leaves the space to handwritten rules
-   </span>
-  </h3>
-  <p>
-   <span>
-    Before describing the NLU module, it is important to remember the approach that has been chosen: it is NLU empowered, not generative. For this reason the dialogue management is still done using rules and the responses are provided by filling some templates.
-   </span>
-  </p>
-  <p>
-   <span>
-    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify slots.
+    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”).
    </span>
   </p>
   <h3 id="h.574j5code3vd">
@@ -4960,7 +5028,7 @@
   </h3>
   <p>
    <span>
-    The solution that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
+    The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
     <a href="#ftnt52" id="ftnt_ref52">
@@ -4986,21 +5054,66 @@
     </a>
    </sup>
    <span>
-    however shows that a word embedding layer is part of the model and the values are randomly initialized. Since the dataset on which the evaluation has been done is not very big, in the approach chosen fixed word embeddings, pretrained on bigger corpuses, have been used as inputs and this gave a little boost on performances [TODO ADD LINK TO MEASURES] as can be seen in the evaluation section.
+    however shows that a word embedding layer is part of the model and the values are randomly initialized. Since the dataset on which the evaluation has been done is not very big, in the approach chosen fixed word embeddings, pretrained on bigger corpuses, have been used as inputs and this gave a little boost on performances [TODO ADD LINK TO MEASURES] on all the used datasets as can be seen in the evaluation section. Using pre-trained static word embeddings as inputs to the neural network can help reducing the number of tunable parameters and therefore help training small corpuses, in addition to other advantages (word similarity evaluation possible also on words that were not contained in the training corpus of the domain)
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Instead of trainable from scratch, pretrained on bigger corpus
-    </span>
-   </li>
-   <li>
-    <span>
-     Improvement of results with pre-trained on ATIS dataset
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    This is the most language-dependent part of the network and the goodness of the classification results highly depend on the quality of the embeddings.
+   </span>
+  </p>
+  <p>
+   <span>
+    Natural Language Processing techniques depend a lot on the selected language and also available libraries come with differentiated support based on it. Features as Part of Speech, or Parse Trees, both if they come from statistical models or handcrafted ones, can be good only if a lot of work is done in annotation of big corpuses and therefore the efforts mainly fall on the English language.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead approaches that consider word embeddings are less dependent on annotated corpuses, since those vectors can be built by simply having sentences in the desired language, that can be easily found over the web. The efforts here are time and space requirements to compute the embedding values.
+   </span>
+  </p>
+  <p>
+   <span>
+    As said before, the bot has as requirement to support also the italian language. For the english language several preprocessed word embeddings are available, trained on different corpuses and with different algorithms. Instead for italian, the found pre-trained embeddings are GloVe and word2vec trained by the Human Language Technologies of Pisa
+   </span>
+   <sup>
+    <a href="#ftnt54" id="ftnt_ref54">
+     [54]
+    </a>
+   </sup>
+   <span>
+    and the official fastText
+   </span>
+   <sup>
+    <a href="#ftnt55" id="ftnt_ref55">
+     [55]
+    </a>
+   </sup>
+   <span>
+    , all trained on the Wikipedia corpus. Another widely used corpus is CommonCrawl
+   </span>
+   <sup>
+    <a href="#ftnt56" id="ftnt_ref56">
+     [56]
+    </a>
+   </sup>
+   <span>
+    , that is the output of web crawlers that reached billions of webpages, splitted by their language and preprocessed to have deduped text-only.
+   </span>
+  </p>
+  <p>
+   <span>
+    An important aspect to make word embeddings work at their best is to apply the same kind of tokenization both when training the word embeddings and when using them when feeding RNNs. Usually the tokenization is done by removing punctuation and by applying other transformations (such as replacing hyphens and apostrophes with spaces to split the words) but for this application the choice has been to include punctuation in order not to discard any useful hints from the input sentences. Implementation details about the tokenization can be found
+   </span>
+   <span>
+    <a href="#h.hicafqiwqr81">
+     here
+    </a>
+   </span>
+   <span>
+    .
+   </span>
+  </p>
   <h4 id="h.gorlkbt8j0xz">
    <span>
     Output dependencies
@@ -5008,20 +5121,34 @@
   </h4>
   <p>
    <span>
-    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. In the description of the architecture in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels. This time the word embeddings, being the labels part of an independent dictionary with respect to the input words, have been included in the trainable parameters of the computational graph.
+    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper, the first one has been chosen.
+   </span>
+  </p>
+  <p>
+   <span>
+    In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels. This time the word embeddings, being the labels part of an independent dictionary with respect to the input words, have been included in the trainable parameters of the computational graph.
    </span>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 391.00px; height: 298.00px;">
     <img alt="" src="https://lh3.googleusercontent.com/aHgGVSdG8K2pSRRbMiqERWiZzgx8iW66krO69uA3hqoXSEC7lAZWxL16Lkj2IvZ-qjZFBD-B3XmEkxMTNs_pvh7wdsr38K-cY5Zo9p8Zd-YuMnwaZ0q722BuFmOz2rzNF5SU0svz" style="width: 391.00px; height: 298.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
-  <h3 id="h.4xv0kvc2etve">
+  <h3 id="h.jgfqc41g5bq6">
    <span>
     Statefulness of architecture for multi-turn NLU
    </span>
   </h3>
   <p>
    <span>
-    For solving the problem of multi-turn NLU, after analyzing all the ideas about keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. And specifically for the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage. Since the model is a single one, the agent turn words are used in both the intent classification and in the slot filling networks.
+    TODO this approach is quite a mess. Consider keeping sentences separated, only using previous bot turn for slots. For intent maybe is sufficient to be below a certain threshold. Or intent RNN with [current intent logits, previous intent] → current intent
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. And specifically for the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage. Since the model is a single one, the agent turn words are used in both the intent classification and in the slot filling networks.
    </span>
   </p>
   <p>
@@ -5071,8 +5198,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt54" id="ftnt_ref54">
-     [54]
+    <a href="#ftnt57" id="ftnt_ref57">
+     [57]
     </a>
    </sup>
    <span>
@@ -5130,11 +5257,6 @@
     </span>
    </li>
   </ul>
-  <h2 id="h.wkd8mmsq8hx8">
-   <span>
-    Managing the dialogue and providing informations
-   </span>
-  </h2>
   <h3 id="h.ycl7s8xb1vf8">
    <span>
     Dialogue State Management
@@ -5152,13 +5274,23 @@
     </span>
    </li>
   </ul>
+  <h2 id="h.kiy7ax5md0r5">
+   <span>
+    Information Retrieval
+   </span>
+  </h2>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
    </span>
   </p>
   <h3 id="h.h6o8pzps7nue">
    <span>
-    Getting the informations
+    Bikes
    </span>
   </h3>
   <p>
@@ -5174,6 +5306,11 @@
     .
    </span>
   </p>
+  <h3 id="h.gv4ijqy93ah6">
+   <span>
+    Paths
+   </span>
+  </h3>
   <p>
    <span>
     How to find a path between two points: fastest feasible on bike vs other approaches that consider beauty, smells of places (
@@ -5185,6 +5322,16 @@
    </span>
    <span>
     )
+   </span>
+  </p>
+  <h3 id="h.x847dzgqjj9">
+   <span>
+    Places
+   </span>
+  </h3>
+  <p>
+   <span>
+    TODO
    </span>
   </p>
   <h2 id="h.p32l2grv4p6t">
@@ -5217,6 +5364,53 @@
     To find this category, a bit of user modeling needs to be done.
    </span>
   </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <ol start="1">
+   <li>
+    <span>
+     SSH (social sciences and humanities):
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Input: bootstrap/social data, episodic KB
+    </span>
+   </li>
+   <li>
+    <span>
+     Output: user features (can be described and are kind of explicit dimensions)
+    </span>
+   </li>
+  </ol>
+  <ol start="2">
+   <li>
+    <span>
+     Recommender system:
+    </span>
+   </li>
+  </ol>
+  <ol start="1">
+   <li>
+    <span>
+     Input: user features + stimulus (what type of recommendation)
+    </span>
+   </li>
+   <li>
+    <span>
+     Output: recommendation
+    </span>
+   </li>
+   <li>
+    <span>
+     Internally using user profile vector that contains model-generated dimensions (can match or not the user features)
+    </span>
+   </li>
+  </ol>
   <h4 id="h.9j2yq7sjjkvs">
    <span>
     User modeling
@@ -5873,7 +6067,7 @@
   </p>
   <a id="t.522a20e01ac7b3f467e4103ac499479fb019deb7">
   </a>
-  <a id="t.2">
+  <a id="t.3">
   </a>
   <table>
    <tbody>
@@ -6132,8 +6326,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt55" id="ftnt_ref55">
-     [55]
+    <a href="#ftnt58" id="ftnt_ref58">
+     [58]
     </a>
    </sup>
    <span>
@@ -6213,11 +6407,21 @@
     A library for common NLP tasks, SpaCy, has been used for tokenization and for pretrained word embeddings on the english language. The corpus used comes from CommonCrawl, and the word embeddings have a size of 300. Different models come with the library, and they change how much space the word embeddings take. The biggest one, used in the implementation, contains 1.1m of words in the dictionary. Smaller models apply a reduction on the number of vectors and on the dictionary size; the mapping between those two dimensions is not always one-to-one: different words can be mapped on the same vector for further reduction in space.
    </span>
   </p>
-  <h5 id="h.jwmi7ejc7ele">
+  <h4 id="h.hicafqiwqr81">
+   <span>
+    The tokenization of spaCy
+   </span>
+  </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
+  <h4 id="h.jwmi7ejc7ele">
    <span>
     Integrating SpaCy word vectors in the computational graph
    </span>
-  </h5>
+  </h4>
   <p>
    <span>
     To integrate the embeddings values provided by this library in the computational graph written in tensorflow, the `py_func` method has been used. In this way a function declared in definition time will be called in runtime: tensorflow manages this by making the py_func wrapper work externally on tensors and internally with numpy arrays.
@@ -6299,8 +6503,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt56" id="ftnt_ref56">
-      [56]
+     <a href="#ftnt59" id="ftnt_ref59">
+      [59]
      </a>
     </sup>
    </li>
@@ -6609,6 +6813,20 @@
      Pretrained word vectors and effect of spacy model size with respect to embedding layer
     </span>
    </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Instead of trainable from scratch, pretrained on bigger corpus
+    </span>
+   </li>
+   <li>
+    <span>
+     Improvement of results with pre-trained on ATIS/+others dataset
+    </span>
+   </li>
+  </ul>
+  <ul>
    <li>
     <span>
      Effect of better tokenization in italian language and comparison with
@@ -7631,6 +7849,56 @@
      [54]
     </a>
     <span>
+    </span>
+    <span>
+     <a href="http://hlt.isti.cnr.it/wordembeddings/">
+      http://hlt.isti.cnr.it/wordembeddings/
+     </a>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref55" id="ftnt55">
+     [55]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md">
+      https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md
+     </a>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref56" id="ftnt56">
+     [56]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="http://slides.com/smerity/common-crawl-for-nlp">
+      http://slides.com/smerity/common-crawl-for-nlp
+     </a>
+    </span>
+    <span>
+     . Source, preprocessed data and models can be downloaded from
+    </span>
+    <span>
+     <a href="http://statmt.org/ngrams">
+      http://statmt.org/ngrams
+     </a>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref57" id="ftnt57">
+     [57]
+    </a>
+    <span>
      Liu, B. and Lane, I. (2016).
     </span>
     <span>
@@ -7643,8 +7911,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref55" id="ftnt55">
-     [55]
+    <a href="#ftnt_ref58" id="ftnt58">
+     [58]
     </a>
     <span>
     </span>
@@ -7659,8 +7927,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref56" id="ftnt56">
-     [56]
+    <a href="#ftnt_ref59" id="ftnt59">
+     [59]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
