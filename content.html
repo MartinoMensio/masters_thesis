@@ -1094,6 +1094,11 @@
      table1 Major categories of embodied conversational agent research
     </span>
    </li>
+   <li>
+    <span>
+     Initiative: use the stanford slides, maybe also some other divisions are there
+    </span>
+   </li>
   </ul>
   <h3 id="h.v56503hupz6c">
    <span>
@@ -4373,6 +4378,16 @@
     The following sections will be structured in this way: first giving an idea of the informations and use cases this bot aims to address, then talking about the platform independence of the core of the bot, then analyzing the Natural Language Understanding in both single turn interactions and in multi turn interactions, then going on more high level functionalities like the personalization.
    </span>
   </p>
+  <p>
+   <span>
+    The topics covered in this part of the document do not reflect the actual implemented features of the prototype. As said in the introduction, the main focus of this thesis has been on the natural language understanding. For the implemented features and their details see the next part
+   </span>
+   <span>
+    <a href="#h.bqazqpo58hkq">
+     Implementation
+    </a>
+   </span>
+  </p>
   <h2 id="h.bi6zv7oh1003">
    <span>
     Scenarios
@@ -4412,210 +4427,95 @@
   </p>
   <p>
    <span>
-    For the first case, the queries can be to find an available bike or a free parking slot given the current user position or another location. Instead for the second case, the user may want to ask for direction between two points: this involves finding a bike near the source and finding a place where to leave it near the destination.
+    For the first case, the user may want to find an available bike or a free parking slot given the current user position or another location. Instead for the second case, the user may want to ask for direction between two points: this involves finding a bike near the source and finding a place where to leave it near the destination.
    </span>
   </p>
   <p>
    <span>
+    The system, given simple queries expressed in natural language, should understand the request and extract the necessary parameters. The retrieval of information should include the interrogation of the bike sharing system or using cached versions, with the aim to find a path for the user that follows the constraints specified by the user and by the bike availability. Other sources of information that may be consulted are meteo information (to provide alerts for the given location) and routing information in order to return a path that can be used by bikes.
    </span>
   </p>
   <p>
    <span>
+    The history of conversation is stored in a way to find temporal and spatial pattern for the user, in order to build a model that can be used for personalizing his experience for example by providing places suggestions, as will be seen in
+   </span>
+   <span>
+    <a href="#h.p32l2grv4p6t">
+     personalization
+    </a>
+   </span>
+   <span>
+    .
    </span>
   </p>
   <p>
    <span>
-    The utterance is processed by the NLU module. The query understanding engine activates the contextual knowledge engine to get data that is related to the question, and in parallel records the event into the episodic knowledge. The contextual knowledge is composed of informations belonging to bike sharing, meteo, placesAPI. The results from the different sources are combined by the appropriate module. At this point the recommender is interrogated, in order to provide some personalized suggestions, if they have some metrics (telling that the suggestion is appropriate and relevant). The structured information of the result that is going to be provided needs some elaboration to provide a natural-language feeling: this is the role of the sentence generation engine that, based on templates, puts the response in human-like format.
+    If there is a place that can be suggested, with sufficient confidence of the recommending systems (telling that the suggestion is appropriate and relevant), additional informations about it can be included in the response that is generated.
    </span>
   </p>
   <p>
    <span>
+    Such response should have the form of natural language, with the possibility to include visual contents such as pictures or links to more detailed informations about the results.
    </span>
   </p>
-  <h3 id="h.ffagw94370j3">
+  <h3 id="h.rca3waw30vmb">
+   <span>
+    Search for supported cities
+   </span>
+  </h3>
+  <p>
+   <span>
+    Another scenario is when a user wants to understand the availability of the informations for a specific city. In this case the request, expressed in natural language, will contain the name of the city. The system extracts it and finds if any bike sharing providers have support in it. If the city is not supported, informations about what nearby locations are supported can be provided in the response.
+   </span>
+  </p>
+  <h3 id="h.4andgrew3fog">
    <span>
     Small talk, refining the user model
    </span>
   </h3>
   <p>
    <span>
-    Expressing availability to talk (familiarization):
+    The last scenarios is the one of small talk: all the sentences that aren’t necessary to provide informations about bikes, but are necessary to handle very basic chit-chat dialogues.
    </span>
   </p>
   <p>
    <span>
-    The user may be sending some messages that don’t have some needs inside. Also the first interaction, in which the user sends some “/start” or “hi“ messages can activate this use case. The NLU processes them as usual, and the query understanding engine detects the situation. Instead of using contextual knowledge, it interacts with the personalization module to find some questions for the user: what he expects from the bot, or asking some features (interests/…).
+    The user may use greetings, generic responses like yes/no, questions about the bot and other sentences that can be easily replied to, just to make it seem more natural.
    </span>
   </p>
-  <h3 id="h.7n4l306qi0se">
+  <p>
+   <span>
+    Knowing that users expectations can be easily destroyed with a “I don’t understand” some answers have been added only to mitigate a very big problem that still is present and could only be solved with generative approaches.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having some dialogues of this genre with the user could help understanding more about him, and those informations could be useful for refining the personalization model. By having a mixed-initiative interaction instead of a user-centric interaction, the bot may also ask questions to the user about his interests or explicitly asking for some feedback. In this way the personalization would receive a boost.
+   </span>
+  </p>
+  <h3 id="h.v3k960rc81yj">
    <span>
     Proactive messages
    </span>
   </h3>
   <p>
    <span>
-    Sending messages without being asked:
+    Extending the mixed-initiative interaction out of the single dialogue, the bot may be able to actively begin the conversation with the user after some time of inactivity (not possible to start conversations with new users). This can be seen as breaking the idea of the bot as a service and for this reason should be only done if there is a advantage for the user. The advantage can exist in two different situations.
    </span>
   </p>
   <p>
    <span>
-    Warning: this breaks the principle that bots should only interact when explicitly asked. For this reason this feature should be kept under full control of the user (opt-in proposition vs one-time test + asking if this is liked), that in any moment can decide to turn it off. The reminder/suggestion, based on explicit request to do that or because a pattern has been detected, is generated and sent. The feedback must always be measured. The activation may be defined by the user (e.g. “tomorrow at 5 p.m. give me informations about bikes to go home”) or when the expected time, derived from the detected pattern, is coming (e.g: user always asks for a bike between 8:10 and 8:30 to go to university, now it is 8:00, could be the right time to send him the suggestion).
+    The first one is when, after having provided some informations to the user (e.g. a bike is available in a specific station), and before the user arrives there the situation changes (e.g. the bike is no more available or the meteo is getting worse). In this case the bot could actively send a message to the user informing about the change.
    </span>
   </p>
   <p>
    <span>
-    Another useful activation is user asks for station X→ give results now on X and activate watcher on station X → estimate user-arrival-time to X → if station X is becoming useless (no/few bikes/slots depending on user need) send message to warn user
+    The second situation is when a pattern in the behaviour has been observed (e.g. the user always searches for a bike at 8am in a fixed location). The system (some minutes before the forecasted event) can send an unsolicited message to the user informing him about the bike availability.
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”). If the dependency is not fulfilled, a way of skip
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <a id="t.2c97474fc09cd2758e0b91a19c5cfdca72f43631">
-  </a>
-  <a id="t.2">
-  </a>
-  <table>
-   <tbody>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        intent
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        dependencies
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        steps
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        decision
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Search bike/free slot
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Location / updated position
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Find station informations, check meteo. Collect event. Activate watcher on station. Interrogate recommender
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Station informations + meteo warning* + recommendation*
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Plan trip
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Location A+B
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Same as above, but twice because both station must be watched / both events need to be collected
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        As above
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        If i will go home in 30 minutes, will I get wet?
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        OMG
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-    </tr>
-   </tbody>
-  </table>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
+    Those messages must be in some way controllable from the user. The suggested way of making them available is to test them once on the user and then getting the feedback: if the user reacts positively (measured by explicit response or interacting with the generated content) the feature can be kept on, otherwise the system will remember not to use the feature with the current user.
    </span>
   </p>
   <h2 id="h.bwv3zlnhzl7g">
@@ -4624,8 +4524,8 @@
    </span>
   </h2>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 189.33px;">
-    <img alt="" src="https://lh4.googleusercontent.com/ml7B5Ffk3OYJ2m5_fhYgm8yDTs-z45p-K-yDYsrfprhIMPKf7RVphmhVYFZhJCnIhhRfLcyxnu_Yz2zbWJ4ehwHdJRANJ7ams6FfHXmwgioqrbOn5Jfr-LA3zEmsuLiDiyJsDfNW" style="width: 602.00px; height: 189.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 233.33px;">
+    <img alt="" src="https://lh5.googleusercontent.com/BUJVgrPNZZ7u_BrhRzBnNrfHUDxNBZ8sAYyE0_xtMkUWCoTQzAoSsaDQnSZBkx2T_mnFSPM96qRDH2KibeYZoVX1OPYAvJu7BXH0wSklIa22Y4-_aRhNtlB4wTXms8r8lz6lrM5t" style="width: 602.00px; height: 233.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -4651,6 +4551,17 @@
   </p>
   <p>
    <span>
+    The main sources of information (Knowledge Bases) can be grouped together in two types: the Contextual and Episodic.
+   </span>
+  </p>
+  <p>
+   <span>
+    To the first group belong the providers of informations, that are used in read only mode, inherent to bike sharing, places, meteo. The data is provided by external web API, and may be cached locally for performance improvements. The Information Retrieval module is responsible to manage them providing a higher level API that can be easily used by the dialogue manager.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead the Episodic Knowledge contains records captured from the interaction with the users. Aggregated informations can be computed and put in the user model, that collects the user features that can be used for the personalization.
    </span>
   </p>
   <h2 id="h.t6vk6kn3atxd">
@@ -5020,6 +4931,11 @@
   </p>
   <p>
    <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Location can be inside the utterance as entity or can be the user position. In this case it must be up-to-date (define a timeout of validity and a way to ask user: “are you still there?”). If the dependency is not fulfilled, a way of skip
    </span>
   </p>
   <h3 id="h.bc96kppcy8e3">
@@ -5802,6 +5718,15 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO add details about which features have been implemented
+   </span>
+  </p>
   <h2 id="h.8zj60ofw3oog">
    <span>
     Interaction with chat platforms
@@ -5948,7 +5873,7 @@
   </p>
   <a id="t.522a20e01ac7b3f467e4103ac499479fb019deb7">
   </a>
-  <a id="t.3">
+  <a id="t.2">
   </a>
   <table>
    <tbody>
