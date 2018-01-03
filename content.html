@@ -5257,81 +5257,29 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.ycl7s8xb1vf8">
+  <h3 id="h.q9a05jk3u986">
    <span>
     Dialogue State Management
    </span>
   </h3>
   <p>
    <span>
-    TODO tell something about:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Intents that require some entities and rules
-    </span>
-   </li>
-  </ul>
-  <h2 id="h.kiy7ax5md0r5">
-   <span>
-    Information Retrieval
-   </span>
-  </h2>
-  <p>
-   <span>
-    TODO
+    The Dialogue State Management module is responsible to handle the mapping from intents and available slots to the actions and responses. For this part, as mentioned before, a rule-based approach has been chosen.
    </span>
   </p>
   <p>
    <span>
+    Each intent type is mapped to a specific set of actions. Additionally for each slot type that is used in a certain intent type a rule is configured to say if it is compulsory to have a value or not. In the case the slot is compulsory, the Dialogue State Manager must ask back for them, prompting a question to the user.
    </span>
   </p>
-  <h3 id="h.h6o8pzps7nue">
-   <span>
-    Bikes
-   </span>
-  </h3>
   <p>
    <span>
-    About bikes. Lack of open data. Every city and company has different ways to interact and get informations. Some libraries (pybikes) or some APIs
-   </span>
-   <span>
-    <a href="https://api.citybik.es/v2/">
-     https://api.citybik.es/v2/
-    </a>
-   </span>
-   <span>
-    .
+    The intents that have been designed however have another type of rule: the location entity can be replaced by the current position of the user, that can be sent as attachment or expressed with the corresponding intent ‘set_position’. If the value of the user position exists and is recent (last 2 hours), it can be used. Otherwise the user is required to provide it.
    </span>
   </p>
-  <h3 id="h.gv4ijqy93ah6">
-   <span>
-    Paths
-   </span>
-  </h3>
   <p>
    <span>
-    How to find a path between two points: fastest feasible on bike vs other approaches that consider beauty, smells of places (
-   </span>
-   <span>
-    <a href="http://goodcitylife.org/happymaps/">
-     http://goodcitylife.org/happymaps/
-    </a>
-   </span>
-   <span>
-    )
-   </span>
-  </p>
-  <h3 id="h.x847dzgqjj9">
-   <span>
-    Places
-   </span>
-  </h3>
-  <p>
-   <span>
-    TODO
+    Once the requirements have been checked, the corresponding actions are called and the response is generated
    </span>
   </p>
   <h2 id="h.p32l2grv4p6t">
@@ -5570,6 +5518,134 @@
     From feedback (which ones) to understanding attitude towards recommendations
    </span>
   </p>
+  <h2 id="h.kiy7ax5md0r5">
+   <span>
+    Information Retrieval
+   </span>
+  </h2>
+  <p>
+   <span>
+    The Information Retrieval Module connects to different sources of data to provide informations about the bike sharing systems, interfacing with directions APIs and retrieving informations about the places (especially for the personalization component).
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h3 id="h.5z1ti99xp363">
+   <span>
+    Bikes
+   </span>
+  </h3>
+  <p>
+   <span>
+    Bike sharing is an expanding market, where every day more companies are investing in, and more people decide to use them for their relatively small cost and for their easiness in the urban environment. The majority of the providers have station-based systems, where the users begin and end their trip at fixed locations (the stations). However nowadays station-free systems are being spread in the major cities, with the advantage of being able to leave the vehicle in any responsible place.
+   </span>
+  </p>
+  <p>
+   <span>
+    Given the multitude of companies and also some kind of competition, since in different cities multiple providers are available (e.g. in Torino there is the station-based toBike and the station-free oBike and GoBeeBike), interfacing with them is quite difficult for two reasons:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
+    </span>
+    <sup>
+     <a href="#ftnt58" id="ftnt_ref58">
+      [58]
+     </a>
+    </sup>
+    <span>
+     ) and because of its value
+    </span>
+   </li>
+   <li>
+    <span>
+     The data format is different for each bike sharing system
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    For this reason, the only applicable approach to get the desired informations is to use some open-source contributive library that is produced and maintained by a sufficient number of people in order to cover a big number of cities. The information may be extracted by publicly-available APIs or by web scraping techniques.
+   </span>
+  </p>
+  <p>
+   <span>
+    Fortunately such library exists, as will be seen in the implementation part.
+   </span>
+  </p>
+  <h3 id="h.hhd7s72d1atm">
+   <span>
+    Paths
+   </span>
+  </h3>
+  <p>
+   <span>
+    Having informations on the bike sharing and on the user position and desired destination, the bot should provide a navigation path with the selected constraints. Since many web APIs exist with good results, the approach is to find a service with the desired functionalities and use it.
+   </span>
+  </p>
+  <p>
+   <span>
+    The main feature requested is to compute paths that are suitable for cycling: respecting the street laws, avoiding highways, preferring cycle lanes are just the main examples.
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Google Maps Directions API support for bicycles does not cover the city of Turin
+    </span>
+   </li>
+   <li>
+    <span>
+     Mapbox
+    </span>
+   </li>
+   <li>
+    <span>
+     osm
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
+   </span>
+   <sup>
+    <a href="#ftnt59" id="ftnt_ref59">
+     [59]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt60" id="ftnt_ref60">
+     [60]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt61" id="ftnt_ref61">
+     [61]
+    </a>
+   </sup>
+   <span>
+    . This feature was not considered, in favour of the usual optimal path.
+   </span>
+  </p>
+  <h3 id="h.x847dzgqjj9">
+   <span>
+    Places
+   </span>
+  </h3>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
+  <h2 id="h.i4xu8yyuck0j">
+   <span>
+   </span>
+  </h2>
   <h2 id="h.78zc2qf1izjb">
    <span>
     Data modeling
@@ -5989,7 +6065,7 @@
   </h2>
   <p>
    <span>
-    Getting the bike sharing informations
+    Getting the bike sharing informations: pybikes vs citybik.es, other sources, ...
    </span>
   </p>
   <p>
@@ -6326,8 +6402,8 @@
     Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
    </span>
    <sup>
-    <a href="#ftnt58" id="ftnt_ref58">
-     [58]
+    <a href="#ftnt62" id="ftnt_ref62">
+     [62]
     </a>
    </sup>
    <span>
@@ -6503,8 +6579,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt59" id="ftnt_ref59">
-      [59]
+     <a href="#ftnt63" id="ftnt_ref63">
+      [63]
      </a>
     </sup>
    </li>
@@ -7915,6 +7991,51 @@
      [58]
     </a>
     <span>
+     Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
+    </span>
+    <span>
+     <a href="https://www.cnet.com">
+      https://www.cnet.com
+     </a>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref59" id="ftnt59">
+     [59]
+    </a>
+    <span>
+     Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref60" id="ftnt60">
+     [60]
+    </a>
+    <span>
+     Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref61" id="ftnt61">
+     [61]
+    </a>
+    <span>
+     Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref62" id="ftnt62">
+     [62]
+    </a>
+    <span>
     </span>
     <span>
      <a href="http://www.fast.ai/2017/01/03/keras/">
@@ -7927,8 +8048,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref59" id="ftnt59">
-     [59]
+    <a href="#ftnt_ref63" id="ftnt63">
+     [63]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
