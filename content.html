@@ -5366,15 +5366,6 @@
   </h4>
   <p>
    <span>
-    What variables to collect. How to build the user model (features)
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
     First of all, it is important to understand which variables need to be collected to build the user model. Some manifest variables like gender, age, profession, religion, political orientation are used for many profiling techniques, but not always they are available. Moreover, from a bot that is giving bike sharing informations it is strange to be asked for those values, and can only make the user stop using the bot because it’s asking strange questions. For these reasons, those information are not even asked to the user.
    </span>
   </p>
@@ -5412,43 +5403,95 @@
     Once these inputs are collected, different recommendation paths can be used to suggest the categories of places.
    </span>
   </p>
-  <h4 id="h.seno7d4pqxiv">
+  <h4 id="h.bcvzzw13ygcz">
    <span>
     Recommendation paths
    </span>
   </h4>
   <p>
    <span>
-    Hybrid content-based and collaborative.
+    As will be explained in this section, the recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques.
    </span>
   </p>
   <p>
    <span>
-    TODO explain here the different flows:
+   </span>
+  </p>
+  <p>
+   <span>
+    First of all, when a certain user enables the social login, the personalization module will access the user interests together with the places he visited. In this way both features of the user and features of the places are analyzed.
+   </span>
+  </p>
+  <p>
+   <span>
+    From the side of the user, his interests are analyzed and the following features are collected:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Exploiting social login
+     Big5 personal traits
     </span>
    </li>
    <li>
     <span>
-     Exploiting feedback
-    </span>
-   </li>
-   <li>
-    <span>
-     Training the mapping between user features and places categories
-    </span>
-   </li>
-   <li>
-    <span>
-     Exploiting neighbors (collaborative)
+     Main interests, as top level categories
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    Instead on the side of places that have been visited or have been “liked” by the user, the respective category is retrieved.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having this mapping, a trainable relation is built (a neural network layer) and trained with the data of every user. This relation has the meaning of: people that have those characteristics tend to like those kind of places. It is content-based because users that have expressed a positive opinion on a certain category, will receive recommendations with places that have similar characteristics. But it is also collaborative because the relation is trained with data of all the users, so similar user features map to similar places features.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Other ways of refining features are:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Using the feedback provided explicitly from the user, or captured implicitly when the user interacts with the recommendations
+    </span>
+   </li>
+   <li>
+    <span>
+     Using the responses to the bootstrap questions (e.g. “why do you use bike sharing?”)
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Furthermore, the Episodic Knowledge can be used to provide a highly collaborative filtering: the history of usage can be analyzed to detect spatial and temporal patterns and finding users with similar behaviour. The concept behind this approach is that people that use the system in similar ways may have common interests.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    To face the cold start problem, that surely exists for the specified approach, generic recommendations can be given at the beginning and can be slowly refined by collecting the feedbacks and collecting more users that hopefully will accept to perform the social login.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     Selection of category given a distribution: analyze how a concept of “temperature” can model more randomness versus a fixed output (sampling)
@@ -5503,19 +5546,57 @@
     </span>
    </li>
   </ul>
-  <h3 id="h.h3t6ly4gdrse">
+  <h3 id="h.vzxoff8ahoem">
    <span>
     Tailored communication
    </span>
   </h3>
   <p>
    <span>
-    Operative modes, …
+    This part of personalization is not relative to the content of recommendation, but is about how to adapt the communication dynamically with the behaviour of the user.
    </span>
   </p>
   <p>
    <span>
-    From feedback (which ones) to understanding attitude towards recommendations
+    This may reflect on how the bot operates with the current user, the
+   </span>
+   <span>
+    Operative Mode
+   </span>
+   <span>
+    . This dynamic property reflects how much the user is willing to receive recommendation.
+   </span>
+  </p>
+  <p>
+   <span>
+    Three operative modes can be designed:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Normal: the recommendation are provided when the system is sufficiently confident
+    </span>
+   </li>
+   <li>
+    <span>
+     Straight to the point: the user expressed negative sentiment in response to a recommendation, or may be in a hurry and needs only the bike informations. In this situation the bot is not allowed to send recommendations
+    </span>
+   </li>
+   <li>
+    <span>
+     Conversational: the user is chatting with the bot, asking some questions about it. This may be the right moment to ask some informations to the user in order to refine the model
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    For deciding which operative mode should be applied, it is very important to collect signs from the users. Signs can be explicit in feedbacks: both textual or by using some buttons next to results. Signs can also be implicitly sent: in text, latent sentiment analysis can sometimes provide hints.
+   </span>
+  </p>
+  <p>
+   <span>
+    Or signs can be collected from monitoring the destination pages that are linked in the results. For this reason the strategy of link rewriting can be used to intercept the user clicking on the details of the recommendation: an intermediate webserver can be set as the destination when creating the link; when it receives the request, it records the fact that the user has reached it and sends a redirect for the real destination. This strategy is widely used to measure click-through rates.
    </span>
   </p>
   <h2 id="h.kiy7ax5md0r5">
@@ -5574,7 +5655,7 @@
   </p>
   <p>
    <span>
-    Fortunately such library exists, as will be seen in the implementation part.
+    Fortunately such library exists for station-based informations, as will be seen in the implementation part.
    </span>
   </p>
   <h3 id="h.hhd7s72d1atm">
@@ -5632,20 +5713,6 @@
     . This feature was not considered, in favour of the usual optimal path.
    </span>
   </p>
-  <h3 id="h.x847dzgqjj9">
-   <span>
-    Places
-   </span>
-  </h3>
-  <p>
-   <span>
-    TODO
-   </span>
-  </p>
-  <h2 id="h.i4xu8yyuck0j">
-   <span>
-   </span>
-  </h2>
   <h2 id="h.78zc2qf1izjb">
    <span>
     Data modeling
@@ -5997,11 +6064,25 @@
     TODO add details about which features have been implemented
    </span>
   </p>
-  <h2 id="h.8zj60ofw3oog">
+  <p>
+   <span>
+    While the first two areas have a complete path in this work (from approach choice to implementation and measurements), the personalization has not reached the implementation stage. In this part of the thesis however some details on the APIs and methodologies that can be used to implement it are treated.
+   </span>
+  </p>
+  <p>
+   <span>
+    The implementation focused more on experiments with NLU techniques and experimentation of them.
+   </span>
+  </p>
+  <h2 id="h.7c99zthgqxe1">
    <span>
     Interaction with chat platforms
    </span>
   </h2>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     Decoupling botkit from core
