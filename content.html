@@ -6081,21 +6081,117 @@
   </h2>
   <p>
    <span>
+    To interact with the chat platforms it was mentioned that a separate component has been designed to adapt to the different messaging platforms. This component, the Bot Server, on one side communicates with the Bot Core, that can be physically hosted on another machine, and on the other side interfaces with messaging platforms.
    </span>
   </p>
   <p>
    <span>
-    Decoupling botkit from core
+    The architecture can be viewed in the following picture.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 198.67px;">
+    <img alt="" src="https://lh5.googleusercontent.com/mOs5p5gHK8-xQucEjiboM8hfNqLdwGAA6QWAq_L3aJIekQboLlpfcmrvsgUUtCMhFiFJJJ6WtS5358PEPuoWvMf3pKULhBIjJKBfBLMg3JbagApHzfZYObNQ9u5gNC93XvzvgbwC" style="width: 602.00px; height: 198.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    Which ones
    </span>
   </p>
   <p>
    <span>
-    How
+    THE CONNECTIONS
+   </span>
+  </p>
+  <p>
+   <span>
+    The communication with the Core of the bot is done over a websocket to allow asynchronous messages to be sent in both directions, without using polling techniques that may consume resources and bandwidth. The Bot Server exposes two different endpoints for Bot Cores, one for the English version and one for the Italian one. Those endpoints thanks to HTTPS protocol offer a reliable channel that provides data encryption to protect data in motion and authentication through a symmetric key shared between the two parts.
+   </span>
+  </p>
+  <p>
+   <span>
+    The data is transferred between those two components with the JSON standard over the websocket, with a format that does not depend on any specific messaging platform.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    On the other side, the Bot Server is not put directly in contact with the Messaging platforms because it would have required to implement all the webhook endpoints for them and also to translate from and to all the platform dialects. The most easy way to implement it has been found by interacting with a third-party component (Microsoft Bot Framework) that can be configured on a web portal to reach the different platforms. This removed a lot of implementation effort but brought to an architecture that is not very elegant and compact. The communication between the Bot Server and the Bot Framework is done in a way that is similar to the one required by messaging platforms: both components expose web endpoints (that must provide HTTPS connections with digital certificates that have as root a trusted CA) that are used for one-directional communications (the only response is is given is a status code that represent the outcome of the request) and each message is sent independently in its direction.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    BOT SERVER ROLES
+   </span>
+  </p>
+  <p>
+   <span>
+    The main role of the Bot Server is to receive the messages on one side and provide them to the other one, by transforming their representation. The Bot Framework works well in the direction of receiving the messages from the user, but on the other directions does not provide all the features specific to the messaging platform. For instance, both on Facebook Messenger and on Telegram, buttons can be shown to the user in order to send the current position, while other platforms don’t support it. To send those types of messages, it is necessary to send attachments in the native form of the platform (‘quick_replies’ with ‘content_type’: ‘location’ for Facebook, ‘reply_markup’ with ‘request_location’: true for Telegram).
+   </span>
+  </p>
+  <p>
+   <span>
+    Another role the Bot Server covers is the management of the Facebook Login: as will be explained in the personalization details, it exposes a dynamic web page that is reached after the user performs the login, and manages the retrieval of the user likes and user locations.
+   </span>
+  </p>
+  <p>
+   <span>
+    Furthermore, this component also provides a web page where users can test the bot without using messaging platforms.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    WHY NOT A SINGLE COMPONENT
+   </span>
+  </p>
+  <p>
+   <span>
+    Having two different custom components has many advantages: both conceptual and practical.
+   </span>
+  </p>
+  <p>
+   <span>
+    The main conceptual advantage is that the coupling with messaging platforms is reduced: the bot core does not know anything related to them, and interacts with a representation of data that is human-readable and has no dependencies.
+   </span>
+  </p>
+  <p>
+   <span>
+    The practical ones are many, generated from different needs. First of all: performance needs. The Bot Server does not require high computation resources because is simply a proxy that manipulates the representation of informations. The Bot Core instead, running Neural Networks to classify the sentences, needs disk space and RAM (the language models are quite huge), together with a computing power that should be sufficient to produce outputs in short times.
+   </span>
+  </p>
+  <p>
+   <span>
+    The Bot Server then requires to host a web server with a fixed hostname and with good certificates trusted from the Bot Framework. Configuring the Facebook Login requires a destination URL that contains a hostname (not an IP) that will receive as parameters the token that can be used to query the Graph API (as will be described later). The Bot Framework needs to be configured with webhooks endpoints to whom send POST requests with the incoming messages. The certificates for HTTPS need to be provided by a trusted Certification Authority.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having those needs and opting for a cheap feasible option (without buying a powerful VPS with all those features), the choice has been to split those components.
+   </span>
+  </p>
+  <p>
+   <span>
+    The Bot Server is hosted on heroku with a free plan that has limitations in computing power and space, but fits the requirements for this component. Especially, the platform supports natively HTTPS that are covered by a wildcard certificate (every application receives a URL that matching with *.herokuapp.com is valid). Websites and Web Server applications can easily be created (using one of a large set of supported languages and frameworks) and pushed to the platform and the deployment will occur with no pains in configuration.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having the websocket endpoints exposed on the Bot Server, the Bot Core does not require to act as a server: no hostname is required, no certificate, no port forwarding on NATs, no ports open on the machine that runs it. Furthermore also the websockets are HTTPS as offered by the Bot Server, so no plaintext interactions
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -6139,6 +6235,25 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    The third party Bot Framework was not put in direct communication with the Bot Core because of many reasons. First of all, without the Bot Server the Bot Core would have needed to support
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    AN EXAMPLE
+   </span>
+  </p>
+  <p>
+   <span>
+    From the user sending a message to receiving answer
+   </span>
+  </p>
   <h2 id="h.4sq87epw7a2r">
    <span>
     Data sources
