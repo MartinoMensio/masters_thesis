@@ -6187,57 +6187,7 @@
   </p>
   <p>
    <span>
-    Having the websocket endpoints exposed on the Bot Server, the Bot Core does not require to act as a server: no hostname is required, no certificate, no port forwarding on NATs, no ports open on the machine that runs it. Furthermore also the websockets are HTTPS as offered by the Bot Server, so no plaintext interactions
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Advantages of public webserver detached:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Free https and nameserver
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Required for some messaging platforms in webhook mode
-    </span>
-   </li>
-   <li>
-    <span>
-     Required to do facebook login
-    </span>
-   </li>
-   <li>
-    <span>
-     Better in terms of security, no plaintext interactions
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Low-power consuming on webserver, more computing power on the brain
-    </span>
-   </li>
-   <li>
-    <span>
-     Implement link rewriting with fixed nameserver
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The third party Bot Framework was not put in direct communication with the Bot Core because of many reasons. First of all, without the Bot Server the Bot Core would have needed to support
+    Having the websocket endpoints exposed on the Bot Server, the Bot Core does not require to act as a server: no hostname is required, no certificate, no port forwarding on NATs, no ports open on the machine that runs it. Furthermore also the websockets are HTTPS as offered by the Bot Server, so no plaintext interactions that could be intercepted.
    </span>
   </p>
   <p>
@@ -6251,99 +6201,156 @@
   </p>
   <p>
    <span>
-    From the user sending a message to receiving answer
+    To make clear how all the components work together, let’s follow what happens from when a user sends a message until he receives back a response.
    </span>
   </p>
-  <h2 id="h.4sq87epw7a2r">
+  <p>
    <span>
-    Data sources
+    First of all, the user connected to a messaging platform (Facebook Messenger) sends some text, that arrives to the Facebook Servers. From there, since the destination account is a page that has been configured to receive messages at a certain webhook location, the message is sent to the Bot Framework. From the Bot Framework, the message is forwarded to the Bot Server that is finally one of the two components that has been developed. The Bot Server, checking that a Bot Core is connected over websocket for the specific language, delivers the message. The Bot Core processes the message (NLU, Information Retrieval, Response Generation) and replies on the websocket. The Bot Server transforms the response for the dialect of the destination platform and forwards the message to the Bot Framework that delivers it to the Facebook Servers. Finally the user receives the message.
+   </span>
+  </p>
+  <h2 id="h.rufif0phcpg3">
+   <span>
+    Natural Language Understanding
    </span>
   </h2>
   <p>
    <span>
-    Getting the bike sharing informations: pybikes vs citybik.es, other sources, ...
+    This chapter focuses on the implementation that has been done relatively to NLU.
    </span>
   </p>
-  <p>
+  <h3 id="h.nf5p6dgdecmy">
    <span>
-    Getting places informations
-   </span>
-  </p>
-  <p>
-   <span>
-    Other data sources
-   </span>
-  </p>
-  <p>
-   <span>
-    Meteo
-   </span>
-  </p>
-  <h2 id="h.b7qyoqg579vm">
-   <span>
-    Wit.ai prototype
-   </span>
-  </h2>
-  <p>
-   <span>
-    A concept of the bot has been developed using wit.ai for doing intent detection and entity extraction. This can be used as a reference. The training data can be downloaded from the platform, useful for our model training.
-   </span>
-  </p>
-  <p>
-   <span>
-    Objectives:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Experimenting
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Collect sentences and interactions for single turn
-    </span>
-   </li>
-   <li>
-    <span>
-     Quick prototype to understand the user needs
-    </span>
-   </li>
-  </ul>
-  <h2 id="h.rdt81o3mb6tf">
-   <span>
-    Neural Networks
-   </span>
-  </h2>
-  <h3 id="h.5gr30bgy3moi">
-   <span>
-    Framework
+    Wit.ai exploitation
    </span>
   </h3>
   <p>
    <span>
-    Keras vs Tensorflow
+    In the early stages of the bot, the Natural Language Understanding has been delegated to an external provider: wit.ai. It was chosen for its simplicity to use and for being a standalone product that just provides NLU that are usable through a web API.
    </span>
   </p>
   <p>
    <span>
-    In this section there is a comparison between the two most popular neural network libraries.
+    While giving the advantage to have an almost ready to use NLU (the configuration of intents and entities requires few steps and few examples), it also helps building a dataset. All the sentences that are sent for analysis are stored in a inbox, that can be analyzed and the responses can be interactively fixed and validated (inserted in the dataset). The dataset can also be downloaded, and because it is stored in comprehensible JSON format can be used as annotated dataset to later train another NLU system.
+   </span>
+  </p>
+  <p>
+   <span>
+    A limitation of this service is that it handles only single turn interactions, so the datasets that have been collected for both italian and english languages can be only used for this type of interaction.
+   </span>
+  </p>
+  <p>
+   <span>
+    This stage of development has been done in order to understand the main needs of the users, and progressively new intents and examples have been added. On the other side, this experimentation also helped understanding what the NLU tasks are, giving an orientation in the very big landscape of Natural Language Processing.
+   </span>
+  </p>
+  <p>
+   <span>
+    This helped directioning the study of literature towards approaches that could do a similar sentence classification and entity extraction.
+   </span>
+  </p>
+  <p>
+   <span>
+    It has been noticed that for the intent classification task a promising approach is to use Recurrent Neural Networks, so the studies (both theoretical and practical) went deeper in exploring this field.
+   </span>
+  </p>
+  <h3 id="h.e4dln4afprs8">
+   <span>
+    Neural Networks frameworks
+   </span>
+  </h3>
+  <p>
+   <span>
+    Experimenting with Neural Networks has become easier and easier in the last years thanks to open source libraries that provide high-level APIs and, being used more and more, the support is really easy to obtain on online communities (such as
+   </span>
+   <span>
+    <a href="https://stackoverflow.com/">
+     StackOverflow
+    </a>
+   </span>
+   <span>
+    ) or on the official documentation or directly on the official code repositories.
+   </span>
+  </p>
+  <p>
+   <span>
+    The programming languages that are supported are many, but the most used nowadays for Machine Learning is Python. In Python the most used frameworks are Keras and TensorFlow.
    </span>
   </p>
   <p>
    <span>
    </span>
   </p>
-  <a id="t.522a20e01ac7b3f467e4103ac499479fb019deb7">
+  <p>
+   <span>
+    For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
+   </span>
+   <sup>
+    <a href="#ftnt62" id="ftnt_ref62">
+     [62]
+    </a>
+   </sup>
+   <span>
+    . So the problem is simply to choose the abstraction level desired.
+   </span>
+  </p>
+  <p>
+   <span>
+    Initially, when trying to emulate a
+   </span>
+   <span>
+    <a href="#h.6dcfrbpjww3p">
+     RNN approach for Intent Classification [link]
+    </a>
+   </span>
+   <span>
+    , Keras has been used to implement it.
+   </span>
+  </p>
+  <p>
+   <span>
+    Without considering the data preprocessing part that is needed to get the desired shape and values for the inputs and outputs (as inputs word vectors corresponding to the words in the sentence and as outputs the corresponding intent type), the building of the computation graph (a LSTM layer followed by a densely connected layer) and its training just required few lines of code.
+   </span>
+  </p>
+  <p>
+   <span>
+    But when trying to implement less regular models, such as the encoder-decoder by [Liu et al.
+   </span>
+   <sup>
+    <a href="#ftnt63" id="ftnt_ref63">
+     [63]
+    </a>
+   </sup>
+   <span>
+    ], the criticality of using only high level API came out, especially considering complex parts as output dependencies.
+   </span>
+  </p>
+  <p>
+   <span>
+    For this reason a comparison has been done in order to choose what implementation path to follow. In the following table there is a table that summarizes the main differences found
+   </span>
+   <span>
+    between Keras and TensorFlow.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <a id="t.294588e8659ce0c2920741efb4cbbf1ec9cf419c">
   </a>
   <a id="t.3">
   </a>
   <table>
    <tbody>
     <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        feature
+       </span>
+      </p>
+     </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
@@ -6363,14 +6370,21 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        High level
+        Abstraction level
        </span>
       </p>
      </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Low level access, but also high level API
+        High
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Can go down to reach single operations, but also high level API provided by lots of classes
        </span>
       </p>
      </td>
@@ -6379,14 +6393,21 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        easy
+        Learning difficulty
        </span>
       </p>
      </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        More difficult
+        Quite easy
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        More difficult, lots of details to consider
        </span>
       </p>
      </td>
@@ -6395,14 +6416,21 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Less cells/layers available
+        Support for complex operations
        </span>
       </p>
      </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Lot of already defined classes, contrib package
+        Focuses more on simple regular layers and cells
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Lot of already defined classes, and also helpers function that can help building complex operations
        </span>
       </p>
      </td>
@@ -6411,19 +6439,10 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Less customizable
+        Best for
        </span>
       </p>
      </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Highly customizable and flexible
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
      <td colspan="1" rowspan="1">
       <p>
        <span>
@@ -6440,6 +6459,13 @@
      </td>
     </tr>
     <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Documentation
+       </span>
+      </p>
+     </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
@@ -6463,14 +6489,19 @@
   </p>
   <p>
    <span>
-    Keras is more like LEGO, build from blocks. On tensorflow can customize operations.
+    Let’s see in more details what is the support provided by both libraries for building recurrent neural networks.
    </span>
   </p>
-  <h4 id="h.30pe1175q3g4">
+  <h4 id="h.cf1pj9z5h9sg">
    <span>
     Keras Recurrent API
    </span>
   </h4>
+  <p>
+   <span>
+    Also when working on recurrent networks, using Keras layers is like playing with LEGO: blocks can be easily stacked one on the top of the other (also forks and joins are quite easy to perform).
+   </span>
+  </p>
   <p>
    <span>
     Keras Recurrent API is described extensively there (
@@ -6584,32 +6615,6 @@
    <span>
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h4 id="h.8mdxf2pa39ns">
-   <span>
-    Performances
-   </span>
-  </h4>
-  <p>
-   <span>
-    Since Keras can use as backed both Tensorflow and Theano, but Theano has many disadvantages (single GPU, non intuitive API, ceased development, ...), Keras can be seen as the official higher level API for tensorflow
-   </span>
-   <sup>
-    <a href="#ftnt62" id="ftnt_ref62">
-     [62]
-    </a>
-   </sup>
-   <span>
-    . For this reason, using tensorflow directly or inside Keras should make no big differences in terms of performance. There is also the possibility to use Keras API inside tensorflow, via the tensorflow.contrib.keras package.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
   <h4 id="h.a08x42jk1qdf">
    <span>
     Decision
@@ -6639,41 +6644,170 @@
   </ul>
   <p>
    <span>
-    Considering those objectives, the choice has been to use the native tensorflow APIs for building the solution, using the seq2seq package for faster implementation
+    Considering those objectives, the choice has been to use the native TensorFlow APIs for building the solution, using the seq2seq package for faster implementation.
    </span>
   </p>
-  <h3 id="h.bqazqpo58hkq">
+  <h3 id="h.c6pf2d1jnizc">
    <span>
-    Implementation details
+    Graph details
    </span>
   </h3>
   <p>
    <span>
-    Computational graph definition using tensors. Difference between definition time of the model with placeholders, and usage with real data.
+    Implementing a neural network with tensorflow needs understanding some basic concepts.
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     Word tensors
-    </span>
-   </li>
-   <li>
-    <span>
-     Seq2seq package
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
-    Saving the models and serialization issues with py_func
+    First of all, the difference between defining a computational graph and actually doing operations. This is the concept of
+   </span>
+   <span>
+    tensors
+   </span>
+   <span>
+    : they are a generalization of (multidimensional) vectors that will be used to contain values. Using and connecting them in computational graphs means defining how the values contained will be processed. The big difference with normal variables is when the computations defined will be executed.
    </span>
   </p>
-  <h3 id="h.894qbnpqhcw5">
+  <p>
+   <span>
+    If in a programming language we have two variables
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=a%3D3%2Cb%3D1"/>
+   <span>
+    and we sum them, when the instruction of sum is executed
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=c%3Da%2Bb"/>
+   <span>
+    the resulting variable will contain the result
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=c%3D4"/>
+   <span>
+    . Instead defining a sum between tensors
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=a%3Dtf.Variable%283%29%2Cb%3Dtf.Variable%281%29"/>
+   <span>
+    , when the instruction of
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=c%3Da%2Bb"/>
+   <span>
+    is executed the resulting tensor won’t contain 4. It will be stored that c can be computed by summing what is contained in a and b. In this way the operations can be defined once and the same computational graph can be run different times. To actually run the graph is necessary to build a session, that is the execution environment.
+   </span>
+  </p>
+  <p>
+   <span>
+    But in order to have different inputs to the same graph, there is the need to define the starting tensors not as Variables but as placeholders. Later when running the session, the placeholder values can be fed to the graph and the results can be evaluated.
+   </span>
+  </p>
+  <p>
+   <span>
+    When using multi-dimensional tensors, the tricky part is to manipulate them in the correct way. A lot of tensorflow operations have the “axes” parameter that is crucial to perform reduction operation over the correct dimensions.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder jointSLU by [Liu et al.
+   </span>
+   <sup>
+    <a href="#ftnt64" id="ftnt_ref64">
+     [64]
+    </a>
+   </sup>
+   <span>
+    ].
+   </span>
+  </p>
+  <p>
+   <span>
+    The papers come with an implementation
+   </span>
+   <span>
+    <a href="https://github.com/HadoopIt/rnn-nlu">
+     https://github.com/HadoopIt/rnn-nlu
+    </a>
+   </span>
+   <span>
+    that is not complete: output label dependencies are not considered. Another negative property of the implementation is that it does not use the latest API available, that provides higher level functionalities and helper functions. Another implementation has been found
+   </span>
+   <span>
+    <a href="https://github.com/applenob/RNN-for-Joint-NLU">
+     https://github.com/applenob/RNN-for-Joint-NLU
+    </a>
+   </span>
+   <span>
+    that uses the latest API and is really a lot more understandable that the original one.
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO say something about the seq2seq package and how can be used
+   </span>
+  </p>
+  <p>
+   <span>
+    Starting from this last implementation, that highly depend on the ATIS dataset
+   </span>
+   <sup>
+    <a href="#ftnt65" id="ftnt_ref65">
+     [65]
+    </a>
+   </sup>
+   <span>
+    in the preprocessing part, a slightly different implementation has been developed.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <h4 id="h.jspx6kh9zcn4">
+   <span>
+    The differences
+   </span>
+  </h4>
+  <p>
+   <span>
+    The main changes are not on the network structure, that is the one of the original paper, but in some details about the inputs.
+   </span>
+  </p>
+  <p>
+   <span>
+    First of all, the inputs of the computational graph have been changed from word indexes to string tensors (that exist in TensorFlow although its math-preponderance). In this way the dictionaries are part of the graph. Translation from word to indexes and inverse is possible thanks to the package tf.contrib.lookup that can be used to implement lookup tables for both the directions.
+   </span>
+  </p>
+  <p>
+   <span>
+    Then, having the lookup operations inside the computational graph and having the string tensors as inputs, it has been possible to define different ways to obtain the embedding values with the same interface. Both preceding implementations contain the embedding matrix as a trainable Variable with size [vocabulary_size x embedding_size], and this embedding technique has been moved in a specific class. The other way to obtain the embedding values, that corresponds to pretrained fixed values, is to use an external library (SpaCy, see the details and implications below in [word embeddings]) to get those values. The library requires words as parameters to get their representation, and it would not have possible to pass them the word ids as in the previous implementation.
+   </span>
+  </p>
+  <p>
+   <span>
+    Having another class that wraps the external library call to get the embedding vectors, it is possible to test the two different approaches (trainable embeddings versus fixed pretrained embeddings) and some measures have been done showing a boost given by the second approach empowered by big corpuses.
+   </span>
+  </p>
+  <p>
+   <span>
+    The last kind of modifications that have been done are relative to saving the models trained and being able to resume them for inference time. This is possible thanks to the naming of tensors, that allows to save the computational graph to the disk and resume it without re-defining all the variables that were present previously. To interact with the graph, it is possible to retrieve the input and output tensors by name and all the intermediate steps will be internally managed by tensorflow. As will be underlined in [integrating spacy in the graph], the only parts that cannot be serialized are the external functions, but a solution exists also for this problem.
+   </span>
+  </p>
+  <h3 id="h.hyzrzl88wb48">
    <span>
     Word embeddings
    </span>
   </h3>
+  <p>
+   <span>
+    TODO introduce why SpaCy (also because used in early experimentation with entities)
+   </span>
+  </p>
+  <p>
+   <span>
+    Advantages of the spacy models (size, performance)
+   </span>
+  </p>
   <p>
    <span>
     A library for common NLP tasks, SpaCy, has been used for tokenization and for pretrained word embeddings on the english language. The corpus used comes from CommonCrawl, and the word embeddings have a size of 300. Different models come with the library, and they change how much space the word embeddings take. The biggest one, used in the implementation, contains 1.1m of words in the dictionary. Smaller models apply a reduction on the number of vectors and on the dictionary size; the mapping between those two dimensions is not always one-to-one: different words can be mapped on the same vector for further reduction in space.
@@ -6697,6 +6831,11 @@
   <p>
    <span>
     To integrate the embeddings values provided by this library in the computational graph written in tensorflow, the `py_func` method has been used. In this way a function declared in definition time will be called in runtime: tensorflow manages this by making the py_func wrapper work externally on tensors and internally with numpy arrays.
+   </span>
+  </p>
+  <p>
+   <span>
+    Issue of serialization and solution
    </span>
   </p>
   <p>
@@ -6759,6 +6898,11 @@
    <span>
    </span>
   </p>
+  <h3 id="h.hxso9xwxcbl">
+   <span>
+    Multi-turn?
+   </span>
+  </h3>
   <h3 id="h.scnyotsag2iy">
    <span>
     Datasets
@@ -6775,8 +6919,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt63" id="ftnt_ref63">
-      [63]
+     <a href="#ftnt66" id="ftnt_ref66">
+      [66]
      </a>
     </sup>
    </li>
@@ -6930,6 +7074,31 @@
   <p>
    <span>
     TODO update. Talk also about not saving personal details of users, only looking at likes and tagged places
+   </span>
+  </p>
+  <h2 id="h.4sq87epw7a2r">
+   <span>
+    Data sources
+   </span>
+  </h2>
+  <p>
+   <span>
+    Getting the bike sharing informations: pybikes vs citybik.es, other sources, ...
+   </span>
+  </p>
+  <p>
+   <span>
+    Getting places informations
+   </span>
+  </p>
+  <p>
+   <span>
+    Other data sources
+   </span>
+  </p>
+  <p>
+   <span>
+    Meteo
    </span>
   </p>
   <p>
@@ -8246,6 +8415,48 @@
    <p>
     <a href="#ftnt_ref63" id="ftnt63">
      [63]
+    </a>
+    <span>
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref64" id="ftnt64">
+     [64]
+    </a>
+    <span>
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref65" id="ftnt65">
+     [65]
+    </a>
+    <span>
+     Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref66" id="ftnt66">
+     [66]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
