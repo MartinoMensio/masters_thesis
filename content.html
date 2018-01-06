@@ -6970,11 +6970,20 @@
    <span>
    </span>
   </p>
-  <h2 id="h.txecykd802tw">
+  <h2 id="h.uemuap9ykp3k">
    <span>
     Personalization
    </span>
   </h2>
+  <p>
+   <span>
+    For the personalization implementation it is important to note that only how it could implemented is described here, as it has not been included in the prototype. What has been done is a look on the API available to retrieve the informations about the user and about the places, while the content recommendation and tailored communication have not been explored more than has been done in the approach part.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
   <p>
    <span>
     Magicsauce
@@ -7015,16 +7024,40 @@
     Operative modes
    </span>
   </p>
-  <h3 id="h.tm5ee3a05f8l">
+  <h3 id="h.s4795m4nagev">
    <span>
-    Accessing user data on facebook
+    Facebook data
    </span>
   </h3>
+  <p>
+   <span>
+    To retrieve user information (interests) we chose to use Facebook because of its larger coverage
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Why facebook
+    </span>
+   </li>
+   <li>
+    <span>
+     Already talking on facebook messenger, why doing login?
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     The data that is available directly from the messenger API is the following: first_name,last_name,profile_pic,locale,timezone,gender,is_payment_enabled
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     How (the flow)
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     In order to be able to do personalization, there exists a way to link the messenger id (page-scoped) to other ids (also facebook id indirectly):
@@ -7067,15 +7100,33 @@
     The procedure seems quite complicated and requires a web server component that interacts on one side with messenger platform and on the other side handles the facebook login.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
+  <ul>
+   <li>
+    <span>
+     Which details
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
     TODO update. Talk also about not saving personal details of users, only looking at likes and tagged places
    </span>
   </p>
+  <h3 id="h.pbn2tcklf6dj">
+   <span>
+    Big5 computation
+   </span>
+  </h3>
+  <p>
+   <span>
+    MagicSauce
+   </span>
+  </p>
+  <h3 id="h.d5u8o7bojyyv">
+   <span>
+    Foursquare places
+   </span>
+  </h3>
   <h2 id="h.4sq87epw7a2r">
    <span>
     Data sources
