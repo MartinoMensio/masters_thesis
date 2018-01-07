@@ -1609,6 +1609,15 @@
   </p>
   <p>
    <span>
+    The choices are not independent however: since the stages are a chain, the approach chosen on the first stages have consequences on the following ones. Choosing to use NLU instead of dynamic understanding precludes the possibility to have generative responses, because the user utterances will be categorized on a finite set of types (intent types) unless a hybrid understanding is performed (NLU to find the intent types with a parallel sequence-to-sequence model for chit-chat dialogues). For this reason and being the understanding stage the first one, the details on the approaches will be analyzed on this first dimension, and for each level in this dimension some details will be given on the possibilities for the other two choices.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
     In the following table we can see how the decisions on those two points define the approach used.
    </span>
   </p>
@@ -1763,7 +1772,33 @@
   </p>
   <p>
    <span>
-    The choice between those possibilities has to be done based on the available data (e.g. if transcripts of existing human conversations exists), on the purpose of the system (see above, between chit-chat, service-oriented, ...).
+    The choice between those possibilities has to be done based on the available data (e.g. if transcripts of existing human conversations exists), and on the main content the system will provide (see above, between chit-chat, domain-specific, encyclopedic knowledge).
+   </span>
+  </p>
+  <p>
+   <span>
+    Moving the level of dynamicity higher, the
+   </span>
+   <span>
+    complexity
+   </span>
+   <span>
+    moves from handcrafting very specific features, that can be very specific to the domain of application and therefore provides a solution that difficulty can be ported to new domains, to complexity of the approach itself. The transition usually is towards approaches that involve machine learning techniques like neural networks: the engineering of those networks is quite complex with respect to pattern matching (that only involves Finite State Machines). In addition, also more computing power is required to run those heavy systems.
+   </span>
+  </p>
+  <p>
+   <span>
+    Changing the selected approach (especially on the understanding and generation processes) also has consequences on the additional work that has to be done to port the agent to
+   </span>
+   <span>
+    other languages
+   </span>
+   <span>
+    . A rule-based understanding is highly coupled with the used language. Using NLU reduces a lot this dependence because instead of manually deciding how to categorize the sentences, the system will find automatically how to do that even in another language, if the appropriate annotated training examples are provided and if the network structure itself is sufficiently language independent. As will be described in the NLU chapter, using features of words that are more related to their meaning (contextual and semantic, following the “distributional semantics” concept) instead of their grammatical role, helps generalizing and being less dependent on the selected language (see usage of word embeddings and how they can be easily generated for any language).
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
