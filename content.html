@@ -1842,32 +1842,6 @@
     Summing up, a more dynamic, end-to-end approach has an higher complexity but leads to easily adaptable solutions, in terms of new domains and new languages.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    For the generation of responses the main activities can include:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Knowledge Base interrogation, if the purpose is to provide information on some domains
-    </span>
-   </li>
-   <li>
-    <span>
-     Natural Language Generation: from templates to be filled, to generative models
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    If the Knowledge Base is interrogated in a fixed, handcrafted way, the model is said to be retrieval-based. No matter if the understanding part is rule based or NLU. The advantages of retrieval-based models is that it is simpler to design API for accessing the informations since they are fixed. The user questions will be mapped on a predefined set of intents, with the only exception of sentences that are not classified. The fixed set of intents is a limitation in this case.
-   </span>
-  </p>
   <h4 id="h.yg0kxbms37bi">
    <span>
     Rule based
@@ -2030,7 +2004,7 @@
   </p>
   <h4 id="h.ufp22pmcw3dd">
    <span>
-    Generative models
+    Encoder-Generative models
    </span>
   </h4>
   <p>
@@ -2066,7 +2040,7 @@
     </a>
    </span>
    <span>
-    , uses LSTM cells, that can capture features of sequences adaptively using some kind of memory. The encoder network collects the useful features while the decoder, given an initial state from the encoder and given a stimulus, begins the generation of the new sentence and stops when appropriate.
+    , uses LSTM cells, that can capture features of sequences adaptively using some kind of memory. The encoder network (can be seen as the understanding part) collects the useful features while the decoder, given an initial state from the encoder and given a stimulus, begins the generation of the new sentence and stops when appropriate.
    </span>
   </p>
   <p>
@@ -2076,7 +2050,7 @@
   </p>
   <p>
    <span>
-    To overcome those problems, some reinforcement strategies can be applied, in order to learn in a online settings also from the dialogues that occur at runtime. This is a good strategy in general, but can lead to some unwanted effects of polarity of the responses if there isn’t a supervision: the example of Microsoft Tay, that after 16 hours on Twitter was shut down because of the offensive tweets that was generating.
+    To overcome those problems, some reinforcement learning strategies can be applied, in order to learn in a online settings also from the dialogues that occur at runtime. This is a good strategy in general, but can lead to some unwanted effects of polarity of the responses if there isn’t a supervision: the example of Microsoft Tay, that after 16 hours on Twitter was shut down because of the offensive tweets that was generating.
    </span>
   </p>
   <p>
@@ -2138,23 +2112,6 @@
   </p>
   <p>
    <span>
-    This approach is explored in
-   </span>
-   <span>
-    <a href="#h.5h19s2dnfiyp">
-     End to End Goal-Oriented dialog
-    </a>
-   </span>
-   <span>
-    .
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
     The dynamism can also reach higher levels on the information retrieval task, without requiring fixed APIs but allowing simple key-value data storage to be queried in natural language: this approach has been proposed by [Erich and Mannings 2017
    </span>
    <sup>
@@ -2164,6 +2121,19 @@
    </sup>
    <span>
     ]
+   </span>
+  </p>
+  <p>
+   <span>
+    Those last approaches, being used only by domain-specific bots, are explored in
+   </span>
+   <span>
+    <a href="#h.5h19s2dnfiyp">
+     End to End Goal-Oriented dialog
+    </a>
+   </span>
+   <span>
+    .
    </span>
   </p>
   <p>
@@ -2182,7 +2152,13 @@
   </h3>
   <p>
    <span>
-    For the different purposes that have been analyzed, different challenges arise depending also on the type of bot that is going to be implemented. The focus will be on the bots specific to a certain domain.
+    For the different contents and approaches
+   </span>
+   <span>
+    that have been analyzed
+   </span>
+   <span>
+    , different challenges arise with bots that should provide some kind of valuable content.
    </span>
   </p>
   <p>
@@ -2199,7 +2175,7 @@
     context
    </span>
    <span>
-    .
+    . Some approaches to solve this problem are explained in the [Beyond the single sentence], explaining the concept of multi-turn and dialogue tracking.
    </span>
   </p>
   <p>
@@ -4229,7 +4205,17 @@
   </p>
   <p>
    <span>
-    Based on the content. Creating a model of the user’s preferences. History of interactions. Goal: match the user representation with the items representations
+    The content-based approach is based on some evidences of the user tastes, usually his previous ratings to some items. Analyzing those samples, a model of the user preferences is created. To recommend an item, such model is used to find similar elements to the ones that have already satisfied the user.
+   </span>
+  </p>
+  <p>
+   <span>
+    So the important things are two: having an history of interactions and having a representation of items in terms of features. The recommendation consists in finding other items with similar features.
+   </span>
+  </p>
+  <p>
+   <span>
+    The model is different for each user, and for this reason this approach suffers a lot the problem of [cold start].
    </span>
   </p>
   <p>
@@ -5726,6 +5712,15 @@
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    How to measure the success of recommendations? Accuracy, diversity, serendipity
+   </span>
+  </p>
   <h3 id="h.vzxoff8ahoem">
    <span>
     Tailored communication
