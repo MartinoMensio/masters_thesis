@@ -1475,21 +1475,6 @@
   </p>
   <p>
    <span>
-    Depending on how responses are generated, those approaches can be split into two categories: declarative (that are mostly used for domain specific bots) and generative (for more general conversations). In the declarative approaches the sentences of the user are categorized on a range of pre-defined intents and some key entities are extracted. This is done by applying NLP techniques and the results of this stage are applied to the conversation manager that manages the state of the conversation and provides back answers and questions.
-   </span>
-  </p>
-  <p>
-   <span>
-    In the generative ones, sequence-to-sequence models are applied and therefore the responses depend on the training dataset heavily, instead of depending on the logic decided by the conversation manager.
-   </span>
-  </p>
-  <p>
-   <span>
-    The two approaches can be used together and instead of doing a rough division there can be a tunable mix of the two. For a domain specific bot, for example, may be useful to understand to some question that were not designed: having a supporting chit-chat model could come in help instead of replying with a generic fallback response. Or the bot could use the history of interactions with the user in order to understand better the current sentence.
-   </span>
-  </p>
-  <p>
-   <span>
    </span>
   </p>
   <p>
@@ -1635,7 +1620,7 @@
   </p>
   <p>
    <span>
-    The understanding task is the one related to turning the natural language sentences into something that can be understood by the machine: it can be a pattern match for level 0, structured data for level 1 (NLU) or an encoded representation for level 2. More details about those possibilities will be described shortly.
+    The understanding task is the one related to turning the natural language sentences into something that can be understood by the machine: its output can be a pattern match for level 0, structured data for level 1 (NLU) or an encoded representation for level 2. More details about those possibilities will be described shortly.
    </span>
   </p>
   <p>
@@ -1645,12 +1630,17 @@
   </p>
   <p>
    <span>
-    Instead the response generation can be fully governed by handcrafted rules (if a set of conditions apply, say that). Or decide the template response from a finite set using statistical approaches (using some proximity measures like tf-idf, word2vec, skip-thoughts). Or being generative, with responses that are built on the fly by some seq2seq model.
+    Instead the response generation can be fully governed by handcrafted rules (e.g. if a set of conditions apply, say that). Or decide the template response from a finite set using statistical approaches (using some proximity measures like tf-idf, word2vec, skip-thoughts). Or being generative, with responses that are built on the fly by a seq2seq model.
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 358.67px;">
-    <img alt="" src="https://lh6.googleusercontent.com/mlgbPKPyrzrgPrJf3CQMd7lldfTodHofjKpTnLiyLMs75VsR98KulNdXlfR5bBB2gYhbFsb6cs7_GjP1DIvWKCIQ2_WCObTv_X-ZYOOZ2nWTKTjlgU5u4Jw5tyyMLfgDsHk7J_ag" style="width: 602.00px; height: 358.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 316.00px;">
+    <img alt="" src="https://lh5.googleusercontent.com/nblpltjQFurfsN95QQHctnFC3kVcPoqjLxOhPh71AMxBBF2aq_oKgOKzpi6Lv1RCFkkEeM-5BNVqfgag0MZ5jCX0gP6JE_uVL6rThE1WbGkiyVynTx88fHpobk8nteNsz8Xo1gxn" style="width: 602.00px; height: 316.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    (the approaches for each task and their possible connections)
    </span>
   </p>
   <p>
@@ -1659,7 +1649,7 @@
   </p>
   <p>
    <span>
-    The choices are not independent however: since the tasks are put in a chain (first understanding, then retrieving the informations and ultimately formulating a response), the approach chosen on the first stages have consequences on the following ones. Choosing to use NLU instead of dynamic understanding precludes the possibility to have generative responses, because the user utterances will be categorized on a finite set of types (intent types) unless a hybrid understanding is performed (NLU to find the intent types with a parallel sequence-to-sequence model for chit-chat dialogues). For this reason and being the understanding stage the first one, the details on the approaches will be analyzed on this first task, and for each level in it some details will be given on the possibilities for the other two choices.
+    The choices are not independent however: since the tasks are put in a chain (first understanding, then retrieving the informations and ultimately formulating a response), the approach chosen on the first stages has consequences on the following ones. Choosing to use NLU instead of dynamic understanding precludes the possibility to have generative responses, because the user utterances will be categorized on a finite set of types (intent types) unless a hybrid understanding is performed (NLU to find the intent types with a parallel sequence-to-sequence model for chit-chat dialogues). For this reason and being the understanding stage the first one, the details on the approaches will be analyzed mainly on this first task, and for each level in it some details will be given on the possibilities for the other two choices.
    </span>
   </p>
   <p>
@@ -1807,7 +1797,7 @@
   </p>
   <p>
    <span>
-    AGGIUNGERE dimensione complexity (in aggiunta a contenuto e metodologia
+    AGGIUNGERE dimensione complexity (in aggiunta a contenuto e metodologia)
    </span>
   </p>
   <p>
@@ -7312,7 +7302,12 @@
     MagicSauce
    </span>
   </p>
-  <h3 id="h.d5u8o7bojyyv">
+  <p>
+   <span>
+    Joining fb places with foursquare places
+   </span>
+  </p>
+  <h3 id="h.nnptweqk9ar6">
    <span>
     Foursquare places
    </span>
