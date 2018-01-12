@@ -4200,17 +4200,29 @@
   </h4>
   <p>
    <span>
-    TODO
+    The content-based approach is based on some evidences of the user tastes, usually his previous ratings to some items. Analyzing those samples, a model of the user preferences is created. The assumption is that users will like items similar to the ones that have previously satisfied him, so the recommender will find this type of items and propose them to the user.
    </span>
   </p>
   <p>
    <span>
-    The content-based approach is based on some evidences of the user tastes, usually his previous ratings to some items. Analyzing those samples, a model of the user preferences is created. To recommend an item, such model is used to find similar elements to the ones that have already satisfied the user.
+    So
    </span>
-  </p>
-  <p>
    <span>
-    So the important things are two: having an history of interactions and having a representation of items in terms of features. The recommendation consists in finding other items with similar features.
+    the
+   </span>
+   <span>
+    important thing
+   </span>
+   <span>
+    s
+   </span>
+   <span>
+   </span>
+   <span>
+    are two:
+   </span>
+   <span>
+    having an history of interactions (feedbacks can be binary, discrete-value ratings or even textual) and having a representation of items in terms of features. The similarity of items is evaluated over those features.
    </span>
   </p>
   <p>
@@ -4220,21 +4232,54 @@
   </p>
   <p>
    <span>
-    See also
+    From a high level view, content-based recommender require three steps, that are handled by different components
    </span>
-   <span>
-    <a href="https://link.springer.com/chapter/10.1007/978-0-387-85820-3_3">
-     https://link.springer.com/chapter/10.1007/978-0-387-85820-3_3
+   <sup>
+    <a href="#ftnt62" id="ftnt_ref62">
+     [62]
     </a>
-   </span>
+   </sup>
    <span>
+    :
    </span>
   </p>
-  <h4 id="h.npg08ioyklcj">
+  <ul>
+   <li>
+    <span>
+     Content analyzer: analyzes the items and extracts the features from it. If items don’t have already a structured form (for example textual items like webpages) this step is very important to produce those features (keywords in the example of webpages). Those features will be used by the other two components.
+    </span>
+   </li>
+   <li>
+    <span>
+     Profile learner: user models are built, usually using machine learning techniques, feeding as examples the item features with the associated feedback provided by the user.
+    </span>
+   </li>
+   <li>
+    <span>
+     Filtering component: the user models are used to infer expected positive ratings on new items, evaluated using some kind of similarity, like cosine similarity between the prototype vector (the one built by the profile learner) and the new item features. The results of this stage is a ranked list of new items.
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    The advantages of those systems are many. First of all, user independence: only feedbacks from the target user are needed, no matter on the number of different users. Also transparency can easily be added, listing the features that caused the item score. Finally, those systems can work with new items that haven’t been rated by any user.
+   </span>
+  </p>
+  <p>
+   <span>
+    However there are also disadvantages. Being very dependent on the content, a domain knowledge is usually required in order to extract the item features. This problem is usually addressed by strategies like semantic analysis that make use of ontologies in order to catch references to external concepts. Another disadvantage is that the items that are recommended tend to be very similar, resulting in high accuracy but low serendipity. It is very difficult to provide unexpected recommendations, out of the bubble that surrounds the user. The last problem is with new users: until an history of feedbacks is collected, the system can hardly suggest other items that will be liked by the user.
+   </span>
+  </p>
+  <h4 id="h.iizs3geatfe">
    <span>
     Collaborative filtering
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     What user will like based on similarities of other users. Doesn’t require “understanding” the items. Can be done using user similarity and/or items similarity.
@@ -5197,8 +5242,8 @@
     The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
-    <a href="#ftnt62" id="ftnt_ref62">
-     [62]
+    <a href="#ftnt63" id="ftnt_ref63">
+     [63]
     </a>
    </sup>
    <span>
@@ -5215,8 +5260,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt63" id="ftnt_ref63">
-     [63]
+    <a href="#ftnt64" id="ftnt_ref64">
+     [64]
     </a>
    </sup>
    <span>
@@ -5243,24 +5288,24 @@
     As said before, the bot has as requirement to support also the italian language. For the english language several preprocessed word embeddings are available, trained on different corpuses and with different algorithms. Instead for italian, the found pre-trained embeddings are GloVe and word2vec trained by the Human Language Technologies of Pisa
    </span>
    <sup>
-    <a href="#ftnt64" id="ftnt_ref64">
-     [64]
+    <a href="#ftnt65" id="ftnt_ref65">
+     [65]
     </a>
    </sup>
    <span>
     and the official fastText
    </span>
    <sup>
-    <a href="#ftnt65" id="ftnt_ref65">
-     [65]
+    <a href="#ftnt66" id="ftnt_ref66">
+     [66]
     </a>
    </sup>
    <span>
     , all trained on the Wikipedia corpus. Another widely used corpus is CommonCrawl
    </span>
    <sup>
-    <a href="#ftnt66" id="ftnt_ref66">
-     [66]
+    <a href="#ftnt67" id="ftnt_ref67">
+     [67]
     </a>
    </sup>
    <span>
@@ -5364,8 +5409,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt67" id="ftnt_ref67">
-     [67]
+    <a href="#ftnt68" id="ftnt_ref68">
+     [68]
     </a>
    </sup>
    <span>
@@ -5809,8 +5854,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt68" id="ftnt_ref68">
-      [68]
+     <a href="#ftnt69" id="ftnt_ref69">
+      [69]
      </a>
     </sup>
     <span>
@@ -5870,11 +5915,6 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt69" id="ftnt_ref69">
-     [69]
-    </a>
-   </sup>
-   <sup>
     <a href="#ftnt70" id="ftnt_ref70">
      [70]
     </a>
@@ -5882,6 +5922,11 @@
    <sup>
     <a href="#ftnt71" id="ftnt_ref71">
      [71]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt72" id="ftnt_ref72">
+     [72]
     </a>
    </sup>
    <span>
@@ -6461,8 +6506,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt72" id="ftnt_ref72">
-     [72]
+    <a href="#ftnt73" id="ftnt_ref73">
+     [73]
     </a>
    </sup>
    <span>
@@ -6492,8 +6537,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by [Liu et al.
    </span>
    <sup>
-    <a href="#ftnt73" id="ftnt_ref73">
-     [73]
+    <a href="#ftnt74" id="ftnt_ref74">
+     [74]
     </a>
    </sup>
    <span>
@@ -6887,8 +6932,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder jointSLU by [Liu et al.
    </span>
    <sup>
-    <a href="#ftnt74" id="ftnt_ref74">
-     [74]
+    <a href="#ftnt75" id="ftnt_ref75">
+     [75]
     </a>
    </sup>
    <span>
@@ -6926,8 +6971,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt75" id="ftnt_ref75">
-     [75]
+    <a href="#ftnt76" id="ftnt_ref76">
+     [76]
     </a>
    </sup>
    <span>
@@ -7094,8 +7139,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt76" id="ftnt_ref76">
-      [76]
+     <a href="#ftnt77" id="ftnt_ref77">
+      [77]
      </a>
     </sup>
    </li>
@@ -8604,6 +8649,16 @@
      [62]
     </a>
     <span>
+     Lops, P., De Gemmis, M., &amp; Semeraro, G. (2011). Content-based recommender systems: State of the art and trends. In Recommender systems handbook (pp. 73-105). Springer US.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref63" id="ftnt63">
+     [63]
+    </a>
+    <span>
      Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
     </span>
     <span>
@@ -8613,8 +8668,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref63" id="ftnt63">
-     [63]
+    <a href="#ftnt_ref64" id="ftnt64">
+     [64]
     </a>
     <span>
     </span>
@@ -8629,8 +8684,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref64" id="ftnt64">
-     [64]
+    <a href="#ftnt_ref65" id="ftnt65">
+     [65]
     </a>
     <span>
     </span>
@@ -8643,8 +8698,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref65" id="ftnt65">
-     [65]
+    <a href="#ftnt_ref66" id="ftnt66">
+     [66]
     </a>
     <span>
     </span>
@@ -8657,8 +8712,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref66" id="ftnt66">
-     [66]
+    <a href="#ftnt_ref67" id="ftnt67">
+     [67]
     </a>
     <span>
     </span>
@@ -8679,8 +8734,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref67" id="ftnt67">
-     [67]
+    <a href="#ftnt_ref68" id="ftnt68">
+     [68]
     </a>
     <span>
      Liu, B. and Lane, I. (2016).
@@ -8695,8 +8750,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref68" id="ftnt68">
-     [68]
+    <a href="#ftnt_ref69" id="ftnt69">
+     [69]
     </a>
     <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
@@ -8710,21 +8765,11 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref69" id="ftnt69">
-     [69]
-    </a>
-    <span>
-     Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
     <a href="#ftnt_ref70" id="ftnt70">
      [70]
     </a>
     <span>
-     Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
+     Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
     </span>
    </p>
   </div>
@@ -8734,7 +8779,7 @@
      [71]
     </a>
     <span>
-     Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
+     Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
     </span>
    </p>
   </div>
@@ -8744,13 +8789,7 @@
      [72]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="http://www.fast.ai/2017/01/03/keras/">
-      http://www.fast.ai/2017/01/03/keras/
-     </a>
-    </span>
-    <span>
+     Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
     </span>
    </p>
   </div>
@@ -8760,13 +8799,13 @@
      [73]
     </a>
     <span>
-     Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="http://www.fast.ai/2017/01/03/keras/">
+      http://www.fast.ai/2017/01/03/keras/
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -8792,7 +8831,13 @@
      [75]
     </a>
     <span>
-     Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -8800,6 +8845,16 @@
    <p>
     <a href="#ftnt_ref76" id="ftnt76">
      [76]
+    </a>
+    <span>
+     Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref77" id="ftnt77">
+     [77]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
