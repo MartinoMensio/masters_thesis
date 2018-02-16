@@ -7553,11 +7553,16 @@
     In the search of datasets available for the Natural Language Understanding, two main types have been found, respectively for single-turn interaction and for multi-turn interactions.
    </span>
   </p>
-  <h4 id="h.2kcgnsynz9an">
+  <h4 id="h.8wekmvpcm5ph">
    <span>
     Single turn
    </span>
   </h4>
+  <h5 id="h.1wcjylw42o8c">
+   <span>
+    ATIS
+   </span>
+  </h5>
   <p>
    <span>
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
@@ -7573,103 +7578,349 @@
   </p>
   <p>
    <span>
-    the Official Airline Guide (OAG, 1990): each question is annotated with its intent
+    the Official Airline Guide (OAG, 1990): each question is annotated with its intent, over 18 different intent types, and with the relative slots, over 127 slot types. The slot types correspond to entity types with a specific role: for example the slot type “fromloc.city_name” corresponds to the entity type “city_name” with the role “fromloc”. The dataset has 4978 training samples and 893 validation samples: the original division is only in two splits, no “development” set is available. However some works have additionally divided the the train set into two parts to leave the validation set on its own for the final evaluation and not for the hyperparameters optimization.
+   </span>
+  </p>
+  <h5 id="h.ky245rjhml6x">
+   <span>
+    NLU Benchmark
+   </span>
+  </h5>
+  <p>
+   <span>
+    Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
+   </span>
+   <sup>
+    <a href="#ftnt80" id="ftnt_ref80">
+     [80]
+    </a>
+   </sup>
+   <span>
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
+   </span>
+   <sup>
+    <a href="#ftnt81" id="ftnt_ref81">
+     [81]
+    </a>
+   </sup>
+   <span>
+    , Google’s Api.ai
+   </span>
+   <sup>
+    <a href="#ftnt82" id="ftnt_ref82">
+     [82]
+    </a>
+   </sup>
+   <span>
+    , Microsoft’s Luis
+   </span>
+   <sup>
+    <a href="#ftnt83" id="ftnt_ref83">
+     [83]
+    </a>
+   </sup>
+   <span>
+    , Apple’s SiriKit
+   </span>
+   <sup>
+    <a href="#ftnt84" id="ftnt_ref84">
+     [84]
+    </a>
+   </sup>
+   <span>
+    , IBM’s Watson
+   </span>
+   <sup>
+    <a href="#ftnt85" id="ftnt_ref85">
+     [85]
+    </a>
+   </sup>
+   <span>
+    , Facebook’s Wit
+   </span>
+   <sup>
+    <a href="#ftnt86" id="ftnt_ref86">
+     [86]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt87" id="ftnt_ref87">
+     [87]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt88" id="ftnt_ref88">
+     [88]
+    </a>
+   </sup>
+   <span>
+    is composed of 7 different intents
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO look at
+   </span>
+   <span>
+    <a href="https://github.com/sebischair/NLU-Evaluation-Corpora">
+     https://github.com/sebischair/NLU-Evaluation-Corpora
+    </a>
+   </span>
+   <span>
+    and integrate it in the datasets? This is a paper, see on the repo github.
+   </span>
+  </p>
+  <h5 id="h.n6d2unjva2y0">
+   <span>
+    Wit.ai
+   </span>
+  </h5>
+  <p>
+   <span>
+    More specific to the prototype built for this project, BotCycle, two single-turn datasets have been collected with the support of wit.ai platform: one in english and one in italian. The collection of samples begun with the early stages of the prototype, that was relying on wit.ai for the understanding part. This platform provides a friendly GUI where the intents and slots can be configured, and also some training samples can be provided. Moreover it keeps track of the “inbox” messages used in operational setup, that can be later reviewed and added to the gold standard. Even when the understanding part switched to local deployment, we kept sending the requests for processing to wit.ai in order to continue to increase the dataset. WIth this technique we collected 517
+   </span>
+   <span>
+    (TODO update with final stats)
+   </span>
+   <span>
+    samples for the english language and 91 samples for the italian one.
+   </span>
+  </p>
+  <h4 id="h.xa7exm60qpn">
+   <span>
+    Multi turn
+   </span>
+  </h4>
+  <p>
+   <span>
+    Instead for the multi turn NLU, that is described in (TODO add reference to the approach for multi turn proposed in HQA2018), there have been used less datasets.
+   </span>
+  </p>
+  <h5 id="h.gxt0s3umpmaj">
+   <span>
+    Key-Value Retrieval
+   </span>
+  </h5>
+  <p>
+   <span>
+    The only dataset found in literature is the Key-Value Retrieval
+   </span>
+   <sup>
+    <a href="#ftnt89" id="ftnt_ref89">
+     [89]
+    </a>
+   </sup>
+   <span>
+    , that contains sessions of interaction between a driver and his smart car. Each session begins with an utterance of the driver that clearly states his intent (out of 3 possible values: Calendar Scheduling, Weather Information Retrieval, POI Navigation), and the subsequent turns of both parties continue the dialogue to refine the search and to reach the desired final response. About the annotation of the slots, they are available but not annotated in a straightforward way: each slot (15 types available) is stored with its value, but there are some problems in identifying their displacement in the sentences, because a normalization step (entity linking is missing).
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Single turn:
+     trailing spaces in the slot annotation: solved by trimming strings;
+    </span>
+   </li>
+   <li>
+    <span>
+     capitalization differences between slot annotation and text of the sentence: solved by applying match insensitive;
+    </span>
+   </li>
+   <li>
+    <span>
+     slots annotated on later turns referring to previous turns: solved by reversing the look-up processing order on the sentences and annotations, in order to enable backward references to text;
+    </span>
+   </li>
+   <li>
+    <span>
+     multiple matches for the same word in a sentence: by keeping the forward slots to be referenced, sometimes multiple entities overlap partially in the sentences, that is not allowed by the IOB annotation scheme;
+    </span>
+   </li>
+   <li>
+    <span>
+     incomplete slot value: for example “take my pills” in the sentence is annotated as “take pills”, and this is not solvable by simple look-up strategies;
+    </span>
+   </li>
+   <li>
+    <span>
+     entity resolution problems:  for example the reference “there” is annotated with its resolution (the place mentioned before), or “today” in the text is annotated as “wednesday” in the slots;
+    </span>
+   </li>
+   <li>
+    <span>
+     other entity resolution problems that could be solved by looking at the attached Knowledge Base: those are not resolved since it is not the only limitation;
     </span>
    </li>
   </ul>
-  <ul>
-   <li>
-    <span>
-     ATIS
-    </span>
-   </li>
-   <li>
-    <span>
-     Nlu-benchmark
-    </span>
-   </li>
-   <li>
-    <span>
-     Botcycle (no baseline available)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Multi-turn (problem of comparison with results by other):
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Kvret:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Problems: intent per session; slots are quite messy, overlapping, both in driver and car turns
-    </span>
-   </li>
-  </ul>
-  <h3 id="h.qjo78i8aemlw">
+  <p>
+   <span>
+    The selected approach, while providing also outputs for the slot labels being trained jointly, is here analyzed mainly under the point of view of the intents, so this is actually not a problem. The main goal of the multi-turn approach is to be able to automatically recognize when a certain session ends or continue, where time-based session split can be misleading and a working solution should rely on the contents only.
+   </span>
+  </p>
+  <p>
+   <span>
+    This dataset, therefore, satisfies our needs: each sentence is annotated with its speaker and the intent values are available. The preprocessing is composed of three steps: 1 annotation of the intent from session-level to sentence-level by copying the values; 2 concatenation of all the sentences, removing the concept of session that remains only on the intent values; 3 consider as samples only the driver sentences, each one stored together with the current and previous intent value and with the previous sentence of the agent.
+   </span>
+  </p>
+  <h5 id="h.ftgmlmugryqn">
+   <span>
+    BotCycle multi turn
+   </span>
+  </h5>
+  <p>
+   <span>
+    As for the single turn, a targeted dataset is needed for the specific field of application relatively for the bike sharing domain. For this reason, all the conversations between the user and the bot have been recorded, and from them some sessions have been cleaned up, eventually correcting the predicted outputs. The conversations have been generated from a restricted team of testers that knew the limitations of the system and focused the interaction on the actual types of things the system is able to do. Through this technique it has been possible to collect XXX training sessions with an average length of XXX (TODO complete those values).
+   </span>
+  </p>
+  <h3 id="h.zgzu0uo07fwv">
    <span>
     Evaluation Protocol
    </span>
   </h3>
   <p>
    <span>
-    Comparison with state of the art and other benchmarks
+    To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
+   </span>
+   <sup>
+    <a href="#ftnt90" id="ftnt_ref90">
+     [90]
+    </a>
+   </sup>
+   <span>
+    the performance is evaluated by computing the intent error rate and the F1 measure for the slot filling. It is important to notice that in classification tasks for which every test case is guaranteed to be assigned to exactly one class, F-measure on micro level (globally counting TP,FN,FP) is equivalent to accuracy.
    </span>
   </p>
   <p>
    <span>
-    For intents:
+    So for both settings (single turn and multi-turn) the measures chosen to evaluate the results are the following:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     F1 measure
+     F1 measure on the intents
+    </span>
+   </li>
+   <li>
+    <span>
+     F1 measure for the slots (a slot is correctly detected if both type and start and end are correct)
+    </span>
+   </li>
+   <li>
+    <span>
+     F1 measure on the IOB annotation level
+    </span>
+    <span>
+     highly unbalanced because ‘O’ annotation is prevalent
     </span>
    </li>
   </ul>
   <p>
    <span>
-    For entities:
+    For the comparison different approaches have been considered in order to evaluate several choices:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     F1 based on single words
-    </span>
-   </li>
-   <li>
-    <span>
-     F1 based on entities
-    </span>
-   </li>
-   <li>
-    <span>
-     Error rate
+     Word embeddings
     </span>
    </li>
   </ul>
-  <h3 id="h.scboixtw2zz2">
+  <ul>
+   <li>
+    <span>
+     Pretrained
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     EN model size (wins large model)
+    </span>
+   </li>
+   <li>
+    <span>
+     IT cnr vs spacy tokenization (wins spacy)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Trained from scratch vs pretrained spacy large (wins pretrained spacy large)
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Single turn variations
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     LSTM vs GRU
+    </span>
+   </li>
+   <li>
+    <span>
+     Attention vs non attention
+    </span>
+   </li>
+   <li>
+    <span>
+     Intent decoder rnn vs last state of bidirectional encoder
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Multi-turn variations
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     LSTM vs GRU vs CRF on top
+    </span>
+   </li>
+   <li>
+    <span>
+     Consider bot turn vs no bot turn
+    </span>
+   </li>
+   <li>
+    <span>
+     Consider previous intent vs not consider
+    </span>
+   </li>
+   <li>
+    <span>
+     Word-level CRF
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.jqjnj9ntyo4p">
    <span>
     Results
    </span>
   </h3>
+  <p>
+   <span>
+    The results of the evaluation
+   </span>
+  </p>
   <h4 id="h.9m2ky1sgb9v1">
    <span>
     Word embeddings
@@ -9120,6 +9371,170 @@
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref80" id="ftnt80">
+     [80]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+      https://snips.ai/content/sdk-benchmark-visualisation/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref81" id="ftnt81">
+     [81]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.amazon.com/alexa">
+      https://developer.amazon.com/alexa
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref82" id="ftnt82">
+     [82]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://api.ai/">
+      https://api.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref83" id="ftnt83">
+     [83]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.luis.ai/">
+      https://www.luis.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref84" id="ftnt84">
+     [84]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.apple.com/sirikit/">
+      https://developer.apple.com/sirikit/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref85" id="ftnt85">
+     [85]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
+      https://www.ibm.com/watson/developercloud/nl-classifier.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref86" id="ftnt86">
+     [86]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://wit.ai/">
+      https://wit.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref87" id="ftnt87">
+     [87]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/">
+      https://snips.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref88" id="ftnt88">
+     [88]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/snipsco/nlu-benchmark">
+      https://github.com/snipsco/nlu-benchmark
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref89" id="ftnt89">
+     [89]
+    </a>
+    <span>
+     Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref90" id="ftnt90">
+     [90]
+    </a>
+    <span>
+     Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
     </span>
    </p>
   </div>
