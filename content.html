@@ -4715,7 +4715,7 @@
   </p>
   <p>
    <span>
-    An important point of the approach chosen is the multi-linguality: the agent, being developed in Torino, is supposed to be able to understand not only the english language, but also the italian one. English may be considered the international language, but the support to local languages is essential. For the sentences of the agent the solution is simply to have both italian and english template responses. Instead for the language understanding part, as will be seen in
+    An important point of the approach chosen is the multi-linguality: the agent, being developed in Torino, is supposed to be able to understand not only the english language, but also the italian one. English may be considered the international language, but the support to local languages is essential. For the sentences of the agent, the solution is simply to have both italian and english template responses. Instead for the language understanding part, as will be seen in
    </span>
    <span>
     <a href="#h.wwhr5qye57xb">
@@ -4723,7 +4723,7 @@
     </a>
    </span>
    <span>
-    , it requires having the requested disjointed models.
+    , it requires having the requested models for both the languages.
    </span>
   </p>
   <h2 id="h.bi6zv7oh1003">
@@ -4733,26 +4733,9 @@
   </h2>
   <p>
    <span>
-    Cover here some common scenarios the bot has been designed for.
+    We explain there the main scenarios that we want to face with this conversational agent. The main goal is to provide an easy-to-use interface that feels more natural for the user by allowing the interrogation in natural language.
    </span>
   </p>
-  <p>
-   <span>
-    TODOs
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     this stuff needs to be explained in less messy way, without details on the modules
-    </span>
-   </li>
-   <li>
-    <span>
-     A high level model of the system has to be explained
-    </span>
-   </li>
-  </ul>
   <h3 id="h.5b37239td2lm">
    <span>
     Search for bike stations informations
@@ -4803,7 +4786,7 @@
   </h3>
   <p>
    <span>
-    Another scenario is when a user wants to understand the availability of the informations for a specific city. In this case the request, expressed in natural language, will contain the name of the city. The system extracts it and finds if any bike sharing providers have support in it. If the city is not supported, informations about what nearby locations are supported can be provided in the response.
+    Another scenario is when a user wants to understand the availability of the informations for a specific city. In this case the request, expressed in natural language, will contain the name of the city. The system extracts it and finds if any bike sharing providers have support in it. If the city is not supported, informations about which nearby locations are supported can be provided in the response.
    </span>
   </p>
   <h3 id="h.4andgrew3fog">
@@ -4828,7 +4811,7 @@
   </p>
   <p>
    <span>
-    Having some dialogues of this genre with the user could help understanding more about him, and those informations could be useful for refining the personalization model. By having a mixed-initiative interaction instead of a user-centric interaction, the bot may also ask questions to the user about his interests or explicitly asking for some feedback. In this way the personalization would receive a boost.
+    Having some dialogues of this genre with the user could help understanding more about him, and those informations could be useful for refining the personalization model. By having a mixed-initiative interaction instead of letting the system to reply only to the questions, the bot may also ask questions to the user about his interests or explicitly asking for some feedback. In this way the personalization would receive a boost.
    </span>
   </p>
   <h3 id="h.v3k960rc81yj">
@@ -4838,7 +4821,7 @@
   </h3>
   <p>
    <span>
-    Extending the mixed-initiative interaction out of the single dialogue, the bot may be able to actively begin the conversation with the user after some time of inactivity (not possible to start conversations with new users). This can be seen as breaking the idea of the bot as a service and for this reason should be only done if there is a advantage for the user. The advantage can exist in two different situations.
+    Extending the mixed-initiative interaction out of the single dialogue, the bot may be able to actively begin the conversation with the user after some time of inactivity (not possible to start conversations with new users of course). This can be seen as breaking the idea of the bot as a service and for this reason should be only done if there is an advantage for the user. The advantage can exist in two different situations.
    </span>
   </p>
   <p>
@@ -4924,7 +4907,7 @@
   </p>
   <p>
    <span>
-    A very commonly used platform is Facebook Messenger, that opened to bots in April 2016. This platform is widely spread because is part of Facebook, and is available for every devices, also from web browsers. On Facebook Messengers the features are text/voice exchange, buttons of different kind, images and even attaching the user location. Facebook Bots have their Facebook Page and a few configuration steps need to be done to be able to set up a new bot. Other chat platforms that allow bots are Skype, Slack, Kik and many others.
+    A very commonly used platform is Facebook Messenger, that opened to bots in April 2016. This platform is widely spread because is part of Facebook, and is available for every devices, also from web browsers. On Facebook Messengers the features are text/voice exchange, buttons of different kind, images and even attaching the user location. Facebook Bots have their Facebook Page and a few configuration steps need to be done to be able to set up a new bot. Other chat platforms that allow bots are Skype, Slack and Kik.
    </span>
   </p>
   <p>
@@ -4951,90 +4934,6 @@
     This is what is intended with the term Omnichannel Support: the core of the chatbot can be put in communication with any messaging platforms, given that the message-proxy component (the part of the two that depends on the specific platform) is correctly configured. This component can make use of one of the many available solutions to manage different channels: Microsoft Bot Framework, Recast.AI Bot Connector, or start from scratch the implementation of the different endpoints. As will be seen in the implementation chapter, having this component has many advantages.
    </span>
   </p>
-  <h2 id="h.loyigzz2moom">
-   <span>
-    Main steps (remove me)
-   </span>
-  </h2>
-  <p>
-   <span>
-    This section will disappear. Move the contents between this chapter (approach) and the chapter of implementation
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     bike sharing (easy part)
-    </span>
-   </li>
-   <li>
-    <span>
-     Context of the city: events, places. Possible source of data:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Foursquare
-    </span>
-    <span>
-     <a href="https://developer.foursquare.com/docs/venues/explore">
-      https://developer.foursquare.com/docs/venues/explore
-     </a>
-    </span>
-    <span>
-     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
-    </span>
-   </li>
-   <li>
-    <span>
-     Google places API
-    </span>
-    <span>
-     <a href="https://developers.google.com/places/web-service/search">
-      https://developers.google.com/places/web-service/search
-     </a>
-    </span>
-    <span>
-     provides similar features (1.000 requests per day)
-    </span>
-   </li>
-   <li>
-    <span>
-     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
-      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Weather forecasts: if bad weather is expected, tell user
-    </span>
-    <span>
-     <a href="https://www.wunderground.com/weather/api/">
-      https://www.wunderground.com/weather/api/
-     </a>
-    </span>
-    <span>
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     External profile data interface (consider technical difficulties) for more personalization and less explicit interview. If present, should be optional (not every user are on facebook, and also if they are, they may not want to share their profile)
-    </span>
-   </li>
-  </ul>
   <h2 id="h.cftgacplng26">
    <span>
     NLU
@@ -5047,7 +4946,7 @@
   </p>
   <p>
    <span>
-    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify slots.
+    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example the fact that “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside the domain it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify intents and slots.
    </span>
   </p>
   <h3 id="h.n3l5xxexfx34">
@@ -5253,7 +5152,7 @@
    </li>
    <li>
     <span>
-     Find closest station to a certain point
+     Find closest station to a certain point (not limiting the search to available bikes/slots)
     </span>
    </li>
    <li>
@@ -5936,6 +5835,69 @@
     The Information Retrieval Module connects to different sources of data to provide informations about the bike sharing systems, interfacing with directions APIs and retrieving informations about the places (especially for the personalization component).
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     bike sharing (easy part)
+    </span>
+   </li>
+   <li>
+    <span>
+     Context of the city: events, places. Possible source of data:
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Foursquare
+    </span>
+    <span>
+     <a href="https://developer.foursquare.com/docs/venues/explore">
+      https://developer.foursquare.com/docs/venues/explore
+     </a>
+    </span>
+    <span>
+     can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
+    </span>
+   </li>
+   <li>
+    <span>
+     Google places API
+    </span>
+    <span>
+     <a href="https://developers.google.com/places/web-service/search">
+      https://developers.google.com/places/web-service/search
+     </a>
+    </span>
+    <span>
+     provides similar features (1.000 requests per day)
+    </span>
+   </li>
+   <li>
+    <span>
+     <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
+      https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
+  <ul>
+   <li>
+    <span>
+     Weather forecasts: if bad weather is expected, tell user
+    </span>
+    <span>
+     <a href="https://www.wunderground.com/weather/api/">
+      https://www.wunderground.com/weather/api/
+     </a>
+    </span>
+    <span>
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
    </span>
