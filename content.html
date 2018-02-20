@@ -5205,22 +5205,22 @@
   <ol start="1">
    <li>
     <span>
-     from words to structured objects, e.g. place name → lat,lng,full_name,...
+     from words to structured objects, e.g. place name → lat,lng,full_name,... → OK
     </span>
    </li>
    <li>
     <span>
-     Disambiguation when multiple results
+     Disambiguation when multiple results → NO
     </span>
    </li>
    <li>
     <span>
-     Contextualization to current city
+     Contextualization to current city → NO, the city can change
     </span>
    </li>
    <li>
     <span>
-     Variables (e.g. home, work, school)
+     Variables (e.g. home, work, school) → NO
     </span>
    </li>
   </ol>
@@ -5333,7 +5333,7 @@
   </h4>
   <p>
    <span>
-    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper, the first one has been chosen.
+    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper [Liu et al.], the first one has been chosen.
    </span>
   </p>
   <p>
@@ -5346,53 +5346,27 @@
   </p>
   <h3 id="h.jgfqc41g5bq6">
    <span>
-    Statefulness of architecture for multi-turn NLU
+    Multi-turn NLU
    </span>
   </h3>
   <p>
    <span>
-    TODO this approach is quite a mess. Consider keeping sentences separated, only using previous bot turn for slots. For intent maybe is sufficient to be below a certain threshold. Or intent RNN with [current intent logits, previous intent] → current intent
+    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context [TODO add refs and explainations], the decision has been to change the single-turn architecture to make it consider
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context, the decision has been to change the single-turn architecture to make it stateful. Making it stateful means that the RNN cells involved will have the initial hidden state equal to the last hidden state. The hope is that initializing the RNN cells will make the work on the current sentence depend also on previous sentences, both for the intent classification and for the slot tagging. The current sentence may not contain indicators of the intent that is contained in previous user sentence. And specifically for the slot filling, we decided to consider also the agent sentence in order to provide the decoding stage. Since the model is a single one, the agent turn words are used in both the intent classification and in the slot filling networks.
-   </span>
-  </p>
-  <p>
-   <span>
-    Additional work on the dataset:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Identifying the sessions
-    </span>
-   </li>
-   <li>
-    <span>
-     Aligning (initializing with the previous state of the same session)
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
     Architecture:
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 388.00px;">
-    <img alt="" src="https://lh3.googleusercontent.com/hPOJ7glI3EQi0OVAOQYS6u0WgDA_CgeWEG4uUHanTlqJQ7NKYuFMEmihEI61dts-1q3Kw_A3zrRAvWzm9pfgAcKb-Qv7ZcViaCUmznmY10oTTZEcKyyP29eZhIdGYecTFX6hBJDQ" style="width: 602.00px; height: 391.23px; margin-left: 0.00px; margin-top: -1.62px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span>
+    TODO copy&amp;paste from HQA2018 approach
    </span>
   </p>
   <p>
    <span>
-    TODO explain why saving to memory and restoring stops the backpropagation. The training has to be done without save/restore. Only problem: backward RNN in train is connected, in test the arcs across turns are disconnected.
+    TODO add picture
    </span>
   </p>
   <p>
@@ -5491,7 +5465,7 @@
   </p>
   <p>
    <span>
-    Once the requirements have been checked, the corresponding actions are called and the response is generated
+    Once the requirements have been checked, the corresponding actions are called and the response is generated.
    </span>
   </p>
   <h2 id="h.p32l2grv4p6t">
@@ -5524,53 +5498,6 @@
     To find this category, a bit of user modeling needs to be done.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <ol start="1">
-   <li>
-    <span>
-     SSH (social sciences and humanities):
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: bootstrap/social data, episodic KB
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: user features (can be described and are kind of explicit dimensions)
-    </span>
-   </li>
-  </ol>
-  <ol start="2">
-   <li>
-    <span>
-     Recommender system:
-    </span>
-   </li>
-  </ol>
-  <ol start="1">
-   <li>
-    <span>
-     Input: user features + stimulus (what type of recommendation)
-    </span>
-   </li>
-   <li>
-    <span>
-     Output: recommendation
-    </span>
-   </li>
-   <li>
-    <span>
-     Internally using user profile vector that contains model-generated dimensions (can match or not the user features)
-    </span>
-   </li>
-  </ol>
   <h4 id="h.9j2yq7sjjkvs">
    <span>
     User modeling
@@ -5711,7 +5638,7 @@
   </p>
   <p>
    <span>
-    Selection of category given a distribution: analyze how a concept of “temperature” can model more randomness versus a fixed output (sampling)
+    TODO Selection of category given a distribution: analyze how a concept of “temperature” can model more randomness versus a fixed output (sampling)
    </span>
   </p>
   <p>
@@ -5981,7 +5908,7 @@
    </li>
    <li>
     <span>
-     Mapbox
+     Mapbox → used because simpler and seems reliable
     </span>
    </li>
    <li>
@@ -6323,11 +6250,6 @@
    <span>
    </span>
   </p>
-  <hr style="page-break-before:always;display:none;"/>
-  <p>
-   <span>
-   </span>
-  </p>
   <h1 id="h.p8l11mdful87">
    <span>
     Implementation
@@ -6482,7 +6404,15 @@
   </p>
   <p>
    <span>
-    The Bot Server is hosted on heroku with a free plan that has limitations in computing power and space, but fits the requirements for this component. Especially, the platform supports natively HTTPS that are covered by a wildcard certificate (every application receives a URL that matching with *.herokuapp.com is valid). Websites and Web Server applications can easily be created (using one of a large set of supported languages and frameworks) and pushed to the platform and the deployment will occur with no pains in configuration.
+    The Bot Server is hosted on heroku
+   </span>
+   <sup>
+    <a href="#ftnt74" id="ftnt_ref74">
+     [74]
+    </a>
+   </sup>
+   <span>
+    with a free plan that has limitations in computing power and space, but fits the requirements for this component. Especially, the platform supports natively HTTPS that are covered by a wildcard certificate (every application receives a URL that matching with *.herokuapp.com is valid). Websites and Web Server applications can easily be created (using one of a large set of supported languages and frameworks) and pushed to the platform and the deployment will occur with no pains in configuration.
    </span>
   </p>
   <p>
@@ -6586,8 +6516,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt74" id="ftnt_ref74">
-     [74]
+    <a href="#ftnt75" id="ftnt_ref75">
+     [75]
     </a>
    </sup>
    <span>
@@ -6617,8 +6547,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by [Liu et al.
    </span>
    <sup>
-    <a href="#ftnt75" id="ftnt_ref75">
-     [75]
+    <a href="#ftnt76" id="ftnt_ref76">
+     [76]
     </a>
    </sup>
    <span>
@@ -6851,12 +6781,28 @@
    </li>
    <li>
     <span>
-     GRUCell: Gated Recurrent Unit - Cho et al. 2014
+     GRUCell: Gated Recurrent Unit - [Cho et al. 2014
+    </span>
+    <sup>
+     <a href="#ftnt77" id="ftnt_ref77">
+      [77]
+     </a>
+    </sup>
+    <span>
+     ]
     </span>
    </li>
    <li>
     <span>
-     LSTMCell: Long-Short Term Memory layer - Hochreiter 1997
+     LSTMCell: Long-Short Term Memory layer - [Hochreiter 1997
+    </span>
+    <sup>
+     <a href="#ftnt78" id="ftnt_ref78">
+      [78]
+     </a>
+    </sup>
+    <span>
+     ]
     </span>
    </li>
   </ul>
@@ -7012,8 +6958,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder jointSLU by [Liu et al.
    </span>
    <sup>
-    <a href="#ftnt76" id="ftnt_ref76">
-     [76]
+    <a href="#ftnt79" id="ftnt_ref79">
+     [79]
     </a>
    </sup>
    <span>
@@ -7051,8 +6997,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt77" id="ftnt_ref77">
-     [77]
+    <a href="#ftnt80" id="ftnt_ref80">
+     [80]
     </a>
    </sup>
    <span>
@@ -7075,7 +7021,7 @@
   </p>
   <p>
    <span>
-    First of all, the inputs of the computational graph have been changed from word indexes to string tensors (that exist in TensorFlow although its math-preponderance). In this way the dictionaries are part of the graph. Translation from word to indexes and inverse is possible thanks to the package tf.contrib.lookup that can be used to implement lookup tables for both the directions.
+    First of all, the inputs of the computational graph have been changed from word indexes to string tensors (that exist in TensorFlow although its math-preponderance). In this way the dictionaries are part of the graph. Translation from word to indexes and inverse is possible thanks to the package tf.contrib.lookup that can be used to implement lookup tables for both the directions (words to indexes and indexes to words).
    </span>
   </p>
   <p>
@@ -7219,8 +7165,8 @@
      ATIS: Air Travel Information System
     </span>
     <sup>
-     <a href="#ftnt78" id="ftnt_ref78">
-      [78]
+     <a href="#ftnt81" id="ftnt_ref81">
+      [81]
      </a>
     </sup>
    </li>
@@ -7530,8 +7476,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt79" id="ftnt_ref79">
-     [79]
+    <a href="#ftnt82" id="ftnt_ref82">
+     [82]
     </a>
    </sup>
    <span>
@@ -7553,36 +7499,12 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt80" id="ftnt_ref80">
-     [80]
-    </a>
-   </sup>
-   <span>
-    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
-   </span>
-   <sup>
-    <a href="#ftnt81" id="ftnt_ref81">
-     [81]
-    </a>
-   </sup>
-   <span>
-    , Google’s Api.ai
-   </span>
-   <sup>
-    <a href="#ftnt82" id="ftnt_ref82">
-     [82]
-    </a>
-   </sup>
-   <span>
-    , Microsoft’s Luis
-   </span>
-   <sup>
     <a href="#ftnt83" id="ftnt_ref83">
      [83]
     </a>
    </sup>
    <span>
-    , Apple’s SiriKit
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
     <a href="#ftnt84" id="ftnt_ref84">
@@ -7590,7 +7512,7 @@
     </a>
    </sup>
    <span>
-    , IBM’s Watson
+    , Google’s Api.ai
    </span>
    <sup>
     <a href="#ftnt85" id="ftnt_ref85">
@@ -7598,7 +7520,7 @@
     </a>
    </sup>
    <span>
-    , Facebook’s Wit
+    , Microsoft’s Luis
    </span>
    <sup>
     <a href="#ftnt86" id="ftnt_ref86">
@@ -7606,7 +7528,7 @@
     </a>
    </sup>
    <span>
-    , and Snips
+    , Apple’s SiriKit
    </span>
    <sup>
     <a href="#ftnt87" id="ftnt_ref87">
@@ -7614,11 +7536,35 @@
     </a>
    </sup>
    <span>
-    itself. The dataset used for their benchmark
+    , IBM’s Watson
    </span>
    <sup>
     <a href="#ftnt88" id="ftnt_ref88">
      [88]
+    </a>
+   </sup>
+   <span>
+    , Facebook’s Wit
+   </span>
+   <sup>
+    <a href="#ftnt89" id="ftnt_ref89">
+     [89]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt90" id="ftnt_ref90">
+     [90]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt91" id="ftnt_ref91">
+     [91]
     </a>
    </sup>
    <span>
@@ -7674,8 +7620,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt89" id="ftnt_ref89">
-     [89]
+    <a href="#ftnt92" id="ftnt_ref92">
+     [92]
     </a>
    </sup>
    <span>
@@ -7749,8 +7695,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt90" id="ftnt_ref90">
-     [90]
+    <a href="#ftnt93" id="ftnt_ref93">
+     [93]
     </a>
    </sup>
    <span>
@@ -9263,8 +9209,8 @@
     <span>
     </span>
     <span>
-     <a href="http://www.fast.ai/2017/01/03/keras/">
-      http://www.fast.ai/2017/01/03/keras/
+     <a href="https://www.heroku.com/">
+      https://www.heroku.com/
      </a>
     </span>
     <span>
@@ -9277,13 +9223,13 @@
      [75]
     </a>
     <span>
-     Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="http://www.fast.ai/2017/01/03/keras/">
+      http://www.fast.ai/2017/01/03/keras/
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -9309,7 +9255,7 @@
      [77]
     </a>
     <span>
-     Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -9317,6 +9263,42 @@
    <p>
     <a href="#ftnt_ref78" id="ftnt78">
      [78]
+    </a>
+    <span>
+     Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref79" id="ftnt79">
+     [79]
+    </a>
+    <span>
+     Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref80" id="ftnt80">
+     [80]
+    </a>
+    <span>
+     Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref81" id="ftnt81">
+     [81]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990).
@@ -9328,8 +9310,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref79" id="ftnt79">
-     [79]
+    <a href="#ftnt_ref82" id="ftnt82">
+     [82]
     </a>
     <span>
      Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
@@ -9338,8 +9320,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref80" id="ftnt80">
-     [80]
+    <a href="#ftnt_ref83" id="ftnt83">
+     [83]
     </a>
     <span>
     </span>
@@ -9354,8 +9336,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref81" id="ftnt81">
-     [81]
+    <a href="#ftnt_ref84" id="ftnt84">
+     [84]
     </a>
     <span>
     </span>
@@ -9370,8 +9352,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref82" id="ftnt82">
-     [82]
+    <a href="#ftnt_ref85" id="ftnt85">
+     [85]
     </a>
     <span>
     </span>
@@ -9386,8 +9368,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref83" id="ftnt83">
-     [83]
+    <a href="#ftnt_ref86" id="ftnt86">
+     [86]
     </a>
     <span>
     </span>
@@ -9402,8 +9384,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref84" id="ftnt84">
-     [84]
+    <a href="#ftnt_ref87" id="ftnt87">
+     [87]
     </a>
     <span>
     </span>
@@ -9418,8 +9400,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref85" id="ftnt85">
-     [85]
+    <a href="#ftnt_ref88" id="ftnt88">
+     [88]
     </a>
     <span>
     </span>
@@ -9434,8 +9416,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref86" id="ftnt86">
-     [86]
+    <a href="#ftnt_ref89" id="ftnt89">
+     [89]
     </a>
     <span>
     </span>
@@ -9450,8 +9432,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref87" id="ftnt87">
-     [87]
+    <a href="#ftnt_ref90" id="ftnt90">
+     [90]
     </a>
     <span>
     </span>
@@ -9466,8 +9448,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref88" id="ftnt88">
-     [88]
+    <a href="#ftnt_ref91" id="ftnt91">
+     [91]
     </a>
     <span>
     </span>
@@ -9482,8 +9464,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref89" id="ftnt89">
-     [89]
+    <a href="#ftnt_ref92" id="ftnt92">
+     [92]
     </a>
     <span>
      Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -9492,8 +9474,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref90" id="ftnt90">
-     [90]
+    <a href="#ftnt_ref93" id="ftnt93">
+     [93]
     </a>
     <span>
      Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
