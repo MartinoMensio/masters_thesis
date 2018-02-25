@@ -9,10 +9,20 @@
     </span>
    </p>
   </div>
-  <p id="h.vk2k761yj09a">
+  <p id="h.sdrab4c7fiee">
    <span>
     A Social Bot for Personalized Recommendations of Bike Availability
    </span>
+  </p>
+  <p id="h.harpcw25o3kr">
+   <span>
+    A study on Natural Language Understanding and Personalization
+   </span>
+   <sup>
+    <a href="#cmnt1" id="cmnt_ref1">
+     [a]
+    </a>
+   </sup>
   </p>
   <p>
    <span>
@@ -26,20 +36,34 @@
   </p>
   <p>
    <span>
+    This work contains therefore two major themes - Natural Language Understanding and Personalization - that follow each others in a traversal argumentation from the literature to the selected approaches and implementations.
    </span>
   </p>
   <p>
    <span>
-    The work on the thesis is therefore divided into two major domains: Natural Language Understanding and Personalization. Both of them are analyzed starting from the study of the State of the Art, then focusing on the chosen approach. For the Natural Language Understanding the
+    The
+   </span>
+   <span>
+    Natural Language Interface
+   </span>
+   <span>
+    enables a communication with the machine in the language that is really used by humans in their everyday interactions with other people. This exchange of information, with traditional mobile application, makes the human imitate a computer, to perform precise questions in the form of commands. Instead the goal of Conversational Interfaces is to reverse this imitation process, in order to bring the interaction closer to the users. The closeness to the user manifests also in the available languages, and this is the reason that pushed the development of the bot in Italian version too.
    </span>
   </p>
   <p>
    <span>
+    Once this interaction channel is ready, with the mutual understanding of the involved parties, a process of
+   </span>
+   <span>
+    personalization
+   </span>
+   <span>
+    can be applied in order to provide user-centric contents and interactions.
    </span>
   </p>
   <p>
    <span>
-    After having done some experiments with some online platforms that make available sentence classification (intent detection) and extraction of parameters (slot filling), our investigation has gone towards the exploration of the approaches that can be applied to achieve the same functionality. The first experiments with some NLP libraries (such as SpaCy
+    Beginning with an introduction to Autonomous Systems and their consequences (like technological advances and societal consequences), an analysis of the State of the Art is done, by doing a classification of Conversational Agents and then exploring the available literature for both the NLU and Personalization. For the first one, the focus stands on Recurrent Neural Network (RNN) approaches that can perform a sentence classification (intent detection task) and extraction of parameters (slot filling task). The literature also shows how the input words can be used, by exploiting features (word embeddings
    </span>
    <sup>
     <a href="#ftnt1" id="ftnt_ref1">
@@ -47,7 +71,7 @@
     </a>
    </sup>
    <span>
-    , Stanford NLP
+    ) computed on large datasets of unlabeled text, to capture syntactic and semantic similarities on big dictionaries. Those similarities allow to be more robust to words that have not been considered. Instead for the Personalization topic, the Content-based and Collaborative filtering are explained, together with available methods to extract user features. Those user features can be of anagraphical type, or can be more undeclared traits such as Big Five Personality Traits
    </span>
    <sup>
     <a href="#ftnt2" id="ftnt_ref2">
@@ -55,7 +79,17 @@
     </a>
    </sup>
    <span>
-    ) underlined the need to use recurrent neural networks because those libraries only allow a specific set of NLP tasks (entity recognition, word embeddings, sentence parsing). For this reason the exploration was directed in RNN approaches that achieve the State of the Art condition
+    that can be computed by analyzing external data coming from social networks and interests.
+   </span>
+  </p>
+  <p>
+   <span>
+    Moving on the selected approach, an analysis is done on the the target scenarios where the bot for bike sharing is meant to be used. After giving an high-level view of the components required to interact with chat platforms and the required services, the description focuses on Natural Language Understanding. To target two types of interaction (single-turn where each sentence is processed independently and multi-turn where an interaction context exists) the selected approach is described, by giving special focus to the Word Embeddings. For the Personalization topic instead, two main needs are described: providing content recommendation, such as interesting places along the path of the cyclist, and tailoring the communication mean to the needs of the user.
+   </span>
+  </p>
+  <p>
+   <span>
+    The chapter about implementation describes the implementation details for the NLU with the frameworks used (SpaCy
    </span>
    <sup>
     <a href="#ftnt3" id="ftnt_ref3">
@@ -63,16 +97,7 @@
     </a>
    </sup>
    <span>
-    for the selected tasks.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    While implementing those Neural Networks, the TensorFlow
+    , TensorFlow
    </span>
    <sup>
     <a href="#ftnt4" id="ftnt_ref4">
@@ -80,7 +105,12 @@
     </a>
    </sup>
    <span>
-    library has been used with the pre-trained English Word Embeddings
+    ), and provides a sketch of the Personalization system that can be used as guideline to implement it (is not part of the running prototype).
+   </span>
+  </p>
+  <p>
+   <span>
+    Finally the validation chapter provides a description of the evaluation framework that has been used for the evaluation of the system. For the evaluation of NLU, the datasets used are explained (such as ATIS
    </span>
    <sup>
     <a href="#ftnt5" id="ftnt_ref5">
@@ -88,7 +118,7 @@
     </a>
    </sup>
    <span>
-    provided by SpaCy. An additional work has been done to train also Italian Word Embeddings on the Wikipedia corpus, in order to be able to work also with this language. The effect of different Word Embeddings strategies (for example considering the values trainable or pre-trained on bigger corpuses) has been also measured on some datasets available, such as ATIS
+    , nlu-benchmark
    </span>
    <sup>
     <a href="#ftnt6" id="ftnt_ref6">
@@ -96,7 +126,7 @@
     </a>
    </sup>
    <span>
-    and nlu-benchmark
+    , KVRet
    </span>
    <sup>
     <a href="#ftnt7" id="ftnt_ref7">
@@ -104,73 +134,7 @@
     </a>
    </sup>
    <span>
-    , both for looking at word coverage and for effect on the performance of the overall network. Also a small dataset has been collected for the specific domain of bike sharing in both English and Italian languages.
-   </span>
-  </p>
-  <p>
-   <span>
-    The results on the datasets show how important is the choice of pre trained word embeddings.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Some studies have been done on multi-turn interactions, in order to allow more natural interactions with the user. The problem of single-turn interaction is that questions by the user must contain all the required parameters to provide a response and make it unnatural to talk with the agent. This approach has been experimented on the KVRet dataset
-   </span>
-   <sup>
-    <a href="#ftnt8" id="ftnt_ref8">
-     [8]
-    </a>
-   </sup>
-   <span>
-    with promising values for the ability to keep track of the intent changes over the user turns.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    In order to personalise the Bot, some studies have been done about how to recommend places that the user could be interested in visiting during his trip.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    About the user features, in chat context only text analysis and previous interactions can be used to model something about the user. Adding the capability to add some data from an external Social Network profile can improve the analysis of the personality, for example deriving the big5 personality traits from the user interests as has been done in
-   </span>
-   <sup>
-    <a href="#ftnt9" id="ftnt_ref9">
-     [9]
-    </a>
-   </sup>
-   <span>
-    .
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    With those features, the content recommendation problem becomes finding some category of places (the items to be recommended) that could be interesting for the user in the area relative to his trip. A recommender system empowered by content based and collaborative filtering has been sketched.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    It has also been observed that the personalization would require also a tailored communication in which the user is allowed to change some preferences on the dialogue. For example an operative mode can be set, based on the current needs of the user, in order to enable or disable the item recommendations.
+    , and also the ones collected specifically for the bike sharing bot) and the measures are defined. Then also the results are presented, underlying the importance of features such as word embeddings or the structure of the network itself.
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
@@ -412,8 +376,8 @@
     brain
    </span>
    <sup>
-    <a href="#cmnt1" id="cmnt_ref1">
-     [a]
+    <a href="#cmnt2" id="cmnt_ref2">
+     [b]
     </a>
    </sup>
    <span>
@@ -430,8 +394,8 @@
     While the first experiment were carried out in 50s, on the philosophical side Alan Turing published a paper
    </span>
    <sup>
-    <a href="#ftnt10" id="ftnt_ref10">
-     [10]
+    <a href="#ftnt8" id="ftnt_ref8">
+     [8]
     </a>
    </sup>
    <span>
@@ -459,8 +423,8 @@
     As humanoid examples of robots, we can start with Sophia, developed by Hanson Robotics, which has been granted citizenship by Saudi Arabia recently. This is an examples that is linked to many interesting topics. For some, this action “set a bad precedent for how we might treat robots in future”
    </span>
    <sup>
-    <a href="#ftnt11" id="ftnt_ref11">
-     [11]
+    <a href="#ftnt9" id="ftnt_ref9">
+     [9]
     </a>
    </sup>
    <span>
@@ -486,6 +450,24 @@
    <span>
     This paragraph is about some general guidelines that should be followed when designing autonomous systems that are interacting with humans.
    </span>
+  </p>
+  <p>
+   <span>
+    TODO add 3 Asimov Rules
+   </span>
+   <sup>
+    <a href="#ftnt10" id="ftnt_ref10">
+     [10]
+    </a>
+   </sup>
+   <span>
+    and Asilomar Principles
+   </span>
+   <sup>
+    <a href="#ftnt11" id="ftnt_ref11">
+     [11]
+    </a>
+   </sup>
   </p>
   <p>
    <span>
@@ -1194,8 +1176,8 @@
     Chatbots and their classification
    </span>
    <sup>
-    <a href="#cmnt2" id="cmnt_ref2">
-     [b]
+    <a href="#cmnt3" id="cmnt_ref3">
+     [c]
     </a>
    </sup>
   </h2>
@@ -1242,8 +1224,8 @@
     There are fields in which using apps can be quite frustrating for users. User interface forces you to fill up informations in a form-like structure. When finally you try to submit, you find out that you missed one required field. A conversational interface could simplify a lot this process, even though you are simply doing slot-filling and asking one input after the other.
    </span>
    <sup>
-    <a href="#cmnt3" id="cmnt_ref3">
-     [c]
+    <a href="#cmnt4" id="cmnt_ref4">
+     [d]
     </a>
    </sup>
   </p>
@@ -1328,8 +1310,8 @@
     1996
    </span>
    <sup>
-    <a href="#cmnt4" id="cmnt_ref4">
-     [d]
+    <a href="#cmnt5" id="cmnt_ref5">
+     [e]
     </a>
    </sup>
    <sup>
@@ -2230,8 +2212,8 @@
     The challenges
    </span>
    <sup>
-    <a href="#cmnt5" id="cmnt_ref5">
-     [e]
+    <a href="#cmnt6" id="cmnt_ref6">
+     [f]
     </a>
    </sup>
   </h3>
@@ -5881,8 +5863,8 @@
     GoBeeBike
    </span>
    <sup>
-    <a href="#cmnt6" id="cmnt_ref6">
-     [f]
+    <a href="#cmnt7" id="cmnt_ref7">
+     [g]
     </a>
    </sup>
    <span>
@@ -8224,13 +8206,7 @@
      [1]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://spacy.io/">
-      https://spacy.io/
-     </a>
-    </span>
-    <span>
+     Key:pennington2014glove Pennington et al.
     </span>
    </p>
   </div>
@@ -8240,13 +8216,7 @@
      [2]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://stanfordnlp.github.io/CoreNLP/">
-      https://stanfordnlp.github.io/CoreNLP/
-     </a>
-    </span>
-    <span>
+     Key:goldberg1993structure Big 5 personality traits
     </span>
    </p>
   </div>
@@ -8256,7 +8226,13 @@
      [3]
     </a>
     <span>
-     Key:liu2016attention Liu et al.
+    </span>
+    <span>
+     <a href="https://spacy.io/">
+      https://spacy.io/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -8282,7 +8258,7 @@
      [5]
     </a>
     <span>
-     Key:pennington2014glove Pennington et al.
+     Key:hemphill1990atis Hemphill
     </span>
    </p>
   </div>
@@ -8290,16 +8266,6 @@
    <p>
     <a href="#ftnt_ref6" id="ftnt6">
      [6]
-    </a>
-    <span>
-     Key:hemphill1990atis Hemphill
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref7" id="ftnt7">
-     [7]
     </a>
     <span>
     </span>
@@ -8314,8 +8280,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref8" id="ftnt8">
-     [8]
+    <a href="#ftnt_ref7" id="ftnt7">
+     [7]
     </a>
     <span>
      Key:eric2017key Eric, Mannings
@@ -8324,18 +8290,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref9" id="ftnt9">
-     [9]
-    </a>
-    <span>
-     Key:kosinski2013private Kosinski
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref10" id="ftnt10">
-     [10]
+    <a href="#ftnt_ref8" id="ftnt8">
+     [8]
     </a>
     <span>
      Key:turing1950computing Turing, A. (1950).
@@ -8350,14 +8306,40 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref11" id="ftnt11">
-     [11]
+    <a href="#ftnt_ref9" id="ftnt9">
+     [9]
     </a>
     <span>
     </span>
     <span>
      <a href="https://www.theverge.com/2017/10/30/16552006/robot-rights-citizenship-saudi-arabia-sophia">
       https://www.theverge.com/2017/10/30/16552006/robot-rights-citizenship-saudi-arabia-sophia
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref10" id="ftnt10">
+     [10]
+    </a>
+    <span>
+     Key:clarke2011asimov Three Asimov Rules
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref11" id="ftnt11">
+     [11]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://futureoflife.org/ai-principles/">
+      https://futureoflife.org/ai-principles/
      </a>
     </span>
     <span>
@@ -9636,6 +9618,16 @@
      [a]
     </a>
     <span>
+     sottotitolo?
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref2" id="cmnt2">
+     [b]
+    </a>
+    <span>
      forse ne parli dopo, c'e' un progetto EU molto grande https://www.humanbrainproject.eu/en/
     </span>
    </p>
@@ -9656,8 +9648,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref2" id="cmnt2">
-     [b]
+    <a href="#cmnt_ref3" id="cmnt3">
+     [c]
     </a>
     <span>
      invece di due dimensioni separate, incrociare in matrice
@@ -9666,8 +9658,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref3" id="cmnt3">
-     [c]
+    <a href="#cmnt_ref4" id="cmnt4">
+     [d]
     </a>
     <span>
      See https://web.stanford.edu/class/cs124/lec/chatbot17.pdf for detailed analysis
@@ -9681,8 +9673,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref4" id="cmnt4">
-     [d]
+    <a href="#cmnt_ref5" id="cmnt5">
+     [e]
     </a>
     <span>
      aggiungere figura
@@ -9691,8 +9683,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref5" id="cmnt5">
-     [e]
+    <a href="#cmnt_ref6" id="cmnt6">
+     [f]
     </a>
     <span>
      prima di tutto mettere la mappatura, poi introdurre le metodologie, sfide
@@ -9701,8 +9693,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref6" id="cmnt6">
-     [f]
+    <a href="#cmnt_ref7" id="cmnt7">
+     [g]
     </a>
     <span>
      GoBee abbandona Torino: http://torino.repubblica.it/cronaca/2018/02/09/news/gobee_bike_colosso_asiatico_delle_bici_a_nollegio_dopo_la_francia_abbandona_pure_torino-188432125/
