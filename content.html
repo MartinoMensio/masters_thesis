@@ -11,16 +11,41 @@
   </div>
   <p id="h.sdrab4c7fiee">
    <span>
-    A Social Bot for Personalized Recommendations of Bike Availability
-   </span>
-  </p>
-  <p id="h.harpcw25o3kr">
-   <span>
-    A study on Natural Language Understanding and Personalization
+    A Conversational Agent based on Deep Semantic Learning
    </span>
    <sup>
     <a href="#cmnt1" id="cmnt_ref1">
      [a]
+    </a>
+   </sup>
+   <sup>
+    <a href="#cmnt2" id="cmnt_ref2">
+     [b]
+    </a>
+   </sup>
+   <sup>
+    <a href="#cmnt3" id="cmnt_ref3">
+     [c]
+    </a>
+   </sup>
+  </p>
+  <p id="h.harpcw25o3kr">
+   <span>
+    Natural Language Understanding study and use case
+   </span>
+   <sup>
+    <a href="#cmnt4" id="cmnt_ref4">
+     [d]
+    </a>
+   </sup>
+   <sup>
+    <a href="#cmnt5" id="cmnt_ref5">
+     [e]
+    </a>
+   </sup>
+   <sup>
+    <a href="#cmnt6" id="cmnt_ref6">
+     [f]
     </a>
    </sup>
   </p>
@@ -36,7 +61,7 @@
   </p>
   <p>
    <span>
-    This work contains therefore two major themes - Natural Language Understanding and Personalization - that follow each others in a traversal argumentation from the literature to the selected approaches and implementations.
+    This work contains therefore two major themes - Natural Language Understanding (NLU) and Personalization - that follow each others in a traversal argumentation from the literature to the selected approaches.
    </span>
   </p>
   <p>
@@ -47,7 +72,7 @@
     Natural Language Interface
    </span>
    <span>
-    enables a communication with the machine in the language that is really used by humans in their everyday interactions with other people. This exchange of information, with traditional mobile application, makes the human imitate a computer, to perform precise questions in the form of commands. Instead the goal of Conversational Interfaces is to reverse this imitation process, in order to bring the interaction closer to the users. The closeness to the user manifests also in the available languages, and this is the reason that pushed the development of the bot in Italian version too.
+    enables a communication with the machine in the language that is really used by humans in their everyday interactions with other people. The exchange of information with traditional mobile application makes the human to imitate the computer, performing precise questions in the form of commands. Instead the goal of Conversational Interfaces is to reverse this imitation process, in order to bring the interaction closer to the users. The closeness to the user manifests also in the available languages, and this is the reason that pushed the development of the bot in the Italian version too.
    </span>
   </p>
   <p>
@@ -63,7 +88,7 @@
   </p>
   <p>
    <span>
-    Beginning with an introduction to Autonomous Systems and their consequences (like technological advances and societal consequences), an analysis of the State of the Art is done, by doing a classification of Conversational Agents and then exploring the available literature for both the NLU and Personalization. For the first one, the focus stands on Recurrent Neural Network (RNN) approaches that can perform a sentence classification (intent detection task) and extraction of parameters (slot filling task). The literature also shows how the input words can be used, by exploiting features (word embeddings
+    Beginning with an introduction to Autonomous Systems and their consequences (like technological advances and societal repercussions), an analysis of the State of the Art is done, by doing a classification of Conversational Agents and then exploring the available literature for both the NLU and Personalization. For the first one, the focus stands on Recurrent Neural Network (RNN) approaches that can perform a sentence classification (intent detection task) and extraction of parameters (slot filling task). The literature also shows how the input words can be used, by exploiting features (word embeddings
    </span>
    <sup>
     <a href="#ftnt1" id="ftnt_ref1">
@@ -71,7 +96,7 @@
     </a>
    </sup>
    <span>
-    ) computed on large datasets of unlabeled text, to capture syntactic and semantic similarities on big dictionaries. Those similarities allow to be more robust to words that have not been considered. Instead for the Personalization topic, the Content-based and Collaborative filtering are explained, together with available methods to extract user features. Those user features can be of anagraphical type, or can be more undeclared traits such as Big Five Personality Traits
+    ) computed on large datasets of unlabeled text, to capture syntactic and semantic similarities on big dictionaries. Those similarities allow to be more robust towards words that have not been considered in training sets. Instead for the Personalization topic, the Content-based and Collaborative filtering are explained, together with available methods to extract user features. Those user features can be of anagraphical type, or can be more undeclared traits such as Big Five Personality Traits
    </span>
    <sup>
     <a href="#ftnt2" id="ftnt_ref2">
@@ -105,7 +130,7 @@
     </a>
    </sup>
    <span>
-    ), and provides a sketch of the Personalization system that can be used as guideline to implement it (is not part of the running prototype).
+    ), and provides a sketch of the Personalization system that can be used as guideline (is neither implemented nor part of the running prototype).
    </span>
   </p>
   <p>
@@ -134,15 +159,20 @@
     </a>
    </sup>
    <span>
-    , and also the ones collected specifically for the bike sharing bot) and the measures are defined. Then also the results are presented, underlying the importance of features such as word embeddings or the structure of the network itself.
+    , and also the more restricted ones collected specifically for the bike sharing bot in both English and Italian) and the measures are defined. Finally the results are presented, underlying the importance of features such as word embeddings or the structure of the network itself.
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
-  <h1 id="h.k60jpmft2v71">
+  <h1 id="h.wgyn8alqg04o">
    <span>
     Introduction
    </span>
   </h1>
+  <p>
+   <span>
+    Conversational Agents
+   </span>
+  </p>
   <p>
    <span>
     Introduce the problem and the motivation
@@ -160,85 +190,11 @@
     </span>
    </li>
   </ul>
-  <p>
+  <h2 id="h.ji6a57fyg5ls">
    <span>
+    Structure of the Thesis
    </span>
-  </p>
-  <p>
-   <span>
-    Brief summary of previous works
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Specific objectives
-   </span>
-  </p>
-  <p>
-   <span>
-    The goal of the thesis is two-fold:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     conduct a survey of technologies enabling to build a textual chatbot
-    </span>
-   </li>
-   <li>
-    <span>
-     develop the system able to handle a basic conversation providing pre-computed answers
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    depending on the user profile. For example, the system while informing about factual
-   </span>
-  </p>
-  <p>
-   <span>
-    information, will offer additional and personalized information concerning the user's preferences
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Focus on:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     NLU
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     italian
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Personalization?
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
+  </h2>
   <p>
    <span>
     Roadmap:
@@ -261,7 +217,10 @@
   </p>
   <p>
    <span>
-    Part 4 Implementation: omnichannel support, NLU implementation (wit.ai prototype, tensorflow graph, word embeddings italian), personalization?
+    Part 4 Implementation: omnichannel support, NLU implementation (wit.ai prototype, tensorflow graph, word embeddings italian),
+   </span>
+   <span>
+    personalization?
    </span>
   </p>
   <p>
@@ -272,10 +231,6 @@
   <p>
    <span>
     Part 6 conclusion: acquired competences and results obtained, future works
-   </span>
-  </p>
-  <p>
-   <span>
    </span>
   </p>
   <h2 id="h.rtcm3atczk6j">
@@ -376,8 +331,8 @@
     brain
    </span>
    <sup>
-    <a href="#cmnt2" id="cmnt_ref2">
-     [b]
+    <a href="#cmnt7" id="cmnt_ref7">
+     [g]
     </a>
    </sup>
    <span>
@@ -1176,8 +1131,8 @@
     Chatbots and their classification
    </span>
    <sup>
-    <a href="#cmnt3" id="cmnt_ref3">
-     [c]
+    <a href="#cmnt8" id="cmnt_ref8">
+     [h]
     </a>
    </sup>
   </h2>
@@ -1224,8 +1179,8 @@
     There are fields in which using apps can be quite frustrating for users. User interface forces you to fill up informations in a form-like structure. When finally you try to submit, you find out that you missed one required field. A conversational interface could simplify a lot this process, even though you are simply doing slot-filling and asking one input after the other.
    </span>
    <sup>
-    <a href="#cmnt4" id="cmnt_ref4">
-     [d]
+    <a href="#cmnt9" id="cmnt_ref9">
+     [i]
     </a>
    </sup>
   </p>
@@ -1310,8 +1265,8 @@
     1996
    </span>
    <sup>
-    <a href="#cmnt5" id="cmnt_ref5">
-     [e]
+    <a href="#cmnt10" id="cmnt_ref10">
+     [j]
     </a>
    </sup>
    <sup>
@@ -2212,8 +2167,8 @@
     The challenges
    </span>
    <sup>
-    <a href="#cmnt6" id="cmnt_ref6">
-     [f]
+    <a href="#cmnt11" id="cmnt_ref11">
+     [k]
     </a>
    </sup>
   </h3>
@@ -5863,8 +5818,8 @@
     GoBeeBike
    </span>
    <sup>
-    <a href="#cmnt7" id="cmnt_ref7">
-     [g]
+    <a href="#cmnt12" id="cmnt_ref12">
+     [l]
     </a>
    </sup>
    <span>
@@ -8149,7 +8104,7 @@
   <ul>
    <li>
     <span>
-     Integrating with stationless systems
+     Integrating with stationless systems?
     </span>
    </li>
    <li>
@@ -9618,7 +9573,21 @@
      [a]
     </a>
     <span>
-     sottotitolo?
+     A Conversational Agent based on Deep Semantic Learning
+    </span>
+   </p>
+   <p>
+    <span>
+    </span>
+   </p>
+   <p>
+    <span>
+     WDYT
+    </span>
+   </p>
+   <p>
+    <span>
+     +martinomensio@gmail.com ?
     </span>
    </p>
   </div>
@@ -9626,6 +9595,75 @@
    <p>
     <a href="#cmnt_ref2" id="cmnt2">
      [b]
+    </a>
+    <span>
+     eventually: s/Conversational Agent/Chatbot ?
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref3" id="cmnt3">
+     [c]
+    </a>
+    <span>
+     Sì mi piace, da più il focus sulla parte di NLU
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref4" id="cmnt4">
+     [d]
+    </a>
+    <span>
+     sottotitolo?
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref5" id="cmnt5">
+     [e]
+    </a>
+    <span>
+     proporrei:
+    </span>
+   </p>
+   <p>
+    <span>
+     - botcycle presentato come caso d'uso
+    </span>
+   </p>
+   <p>
+    <span>
+     - mentre la personalizzazione come next thing to be implemented, but studied
+    </span>
+   </p>
+   <p>
+    <span>
+    </span>
+   </p>
+   <p>
+    <span>
+     WDYT?
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref6" id="cmnt6">
+     [f]
+    </a>
+    <span>
+     sì giusto anche perché la personalization non è stata implementata
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref7" id="cmnt7">
+     [g]
     </a>
     <span>
      forse ne parli dopo, c'e' un progetto EU molto grande https://www.humanbrainproject.eu/en/
@@ -9648,8 +9686,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref3" id="cmnt3">
-     [c]
+    <a href="#cmnt_ref8" id="cmnt8">
+     [h]
     </a>
     <span>
      invece di due dimensioni separate, incrociare in matrice
@@ -9658,8 +9696,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref4" id="cmnt4">
-     [d]
+    <a href="#cmnt_ref9" id="cmnt9">
+     [i]
     </a>
     <span>
      See https://web.stanford.edu/class/cs124/lec/chatbot17.pdf for detailed analysis
@@ -9673,8 +9711,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref5" id="cmnt5">
-     [e]
+    <a href="#cmnt_ref10" id="cmnt10">
+     [j]
     </a>
     <span>
      aggiungere figura
@@ -9683,8 +9721,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref6" id="cmnt6">
-     [f]
+    <a href="#cmnt_ref11" id="cmnt11">
+     [k]
     </a>
     <span>
      prima di tutto mettere la mappatura, poi introdurre le metodologie, sfide
@@ -9693,8 +9731,8 @@
   </div>
   <div>
    <p>
-    <a href="#cmnt_ref7" id="cmnt7">
-     [g]
+    <a href="#cmnt_ref12" id="cmnt12">
+     [l]
     </a>
     <span>
      GoBee abbandona Torino: http://torino.repubblica.it/cronaca/2018/02/09/news/gobee_bike_colosso_asiatico_delle_bici_a_nollegio_dopo_la_francia_abbandona_pure_torino-188432125/
