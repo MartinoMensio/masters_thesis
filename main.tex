@@ -4,9 +4,9 @@
 %\documentclass[b5paper,11pt,twoside,cucitura]{toptesi}
 
 % To print by one side
-\documentclass[a4paper,12pt,cucitura]{toptesi} % Page and font size
+\documentclass[a4paper,12pt,cucitura,tipotesi=magistrale,stile=classica]{toptesi} % Page and font size
 
-\usepackage[a4paper,top=4.3cm,bottom=5.5cm,left=3cm,right=3cm,bindingoffset=5mm]{geometry}
+%\usepackage[a4paper,top=4.3cm,bottom=5.5cm,left=3cm,right=3cm,bindingoffset=5mm]{geometry}
 
 \usepackage{lipsum}
 \usepackage{amsmath}
@@ -77,6 +77,11 @@
 \makeglossaries
 
 
+%% set the subsubsection to appear, stop to 3 please
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+
 \begin{document}
 
 
@@ -138,7 +143,7 @@
 %\tableofcontents
 
 %\newpage
-\tableofcontents
+%\tableofcontents
 %\addcontentsline{toc}{chapter}{Contents}
 
 %\phantomsection
