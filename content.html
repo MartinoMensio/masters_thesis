@@ -1422,7 +1422,7 @@
     objectives
    </span>
    <span>
-    : task-specific, entertainment and viruses. Subdivisions can be done by looking at the type of control mechanism (algorithmic, rule-based, machine learning) [REF FIGURE franklin_classification].
+    : task-specific, entertainment and viruses. As can be seen in [] Subdivisions can be done by looking at the type of control mechanism (algorithmic, rule-based, machine learning) [REF FIG:franklin_classification].
    </span>
   </p>
   <p>
@@ -1441,6 +1441,10 @@
    </sup>
    <span>
     ]
+   </span>
+  </p>
+  <p>
+   <span>
    </span>
   </p>
   <p>
@@ -2000,7 +2004,7 @@
   </p>
   <p>
    <span>
-    The choices are not independent however, as can be seen from figure [REF FIG:]: since the tasks are put in a chain (first understanding, then retrieving the information and ultimately formulating a response), the approach chosen on the first stages has consequences on the following ones. Choosing to use NLU instead of dynamic understanding precludes the possibility to have generative responses, because the user utterances will be categorized on a finite set of types (intent types) unless a hybrid understanding is performed (NLU to find the intent types with a parallel sequence-to-sequence model for chit-chat dialogues). For this reason and being the understanding stage the first one, the details on the approaches will be analyzed mainly on this first task, and for each level in it some details will be given on the possibilities for the other two choices.
+    The choices are not independent however, as can be seen from figure [REF FIG:approaches_combination]: since the tasks are put in a chain (first understanding, then retrieving the information and ultimately formulating a response), the approach chosen on the first stages has consequences on the following ones. Choosing to use NLU instead of dynamic understanding precludes the possibility to have generative responses, because the user utterances will be categorized on a finite set of types (intent types) unless a hybrid understanding is performed (NLU to find the intent types with a parallel sequence-to-sequence model for chit-chat dialogues). For this reason and being the understanding stage the first one, the details on the approaches will be analyzed mainly on this first task, and for each level in it some details will be given on the possibilities for the other two choices.
    </span>
   </p>
   <p>
@@ -2093,13 +2097,24 @@
   </p>
   <p>
    <span>
-    A rule (in the AIML jargon called category) is made up of a pattern and a template. The pattern is responsible to identify the sentences that activate the rule, while the template is the part that manages the response: a template can be both a sentence that will be sent to the user or can be a redirection towards another rule.
+    A rule (in the AIML jargon called category) is made up of a pattern and a template. As can be seen in [REF FIG:aiml_example], the pattern is responsible to identify the sentences that activate the rule, while the template is the part that manages the response: a template can be both a sentence that will be sent to the user or can be a redirection towards another rule (srai rules).
    </span>
   </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 184.00px;">
-    <img alt="" src="https://lh6.googleusercontent.com/R-niRLWA_Roo9Poc5T2Bm7SPFog1jJew6o6AYHrozNpgn-L4vIhOw4tbs-ECfLM-S2to3t7C9XY_BTLt0fI1glEA5YBqGO-vH4bbMohJywbWRn58Q5VsJ2-zy009TSeMxT1PmBWd" style="width: 602.00px; height: 184.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    <img alt="" src="https://lh6.googleusercontent.com/GqSbiRxnFERo1rKffnuMpc2UK1QiFOk1_ZND8YruS2JImYjjWT2irzndCS3DsLYmP2iNd7fbNQBghBpIIb1_lxt3YTv2Twh4oB5UC0MBoWV0-Vcda2V9iNSJCIgYlij9biZUbFk9" style="width: 617.53px; height: 184.00px; margin-left: -7.77px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
+  </p>
+  <p>
+   <span>
+    [FIG:aiml_example CAPTION:An example of the rule-based AIML]
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
    <span>
     In addition to those two elements, some actions to manage the state of the conversation can be added: variables can be set and read to manage the FSM and to conditionally activate rules.
    </span>
@@ -7566,6 +7581,11 @@
    <span>
     In the search of datasets available for the Natural Language Understanding, two main types have been found, respectively for single-turn interaction and for multi-turn interactions.
    </span>
+   <sup>
+    <a href="#cmnt8" id="cmnt_ref8">
+     [h]
+    </a>
+   </sup>
   </p>
   <h4 id="h.8wekmvpcm5ph">
    <span>
@@ -9931,6 +9951,16 @@
     </a>
     <span>
      GoBee abbandona Torino: http://torino.repubblica.it/cronaca/2018/02/09/news/gobee_bike_colosso_asiatico_delle_bici_a_nollegio_dopo_la_francia_abbandona_pure_torino-188432125/
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref8" id="cmnt8">
+     [h]
+    </a>
+    <span>
+     aggiungere l'asse della lingua
     </span>
    </p>
   </div>
