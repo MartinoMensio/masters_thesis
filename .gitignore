@@ -5,6 +5,7 @@ abstract_only.pdf
 partials/*
 media/
 !partials/properties.tex
+!partials/glossary.tex
 
 
 ## Core latex/pdflatex auxiliary files:

@@ -74,8 +74,10 @@
 \usepackage[toc]{glossaries}
 \renewcommand*{\glstextformat}[1]{#1}
 %\renewcommand*{\glstextformat}[1]{\textcolor{black}{\textbf{#1}}}          % Secretary version  
-\makeglossaries
 
+% build glossary
+\makeglossaries
+\input{partials/glossary}
 
 %% set the subsubsection to appear, stop to 3 please
 \setcounter{secnumdepth}{5}
@@ -178,6 +180,9 @@
 \input{partials/chapter_4.tex}
 \input{partials/chapter_5.tex}
 \input{partials/chapter_6.tex}
+
+% print the glossaries, without listing all the pages appearing
+\printglossary[nonumberlist]
 
 %\nocite{*} % uncomment to show also not cited ones
 \bibliographystyle{acm} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
