@@ -3984,33 +3984,28 @@
   </h3>
   <p>
    <span>
-    Considering context (previous interactions) and multi-turn interactions
-   </span>
-  </p>
-  <p>
-   <span>
     All the previously described networks only care about the current sentence, but human natural language understanding does not limit itself on this strict form. What happens when we meet some people that are already talking about something? It may take some time to understand the topic of the discussion, we need to collect some information as the interaction goes on to get the point of the discussion. This happens because most of the sentences are not standalone, but belong to a context that goes beyond the single sentence. This feature can be seen as some kind of memory that actors in a conversation need to keep. The context is necessary to understand the dialogue at different levels:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Understand the role of some words in a sentence given some information contained in other sentences (e.g. “To the beach” is the name of a restaurant, because Mary asked John what was the name of it)
+     Understand the role of some words in a sentence given some information contained in other sentences (e.g. “To the beach” is the name of a restaurant, because Mary asked John what was the name of it) → slot filling multiturn
     </span>
    </li>
    <li>
     <span>
-     Understand the meaning of the current sentence (e.g. in this sentence John told Mary that the restaurant was not as good as he expected)
+     Understand the meaning of the current sentence (e.g. in this sentence John told Mary that the restaurant was not as good as he expected) → intent classification multiturn
     </span>
    </li>
    <li>
     <span>
-     Understand the topic of the conversation (a synthesized attribute, e.g. John and Mary are talking about their last experience in a restaurant)
+     Understand the topic of the conversation (a synthesized attribute, e.g. John and Mary are talking about their last experience in a restaurant) → domain classification multiturn
     </span>
    </li>
    <li>
     <span>
-     Linking the meanings of all the things that were discussed, and being able to answer to some questions (test)
+     Linking the meanings of all the things that were discussed, and being able to answer to some questions (test) → dialogue state tracking, QA
     </span>
    </li>
   </ul>
