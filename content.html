@@ -554,11 +554,6 @@
   </p>
   <p>
    <span>
-    //From features to deep ML techniques
-   </span>
-  </p>
-  <p>
-   <span>
     Neural Networks come in the field of Artificial Intelligence as systems that can model some non-linear functions and substitute handcrafted rules in classification tasks. The first generation of this approach was based on a strong definition of input features, that were defined manually and inputs are annotated with a lot of them. This manual specification of input features requires a lot of effort in their design and in data annotation, and for this reason is not easily applicable to new problems. For some problems the features themselves can become quite complex and difficult to generate.
    </span>
   </p>
@@ -574,11 +569,6 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    //Evolution of the approaches: From ML to RL
    </span>
   </p>
   <p>
@@ -1340,7 +1330,7 @@
   </p>
   <p>
    <span>
-    The chapter of the Approach [REF:approach] instead focuses on the specific Chatbot use case: the bot for bike sharing information. The scenarios are delineed [REF:approachScearios] and the high level model of the system is described [REF:approachModel] by also giving the motivation for having two different components that interact [REF:approachMultichannel]. Then moving to the Natural Language Understanding [REF:approachNLU], a description of the intent and entities chosen [REF:approachTypes] proceeds the analysis of the selected approach is given for single-turn interaction
+    The chapter of the Approach [REF:approach] instead focuses on the specific Chatbot use case: the bot for bike sharing information. The scenarios are delineed [REF:approachScenarios] and the high level model of the system is described [REF:approachModel] by also giving the motivation for having two different components that interact [REF:approachOmnichannel]. Then moving to the Natural Language Understanding [REF:approachNLU], a description of the intent and entities chosen [REF:approachTypes] proceeds the analysis of the selected approach is given for single-turn interaction
    </span>
    <sup>
     <a href="#ftnt69" id="ftnt_ref69">
@@ -2721,7 +2711,7 @@
   </ul>
   <p>
    <span>
-    Once the intent and the slots have been analyzed on the current sentence, we can have some rules at the application level that can put some constraints. For example, for a certain type of question, one or more slots can be compulsory. In this case, the conversation should make the user provide the values by prompting him some questions. These types of constraint make the interaction model more complex and require an analysis over multiple user and machine turns, as will be seen in this section (reference to “Beyond the single sentence”)
+    Once the intent and the slots have been analyzed on the current sentence, we can have some rules at the application level that can put some constraints. For example, for a certain type of question, one or more slots can be compulsory. In this case, the conversation should make the user provide the values by prompting him some questions. These types of constraint make the interaction model more complex and require an analysis over multiple user and machine turns, as will be seen in section [REF:soaBeyondSingle].
    </span>
   </p>
   <p>
@@ -2757,7 +2747,7 @@
   </p>
   <p>
    <span>
-    A neural-network approach can be used for the tasks of slot filling and intent detection. The first thing that needs to be done is to point out what are the inputs and outputs of the system. The inputs to the network are the words contained in the sentence and the outputs are the intent label (for the intent classification task) and the slot labels (for the slot filling task).
+    A neural-network approach can be used for the tasks of slot filling and intent detection. The first thing that needs to be done is to point out what are the inputs and outputs of the system. Once defined the inputs and outputs, we can think of a component that implements the desired functionalities. The inputs to the network are the words contained in the sentence and the outputs are the intent label (for the intent classification task) and the slot labels (for the slot filling task).
    </span>
   </p>
   <p>
@@ -2767,17 +2757,17 @@
   </p>
   <p>
    <span>
-    For the previous example, the output annotations could be:
+    An example of inputs and expected outputs, showing the IOB annotation scheme, is represented in figure [REF FIG:iob]
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 242.67px;">
+    <img alt="" src="https://lh6.googleusercontent.com/w7Tcrya9EF2ukC91jhoGI_JDY6JvYZr53jSY8OWvL80WKjU4_6yRSHcaYVmXpyukwY8VeKhhamFN3SlDquU0ySSBLXWn0oVcQWSFUQruDmZubAmR8GNjChSLyCeRINN-fciHYbmR" style="width: 602.00px; height: 242.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    “Is(O) Turin(B-city) a(O) supported(O) city(O)?” intent=supported_city
-   </span>
-  </p>
-  <p>
-   <span>
-    Once defined the inputs and outputs, we can think of a component that implements the desired functionalities.
+    [FIG:iob CAPTION:The Inside Out Beginning annotation scheme]
    </span>
   </p>
   <p>
@@ -3355,12 +3345,7 @@
   </p>
   <p>
    <span>
-    With these vectors it’s possible to perform different things: First of all, compute the similarity of words.
-   </span>
-  </p>
-  <p>
-   <span>
-    and visualizing the word distribution on reduced dimensionality (for example plotting on a 2d plane).
+    With these vectors it’s possible to perform different things:
    </span>
   </p>
   <ul>
@@ -3493,33 +3478,41 @@
   </p>
   <p>
    <span>
-    The choice is usually to clean deeply the inputs in order to reduce the vocabulary. For capitalization it means to lowercase everything. But the casing feature may be important in some way to help recognizing place names for example
+    The choice is usually to clean deeply the inputs in order to reduce the vocabulary. For capitalization it means to lowercase everything. But the casing feature may be important in some way to help recognizing entities (think about a place name with capital letter, or an acronym uppercase). On the other side, beginning of sentences have capital letters that should be lowercased because that is not a wanted feature, it’s only required by writing rules. For this reason some invented a truecasing model
    </span>
-  </p>
-  <p>
-   <span>
-    A useful feature of words can also be how uppercase/lowercase is used. Simpler approaches that discard this feature do a lowercase of all the words. But capital letters can be useful in tasks like Named Entity Extraction. On the other side, beginning of sentences have capital letters that should be lowercased. For this reason truecasing model have been proposed
-   </span>
-   <span>
-    <a href="https://dl.acm.org/citation.cfm?id%3D1075096.1075116">
-     https://dl.acm.org/citation.cfm?id=1075096.1075116
+   <sup>
+    <a href="#ftnt115" id="ftnt_ref115">
+     [115]
     </a>
-   </span>
+   </sup>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
+    that aims at reconstructing the correct word casing.
    </span>
   </p>
   <p>
    <span>
-    Not only words
+    The other critical point is punctuation: a decision is needed about whether to keep those signs as additional dictionary entries or simply drop them. A very critical one is the apostrophe: the words around it are usually modified, so not only they have to be considered separately, but also some reconstruction could be required (example: “we’re” as a single word
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5B%22we%27re%22%5D"/>
+   <span>
+    or separating by the apostrophe
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5B%22we%22%2C%5C+%22%27re%22%5D"/>
+   <span>
+    or reconstructing the original words
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5B%22we%22%2C%5C+%22are%22%5D"/>
+   <span>
+    in order to have the same entry for the verb
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%22are%22"/>
+   <span>
+    in the dictionary (or applying a stemmer with similar results).
    </span>
   </p>
   <p>
    <span>
-    An approach based only on words may be good for scenarios where the users don’t have the time to write complex punctuations and other stuff. But when punctuation is provided, it would be a pity to throw it away. In text: punctuation, in voice: accents and other stuff; those are additional features that may be useful for doing a better classification.
+    An approach based only on only alphabetical lowercased words may be good for scenarios where the users don’t have the time to write complex punctuations. But when additional features are provided (such as punctuation and word casing in text, and accents and tone in voice), it would be a pity to throw away things that may be useful for doing a better classification.
    </span>
   </p>
   <h3 id="h.c5fozo2z8lca">
@@ -3534,37 +3527,30 @@
   </p>
   <p>
    <span>
-    Let’s talk here about approaches for the first task of NLU, intent classification, that takes as input the sentence and provides on output a label that corresponds to the intent type of the sentence. It is a multi-class classification.
+    Let’s talk here about approaches for the first task of NLU, intent classification, that takes as input the sentence and provides on output a label that corresponds to the intent type of the sentence. It is a multi-class classification. It takes in input a sequence of words and produces a single label, that is a trait value of the input sentence.
    </span>
   </p>
   <h4 id="h.4hmj3bjv7gq3">
    <span>
-    Keyword based
+    Keyword-based
    </span>
   </h4>
   <p>
    <span>
-    The first approach that can be considered is keyword-based. In this approach, for each intent type we determine a set of keywords that, if present in the current input, give a score to the selected intent type. For example …
+    The first approach that can be considered is keyword-based. In this approach, for each intent type we determine a set of keywords that, if present in the current input, give a score to the selected intent type. For example a naive classifier can be built to build keyword groups from training sentences and classify accordingly to their presence by doing a “majority vote” on the words of the current sentence.
+   </span>
+   <sup>
+    <a href="#ftnt116" id="ftnt_ref116">
+     [116]
+    </a>
+   </sup>
+   <span>
+    This approach dynamically determines the keywords for each class, but is not good enough because it looks only at some words in the current input sentence.
    </span>
   </p>
   <p>
    <span>
-    EXAMPLE
-   </span>
-  </p>
-  <p>
-   <span>
-    This approach is not good enough because it looks only at some words in the current input sentence.
-   </span>
-  </p>
-  <p>
-   <span>
-    Also it is difficult to establish which are the keywords for each class in a way that the conflicts are minimized.
-   </span>
-  </p>
-  <p>
-   <span>
-    A better idea would be to compute a sentence-level representation that summarizes all the words and the meaning of the sentence, and from this vector do a classification on the output labels (intent types). For this sentence vector a lot of different approaches can be applied.
+    A better idea would be to compute a sentence-level representation that summarizes all the words and the meaning of the sentence, and from this vector do a classification on the output labels (intent types). For this sentence vector a lot of different approaches can be applied that are explored in the following paragraphs.
    </span>
   </p>
   <h4 id="h.dazxotng1x74">
@@ -3574,7 +3560,7 @@
   </h4>
   <p>
    <span>
-    First of all, given the word vectors for each word contained in the sentence, an average can be done. As shown in figure [REF FIG:intentAverage], after the average is computed over the fixed-length embedding values for the input words, a simple feed-forward layer can be used to map to the intent space, producing logits that estimate the probability to belong to a certain class (intent).
+    First of all, given the word vectors for each word contained in the sentence, an average can be done. As shown in figure [REF FIG:intentAverage], after the average is computed over the fixed-length embedding values for the input words, a simple feed-forward layer can be used to map to the intent space, producing logits that estimate the probability to belong to a certain class (intent type).
    </span>
   </p>
   <p>
@@ -3583,13 +3569,18 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 519.87px; height: 386.00px;">
-    <img alt="" src="https://lh5.googleusercontent.com/xaSLNvFQkXxndqJQVNqdynTMdey0DR3RUSb2n_KGkvtJJEzozdAa_JGkLZXMM30bovFbzCn2URU6236xHlzPp4aO8DL5H20Wz_LEl4Y-RezbxZ36gEBY4zNGJy_MzVFG9IfTJd97" style="width: 519.87px; height: 386.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 356.00px;">
+    <img alt="" src="https://lh4.googleusercontent.com/ujR0rI_tBmLLaQ7A3ahz_hW0zJt8ta_UuhYcqtDJgIXq7KyqQnT1j0Mppku6w5i9IrlwbURCz4k6rVRCcznmXGasQCsbdHBNusECbQQrcvMb-OB6I-pwoFTeFSY5BFeMewXPsO_J" style="width: 602.00px; height: 356.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
     [FIG:intentAverage CAPTION:Intent classification by average of word vectors]
+   </span>
+  </p>
+  <p>
+   <span>
+    Another problem of this approach is that actually every word counts the same, so if stopwords are not eliminated they can bias the output basing on irrelevant inputs.
    </span>
   </p>
   <h4 id="h.6dcfrbpjww3p">
@@ -3603,8 +3594,8 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 482.67px; height: 461.00px;">
-    <img alt="" src="https://lh4.googleusercontent.com/au5Go2AiZdkuEm-qnp6fw64VM3elEUedFftrMfzKI5eQ9WO2EECieS1ay7LaHvrIZx_hNMFHZC---LgRDD3m6uWuHDT849NGg3YcSbCkAwrTHL9nr3MzTh3MGi779tr-Z0XP-2n5" style="width: 482.67px; height: 461.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 444.00px;">
+    <img alt="" src="https://lh6.googleusercontent.com/PD86ayCvDXjfZMP8nLVDBrF0-Hh9K_Jc_wEbSvXmtSxfhIq9JjHVl9isQL77yP2OPLrckFHBdtpCy8JTwBHqT2pp7WQAjP8UjQI3xd5qIVtj2FH00FyNS8D30fSmP5G3AGxb6YFf" style="width: 602.00px; height: 444.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3612,11 +3603,21 @@
     [FIG:intentBidirectionalRNN CAPTION:Intent classification by applying a bidirectional RNN]
    </span>
   </p>
-  <h4 id="h.6q4caqfmx7jf">
+  <p>
+   <span>
+    What makes this technique to work well is that the LSTM is very good at capturing sequence-level informations, considering with different importance the input words. The problem of stopwords is defeated and the Recurrent Network learns to discard the irrelevant words.
+   </span>
+  </p>
+  <h4 id="h.fiazs7yxt02f">
    <span>
     RNN + attention + other stuff
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     An attention mechanism can be used to learn a distribution over time of words that tells how much relevant is this word for the task.
@@ -3658,7 +3659,7 @@
   </p>
   <p>
    <span>
-    The task of slot tagging / named entity recognition instead consists of generating an output sequence in which each element corresponds to a tag for the corresponding input word. The tag can be directly the entity type or the IOB format can be used. IOB can be useful when there is need to deal with multi-word slots.
+    The task of slot tagging instead consists of generating an output sequence in which each element corresponds to a tag for the corresponding input word. The tag can be directly the entity type or the IOB format can be used. IOB can be useful when there is need to deal with multi-word slots, as in the example of figure [REF FIG:iob].
    </span>
   </p>
   <p>
@@ -3672,17 +3673,12 @@
   </p>
   <p>
    <span>
-    A common characteristic of them is the presence of two key elements: an encoder and a decoder.
+    A common characteristic of them is the presence of two key elements: an encoder and a decoder. The encoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage. The general composition of such encoder-decoder approaches is shown in figure [REF FIG:encoderDecoder]
    </span>
   </p>
   <p>
-   <span>
-    The encoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage. The general composition of such encoder-decoder approaches is shown in figure [REF FIG:encoderDecoder]
-   </span>
-  </p>
-  <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 172.00px;">
-    <img alt="" src="https://lh6.googleusercontent.com/7O0cb5s4TdReQJ6pe7La1nQlcej2R4SP7cLeBZC5RoAg9j7SRtBVinn0eumvbmoiMMmzaPbcS7f8-I3eqPwc_K80JzSk5fFaqvlK-LB_8B66AnrTeilNXldn9AGhS7b7HRy56zgv" style="width: 602.00px; height: 172.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 149.33px;">
+    <img alt="" src="https://lh5.googleusercontent.com/RXTPtSc0BY8GuxGL6JrUJx39otZQGHJ5ul3qXC7N9fHlQ268VP3_07uk-_nJ0iOdR5-vbg7_sOdEi7ab61nc_HVLAm1ZQdDZVz99jzX6kztYLLidS6b4MQ_swyhE5Giaa9763GKQ" style="width: 602.00px; height: 149.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3690,43 +3686,73 @@
     [FIG:encoderDecoder CAPTION:The connections between Encoder and Decoder components for sequence translation]
    </span>
   </p>
-  <h5 id="h.1zr6peoxh1xl">
-   <span>
-    Output dependencies
-   </span>
-  </h5>
   <p>
    <span>
-    Output labels of the words are correlated with the neighbors. For example a “I-ent” is always preceded by a “B-ent” or another “I-ent”. Also there can be some patterns that highlight that after a certain entity it is more probable to find another one. This is called output dependency, that occurs at the decoding stage, just before the production of the outputs.
    </span>
   </p>
   <p>
    <span>
-    Modeling output dependencies:
+    A very critical point when generating the output sequence is the correlation between the IOB labels. For example a “
+   </span>
+   <span>
+    I-ent
+   </span>
+   <span>
+    ” is always preceded by a “
+   </span>
+   <span>
+    B-ent
+   </span>
+   <span>
+    ” or another “
+   </span>
+   <span>
+    I-ent
+   </span>
+   <span>
+    ”. Also there can be some patterns that highlight that after a certain entity it is more probable to find another one. This is called output dependency, that occurs at the decoding stage, just before the production of the outputs.
+   </span>
+  </p>
+  <p>
+   <span>
+    Modeling the output dependencies can be done in different ways:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     local choice: using this approach, each decoding step produces an output that is then projected to the labels. The decision about which label to assign is done locally, performing a simple softmax operation followed by a sampling
+     Local choice: using this approach, each decoding step produces an output that is then projected to the labels. The decision about which label to assign is done locally, performing a simple softmax operation followed by a sampling;
     </span>
    </li>
    <li>
     <span>
-     feed the previous output together with the current input to decoding timestep (Jordan Network??): in this approach, the output is fed back as input to the next timestep for the decoder network, and the network in training learns the output dependencies
+     Feed the previous output together with the current input to decoding timesteps: (similarly to a Jordan Network
+    </span>
+    <sup>
+     <a href="#ftnt117" id="ftnt_ref117">
+      [117]
+     </a>
+    </sup>
+    <span>
+     ) in this approach, the output is fed back as input to the next timestep for the decoder network, and the network in training learns the output dependencies;
     </span>
    </li>
    <li>
     <span>
-     linear-chain CRF: an alternative to RNN for modeling the output dependencies is using a linear-chain CRF. This can substitute the decoder network, and use the encoder to produce its input features. CRF finds the paths with higher energy in a very similar way to RNN. In other words, it finds the output sequence that is mostly probable
+     Linear-chain CRF: an alternative to RNN for modeling the output dependencies is using a linear-chain CRF. This can substitute the decoder network, and use the encoder to produce its input features. CRF finds the paths with higher energy in a very similar way to RNN. In other words, it finds the output sequence that is mostly probable;
     </span>
    </li>
    <li>
     <span>
-     Beam search?
+     Beam search: not only a single candidate is kept for subsequent decoding timesteps, but a set with fixed size, in order to be able to perform decoding without always following the local optimum.
     </span>
    </li>
   </ul>
+  <p>
+   <span>
+    In the following paragraphs we give a description of some sequence to sequence approaches, from the most simple ones towards the most suitable for the slot labelling task.
+   </span>
+  </p>
   <p>
    <span>
    </span>
@@ -3742,8 +3768,8 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 609.65px; height: 211.50px;">
-    <img alt="" src="https://lh5.googleusercontent.com/LDlY7IbpamkxrKfm4W12L95vigCmV1xstLksQSyMm4fvp4mX87p-YSWWmnfIftsmcQTfGAbq5c9tpq-KE0iigI__AzXLU_hrTaan54_tKwZ9zDeCHQcSE3NeIyhabpj4eyRB6VNr" style="width: 609.65px; height: 211.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 209.33px;">
+    <img alt="" src="https://lh5.googleusercontent.com/gjUQUxTYVWoD-UCWKQdsX47OojqszuVqe0OgH4jGmgCusObB4V2fHJ31HbXnd9879VJy7tQXzzROkuKtglL1lEkeJPsE36OGEaZ5aFjKxl1j0wHJcFj9B_ehy6F7NrSvDtfs6pLv" style="width: 602.00px; height: 209.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3753,7 +3779,7 @@
   </p>
   <p>
    <span>
-    This model has some problems. First of all, the decoding part depends only on the sentence vector c, that must be able to keep all the information on the input sequence, whose length can vary, in a fixed size. Then, the decoding steps may easily lose the relevant information from this vector, since the decoding can take a lot of decoding timesteps. But a much greater problem comes from the lack of constraint on the output sequence: in translation between different languages, this can be a good feature, but in our task of sequence labeling we want an output sequence with fixed length. The last observation we can make is that there is no alignment model between the input and output sequences. All the output depend on all the inputs, without having different encoded information for the decoding of the output sequence.
+    This model has some problems. First of all, the decoding part depends only on the sentence vector c, that must be able to keep all the information on the input sequence, whose length can vary, in a fixed size. Then, the decoding steps may easily lose the relevant information from this vector, since the decoding can take a lot of decoding timesteps. But a much greater problem comes from the lack of constraint on the output sequence length: in translation between different languages, this can be a good feature, but in our task of sequence labeling we want an output sequence with fixed length. The last observation we can make is that there is no alignment model between the input and output sequences. All the output depend on all the inputs, without having different encoded information for the decoding of the output sequence.
    </span>
   </p>
   <h4 id="h.w9da5qrt3zos">
@@ -3766,8 +3792,8 @@
     This model comes from a study done in 2014
    </span>
    <sup>
-    <a href="#ftnt115" id="ftnt_ref115">
-     [115]
+    <a href="#ftnt118" id="ftnt_ref118">
+     [118]
     </a>
    </sup>
    <span>
@@ -3775,8 +3801,8 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.10px; height: 209.00px;">
-    <img alt="" src="https://lh6.googleusercontent.com/TTQDwgpGRdfcQCgga5GqFLJqhBEZXmmd-_H-oPwTCsTOfsxGhdQxlzT22DbzmcvurMRTrnfESuFu7QXBsV-H3IehzsFAZBEnZcJZpqkWN3MHFvkEPpykIMx-mVIWm4lRJlJJXF2R" style="width: 602.10px; height: 209.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 209.33px;">
+    <img alt="" src="https://lh4.googleusercontent.com/Y80Mda3h58C3FCr_94lU_zt31Uy5bG8lTx96g16PC9R_i9HncIN9tQMTDdJ5owv0kVlfQIpytr3ugBzQoSoEe1-OiJyvLvmmgZesH0P6iC4IfRWff-1YTgrDrl_R_V_cZ5izztZt" style="width: 602.00px; height: 209.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3799,8 +3825,8 @@
     This model was not born for the task of translation between languages, but has been proposed
    </span>
    <sup>
-    <a href="#ftnt116" id="ftnt_ref116">
-     [116]
+    <a href="#ftnt119" id="ftnt_ref119">
+     [119]
     </a>
    </sup>
    <span>
@@ -3808,8 +3834,8 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 533.33px;">
-    <img alt="" src="https://lh6.googleusercontent.com/dVY0WFP4xK8QAib32crumAM6NDlf_gdlpP5TxFu1LaYAn9n6Cg6n-exf0-7Rp0vUuP2pIsQXFjdEv_8y2ut4n9F5_oazuQSL7pUgnFOQyeFucgl42J0bseG6lpI4FVfNKocT1ftq" style="width: 602.00px; height: 533.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 457.50px; height: 394.42px;">
+    <img alt="" src="https://lh5.googleusercontent.com/Z3tVtoKzrGOHj5hZLp-dnCRiqtEWPCPxWKU3V5Ot_lF0p3fpdGupjB9y4RfjAcRLg21qLxIaczsbnqmJZGGSYh-cZNPcUxhPRJp7bDO3Lcf6qZtILIof8b3l2nyw-idAfmq1kyJ1" style="width: 457.50px; height: 394.42px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3837,8 +3863,8 @@
     Using the attention
    </span>
    <sup>
-    <a href="#ftnt117" id="ftnt_ref117">
-     [117]
+    <a href="#ftnt120" id="ftnt_ref120">
+     [120]
     </a>
    </sup>
    <span>
@@ -3858,8 +3884,8 @@
    </li>
   </ul>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 602.67px;">
-    <img alt="" src="https://lh4.googleusercontent.com/LRTqL6_7i6Gh5nhUKsa3UWT1HgCljPck6pCIwuPCYKj03gv3EDOvp7iRo74X4pfoY8EEkkV_WQ_zpXFprfHcAHNP5Hiy83R0zzmeiPtGr5OHcskN5J-S1DTt08_On6jkM5DQ1nc-" style="width: 602.00px; height: 602.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 483.70px; height: 484.50px;">
+    <img alt="" src="https://lh4.googleusercontent.com/LRTqL6_7i6Gh5nhUKsa3UWT1HgCljPck6pCIwuPCYKj03gv3EDOvp7iRo74X4pfoY8EEkkV_WQ_zpXFprfHcAHNP5Hiy83R0zzmeiPtGr5OHcskN5J-S1DTt08_On6jkM5DQ1nc-" style="width: 483.70px; height: 484.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -3938,8 +3964,8 @@
     [FIG:attentionVisualization CAPTION:A visualization of the attention scores in translation
    </span>
    <sup>
-    <a href="#ftnt118" id="ftnt_ref118">
-     [118]
+    <a href="#ftnt121" id="ftnt_ref121">
+     [121]
     </a>
    </sup>
    <span>
@@ -3953,7 +3979,7 @@
   </p>
   <p>
    <span>
-    For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN, so the expected values for the attention distribution is that it will keep the inputs and outputs aligned. It can be kept together with the aligned model just to provide more features
+    For the task of sequence tagging it seems to be too much. The output labels depend only on the current word context, that is already given by the bidirectional encoder RNN, so the expected values for the attention distribution is that it will keep the inputs and outputs aligned. It can be kept together with the aligned model just to provide more features.
    </span>
   </p>
   <h3 id="h.2ijwzgcp6f7s">
@@ -3971,8 +3997,8 @@
     In Liu et al.
    </span>
    <sup>
-    <a href="#ftnt119" id="ftnt_ref119">
-     [119]
+    <a href="#ftnt122" id="ftnt_ref122">
+     [122]
     </a>
    </sup>
    <span>
@@ -3987,6 +4013,11 @@
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 204.00px;">
     <img alt="rnn (16).png" src="https://lh3.googleusercontent.com/1MYU7QqZRUMWkROuJiquZP6tyZ13qqULM3D2nCsOQR6PActHzHsq7LLlGZRWHwT-fvspfStScOqsQg2NM_Fz0Vacqqb9pEEouwGzwFUbRyjBDPlFlVEn9Xwi8rHJE-EQye_dGfsj" style="width: 602.00px; height: 204.27px; margin-left: 0.00px; margin-top: -0.14px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO FIGURE jointSLUaligned
    </span>
   </p>
   <p>
@@ -4007,6 +4038,11 @@
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 458.00px; height: 492.00px;">
     <img alt="rnn (15).png" src="https://lh6.googleusercontent.com/YB8miahDVN3fKIuWwNHowwbCGuQaswaAdV8iAUIaDXW8MvTlQFSYEc7GNJEGgYmflnBnHsZ0hH4kJe7AYLcMKSa4sr2laDq3BnqccIazWugKDUATsSDtI3BbXMtF7_8O_tltz9UT" style="width: 458.00px; height: 492.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO FIGURE jointSLUrnn
    </span>
   </p>
   <p>
@@ -4075,7 +4111,7 @@
    </li>
    <li>
     <span>
-     “Dialogue state tracking”: mostly known because of the Dialogue State Tracking Challenge. This refers to the last level of understanding a dialogue: represent the dialogue state and updating it as the conversation keeps going on. MORE ON DIALOG STATE TRACKING
+     “Dialogue state tracking”: mostly known because of the Dialogue State Tracking Challenge. This refers to the last level of understanding a dialogue: represent the dialogue state and updating it as the conversation keeps going on. TODO MORE ON DIALOG STATE TRACKING
     </span>
    </li>
   </ul>
@@ -4111,6 +4147,11 @@
   </p>
   <p>
    <span>
+    TODO FIGURE vectorial
+   </span>
+  </p>
+  <p>
+   <span>
     This approach is quite simple but has some problems: this is not natural language. Natural language dialogue has not this fixed structure, and the system must be able to receive a sentence that contains more than a single entity. Another issue is that the user may change his mind in the middle of the interaction and start a new intent. For those reasons the SLU task should be expanded to the multi-turn environment by a more complete approach.
    </span>
   </p>
@@ -4124,8 +4165,8 @@
     This is an approach
    </span>
    <sup>
-    <a href="#ftnt120" id="ftnt_ref120">
-     [120]
+    <a href="#ftnt123" id="ftnt_ref123">
+     [123]
     </a>
    </sup>
    <span>
@@ -4139,6 +4180,11 @@
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 324.00px;">
     <img alt="" src="https://lh3.googleusercontent.com/3ae-Y63logbUiiUI-dpTT5F-hNHhWR1mrt9UDxG0yGv3KMXf4sYqxSvu-vW99N6exGBRRT2jA3Q75x1rKs8r1KiVjAZzknJIFLr9u_f5y2DIcZlwZtTzuv4LLje9IJoCvcNzeMrU" style="width: 602.00px; height: 324.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO FIGURE vectorial
    </span>
   </p>
   <p>
@@ -4166,8 +4212,8 @@
     Another study
    </span>
    <sup>
-    <a href="#ftnt121" id="ftnt_ref121">
-     [121]
+    <a href="#ftnt124" id="ftnt_ref124">
+     [124]
     </a>
    </sup>
    <span>
@@ -4177,6 +4223,11 @@
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 258.67px;">
     <img alt="" src="https://lh4.googleusercontent.com/EW59TRmjAztp0pSFyaGysYbl0iJx0jbQuSU8095V6vqWn4lmV9Uafbllus6LLRnlBMmpPTp7FW-t9__cswTsN-kYRk39KRY0wGzH1A9-cDPXQ4dcMh-BzI2mlRrIPvflL8cMssbi" style="width: 602.00px; height: 258.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO FIGURE vectorial
    </span>
   </p>
   <p>
@@ -4260,13 +4311,15 @@
   </p>
   <p>
    <span>
-    The problem of
+    The problem of coreference resolution is very big in NLP
    </span>
   </p>
   <p>
    <span>
     TODO this part is for entity coreference resolution.
    </span>
+  </p>
+  <p>
    <span>
     <a href="https://medium.com/huggingface/state-of-the-art-neural-coreference-resolution-for-chatbots-3302365dcf30">
      https://medium.com/huggingface/state-of-the-art-neural-coreference-resolution-for-chatbots-3302365dcf30
@@ -4274,6 +4327,42 @@
    </span>
    <span>
     has different papers cited.
+   </span>
+  </p>
+  <p>
+   <span>
+    Paper
+   </span>
+   <span>
+    <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43407.pdf">
+     https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43407.pdf
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Demo
+   </span>
+   <span>
+    <a href="https://huggingface.co/coref/">
+     https://huggingface.co/coref/
+    </a>
+   </span>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Source
+   </span>
+   <span>
+    <a href="https://github.com/huggingface/neuralcoref">
+     https://github.com/huggingface/neuralcoref
+    </a>
+   </span>
+   <span>
    </span>
   </p>
   <h4 id="h.13sbtqu88z5j">
@@ -4316,8 +4405,8 @@
     Store each turn in memory
    </span>
    <sup>
-    <a href="#ftnt122" id="ftnt_ref122">
-     [122]
+    <a href="#ftnt125" id="ftnt_ref125">
+     [125]
     </a>
    </sup>
    <span>
@@ -4364,6 +4453,7 @@
   </p>
   <p>
    <span>
+    TODO continue
    </span>
   </p>
   <p>
@@ -4404,8 +4494,8 @@
     This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
    </span>
    <sup>
-    <a href="#ftnt123" id="ftnt_ref123">
-     [123]
+    <a href="#ftnt126" id="ftnt_ref126">
+     [126]
     </a>
    </sup>
    <span>
@@ -4468,7 +4558,7 @@
   </p>
   <p>
    <span>
-    Which ones:
+    TODO enumerate services
    </span>
   </p>
   <p>
@@ -4608,8 +4698,8 @@
     With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal information. The most common nowadays, Facebook, stores information of any kind about users: from age, occupation, and other personal information to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources. Specially on the fields of social sciences and personality analysis
    </span>
    <sup>
-    <a href="#ftnt124" id="ftnt_ref124">
-     [124]
+    <a href="#ftnt127" id="ftnt_ref127">
+     [127]
     </a>
    </sup>
    <span>
@@ -4621,8 +4711,8 @@
     For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset
    </span>
    <sup>
-    <a href="#ftnt125" id="ftnt_ref125">
-     [125]
+    <a href="#ftnt128" id="ftnt_ref128">
+     [128]
     </a>
    </sup>
    <span>
@@ -4634,16 +4724,16 @@
     The personality is usually analyzed in five dimensions, in a model that has been widely shared, discussed and applied both in academic environments and in empirical ones. The “Big-Five Factors”, formulated by McCrae and Costa
    </span>
    <sup>
-    <a href="#ftnt126" id="ftnt_ref126">
-     [126]
+    <a href="#ftnt129" id="ftnt_ref129">
+     [129]
     </a>
    </sup>
    <span>
     and their development traced by Goldberg
    </span>
    <sup>
-    <a href="#ftnt127" id="ftnt_ref127">
-     [127]
+    <a href="#ftnt130" id="ftnt_ref130">
+     [130]
     </a>
    </sup>
    <span>
@@ -4679,11 +4769,16 @@
   </ul>
   <p>
    <span>
+    TODO some explanation of them
+   </span>
+  </p>
+  <p>
+   <span>
     Having good values for those traits is not an easy task, because self-judgement and also human judgement can be easily polarized. To obtain values that are somewhat objective, different criteria can be used. YouYou et Al.
    </span>
    <sup>
-    <a href="#ftnt128" id="ftnt_ref128">
-     [128]
+    <a href="#ftnt131" id="ftnt_ref131">
+     [131]
     </a>
    </sup>
    <span>
@@ -4697,7 +4792,13 @@
   </p>
   <p>
    <span>
-    In this paper, their objective was to measure the accuracy of personality judgement done by computers against those made by humans. The dataset they used was myPersonality, based on user likes and attached personality tests. The results they produced established that computer-based judgements are more accurate, because they can take in account a very big quantity of data using them in statistical modeling, However human judgement can capture more subtle cues that may be ignored by automated systems.
+    In this paper, their objective was to measure the accuracy of personality judgement done by computers against those made by humans. The dataset they used was
+   </span>
+   <span>
+    myPersonality
+   </span>
+   <span>
+    , based on user likes and attached personality tests. The results they produced established that computer-based judgements are more accurate, because they can take in account a very big quantity of data using them in statistical modeling, However human judgement can capture more subtle cues that may be ignored by automated systems.
    </span>
   </p>
   <p>
@@ -4705,8 +4806,8 @@
     Another study
    </span>
    <sup>
-    <a href="#ftnt129" id="ftnt_ref129">
-     [129]
+    <a href="#ftnt132" id="ftnt_ref132">
+     [132]
     </a>
    </sup>
    <span>
@@ -4719,7 +4820,7 @@
   </p>
   <p>
    <span>
-    All those works on unwilling profiling, especially considering details that users may want to hide (such as sexual and political orientation), implies a decrease in trust of online services by people that have a bit of knowledge about it.
+    All those works on unwilling profilation, especially considering details that users may want to hide (such as sexual and political orientation), implies a decrease in trust of online services by people that have a bit of knowledge about it.
    </span>
   </p>
   <p>
@@ -4731,8 +4832,8 @@
     Other works, explore ways of profiling the users given some text they produced. Different things can be discovered, from the sentiments the user is feeling to their personality
    </span>
    <sup>
-    <a href="#ftnt130" id="ftnt_ref130">
-     [130]
+    <a href="#ftnt133" id="ftnt_ref133">
+     [133]
     </a>
    </sup>
    <span>
@@ -4763,16 +4864,7 @@
   </h3>
   <p>
    <span>
-    Given some representation of the users, different approaches can be used to recommend items to the users.
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://www.quora.com/What-is-the-difference-between-content-based-filtering-and-collaborative-filtering">
-     https://www.quora.com/What-is-the-difference-between-content-based-filtering-and-collaborative-filtering
-    </a>
-   </span>
-   <span>
+    Given some representation of the users, different approaches can be used to recommend items to the users. The major ones we are presenting here are content-based filtering and collaborative filtering.
    </span>
   </p>
   <h4 id="h.gaetitna0e6a">
@@ -4817,8 +4909,8 @@
     From a high level view, content-based recommender require three steps, that are handled by different components
    </span>
    <sup>
-    <a href="#ftnt131" id="ftnt_ref131">
-     [131]
+    <a href="#ftnt134" id="ftnt_ref134">
+     [134]
     </a>
    </sup>
    <span>
@@ -4930,6 +5022,7 @@
   </p>
   <p>
    <span>
+    TODO
    </span>
   </p>
   <p>
@@ -5157,11 +5250,21 @@
    <span>
    </span>
   </p>
-  <h3 id="h.27kmyxe8tkxx">
+  <h3 id="h.zh2zox2uk29p">
    <span>
     Proactive experience
    </span>
   </h3>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
+  <p>
+   <span>
+    One step beyond personalization on demand can be done with proactive experiences. Those kinds of experiences can suggest actions and reminders smartly, providing intelligent support.
+   </span>
+  </p>
   <p>
    <span>
     <a href="http://www.kdd.org/kdd2016/papers/files/adf0295-sunA.pdf">
@@ -5189,32 +5292,19 @@
   </p>
   <p>
    <span>
-    This chapter describes the design and the approach that has been chosen in order to create a domain specific bot. The domain is the urban mobility. More in specific, the bot should provide a natural language interface towards the bike sharing service.
+    This chapter describes the design and the approach that has been chosen in order to create a domain specific bot. Some parts of it directly address the target bot (such as the scenario in [REF:approachScenarios] or the information retrieval in [REF:approachIR]), others are more general (such as the choices for NLU in [REF:approachNLU] and personalization in [REF:approachPersonalization]), while others are more under a systemic point of view (like in [REF:approachModel]).
    </span>
   </p>
   <p>
    <span>
-    Since there is no agreement with the bike sharing providers, the information is only available in read mode, and only from public sources. For this reason the main things a user can do with the bot is to ask for information on the station and availability of bikes. No account linking is possible and users can’t unlock bikes using the bot.
    </span>
   </p>
   <p>
    <span>
-    The idea is to provide useful information to the users in a spatial-context-aware setting. To provide this, the bot should analyze the area relative to the information and provide some suggestions to the user.
-   </span>
-  </p>
-  <p>
-   <span>
-    The following sections will be structured in this way: first giving an idea of the information and use cases this bot aims to address, then talking about the platform independence of the core of the bot, then analyzing the Natural Language Understanding in both single turn interactions and in multi turn interactions, then going on more high level functionalities like the personalization.
-   </span>
-  </p>
-  <p>
-   <span>
-    The topics covered in this part of the document do not reflect the actual implemented features of the prototype. As mentioned in the introduction, the main focus of this thesis has been on the natural language understanding. For the implemented features and their details see the next part
+    For this reason, an introduction of the target bot is introduced here. The domain is the urban mobility: the bot goal is to provide a natural language interface towards the bike sharing service. Bike sharing is one of the projects for sustainable mobility, that tries to address transportation replacement especially for the so called “last mile”: cover more capillary with a public form of transport areas or trips that would be uncomfortable without using a private vehicle. With respect to car sharing, bikes have much little impact on the environment and are 100%
    </span>
    <span>
-    <a href="#h.bqazqpo58hkq">
-     Implementation
-    </a>
+    green
    </span>
    <span>
     .
@@ -5222,15 +5312,23 @@
   </p>
   <p>
    <span>
-    An important point of the approach chosen is the multi-linguality: the agent, being developed in Torino, is supposed to be able to understand not only the english language, but also the italian one. English may be considered the international language, but the support to local languages is essential. For the sentences of the agent, the solution is simply to have both italian and english template responses. Instead for the language understanding part, as will be seen in
+    Since there is no agreement with the bike sharing providers, the information is only available in read mode, and only from public sources. For this reason the main things a user can do with the bot is to ask for information on the station and availability of bikes. No account linking is possible and users can’t unlock bikes using the bot. The main idea is to provide useful information to the users in a spatial context-aware setting. To provide this, the bot should analyze the area relative to the information and provide some suggestions to the user.
+   </span>
+  </p>
+  <p>
+   <span>
+    A required characteristic for the bot is to support the Italian language too: the agent, being developed in Torino, is supposed to be able to understand not only the english language, but also the italian one. English may be considered the international language, but the support to local languages is essential. For the sentences of the agent, the solution is simply to have both italian and english template responses. Instead for the language understanding part, as will be seen especially for the
    </span>
    <span>
-    <a href="#h.wwhr5qye57xb">
-     Word Embeddings
-    </a>
+    Word Embeddings in [REF:approachWv]
    </span>
    <span>
     , it requires having the requested models for both the languages.
+   </span>
+  </p>
+  <p>
+   <span>
+    It is important to notice that not all the decisions discussed in this chapter have been implemented. By comparing with the next chapter [REF:implementation] it can be seen that only the language understanding and the bike retrieval information have been brought to sperimental environment.
    </span>
   </p>
   <h2 id="h.fs7v46jijgtn">
@@ -5270,12 +5368,7 @@
   </p>
   <p>
    <span>
-    The history of conversation is stored in a way to find temporal and spatial pattern for the user, in order to build a model that can be used for personalizing his experience for example by providing places suggestions, as will be seen in
-   </span>
-   <span>
-    <a href="#h.p32l2grv4p6t">
-     personalization
-    </a>
+    The history of conversation is stored in a way to find temporal and spatial pattern for the user, in order to build a model that can be used for personalizing his experience for example by providing places suggestions, as will be seen in [REF:approachPersonalization]
    </span>
    <span>
     .
@@ -5338,7 +5431,7 @@
   </p>
   <p>
    <span>
-    The first one is when, after having provided some kind of information to the user (e.g. a bike is available in a specific station), and before the user arrives there the situation changes (e.g. the bike is no more available or the meteo is getting worse). In this case the bot could actively send a message to the user informing about the change.
+    The first one is when, after having provided some kind of information to the user (e.g. a bike is available in a specific station) and before the user arrives there, the situation changes (e.g. the bike is no more available or the meteo is getting worse). In this case the bot could actively send a message to the user informing about the change.
    </span>
   </p>
   <p>
@@ -5674,7 +5767,7 @@
   </p>
   <p>
    <span>
-    Other intent types have been designed but are not implemented:
+    Other intent types have been designed:
    </span>
   </p>
   <ul>
@@ -5781,26 +5874,31 @@
     The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
    </span>
    <sup>
-    <a href="#ftnt132" id="ftnt_ref132">
-     [132]
+    <a href="#ftnt135" id="ftnt_ref135">
+     [135]
     </a>
    </sup>
    <span>
     because of its “state of the art” condition. The focus has been on how to provide better inputs to the system in terms of word embeddings and on output dependency modeling.
    </span>
   </p>
-  <h4 id="h.wwhr5qye57xb">
+  <h4 id="h.o3gm3qxbrx5s">
    <span>
     Word embeddings
    </span>
   </h4>
   <p>
    <span>
+    [LABEL:approachWv]
+   </span>
+  </p>
+  <p>
+   <span>
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt133" id="ftnt_ref133">
-     [133]
+    <a href="#ftnt136" id="ftnt_ref136">
+     [136]
     </a>
    </sup>
    <span>
@@ -5827,24 +5925,24 @@
     As mentioned before, the bot has as requirement to support also the italian language. For the english language several preprocessed word embeddings are available, trained on different corpuses and with different algorithms. Instead for italian, the found pre-trained embeddings are GloVe and word2vec trained by the Human Language Technologies of Pisa
    </span>
    <sup>
-    <a href="#ftnt134" id="ftnt_ref134">
-     [134]
+    <a href="#ftnt137" id="ftnt_ref137">
+     [137]
     </a>
    </sup>
    <span>
     and the official fastText
    </span>
    <sup>
-    <a href="#ftnt135" id="ftnt_ref135">
-     [135]
+    <a href="#ftnt138" id="ftnt_ref138">
+     [138]
     </a>
    </sup>
    <span>
     , all trained on the Wikipedia corpus. Another widely used corpus is CommonCrawl
    </span>
    <sup>
-    <a href="#ftnt136" id="ftnt_ref136">
-     [136]
+    <a href="#ftnt139" id="ftnt_ref139">
+     [139]
     </a>
    </sup>
    <span>
@@ -5874,8 +5972,8 @@
     As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper
    </span>
    <sup>
-    <a href="#ftnt137" id="ftnt_ref137">
-     [137]
+    <a href="#ftnt140" id="ftnt_ref140">
+     [140]
     </a>
    </sup>
    <span>
@@ -5935,8 +6033,8 @@
     The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
    </span>
    <sup>
-    <a href="#ftnt138" id="ftnt_ref138">
-     [138]
+    <a href="#ftnt141" id="ftnt_ref141">
+     [141]
     </a>
    </sup>
    <span>
@@ -6415,8 +6513,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt139" id="ftnt_ref139">
-      [139]
+     <a href="#ftnt142" id="ftnt_ref142">
+      [142]
      </a>
     </sup>
     <span>
@@ -6476,18 +6574,18 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt140" id="ftnt_ref140">
-     [140]
+    <a href="#ftnt143" id="ftnt_ref143">
+     [143]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt141" id="ftnt_ref141">
-     [141]
+    <a href="#ftnt144" id="ftnt_ref144">
+     [144]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt142" id="ftnt_ref142">
-     [142]
+    <a href="#ftnt145" id="ftnt_ref145">
+     [145]
     </a>
    </sup>
    <span>
@@ -7159,8 +7257,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt143" id="ftnt_ref143">
-     [143]
+    <a href="#ftnt146" id="ftnt_ref146">
+     [146]
     </a>
    </sup>
    <span>
@@ -7315,8 +7413,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt144" id="ftnt_ref144">
-     [144]
+    <a href="#ftnt147" id="ftnt_ref147">
+     [147]
     </a>
    </sup>
    <span>
@@ -7341,8 +7439,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt145" id="ftnt_ref145">
-     [145]
+    <a href="#ftnt148" id="ftnt_ref148">
+     [148]
     </a>
    </sup>
    <span>
@@ -7579,8 +7677,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt146" id="ftnt_ref146">
-      [146]
+     <a href="#ftnt149" id="ftnt_ref149">
+      [149]
      </a>
     </sup>
    </li>
@@ -7589,8 +7687,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt147" id="ftnt_ref147">
-      [147]
+     <a href="#ftnt150" id="ftnt_ref150">
+      [150]
      </a>
     </sup>
    </li>
@@ -7752,8 +7850,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt148" id="ftnt_ref148">
-     [148]
+    <a href="#ftnt151" id="ftnt_ref151">
+     [151]
     </a>
    </sup>
    <span>
@@ -7791,8 +7889,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt149" id="ftnt_ref149">
-     [149]
+    <a href="#ftnt152" id="ftnt_ref152">
+     [152]
     </a>
    </sup>
    <span>
@@ -8072,8 +8170,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt150" id="ftnt_ref150">
-     [150]
+    <a href="#ftnt153" id="ftnt_ref153">
+     [153]
     </a>
    </sup>
    <span>
@@ -8095,36 +8193,12 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt151" id="ftnt_ref151">
-     [151]
-    </a>
-   </sup>
-   <span>
-    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
-   </span>
-   <sup>
-    <a href="#ftnt152" id="ftnt_ref152">
-     [152]
-    </a>
-   </sup>
-   <span>
-    , Google’s Api.ai
-   </span>
-   <sup>
-    <a href="#ftnt153" id="ftnt_ref153">
-     [153]
-    </a>
-   </sup>
-   <span>
-    , Microsoft’s Luis
-   </span>
-   <sup>
     <a href="#ftnt154" id="ftnt_ref154">
      [154]
     </a>
    </sup>
    <span>
-    , Apple’s SiriKit
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
     <a href="#ftnt155" id="ftnt_ref155">
@@ -8132,7 +8206,7 @@
     </a>
    </sup>
    <span>
-    , IBM’s Watson
+    , Google’s Api.ai
    </span>
    <sup>
     <a href="#ftnt156" id="ftnt_ref156">
@@ -8140,7 +8214,7 @@
     </a>
    </sup>
    <span>
-    , Facebook’s Wit
+    , Microsoft’s Luis
    </span>
    <sup>
     <a href="#ftnt157" id="ftnt_ref157">
@@ -8148,7 +8222,7 @@
     </a>
    </sup>
    <span>
-    , and Snips
+    , Apple’s SiriKit
    </span>
    <sup>
     <a href="#ftnt158" id="ftnt_ref158">
@@ -8156,11 +8230,35 @@
     </a>
    </sup>
    <span>
-    itself. The dataset used for their benchmark
+    , IBM’s Watson
    </span>
    <sup>
     <a href="#ftnt159" id="ftnt_ref159">
      [159]
+    </a>
+   </sup>
+   <span>
+    , Facebook’s Wit
+   </span>
+   <sup>
+    <a href="#ftnt160" id="ftnt_ref160">
+     [160]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt161" id="ftnt_ref161">
+     [161]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt162" id="ftnt_ref162">
+     [162]
     </a>
    </sup>
    <span>
@@ -8216,8 +8314,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt160" id="ftnt_ref160">
-     [160]
+    <a href="#ftnt163" id="ftnt_ref163">
+     [163]
     </a>
    </sup>
    <span>
@@ -8311,8 +8409,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt161" id="ftnt_ref161">
-     [161]
+    <a href="#ftnt164" id="ftnt_ref164">
+     [164]
     </a>
    </sup>
    <span>
@@ -8460,8 +8558,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt162" id="ftnt_ref162">
-     [162]
+    <a href="#ftnt165" id="ftnt_ref165">
+     [165]
     </a>
    </sup>
    <span>
@@ -10392,13 +10490,7 @@
      [115]
     </a>
     <span>
-     Key:cho2014learning Cho, K. et al. (2014).
-    </span>
-    <span>
-     Learning phrase representations using RNN encoder-decoder for statistical machine translation
-    </span>
-    <span>
-     . Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
+     Key:lita2003truecasing Lita, L. V., Ittycheriah, A., Roukos, S., &amp; Kambhatla, N. (2003, July). Truecasing. In Proceedings of the 41st Annual Meeting on Association for Computational Linguistics-Volume 1 (pp. 152-159). Association for Computational Linguistics.
     </span>
    </p>
   </div>
@@ -10408,13 +10500,13 @@
      [116]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://chatbotslife.com/text-classification-using-algorithms-e4d50dcba45">
+      https://chatbotslife.com/text-classification-using-algorithms-e4d50dcba45
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -10424,13 +10516,7 @@
      [117]
     </a>
     <span>
-     Key:bahdanau2014neural Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
-    </span>
-    <span>
-     Neural machine translation by jointly learning to align and translate
-    </span>
-    <span>
-     . Proc. International Conference on Learning Representations
+     Key:jordan1997serial Jordan, M. I. (1997). Serial order: A parallel distributed processing approach. In Advances in psychology (Vol. 121, pp. 471-495). North-Holland.
     </span>
    </p>
   </div>
@@ -10440,13 +10526,13 @@
      [118]
     </a>
     <span>
-     Key:bahdanau2014neural Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
+     Key:cho2014learning Cho, K. et al. (2014).
     </span>
     <span>
-     Neural machine translation by jointly learning to align and translate
+     Learning phrase representations using RNN encoder-decoder for statistical machine translation
     </span>
     <span>
-     . Proc. International Conference on Learning Representations
+     . Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -10472,7 +10558,13 @@
      [120]
     </a>
     <span>
-     Key:chen2016end Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016). End-to-end memory networks with knowledge carryover for multi-turn spoken language understanding. Proceedings of Interspeech
+     Key:bahdanau2014neural Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
+    </span>
+    <span>
+     Neural machine translation by jointly learning to align and translate
+    </span>
+    <span>
+     . Proc. International Conference on Learning Representations
     </span>
    </p>
   </div>
@@ -10482,7 +10574,13 @@
      [121]
     </a>
     <span>
-     Key:chen2017dynamic Chen, P., Chi, T., Su, S., Chen, Y. (2017). Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding. Proceedings of 2017 IEEE Workshop on Automatic Speech Recognition and Understanding
+     Key:bahdanau2014neural Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).
+    </span>
+    <span>
+     Neural machine translation by jointly learning to align and translate
+    </span>
+    <span>
+     . Proc. International Conference on Learning Representations
     </span>
    </p>
   </div>
@@ -10490,6 +10588,42 @@
    <p>
     <a href="#ftnt_ref122" id="ftnt122">
      [122]
+    </a>
+    <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref123" id="ftnt123">
+     [123]
+    </a>
+    <span>
+     Key:chen2016end Chen, Y., Hakkani-Tur, D., Tur, G., Gao, J., Li, D. (2016). End-to-end memory networks with knowledge carryover for multi-turn spoken language understanding. Proceedings of Interspeech
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref124" id="ftnt124">
+     [124]
+    </a>
+    <span>
+     Key:chen2017dynamic Chen, P., Chi, T., Su, S., Chen, Y. (2017). Dynamic Time-Aware Attention to Speaker Roles and Contexts for Spoken Language Understanding. Proceedings of 2017 IEEE Workshop on Automatic Speech Recognition and Understanding
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref125" id="ftnt125">
+     [125]
     </a>
     <span>
      Key:sukhbaatar2015end Sukhbaatar, S., Szlam, A., Weston, J., Fergus, R. (2015).
@@ -10504,8 +10638,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref123" id="ftnt123">
-     [123]
+    <a href="#ftnt_ref126" id="ftnt126">
+     [126]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017).
@@ -10520,8 +10654,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref124" id="ftnt124">
-     [124]
+    <a href="#ftnt_ref127" id="ftnt127">
+     [127]
     </a>
     <span>
      Key:kosinski2015facebook Kosinski, M., Matz, S. C., &amp; Gosling, S. D. (2015). Facebook as a research tool for the social sciences. American Psychologist, 70(6), 543–556. doi:10.1037/a0039210
@@ -10530,8 +10664,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref125" id="ftnt125">
-     [125]
+    <a href="#ftnt_ref128" id="ftnt128">
+     [128]
     </a>
     <span>
      https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
@@ -10540,8 +10674,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref126" id="ftnt126">
-     [126]
+    <a href="#ftnt_ref129" id="ftnt129">
+     [129]
     </a>
     <span>
      Key:costa2008revised Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
@@ -10553,8 +10687,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref127" id="ftnt127">
-     [127]
+    <a href="#ftnt_ref130" id="ftnt130">
+     [130]
     </a>
     <span>
      Key:goldberg1993structure Goldberg, L. R. (1993). The structure of phenotypic personality traits.
@@ -10566,8 +10700,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref128" id="ftnt128">
-     [128]
+    <a href="#ftnt_ref131" id="ftnt131">
+     [131]
     </a>
     <span>
      Key:youyou2015computer Youyou, W., Kosinski, M., Stillwell, D. (2015). Computer-based personality judgments are more accurate than those made by humans.
@@ -10579,8 +10713,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref129" id="ftnt129">
-     [129]
+    <a href="#ftnt_ref132" id="ftnt132">
+     [132]
     </a>
     <span>
      Key:kosinski2013private Kosinski, M., Stillwell, D., Graepel, Y. (2013). Private traits and attributes are predictable from digital records of human behavior.
@@ -10592,8 +10726,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref130" id="ftnt130">
-     [130]
+    <a href="#ftnt_ref133" id="ftnt133">
+     [133]
     </a>
     <span>
      Key:mairesse2007using F. Mairesse, M.A. Walker, M.R. Mehl, and R.K. Moore. (2007). Using linguistic cues for the automatic recognition of personality in conversation and text.
@@ -10605,8 +10739,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref131" id="ftnt131">
-     [131]
+    <a href="#ftnt_ref134" id="ftnt134">
+     [134]
     </a>
     <span>
      Key:lops2011content Lops, P., De Gemmis, M., &amp; Semeraro, G. (2011). Content-based recommender systems: State of the art and trends. In Recommender systems handbook (pp. 73-105). Springer US.
@@ -10615,8 +10749,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref132" id="ftnt132">
-     [132]
+    <a href="#ftnt_ref135" id="ftnt135">
+     [135]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
@@ -10628,8 +10762,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref133" id="ftnt133">
-     [133]
+    <a href="#ftnt_ref136" id="ftnt136">
+     [136]
     </a>
     <span>
     </span>
@@ -10644,8 +10778,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref134" id="ftnt134">
-     [134]
+    <a href="#ftnt_ref137" id="ftnt137">
+     [137]
     </a>
     <span>
     </span>
@@ -10658,8 +10792,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref135" id="ftnt135">
-     [135]
+    <a href="#ftnt_ref138" id="ftnt138">
+     [138]
     </a>
     <span>
     </span>
@@ -10672,8 +10806,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref136" id="ftnt136">
-     [136]
+    <a href="#ftnt_ref139" id="ftnt139">
+     [139]
     </a>
     <span>
     </span>
@@ -10694,8 +10828,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref137" id="ftnt137">
-     [137]
+    <a href="#ftnt_ref140" id="ftnt140">
+     [140]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -10710,8 +10844,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref138" id="ftnt138">
-     [138]
+    <a href="#ftnt_ref141" id="ftnt141">
+     [141]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -10726,8 +10860,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref139" id="ftnt139">
-     [139]
+    <a href="#ftnt_ref142" id="ftnt142">
+     [142]
     </a>
     <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
@@ -10741,8 +10875,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref140" id="ftnt140">
-     [140]
+    <a href="#ftnt_ref143" id="ftnt143">
+     [143]
     </a>
     <span>
      Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
@@ -10751,8 +10885,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref141" id="ftnt141">
-     [141]
+    <a href="#ftnt_ref144" id="ftnt144">
+     [144]
     </a>
     <span>
      Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
@@ -10761,8 +10895,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref142" id="ftnt142">
-     [142]
+    <a href="#ftnt_ref145" id="ftnt145">
+     [145]
     </a>
     <span>
      Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
@@ -10771,8 +10905,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref143" id="ftnt143">
-     [143]
+    <a href="#ftnt_ref146" id="ftnt146">
+     [146]
     </a>
     <span>
     </span>
@@ -10787,8 +10921,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref144" id="ftnt144">
-     [144]
+    <a href="#ftnt_ref147" id="ftnt147">
+     [147]
     </a>
     <span>
     </span>
@@ -10798,42 +10932,6 @@
      </a>
     </span>
     <span>
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref145" id="ftnt145">
-     [145]
-    </a>
-    <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
-    </span>
-    <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
-    </span>
-    <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref146" id="ftnt146">
-     [146]
-    </a>
-    <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref147" id="ftnt147">
-     [147]
-    </a>
-    <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -10859,7 +10957,7 @@
      [149]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -10869,7 +10967,7 @@
      [150]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -10877,6 +10975,42 @@
    <p>
     <a href="#ftnt_ref151" id="ftnt151">
      [151]
+    </a>
+    <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref152" id="ftnt152">
+     [152]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref153" id="ftnt153">
+     [153]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref154" id="ftnt154">
+     [154]
     </a>
     <span>
     </span>
@@ -10891,8 +11025,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref152" id="ftnt152">
-     [152]
+    <a href="#ftnt_ref155" id="ftnt155">
+     [155]
     </a>
     <span>
     </span>
@@ -10907,8 +11041,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref153" id="ftnt153">
-     [153]
+    <a href="#ftnt_ref156" id="ftnt156">
+     [156]
     </a>
     <span>
     </span>
@@ -10923,8 +11057,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref154" id="ftnt154">
-     [154]
+    <a href="#ftnt_ref157" id="ftnt157">
+     [157]
     </a>
     <span>
     </span>
@@ -10939,8 +11073,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref155" id="ftnt155">
-     [155]
+    <a href="#ftnt_ref158" id="ftnt158">
+     [158]
     </a>
     <span>
     </span>
@@ -10955,8 +11089,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref156" id="ftnt156">
-     [156]
+    <a href="#ftnt_ref159" id="ftnt159">
+     [159]
     </a>
     <span>
     </span>
@@ -10971,8 +11105,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref157" id="ftnt157">
-     [157]
+    <a href="#ftnt_ref160" id="ftnt160">
+     [160]
     </a>
     <span>
     </span>
@@ -10987,8 +11121,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref158" id="ftnt158">
-     [158]
+    <a href="#ftnt_ref161" id="ftnt161">
+     [161]
     </a>
     <span>
     </span>
@@ -11003,8 +11137,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref159" id="ftnt159">
-     [159]
+    <a href="#ftnt_ref162" id="ftnt162">
+     [162]
     </a>
     <span>
     </span>
@@ -11019,8 +11153,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref160" id="ftnt160">
-     [160]
+    <a href="#ftnt_ref163" id="ftnt163">
+     [163]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -11029,8 +11163,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref161" id="ftnt161">
-     [161]
+    <a href="#ftnt_ref164" id="ftnt164">
+     [164]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -11039,8 +11173,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref162" id="ftnt162">
-     [162]
+    <a href="#ftnt_ref165" id="ftnt165">
+     [165]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
