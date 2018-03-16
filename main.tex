@@ -7,6 +7,8 @@
 \documentclass[a4paper,11pt,cucitura,tipotesi=magistrale,stile=classica]{toptesi} % Page and font size
 
 %\usepackage[a4paper,top=4.3cm,bottom=5.5cm,left=3cm,right=3cm,bindingoffset=5mm]{geometry}
+% TODO for agsm style import the package natbib
+%\usepackage{natbib}
 
 \usepackage{lipsum}
 \usepackage{amsmath}
@@ -185,7 +187,9 @@
 \printglossary[nonumberlist]
 
 %\nocite{*} % uncomment to show also not cited ones
-\bibliographystyle{acm} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+% TODO use agsm with package natbib import
+%\bibliographystyle{agsm} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{acm}
 \bibliography{references} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \end{document}
