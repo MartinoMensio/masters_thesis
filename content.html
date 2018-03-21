@@ -3612,11 +3612,16 @@
     ).
    </span>
   </p>
-  <h4 id="h.kss1p88ixws">
+  <h4 id="h.v62yf7w9xs62">
    <span>
     The vocabulary issues
    </span>
   </h4>
+  <p>
+   <span>
+    [LABEL:soaVocabulary]
+   </span>
+  </p>
   <p>
    <span>
     Having good algorithms for word embeddings is a good starting point. But there may be some problems when deciding how to preprocess the corpora. What we want to consider as input features? Only the words lowercased, cleaned up from all the non alphabetical characters, or we may consider other hints from the user typing such as capital letters or punctuation?
@@ -6182,7 +6187,7 @@
   </p>
   <p>
    <span>
-    The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed by Liu et Al.
+    The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed in
    </span>
    <sup>
     <a href="#ftnt167" id="ftnt_ref167">
@@ -6262,15 +6267,7 @@
   </p>
   <p>
    <span>
-    An important aspect to make word embeddings work at their best is to apply the same kind of tokenization both when training the word embeddings and when using them when feeding RNNs. Usually the tokenization is done by removing punctuation and by applying other transformations (such as replacing hyphens and apostrophes with spaces to split the words) but for this application the choice has been to include punctuation in order not to discard any useful hints from the input sentences. Implementation details about the tokenization can be found
-   </span>
-   <span>
-    <a href="#h.hicafqiwqr81">
-     here
-    </a>
-   </span>
-   <span>
-    .
+    An important aspect to make word embeddings work at their best is to apply the same kind of tokenization both when training the word embeddings and when using them when feeding RNNs. Usually the tokenization is done by removing punctuation and by applying other transformations (such as replacing hyphens and apostrophes with spaces to split the words) but for this application the choice has been to include punctuation in order not to discard any useful hints from the input sentences. Implementation details about the chosen tokenization can be found in chapter [REF:implementationWV] because is only an implementation detail.
    </span>
   </p>
   <h4 id="h.gorlkbt8j0xz">
@@ -6293,10 +6290,20 @@
   </p>
   <p>
    <span>
-    In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels. This time the word embeddings, being the labels part of an independent dictionary with respect to the input words, have been included in the trainable parameters of the computational graph.
+    In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels.
    </span>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 391.00px; height: 298.00px;">
     <img alt="" src="https://lh3.googleusercontent.com/aHgGVSdG8K2pSRRbMiqERWiZzgx8iW66krO69uA3hqoXSEC7lAZWxL16Lkj2IvZ-qjZFBD-B3XmEkxMTNs_pvh7wdsr38K-cY5Zo9p8Zd-YuMnwaZ0q722BuFmOz2rzNF5SU0svz" style="width: 391.00px; height: 298.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO FIGURE:outputDependencies CAPTION:The selected approach to model the output dependencies
+   </span>
+  </p>
+  <p>
+   <span>
+    The choice is to use word embeddings. This time however, differently from what happens to input words, the embeddings are on a separate dictionary: the IOB labels. For this reason they are not used pretrained but are included as trainable parameters of the computational graph. As can be seen in figure [REF FIG:outputDependencies], the embeddings values are concatenated with the current encoded word coming from the encoder. The rest of the graph does not change.
    </span>
   </p>
   <h3 id="h.re7kk9b4p3yn">
@@ -6311,22 +6318,140 @@
   </p>
   <p>
    <span>
-    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context [TODO add refs and explanations], the decision has been to change the single-turn architecture to make it consider
+    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context (like
+   </span>
+   <sup>
+    <a href="#ftnt173" id="ftnt_ref173">
+     [173]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt174" id="ftnt_ref174">
+     [174]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt175" id="ftnt_ref175">
+     [175]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt176" id="ftnt_ref176">
+     [176]
+    </a>
+   </sup>
+   <span>
+    ), the decision has been to change the single-turn architecture to make it consider also previous sentences. The goal does not change: classify the intent and extract the slot values. So no advanced statistical dialogue-tracking techniques are used, but the modification only focuses to enrich the available inputs with contextual elements to do the selected tasks on the current sentence. The simple dialogue state management is described in next subsection [REF:approachStateManager].
    </span>
   </p>
   <p>
    <span>
-    Architecture:
+    The work that follows for the contextual intent classification, is taken from
+   </span>
+   <sup>
+    <a href="#ftnt177" id="ftnt_ref177">
+     [177]
+    </a>
+   </sup>
+   <span>
+    done for the “Hybrid Question Answering with Structured and Unstructured Knowledge” (in the following denoted with HQA2018) workshop
+   </span>
+   <sup>
+    <a href="#ftnt178" id="ftnt_ref178">
+     [178]
+    </a>
+   </sup>
+   <span>
+    .
    </span>
   </p>
   <p>
    <span>
-    TODO from HQA2018 approach
+    Three main challenges are addressed:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     detect the change of intent in a multi-turn environment: in other words, to understand dynamically when a certain session (sequence of messages related to a single intent) ends in favour of a new one. This corresponds to choose for each input sentence whether to keep the value of the previous intent or to consider some evidence on the current input.The first case happens when the input sentence is part of a preceding session, and the user is simply continuing the interaction with the same initial intent.
+    </span>
+    <span>
+    </span>
+    <span>
+     The second case instead is when a new intent is expressed in the current sentence, signalling an intent change;
+    </span>
+   </li>
+   <li>
+    <span>
+     capture intent dependencies using the RNN: capturing the sequences of intent values, a better prediction of the sentence can be done knowing the proceeding intents. This can be quite useful with sentences that are not so expressive because they are referring implicitly to some context of the interaction;
+    </span>
+   </li>
+   <li>
+    <span>
+     consider the current agent turn words: having a knowledge about what has been replied to the user can help contextualize the new sentence that may not have evident indicators of the intent.
+    </span>
+   </li>
+   <li>
+    <span>
+     be able to detect standalone slot values: incomplete sentences, that may be provided as responses to agent questions, could contain the value on itself, without a complete sentence. In this case having the previous agent words in the sequence can help solve those cases and identify the entity. This last point was not part of the HQA2018 submission.
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 325.33px;">
+    <img alt="" src="https://lh6.googleusercontent.com/ynooNetwZISV5Jrpy7x21pjgTEhuE93EGEjEYi_KKdwdXIbMsdoGalsc64uWleAWvq9jPdgcEXU7WoD3QbpQyjhrA52zvrCrLnWjPLmo6B7SmVe10estEnmafTrgie4JbWqRXxli" style="width: 602.00px; height: 325.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    TODO add picture
+    [FIG:approachMultiTurn CAPTION:The selected Multi-turn approach]
+   </span>
+  </p>
+  <p>
+   <span>
+    Figure [REF FIG:approachMultiTurn] illustrates our approach. Sentences are encoded in fixed-length vectors using the word-level bidirectional RNN (blue in the figure).The outputs of this first RNN are passed to a second RNN (red in the figure) which models the intent propagation of the user sentences over the different timesteps. This lastRNN (the red one) for each user sentence produces the contextualized intent value. The agent words are in green, while the words generated by the human are in white boxes.
+   </span>
+  </p>
+  <p>
+   <span>
+    In literature also other studies have been done on the problem of sentence classification inside an interaction context.
+   </span>
+  </p>
+  <p>
+   <span>
+    The approach proposed in
+   </span>
+   <sup>
+    <a href="#ftnt179" id="ftnt_ref179">
+     [179]
+    </a>
+   </sup>
+   <span>
+    on the classification of the domain, that is like the high level class in a hierarchical intent classification, uses the previous model prediction at word-level, concatenating it with each word vector.
+   </span>
+  </p>
+  <p>
+   <span>
+    The approach proposed in this work is different both in the specific point where the previous classification is used (not together with the input words but on the sentence level, using the high-level RNN) and also in the way the word-level features are summarized in sentence-level features and considered for next interactions by the learning network.
+   </span>
+  </p>
+  <p>
+   <span>
+    A critical point where this model should prove the goodness of the chosen cell, is when two completely unrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO avoid self-plagiarism to HQA2018
    </span>
   </p>
   <p>
@@ -6336,78 +6461,18 @@
   </p>
   <p>
    <span>
-    TODO remove intent decoding RNN, explaining that the performances on single turn were better without it.
    </span>
   </p>
-  <p>
-   <span>
-    The architecture chosen is basically the same of the encoder-decoder with aligned inputs for joint SLU. The part of the network for the intent, instead of taking simply the last state of the encoder, takes all the values of the encoder and summarizes them using a RNN. [Liu et al
-   </span>
-   <sup>
-    <a href="#ftnt173" id="ftnt_ref173">
-     [173]
-    </a>
-   </sup>
-   <span>
-    ] only used the last encoder state for the first proposed architecture, and in the second architecture used a mean pooling over the encoded states, additionally using an attention mechanism. An RNN was chosen because it can learn how to put together all the encoded states, and also because it is able to keep memory, that is what we want in a multi-turn environment.
-   </span>
-  </p>
-  <p>
-   <span>
-    For the memory between turns, the hidden states of the RNN cells are saved for each user, and are restored back in the cells when a new sentence is received from the same user. To also consider the agent turn, the network receives as inputs not only the current user turn words, but also the agent turn words. Those won’t produce in output slot labels, because is not our interest, but will affect the RNN cells in the forward direction.
-   </span>
-  </p>
-  <p>
-   <span>
-    Looking at the complete structure, it can be noticed that the memory of the states only initializes the forward cells. This is wanted, because in this way the new turn is affected by the old one, and the backward links are not connected through different turns because the decisions that have been taken in the past cannot be modified by next turns.
-   </span>
-  </p>
-  <p>
-   <span>
-    A critical point where this model should prove the goodness of the chosen cell, is when two completely unrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, the batch size has been reduced to 1 and all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
-   </span>
-  </p>
-  <p>
-   <span>
-    Batch_size=1
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     The order of samples is chosen in the program flow
-    </span>
-   </li>
-   <li>
-    <span>
-     Can avoid padding:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     No mess with masks
-    </span>
-   </li>
-   <li>
-    <span>
-     In stateful RNN padding is likely to deteriorate performances
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Performance decreases (only at training/evaluation time, not in usage because sentences to the bot are likely not to arrive all together)
-    </span>
-   </li>
-  </ul>
-  <h3 id="h.q9a05jk3u986">
+  <h3 id="h.ju7jua6nccwa">
    <span>
     Dialogue State Management
    </span>
   </h3>
+  <p>
+   <span>
+    [LABEL:approachStateManager]
+   </span>
+  </p>
   <p>
    <span>
     The Dialogue State Management module is responsible to handle the mapping from intents and available slots to the actions and responses. For this part, as mentioned before, a rule-based approach has been chosen.
@@ -6824,8 +6889,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt174" id="ftnt_ref174">
-      [174]
+     <a href="#ftnt180" id="ftnt_ref180">
+      [180]
      </a>
     </sup>
     <span>
@@ -6885,18 +6950,18 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt175" id="ftnt_ref175">
-     [175]
+    <a href="#ftnt181" id="ftnt_ref181">
+     [181]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt176" id="ftnt_ref176">
-     [176]
+    <a href="#ftnt182" id="ftnt_ref182">
+     [182]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt177" id="ftnt_ref177">
-     [177]
+    <a href="#ftnt183" id="ftnt_ref183">
+     [183]
     </a>
    </sup>
    <span>
@@ -7568,8 +7633,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt178" id="ftnt_ref178">
-     [178]
+    <a href="#ftnt184" id="ftnt_ref184">
+     [184]
     </a>
    </sup>
    <span>
@@ -7724,8 +7789,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt179" id="ftnt_ref179">
-     [179]
+    <a href="#ftnt185" id="ftnt_ref185">
+     [185]
     </a>
    </sup>
    <span>
@@ -7750,8 +7815,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt180" id="ftnt_ref180">
-     [180]
+    <a href="#ftnt186" id="ftnt_ref186">
+     [186]
     </a>
    </sup>
    <span>
@@ -7988,8 +8053,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt181" id="ftnt_ref181">
-      [181]
+     <a href="#ftnt187" id="ftnt_ref187">
+      [187]
      </a>
     </sup>
    </li>
@@ -7998,8 +8063,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt182" id="ftnt_ref182">
-      [182]
+     <a href="#ftnt188" id="ftnt_ref188">
+      [188]
      </a>
     </sup>
    </li>
@@ -8161,8 +8226,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt183" id="ftnt_ref183">
-     [183]
+    <a href="#ftnt189" id="ftnt_ref189">
+     [189]
     </a>
    </sup>
    <span>
@@ -8200,8 +8265,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt184" id="ftnt_ref184">
-     [184]
+    <a href="#ftnt190" id="ftnt_ref190">
+     [190]
     </a>
    </sup>
    <span>
@@ -8288,7 +8353,7 @@
   </h4>
   <p>
    <span>
-    TODO
+    The chosen tokenization scheme, between the different possibilities explored in section [REF:soaVocabulary], is the one employed by the library Spacy. TODO
    </span>
   </p>
   <h4 id="h.veqzygdxclk">
@@ -8309,10 +8374,6 @@
   <p>
    <span>
     Issue of serialization and solution
-   </span>
-  </p>
-  <p>
-   <span>
    </span>
   </p>
   <h4 id="h.rhub0ifx6or2">
@@ -8481,8 +8542,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt185" id="ftnt_ref185">
-     [185]
+    <a href="#ftnt191" id="ftnt_ref191">
+     [191]
     </a>
    </sup>
    <span>
@@ -8504,60 +8565,12 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt186" id="ftnt_ref186">
-     [186]
-    </a>
-   </sup>
-   <span>
-    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
-   </span>
-   <sup>
-    <a href="#ftnt187" id="ftnt_ref187">
-     [187]
-    </a>
-   </sup>
-   <span>
-    , Google’s Api.ai
-   </span>
-   <sup>
-    <a href="#ftnt188" id="ftnt_ref188">
-     [188]
-    </a>
-   </sup>
-   <span>
-    , Microsoft’s Luis
-   </span>
-   <sup>
-    <a href="#ftnt189" id="ftnt_ref189">
-     [189]
-    </a>
-   </sup>
-   <span>
-    , Apple’s SiriKit
-   </span>
-   <sup>
-    <a href="#ftnt190" id="ftnt_ref190">
-     [190]
-    </a>
-   </sup>
-   <span>
-    , IBM’s Watson
-   </span>
-   <sup>
-    <a href="#ftnt191" id="ftnt_ref191">
-     [191]
-    </a>
-   </sup>
-   <span>
-    , Facebook’s Wit
-   </span>
-   <sup>
     <a href="#ftnt192" id="ftnt_ref192">
      [192]
     </a>
    </sup>
    <span>
-    , and Snips
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
     <a href="#ftnt193" id="ftnt_ref193">
@@ -8565,11 +8578,59 @@
     </a>
    </sup>
    <span>
-    itself. The dataset used for their benchmark
+    , Google’s Api.ai
    </span>
    <sup>
     <a href="#ftnt194" id="ftnt_ref194">
      [194]
+    </a>
+   </sup>
+   <span>
+    , Microsoft’s Luis
+   </span>
+   <sup>
+    <a href="#ftnt195" id="ftnt_ref195">
+     [195]
+    </a>
+   </sup>
+   <span>
+    , Apple’s SiriKit
+   </span>
+   <sup>
+    <a href="#ftnt196" id="ftnt_ref196">
+     [196]
+    </a>
+   </sup>
+   <span>
+    , IBM’s Watson
+   </span>
+   <sup>
+    <a href="#ftnt197" id="ftnt_ref197">
+     [197]
+    </a>
+   </sup>
+   <span>
+    , Facebook’s Wit
+   </span>
+   <sup>
+    <a href="#ftnt198" id="ftnt_ref198">
+     [198]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt199" id="ftnt_ref199">
+     [199]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt200" id="ftnt_ref200">
+     [200]
     </a>
    </sup>
    <span>
@@ -8625,8 +8686,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt195" id="ftnt_ref195">
-     [195]
+    <a href="#ftnt201" id="ftnt_ref201">
+     [201]
     </a>
    </sup>
    <span>
@@ -8720,8 +8781,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt196" id="ftnt_ref196">
-     [196]
+    <a href="#ftnt202" id="ftnt_ref202">
+     [202]
     </a>
    </sup>
    <span>
@@ -8869,8 +8930,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt197" id="ftnt_ref197">
-     [197]
+    <a href="#ftnt203" id="ftnt_ref203">
+     [203]
     </a>
    </sup>
    <span>
@@ -11527,13 +11588,7 @@
      [173]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
-    </span>
-    <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
-    </span>
-    <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
     </span>
    </p>
   </div>
@@ -11541,6 +11596,72 @@
    <p>
     <a href="#ftnt_ref174" id="ftnt174">
      [174]
+    </a>
+    <span>
+     Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref175" id="ftnt175">
+     [175]
+    </a>
+    <span>
+     Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref176" id="ftnt176">
+     [176]
+    </a>
+    <span>
+     Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref177" id="ftnt177">
+     [177]
+    </a>
+    <span>
+     Key:mensio2018TODO
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref178" id="ftnt178">
+     [178]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://goasq.lri.fr/workshop/hqa18.html">
+      https://goasq.lri.fr/workshop/hqa18.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref179" id="ftnt179">
+     [179]
+    </a>
+    <span>
+     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref180" id="ftnt180">
+     [180]
     </a>
     <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
@@ -11554,8 +11675,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref175" id="ftnt175">
-     [175]
+    <a href="#ftnt_ref181" id="ftnt181">
+     [181]
     </a>
     <span>
      Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
@@ -11564,8 +11685,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref176" id="ftnt176">
-     [176]
+    <a href="#ftnt_ref182" id="ftnt182">
+     [182]
     </a>
     <span>
      Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
@@ -11574,8 +11695,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref177" id="ftnt177">
-     [177]
+    <a href="#ftnt_ref183" id="ftnt183">
+     [183]
     </a>
     <span>
      Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
@@ -11584,8 +11705,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref178" id="ftnt178">
-     [178]
+    <a href="#ftnt_ref184" id="ftnt184">
+     [184]
     </a>
     <span>
     </span>
@@ -11600,8 +11721,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref179" id="ftnt179">
-     [179]
+    <a href="#ftnt_ref185" id="ftnt185">
+     [185]
     </a>
     <span>
     </span>
@@ -11616,8 +11737,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref180" id="ftnt180">
-     [180]
+    <a href="#ftnt_ref186" id="ftnt186">
+     [186]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -11632,8 +11753,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref181" id="ftnt181">
-     [181]
+    <a href="#ftnt_ref187" id="ftnt187">
+     [187]
     </a>
     <span>
      Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
@@ -11642,8 +11763,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref182" id="ftnt182">
-     [182]
+    <a href="#ftnt_ref188" id="ftnt188">
+     [188]
     </a>
     <span>
      Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
@@ -11652,8 +11773,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref183" id="ftnt183">
-     [183]
+    <a href="#ftnt_ref189" id="ftnt189">
+     [189]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -11668,8 +11789,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref184" id="ftnt184">
-     [184]
+    <a href="#ftnt_ref190" id="ftnt190">
+     [190]
     </a>
     <span>
      Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
@@ -11678,8 +11799,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref185" id="ftnt185">
-     [185]
+    <a href="#ftnt_ref191" id="ftnt191">
+     [191]
     </a>
     <span>
      Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
@@ -11688,8 +11809,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref186" id="ftnt186">
-     [186]
+    <a href="#ftnt_ref192" id="ftnt192">
+     [192]
     </a>
     <span>
     </span>
@@ -11704,8 +11825,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref187" id="ftnt187">
-     [187]
+    <a href="#ftnt_ref193" id="ftnt193">
+     [193]
     </a>
     <span>
     </span>
@@ -11720,8 +11841,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref188" id="ftnt188">
-     [188]
+    <a href="#ftnt_ref194" id="ftnt194">
+     [194]
     </a>
     <span>
     </span>
@@ -11736,8 +11857,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref189" id="ftnt189">
-     [189]
+    <a href="#ftnt_ref195" id="ftnt195">
+     [195]
     </a>
     <span>
     </span>
@@ -11752,8 +11873,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref190" id="ftnt190">
-     [190]
+    <a href="#ftnt_ref196" id="ftnt196">
+     [196]
     </a>
     <span>
     </span>
@@ -11768,8 +11889,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref191" id="ftnt191">
-     [191]
+    <a href="#ftnt_ref197" id="ftnt197">
+     [197]
     </a>
     <span>
     </span>
@@ -11784,8 +11905,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref192" id="ftnt192">
-     [192]
+    <a href="#ftnt_ref198" id="ftnt198">
+     [198]
     </a>
     <span>
     </span>
@@ -11800,8 +11921,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref193" id="ftnt193">
-     [193]
+    <a href="#ftnt_ref199" id="ftnt199">
+     [199]
     </a>
     <span>
     </span>
@@ -11816,8 +11937,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref194" id="ftnt194">
-     [194]
+    <a href="#ftnt_ref200" id="ftnt200">
+     [200]
     </a>
     <span>
     </span>
@@ -11832,8 +11953,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref195" id="ftnt195">
-     [195]
+    <a href="#ftnt_ref201" id="ftnt201">
+     [201]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -11842,8 +11963,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref196" id="ftnt196">
-     [196]
+    <a href="#ftnt_ref202" id="ftnt202">
+     [202]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -11852,8 +11973,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref197" id="ftnt197">
-     [197]
+    <a href="#ftnt_ref203" id="ftnt203">
+     [203]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
