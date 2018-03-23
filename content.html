@@ -586,13 +586,13 @@
     </a>
    </sup>
    <span>
-    . In this example the reinforcement was applied also to matches between two computers. The strength of this dynamic training is to be able to act and observe the consequences of actions. In this way the machine is able to explore different choices and learn which one is better with respect to the rewards that have been established. For this mixed objective of learn new things but at the same time use the acquired knowledge, it is known as the “
+    . In this example the reinforcement was applied also to matches between two computers. The strength of this dynamic training is to be able to act and observe the consequences of actions. In this way the machine is able to explore different choices and learn which one is better with respect to the rewards that have been established. For this mixed objective of learn new things but at the same time use the acquired knowledge, it is known as the
    </span>
    <span>
     exploration vs exploitation dilemma
    </span>
    <span>
-    ” and many solutions exist
+    and many solutions exist
    </span>
    <sup>
     <a href="#ftnt29" id="ftnt_ref29">
@@ -4816,7 +4816,7 @@
     Dialog System Technology Challenges
    </span>
    <span>
-    , has a dedicated track for this objective
+    , has a dedicated track for this objective,
    </span>
    <sup>
     <a href="#ftnt166" id="ftnt_ref166">
@@ -4824,7 +4824,7 @@
     </a>
    </sup>
    <span>
-    , structured on the following tasks:
+    structured on the following tasks:
    </span>
   </p>
   <ul>
@@ -4864,65 +4864,12 @@
   </p>
   <p>
    <span>
-    In this type of system the prediction are both the agent responses and the API calls.
+    For these reasons, in this type of system the outputs are both the agent responses and the API calls. Not only the understanding part is turned from handcrafted rules to an optimization problem, but also the replying part. The API to call are determined without using fixed rules, but with a model that is determined by the training corpus. The same applies to the response generation: there aren’t fixed rules deciding what to say in responses.
    </span>
   </p>
   <p>
    <span>
-    A critical challenge for generative systems is to keep the coherence between turns and be more focused on the topic of the dialogue, discarding irrelevant responses that do not provide the required information. This problem is addressed by two different things: one is having the training corpus focused on the selected domain, and the second one is to enhance the topic maintenance by using some models like [TODO citation of topic mantain in generative, see HQA]
-   </span>
-  </p>
-  <p>
-   <span>
-    Using these kind of approaches, not only the understanding part is turned from handcrafted rules to an
-   </span>
-   <span>
-   </span>
-   <span>
-    optimization problem, but also the replying part. The API to call are determined without using fixed rules, but with a model that is determined by the training corpus. The same applies to the response generation: there aren’t fixed rules deciding what to say in responses.
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO continue
-   </span>
-  </p>
-  <p>
-   <span>
-    Learning end-to-end goal-oriented dialog
-   </span>
-  </p>
-  <p>
-   <span>
-    Paper
-   </span>
-   <span>
-    <a href="https://arxiv.org/pdf/1605.07683.pdf">
-     https://arxiv.org/pdf/1605.07683.pdf
-    </a>
-   </span>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Implementation
-   </span>
-   <span>
-    <a href="https://github.com/vyraun/chatbot-MemN2N-tensorflow">
-     https://github.com/vyraun/chatbot-MemN2N-tensorflow
-    </a>
-   </span>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    This system needs a fixed set of API to navigate the KB. Instead at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
+    A critical challenge for generative systems is to keep the coherence between turns and be more focused on the topic of the dialogue, discarding irrelevant responses that do not provide the required information. This problem is addressed by two different things: one is having the training corpus focused on the selected domain, and the second one is to maintain the topic by using some models like in
    </span>
    <sup>
     <a href="#ftnt167" id="ftnt_ref167">
@@ -4930,25 +4877,46 @@
     </a>
    </sup>
    <span>
-    .
+    , that biases the output sentences by giving more topic attention.
    </span>
   </p>
   <p>
    <span>
+    A point that still has needs handcrafted features is the KB interrogation through fixed APIs. One of the reasons that drives this choice is that a legacy system may be used as KB, and it can have a predefined set of operations that cannot be modified. Another reason could be that those API belong to third parties, like web services, that have strict calling rules. However some works have been done also towards a more dynamic exploration of information, like discussed also in the classification done in [REF:soaClassificationApproaches].
    </span>
   </p>
   <p>
    <span>
-    Those kind of system make use of the memory, as the dialogue tracking systems, but with some differences. While the DST are only tracking the state of the dialogue to provide an answer at the end, that corresponds to a value in the memory, those systems are linked to a KB and can issue some API calls or simply give back the next sentence.
+    For example at Stanford they experimented with a data exploration that can be explored as a set of key-value pairs. In this way the system, trained in an end2end fashion will be able to explore the KB in a more dynamic way, in a content-aware way with structured data
+   </span>
+   <sup>
+    <a href="#ftnt168" id="ftnt_ref168">
+     [168]
+    </a>
+   </sup>
+   <span>
+    . It learns how to extract information from a KB without the need of handcrafted dialogue state tracking. This is possible thanks to the KB structure that enables a good exchange of data between the conversation and the KB without the need of intent tracker and relying only on latent neural embeddings. This approach mainly is a sequence-to-sequence generator enriched by a KB that provides triples of
+   </span>
+   <span>
+    subject, relation, value
+   </span>
+   <span>
+    . The values are available to the output generation thanks to some placeholders in the output dictionary in the form of
+   </span>
+   <span>
+    subject_relation
+   </span>
+   <span>
+    , that is later replaced by its value after decoding.
    </span>
   </p>
   <p>
    <span>
+    As can be seen, all those approaches really combine the techniques of generative conversations together with goal-oriented interactions.
    </span>
   </p>
   <p>
    <span>
-    TODO talk about combining generative approach, with focus on the selected topic [citations]
    </span>
   </p>
   <h3 id="h.iqkeiq1d8ogq">
@@ -4958,7 +4926,7 @@
   </h3>
   <p>
    <span>
-    As of today, there are a lot of platforms that provide this as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box.
+    As of today, there are a lot of platforms that provide Natural Language Understanding as a service. Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers, that through a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All you need is to understand the jargon used by the platform and configure your black box.
    </span>
   </p>
   <p>
@@ -4967,111 +4935,599 @@
   </p>
   <p>
    <span>
-    TODO enumerate services, maybe table?
+    TODO complete this table
+   </span>
+  </p>
+  <a id="t.e31c4582723882426d03870ba6c6654ddd203940">
+  </a>
+  <a id="t.1">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        provider
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        deployment
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Messenger platforms integration
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        intent
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        slots
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        required parameters management
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        e2e trainable
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        pre-defined intents
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        open source
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        wit.ai
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        proprietary
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        DialogFlow
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        proprietary
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        LUIS
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        proprietary
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        IBM
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        proprietary
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        alexa
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        proprietary
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        recast.ai
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        web service
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        no
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Partially open
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        RASA
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        self
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        yes
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        open
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span>
+    [TABLE:soaNLUproviders CAPTION:A comparison between the major NLU providers]
    </span>
   </p>
   <p>
    <span>
-    TALK about wit.ai, dialogflow, LUIS, IBM, …, kitt.ai
    </span>
   </p>
   <p>
    <span>
+    On the features provided by those platforms, usually only the intent classification and slot filling are provided, with an approach that is not usually trained in a end-to-end way. The provided features, as can be seen in table [REF TABLE:soaNLUproviders] turn the user sentences in structured data. Some platforms offer a way to force the user to provide some parameters (compulsory entities for some intents), managing the questions that the bot should ask when they are missing and call the fulfillment endpoint (the service owned by the developers of the bot, receiving the structured data) only when those parameters have been provided. The programmers are left to the role of handling the dialogue state, retrieving the information and providing a response.
    </span>
   </p>
   <p>
    <span>
-    Features provided:
+    But this does not scale well when the dialogue can have lots of different states and the user could change the topic of conversation in every moment. In those situations the task of handcrafting rules to track the state of the conversation can become quite difficult. Also when something in the behaviour of the bot is not correct, the investigation of the problem can be cumbersome. Instead if the dialogue-state-tracking and the dialogue itself are trained end-to-end, changing the behaviour is as easy as adding a new example to the training corpus.
    </span>
   </p>
   <p>
    <span>
-    On the features provided by those platforms, usually only the natural language understanding is provided, with an approach that is not trained in a end-to-end way. The provided features turn the user sentences in structured data. Some platforms offer a way to force the user to provide some parameters (compulsory entities for some intents), managing the questions that the bot should ask when they are missing and call the fulfillment endpoint (the service owned by the developers of the bot, receiving the structured data) only when those parameters have been provided. The programmers are left to the role of handling the dialogue state, retrieving the information and providing a response.
+    This kind of end-to-end trainability is supported on the shelf by RASA
    </span>
-  </p>
-  <p>
-   <span>
-    But this does not scale well when the dialogue can have lots of different states and the user is left to change the topic of conversation in every moment. In those situations the task of handcrafting rules to track the state of the conversation can become quite difficult. When something in the behaviour of the bot is not correct, the investigation of the problem is quite difficult.
-   </span>
-  </p>
-  <p>
-   <span>
-    Instead if the dialogue-state-tracking and the dialogue itself is trained end-to-end, changing the behaviour is as easy as adding a new example to the training corpus.
-   </span>
-  </p>
-  <p>
-   <span>
-    This kind of end-to-end dialogue is supported on the shelf by RASA, an open source tool that has two main components: the NLU and the core. The first one turns sentences into intents and entities, while the second one manages the state of the conversation and determines responses and API calls without handcrafted rules. The developers of a bot using this libraries have to define the intents, entities, the actions (that correspond to some methods) and templates (for the responses) and provide examples for training both the NLU and the Core.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Measurement of the performances:
-   </span>
-  </p>
-  <p>
-   <span>
-    There have been some efforts to compare the performances of all those systems by SNIPS:
-   </span>
-   <span>
-    <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
-     https://snips.ai/content/sdk-benchmark-visualisation/
+   <sup>
+    <a href="#ftnt169" id="ftnt_ref169">
+     [169]
     </a>
-   </span>
+   </sup>
    <span>
+    , an open source tool that has two main components: the NLU and the dialogue management Core. The first one turns sentences into intents and entities, while the second one manages the state of the conversation and determines responses and API calls without handcrafted rules. The developers of a bot using this libraries have to define the intents, entities, the actions (that correspond to some methods) and templates (for the responses) and provide examples for training both the NLU and the Core.
    </span>
-   <span>
-    <a href="https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19">
-     https://medium.com/snips-ai/benchmarking-natural-language-understanding-systems-google-facebook-microsoft-and-snips-2b8ddcf9fb19
-    </a>
-   </span>
-   <span>
-   </span>
-   <span>
-    <a href="https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017">
-     https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017
-    </a>
-   </span>
-   <span>
-    that tested a lot of those platforms to compare the results on intent and slots. Emphasis also on the detection of out-of-domain samples (things that the agent was not trained for), learning curve, language support, response time. Dataset used:
-   </span>
-   <span>
-    <a href="https://github.com/snipsco/nlu-benchmark">
-     https://github.com/snipsco/nlu-benchmark
-    </a>
-   </span>
+  </p>
+  <p>
    <span>
    </span>
   </p>
   <p>
    <span>
-    EXTEND THIS SECTION
+    There have been some efforts to compare the performances of all those systems by SNIPS,
    </span>
-  </p>
-  <p>
-   <span>
-    How to bootstrap a new NLU to a new domain with limited data? Transfer Learning, pretrained embeddings,
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://www.researchgate.net/profile/Avraham_Shinnar/publication/321664993_Bootstrapping_Chatbots_for_Novel_Domains/links/5a29ff24a6fdccfbbf81994a/Bootstrapping-Chatbots-for-Novel-Domains.pdf">
-     https://www.researchgate.net/profile/Avraham_Shinnar/publication/321664993_Bootstrapping_Chatbots_for_Novel_Domains/links/5a29ff24a6fdccfbbf81994a/Bootstrapping-Chatbots-for-Novel-Domains.pdf
+   <sup>
+    <a href="#ftnt170" id="ftnt_ref170">
+     [170]
     </a>
-   </span>
+   </sup>
    <span>
-    explores intent+slots from swagger documentation
+    that tested a lot of those platforms to compare the results mainly on the intent detection task. The benchmark does also compare the results on out-of-domain samples, that are sentences that should be classified with none of the declared intents and managed with fallback options. That study results are available both on their site,
    </span>
+   <sup>
+    <a href="#ftnt171" id="ftnt_ref171">
+     [171]
+    </a>
+   </sup>
+   <span>
+    explained on slides
+   </span>
+   <sup>
+    <a href="#ftnt172" id="ftnt_ref172">
+     [172]
+    </a>
+   </sup>
+   <span>
+    and most importantly the datasets used are available with an open license.
+   </span>
+   <sup>
+    <a href="#ftnt173" id="ftnt_ref173">
+     [173]
+    </a>
+   </sup>
   </p>
   <hr style="page-break-before:always;display:none;"/>
-  <p>
-   <span>
-   </span>
-  </p>
   <h2 id="h.jphi3c5npn8z">
    <span>
     Personalization
@@ -5084,14 +5540,54 @@
   </p>
   <p>
    <span>
-    This section analyzes the state of the art of personalization, starting on how to profile users and determine their features, and considering the existing approaches for recommender systems and their problems. Finally one of the biggest problem of those system is described: the cold start.
+    This section analyzes the state of the art of personalization, starting on how to profile users and determine their features
+   </span>
+   <span>
+    in [REF:soaPersonalizationFeatures]
+   </span>
+   <span>
+    , and considering the existing approaches for recommender systems and their problems in [REF:soaPersonalizationRec]. Finally one of the biggest problem of those system is described: the cold start.
    </span>
   </p>
-  <h3 id="h.2del0db8mgct">
+  <p>
+   <span>
+    We use the following definition for personalization and recommendation:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Personalization: a general technique to change the behaviour of a system depending on the user. By adapting to the user it can potentially lead to better experience for him.
+    </span>
+   </li>
+   <li>
+    <span>
+     Recommendation: it is a personalization technique whose goal is to provide content that may be interesting for the user. Depending on how much it is studied for the user needs or the marketing needs, it can be labeled in various way, from
+    </span>
+    <span>
+     content suggestion
+    </span>
+    <span>
+     to
+    </span>
+    <span>
+     targeted advertising
+    </span>
+    <span>
+     .
+    </span>
+   </li>
+  </ul>
+  <h3 id="h.ards1f7pjlgh">
    <span>
     User features and Personality analysis
    </span>
   </h3>
+  <p>
+   <span>
+    [LABEL:soaPersonalizationFeatures]
+   </span>
+  </p>
   <p>
    <span>
     A personalization or recommender system in order to provide some outputs needs in input some information about the user. Those information can be provided explicitly by the user, for example by asking him to fill up a questionnaire, or can be collected implicitly, analyzing his behaviour and doing some forecasts.
@@ -5107,8 +5603,8 @@
     With the spread of social networks a lot of data is ready to be analyzed to build big models that are able to predict personal information. The most common nowadays, Facebook, stores information of any kind about users: from age, occupation, and other personal information to others relative to interests. This is the ideal setting for training models that predict some user features based on others, contained themselves on the social network or coming from other sources. Specially on the fields of social sciences and personality analysis
    </span>
    <sup>
-    <a href="#ftnt168" id="ftnt_ref168">
-     [168]
+    <a href="#ftnt174" id="ftnt_ref174">
+     [174]
     </a>
    </sup>
    <span>
@@ -5117,15 +5613,15 @@
   </p>
   <p>
    <span>
-    For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset
+    For example, one of the biggest datasets to perform personality analysis is the myPersonality dataset.
    </span>
    <sup>
-    <a href="#ftnt169" id="ftnt_ref169">
-     [169]
+    <a href="#ftnt175" id="ftnt_ref175">
+     [175]
     </a>
    </sup>
    <span>
-    . Born as an application to take psychometrics tests and allowing users to give access to their personal data on Facebook, the Cambridge researchers built managed to build a model that, thanks to 6 milions volunteers, is able to predict some information of users simply by looking at what are the Likes or by looking at some text.
+    Born as an application to take psychometrics tests and allowing users to give access to their personal data on Facebook, the Cambridge researchers built managed to build a model that, thanks to 6 milions volunteers, is able to predict some information of users simply by looking at what are the Likes or by looking at some text.
    </span>
   </p>
   <p>
@@ -5133,16 +5629,16 @@
     The personality is usually analyzed in five dimensions, in a model that has been widely shared, discussed and applied both in academic environments and in empirical ones. The “Big-Five Factors”, formulated in
    </span>
    <sup>
-    <a href="#ftnt170" id="ftnt_ref170">
-     [170]
+    <a href="#ftnt176" id="ftnt_ref176">
+     [176]
     </a>
    </sup>
    <span>
     and very well analyzed in
    </span>
    <sup>
-    <a href="#ftnt171" id="ftnt_ref171">
-     [171]
+    <a href="#ftnt177" id="ftnt_ref177">
+     [177]
     </a>
    </sup>
    <span>
@@ -5152,35 +5648,30 @@
   <ul>
    <li>
     <span>
-     Openness to experience
+     Openness to experience: it’s an indicator of the curiosity level. High values indicate unpredictability and desire for intense experiences, while low ones are lead from pragmaticism or even closed-mind.
     </span>
    </li>
    <li>
     <span>
-     Conscientiousness
+     Conscientiousness: tells how much a person is organized, even obsessed versus a more careless and spontaneous behaviour.
     </span>
    </li>
    <li>
     <span>
-     Extraversion
+     Extraversion: energetic and sociable attitudes versus introversion and shyness.
     </span>
    </li>
    <li>
     <span>
-     Agreeableness
+     Agreeableness: indicates how much someone is cooperative with others versus being antagonistic and competitive.
     </span>
    </li>
    <li>
     <span>
-     Neuroticism
+     Neuroticism: identifies the level of stress and emotional stability. When facing with problems, people may behave more confidently or be insecure.
     </span>
    </li>
   </ul>
-  <p>
-   <span>
-    TODO some explanation of them?
-   </span>
-  </p>
   <p>
    <span>
     Having good values for those traits is not an easy task, because self-judgement and also human judgement can be easily polarized. To obtain values that are somewhat objective, different criteria can be used.
@@ -5188,8 +5679,8 @@
   </p>
   <p>
    <sup>
-    <a href="#ftnt172" id="ftnt_ref172">
-     [172]
+    <a href="#ftnt178" id="ftnt_ref178">
+     [178]
     </a>
    </sup>
    <span>
@@ -5212,8 +5703,8 @@
     Another study, described in
    </span>
    <sup>
-    <a href="#ftnt173" id="ftnt_ref173">
-     [173]
+    <a href="#ftnt179" id="ftnt_ref179">
+     [179]
     </a>
    </sup>
    <span>
@@ -5222,15 +5713,11 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
     All those works on unwilling profilation, especially considering details that users may want to hide (such as sexual and political orientation), implies a decrease in trust of online services by people that have a bit of knowledge about it. Moreover, quite recently there has been a scandal related to illegitimate exploitation, involving commercial and political usage in different countries
    </span>
    <sup>
-    <a href="#ftnt174" id="ftnt_ref174">
-     [174]
+    <a href="#ftnt180" id="ftnt_ref180">
+     [180]
     </a>
    </sup>
    <span>
@@ -5239,46 +5726,30 @@
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
     Other works, explore ways of profiling the users given some text they produced. Different things can be discovered, from the sentiments the user is feeling to their personality
    </span>
    <sup>
-    <a href="#ftnt175" id="ftnt_ref175">
-     [175]
+    <a href="#ftnt181" id="ftnt_ref181">
+     [181]
     </a>
    </sup>
    <span>
     . The requirement is having more than few words and know the environment the text belongs to, in order to remove the environmental bias. This approach applies better on social networks that are more text-based, like Twitter. Since usually the tweets are openly available, analysis on text can be easily done.
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://web.stanford.edu/class/cs124/lec/emo2016.pdf">
-     https://web.stanford.edu/class/cs124/lec/emo2016.pdf
-    </a>
-   </span>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.kfp5i756qgiq">
+  <h3 id="h.oez7y55pcka0">
    <span>
     Recommendation Approaches
    </span>
   </h3>
   <p>
    <span>
-    Given some representation of the users, different approaches can be used to recommend items to the users. The major ones we are presenting here are content-based filtering and collaborative filtering.
+    [LABEL:soaPersonalizationRec]
+   </span>
+  </p>
+  <p>
+   <span>
+    Given some representation of the users, different approaches can be used to recommend items to them. The major ones we are presenting here are content-based filtering and collaborative filtering.
    </span>
   </p>
   <h4 id="h.gaetitna0e6a">
@@ -5323,8 +5794,8 @@
     From a high level view, content-based recommender require three steps, that are handled by different components
    </span>
    <sup>
-    <a href="#ftnt176" id="ftnt_ref176">
-     [176]
+    <a href="#ftnt182" id="ftnt_ref182">
+     [182]
     </a>
    </sup>
    <span>
@@ -5358,36 +5829,71 @@
     However there are also disadvantages. Being very dependent on the content, a domain knowledge is usually required in order to extract the item features. This problem is usually addressed by strategies like semantic analysis that make use of ontologies in order to catch references to external concepts. Another disadvantage is that the items that are recommended tend to be very similar, resulting in high accuracy but low serendipity. It is very difficult to provide unexpected recommendations, out of the bubble that surrounds the user. The last problem is with new users: until an history of feedbacks is collected, the system can hardly suggest other items that will be liked by the user.
    </span>
   </p>
-  <h4 id="h.iizs3geatfe">
+  <h4 id="h.zewrzjwvwnja">
    <span>
     Collaborative filtering
    </span>
   </h4>
   <p>
    <span>
-    TODO
+    Instead of trying to already have detailed features of items and of users, the collaborative filtering approaches try to exploit the ratings coming from different users. The assumption is that people that agreed in the past will agree in the future too.
    </span>
   </p>
   <p>
    <span>
-    See
+    The only features that need to be provided are the ratings that link one entity of type users to one entity of type item, no features about those two distinct entities are necessary, only the ability to identify all the ratings that link them. The goal is always to correlate them. And Collaborative approaches use two techniques for that
    </span>
-   <span>
-    <a href="https://link.springer.com/content/pdf/10.1007%252F978-0-387-85820-3.pdf">
-     https://link.springer.com/content/pdf/10.1007%2F978-0-387-85820-3.pdf
+   <sup>
+    <a href="#ftnt183" id="ftnt_ref183">
+     [183]
     </a>
-   </span>
+   </sup>
    <span>
+    :
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     Neighboring approaches: they try to distribute users or items (separately) over a space, in order to be able to find neighboring users or neighboring items to the ones provided (from users it’s possible to find other users, from items only find other items) by using the ratings provided by different users. Those distributions are directly used to do item-based or user-based recommendations, depending on the considered start point.
+    </span>
+   </li>
+   <li>
+    <span>
+     Latent factor models: using matrix factorization like SVD, transform both items and users to the same space, always by using the feedbacks as input features. The idea behind is to model the interactions between users and items by capturing some latent characteristics of the two edges of relationships. For example some factors of the users may be their preference and one of the items may be their category.
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span>
+    TODO cite third paper below for matrix factorization
    </span>
   </p>
   <p>
    <span>
-    What user will like based on similarities of other users. Doesn’t require “understanding” the items. Can be done using user similarity and/or items similarity.
+    With both techniques, the corresponding models are built from training, and learn to predict ratings of users for new items without having a feature-based description of any of the two sides of the relationships. They are inferred as part of the model.
    </span>
   </p>
   <p>
    <span>
-    Assumption: people who agreed in the past will agree in the future
+    The advantages with respect to content-based approaches are many. First of all, more
+   </span>
+   <span>
+    serendipity
+   </span>
+   <sup>
+    <a href="#ftnt184" id="ftnt_ref184">
+     [184]
+    </a>
+   </sup>
+   <span>
+    can be achieved, because the recommendations are not bound to content-specific features. People tend to like different things that may be not related. Serendipity is something more than
+   </span>
+   <span>
+    novelty
+   </span>
+   <span>
+    because it provides not only new things, but also things that would have not been discovered on the user on its own. Another advantage is the simplicity of the approach. No need to have item description and features, the system learns how to distribute them in the internal model space by only looking at the feedback provided by the users.
    </span>
   </p>
   <h4 id="h.h8jkc5d3q65k">
@@ -5397,7 +5903,20 @@
   </h4>
   <p>
    <span>
-    TODO
+    Of course the different approaches can be combined together, in order to exploit the strengths of the sides and in some way mitigate their problems. For example collaborative filtering suffers with new items that do not have any ratings. An hybrid system can use its content-based side to analyze the item features. And the weakness of content-based approaches that have low serendipity values can be mitigated by the collaborative side.
+   </span>
+  </p>
+  <p>
+   <span>
+    The combination of the different sides can be done in several ways
+   </span>
+   <sup>
+    <a href="#ftnt185" id="ftnt_ref185">
+     [185]
+    </a>
+   </sup>
+   <span>
+    : a weighted scoring, a confidence-based scoring, feature-augmentation methods, cascading are just some examples.
    </span>
   </p>
   <h3 id="h.j72i7ypyjhwq">
@@ -5412,91 +5931,50 @@
   </p>
   <p>
    <span>
-    Another possible approach, without using the facebook data, would be to use a bootstrap in the
+    One thing that is common to all the learning-based recommendation approaches briefly described before, is that they suffer from the
    </span>
    <span>
     cold start
    </span>
    <span>
-    phase: a few questions to build a first model of the user. Then more information can be
+    problem. Handling a new user or a new item is quite difficult if its features are not available. The recommendations for them are weaker and the system has to find the correct balance between a random-like suggestion that if accepted leads a lot of value or a more confident one that (if available) is more safe but carries no significance. This is in some ways similar to the
    </span>
    <span>
-    extracted as the conversation flows.
+    exploration vs exploitation dilemma
+   </span>
+   <span>
+    of reinforcement learning, because also those systems are learning from online experimentation. However here the problem is bigger because in some situations there are no available data to even explore brave suggestions.
    </span>
   </p>
   <p>
    <span>
-    An explicit preference elicitation at the beginning, not too long, that then becomes implicit.
+    TODO integrate other sources, first paper
    </span>
   </p>
   <p>
    <span>
-    Other systems apply this procedure (e.g. netflix)
+    Those reason make necessary to employ other techniques. One of them to solve the user-relative cold start, is to use a
+   </span>
+   <span>
+    bootstrap
+   </span>
+   <span>
+    phase in which the new user is required to answer some initial questions to give a general model of him. This short interview can be very effective if the questions themselves adapt to the responses. An approach of this kind has been proposed in
+   </span>
+   <sup>
+    <a href="#ftnt186" id="ftnt_ref186">
+     [186]
+    </a>
+   </sup>
+   <span>
+    , where a decision tree is built for the sentences to be prompted, enabling a grouping process that has as outputs some initial features of the user that can solve the cold start problem. Then by interacting more and more the user model is refined and better recommendations can be given.
    </span>
   </p>
   <p>
    <span>
-    TODO
+    TODO multiple questions, second paper
    </span>
   </p>
-  <p>
-   <span>
-    “Facing the cold start problem in recommender systems”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: find a good solution for the user-side cold start
-    </span>
-   </li>
-   <li>
-    <span>
-     Other approaches to the problem:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Content-based: requires ratings by user. Cold start problem
-    </span>
-   </li>
-   <li>
-    <span>
-     Collaborative-filtering: requires other users ratings
-    </span>
-   </li>
-   <li>
-    <span>
-     Explicit interview to new user about items (adapting new questions to the answers provided)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Implementation: three phases (Collaborative-filtering)
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Classification of the new user in a specific group (based on demographic data): using C4.5 algorithm (decision tree) and Naive Bayes
-    </span>
-   </li>
-   <li>
-    <span>
-     Find “neighbours” of the new user inside the group: weighted average of demographic data
-    </span>
-   </li>
-   <li>
-    <span>
-     Calculation of outcome: prediction techniques
-    </span>
-   </li>
-  </ul>
   <p>
    <span>
    </span>
@@ -6009,7 +6487,7 @@
   </p>
   <a id="t.5e682606462ad8f12660676dff54d11b868a73d9">
   </a>
-  <a id="t.1">
+  <a id="t.2">
   </a>
   <table>
    <tbody>
@@ -6288,8 +6766,8 @@
     The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed in
    </span>
    <sup>
-    <a href="#ftnt177" id="ftnt_ref177">
-     [177]
+    <a href="#ftnt187" id="ftnt_ref187">
+     [187]
     </a>
    </sup>
    <span>
@@ -6311,8 +6789,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt178" id="ftnt_ref178">
-     [178]
+    <a href="#ftnt188" id="ftnt_ref188">
+     [188]
     </a>
    </sup>
    <span>
@@ -6339,24 +6817,24 @@
     As mentioned before, the bot has as requirement to support also the italian language. For the english language several preprocessed word embeddings are available, trained on different corpuses and with different algorithms. Instead for italian, the found pre-trained embeddings are GloVe and word2vec trained by the Human Language Technologies of Pisa
    </span>
    <sup>
-    <a href="#ftnt179" id="ftnt_ref179">
-     [179]
+    <a href="#ftnt189" id="ftnt_ref189">
+     [189]
     </a>
    </sup>
    <span>
     and the official fastText
    </span>
    <sup>
-    <a href="#ftnt180" id="ftnt_ref180">
-     [180]
+    <a href="#ftnt190" id="ftnt_ref190">
+     [190]
     </a>
    </sup>
    <span>
     , all trained on the Wikipedia corpus. Another widely used corpus is CommonCrawl
    </span>
    <sup>
-    <a href="#ftnt181" id="ftnt_ref181">
-     [181]
+    <a href="#ftnt191" id="ftnt_ref191">
+     [191]
     </a>
    </sup>
    <span>
@@ -6378,8 +6856,8 @@
     As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper
    </span>
    <sup>
-    <a href="#ftnt182" id="ftnt_ref182">
-     [182]
+    <a href="#ftnt192" id="ftnt_ref192">
+     [192]
     </a>
    </sup>
    <span>
@@ -6419,32 +6897,32 @@
     For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context (like
    </span>
    <sup>
-    <a href="#ftnt183" id="ftnt_ref183">
-     [183]
+    <a href="#ftnt193" id="ftnt_ref193">
+     [193]
     </a>
    </sup>
    <span>
     ,
    </span>
    <sup>
-    <a href="#ftnt184" id="ftnt_ref184">
-     [184]
+    <a href="#ftnt194" id="ftnt_ref194">
+     [194]
     </a>
    </sup>
    <span>
     ,
    </span>
    <sup>
-    <a href="#ftnt185" id="ftnt_ref185">
-     [185]
+    <a href="#ftnt195" id="ftnt_ref195">
+     [195]
     </a>
    </sup>
    <span>
     ,
    </span>
    <sup>
-    <a href="#ftnt186" id="ftnt_ref186">
-     [186]
+    <a href="#ftnt196" id="ftnt_ref196">
+     [196]
     </a>
    </sup>
    <span>
@@ -6456,16 +6934,16 @@
     The work that follows for the contextual intent classification, is taken from
    </span>
    <sup>
-    <a href="#ftnt187" id="ftnt_ref187">
-     [187]
+    <a href="#ftnt197" id="ftnt_ref197">
+     [197]
     </a>
    </sup>
    <span>
     done for the “Hybrid Question Answering with Structured and Unstructured Knowledge” (in the following denoted with HQA2018) workshop
    </span>
    <sup>
-    <a href="#ftnt188" id="ftnt_ref188">
-     [188]
+    <a href="#ftnt198" id="ftnt_ref198">
+     [198]
     </a>
    </sup>
    <span>
@@ -6529,8 +7007,8 @@
     The approach proposed in
    </span>
    <sup>
-    <a href="#ftnt189" id="ftnt_ref189">
-     [189]
+    <a href="#ftnt199" id="ftnt_ref199">
+     [199]
     </a>
    </sup>
    <span>
@@ -6987,8 +7465,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt190" id="ftnt_ref190">
-      [190]
+     <a href="#ftnt200" id="ftnt_ref200">
+      [200]
      </a>
     </sup>
     <span>
@@ -7048,18 +7526,18 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt191" id="ftnt_ref191">
-     [191]
+    <a href="#ftnt201" id="ftnt_ref201">
+     [201]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt192" id="ftnt_ref192">
-     [192]
+    <a href="#ftnt202" id="ftnt_ref202">
+     [202]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt193" id="ftnt_ref193">
-     [193]
+    <a href="#ftnt203" id="ftnt_ref203">
+     [203]
     </a>
    </sup>
    <span>
@@ -7731,8 +8209,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt194" id="ftnt_ref194">
-     [194]
+    <a href="#ftnt204" id="ftnt_ref204">
+     [204]
     </a>
    </sup>
    <span>
@@ -7887,8 +8365,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt195" id="ftnt_ref195">
-     [195]
+    <a href="#ftnt205" id="ftnt_ref205">
+     [205]
     </a>
    </sup>
    <span>
@@ -7913,8 +8391,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt196" id="ftnt_ref196">
-     [196]
+    <a href="#ftnt206" id="ftnt_ref206">
+     [206]
     </a>
    </sup>
    <span>
@@ -7935,7 +8413,7 @@
   </p>
   <a id="t.294588e8659ce0c2920741efb4cbbf1ec9cf419c">
   </a>
-  <a id="t.2">
+  <a id="t.3">
   </a>
   <table>
    <tbody>
@@ -8151,8 +8629,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt197" id="ftnt_ref197">
-      [197]
+     <a href="#ftnt207" id="ftnt_ref207">
+      [207]
      </a>
     </sup>
    </li>
@@ -8161,8 +8639,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt198" id="ftnt_ref198">
-      [198]
+     <a href="#ftnt208" id="ftnt_ref208">
+      [208]
      </a>
     </sup>
    </li>
@@ -8324,8 +8802,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt199" id="ftnt_ref199">
-     [199]
+    <a href="#ftnt209" id="ftnt_ref209">
+     [209]
     </a>
    </sup>
    <span>
@@ -8363,8 +8841,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt200" id="ftnt_ref200">
-     [200]
+    <a href="#ftnt210" id="ftnt_ref210">
+     [210]
     </a>
    </sup>
    <span>
@@ -8640,8 +9118,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt201" id="ftnt_ref201">
-     [201]
+    <a href="#ftnt211" id="ftnt_ref211">
+     [211]
     </a>
    </sup>
    <span>
@@ -8663,72 +9141,72 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt202" id="ftnt_ref202">
-     [202]
+    <a href="#ftnt212" id="ftnt_ref212">
+     [212]
     </a>
    </sup>
    <span>
     as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
-    <a href="#ftnt203" id="ftnt_ref203">
-     [203]
+    <a href="#ftnt213" id="ftnt_ref213">
+     [213]
     </a>
    </sup>
    <span>
     , Google’s Api.ai
    </span>
    <sup>
-    <a href="#ftnt204" id="ftnt_ref204">
-     [204]
+    <a href="#ftnt214" id="ftnt_ref214">
+     [214]
     </a>
    </sup>
    <span>
     , Microsoft’s Luis
    </span>
    <sup>
-    <a href="#ftnt205" id="ftnt_ref205">
-     [205]
+    <a href="#ftnt215" id="ftnt_ref215">
+     [215]
     </a>
    </sup>
    <span>
     , Apple’s SiriKit
    </span>
    <sup>
-    <a href="#ftnt206" id="ftnt_ref206">
-     [206]
+    <a href="#ftnt216" id="ftnt_ref216">
+     [216]
     </a>
    </sup>
    <span>
     , IBM’s Watson
    </span>
    <sup>
-    <a href="#ftnt207" id="ftnt_ref207">
-     [207]
+    <a href="#ftnt217" id="ftnt_ref217">
+     [217]
     </a>
    </sup>
    <span>
     , Facebook’s Wit
    </span>
    <sup>
-    <a href="#ftnt208" id="ftnt_ref208">
-     [208]
+    <a href="#ftnt218" id="ftnt_ref218">
+     [218]
     </a>
    </sup>
    <span>
     , and Snips
    </span>
    <sup>
-    <a href="#ftnt209" id="ftnt_ref209">
-     [209]
+    <a href="#ftnt219" id="ftnt_ref219">
+     [219]
     </a>
    </sup>
    <span>
     itself. The dataset used for their benchmark
    </span>
    <sup>
-    <a href="#ftnt210" id="ftnt_ref210">
-     [210]
+    <a href="#ftnt220" id="ftnt_ref220">
+     [220]
     </a>
    </sup>
    <span>
@@ -8784,8 +9262,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt211" id="ftnt_ref211">
-     [211]
+    <a href="#ftnt221" id="ftnt_ref221">
+     [221]
     </a>
    </sup>
    <span>
@@ -8879,8 +9357,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt212" id="ftnt_ref212">
-     [212]
+    <a href="#ftnt222" id="ftnt_ref222">
+     [222]
     </a>
    </sup>
    <span>
@@ -9028,8 +9506,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt213" id="ftnt_ref213">
-     [213]
+    <a href="#ftnt223" id="ftnt_ref223">
+     [223]
     </a>
    </sup>
    <span>
@@ -11600,6 +12078,16 @@
      [167]
     </a>
     <span>
+     Key:xing2017topic Xing, C., Wu, W., Wu, Y., Liu, J., Huang, Y., Zhou, M., &amp; Ma, W. Y. (2017, February). Topic Aware Neural Response Generation. In AAAI (Vol. 17, pp. 3351-3357).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref168" id="ftnt168">
+     [168]
+    </a>
+    <span>
      Key:eric2017key Eric, M. and Manning, C. (2017).
     </span>
     <span>
@@ -11612,8 +12100,88 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref168" id="ftnt168">
-     [168]
+    <a href="#ftnt_ref169" id="ftnt169">
+     [169]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="http://rasa.com/">
+      http://rasa.com/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref170" id="ftnt170">
+     [170]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/">
+      https://snips.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref171" id="ftnt171">
+     [171]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+      https://snips.ai/content/sdk-benchmark-visualisation/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref172" id="ftnt172">
+     [172]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017">
+      https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref173" id="ftnt173">
+     [173]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/snipsco/nlu-benchmark">
+      https://github.com/snipsco/nlu-benchmark
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref174" id="ftnt174">
+     [174]
     </a>
     <span>
      Key:kosinski2015facebook Kosinski, M., Matz, S. C., &amp; Gosling, S. D. (2015). Facebook as a research tool for the social sciences. American Psychologist, 70(6), 543–556. doi:10.1037/a0039210
@@ -11622,8 +12190,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref169" id="ftnt169">
-     [169]
+    <a href="#ftnt_ref175" id="ftnt175">
+     [175]
     </a>
     <span>
      https://www.psychometrics.cam.ac.uk/productsservices/mypersonality
@@ -11632,8 +12200,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref170" id="ftnt170">
-     [170]
+    <a href="#ftnt_ref176" id="ftnt176">
+     [176]
     </a>
     <span>
      Key:costa2008revised Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
@@ -11645,8 +12213,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref171" id="ftnt171">
-     [171]
+    <a href="#ftnt_ref177" id="ftnt177">
+     [177]
     </a>
     <span>
      Key:goldberg1993structure Goldberg, L. R. (1993). The structure of phenotypic personality traits.
@@ -11658,8 +12226,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref172" id="ftnt172">
-     [172]
+    <a href="#ftnt_ref178" id="ftnt178">
+     [178]
     </a>
     <span>
      Key:youyou2015computer Youyou, W., Kosinski, M., Stillwell, D. (2015). Computer-based personality judgments are more accurate than those made by humans.
@@ -11671,8 +12239,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref173" id="ftnt173">
-     [173]
+    <a href="#ftnt_ref179" id="ftnt179">
+     [179]
     </a>
     <span>
      Key:kosinski2013private Kosinski, M., Stillwell, D., Graepel, Y. (2013). Private traits and attributes are predictable from digital records of human behavior.
@@ -11684,8 +12252,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref174" id="ftnt174">
-     [174]
+    <a href="#ftnt_ref180" id="ftnt180">
+     [180]
     </a>
     <span>
     </span>
@@ -11700,8 +12268,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref175" id="ftnt175">
-     [175]
+    <a href="#ftnt_ref181" id="ftnt181">
+     [181]
     </a>
     <span>
      Key:mairesse2007using F. Mairesse, M.A. Walker, M.R. Mehl, and R.K. Moore. (2007). Using linguistic cues for the automatic recognition of personality in conversation and text.
@@ -11713,8 +12281,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref176" id="ftnt176">
-     [176]
+    <a href="#ftnt_ref182" id="ftnt182">
+     [182]
     </a>
     <span>
      Key:lops2011content Lops, P., De Gemmis, M., &amp; Semeraro, G. (2011). Content-based recommender systems: State of the art and trends. In Recommender systems handbook (pp. 73-105). Springer US.
@@ -11723,8 +12291,48 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref177" id="ftnt177">
-     [177]
+    <a href="#ftnt_ref183" id="ftnt183">
+     [183]
+    </a>
+    <span>
+     Key:koren2015advances Koren, Y., &amp; Bell, R. (2015). Advances in collaborative filtering. In Recommender systems handbook (pp. 77-118). Springer, Boston, MA.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref184" id="ftnt184">
+     [184]
+    </a>
+    <span>
+     Key:roberts1989serendipity Roberts, R. M. (1989). Serendipity: Accidental discoveries in science. Serendipity: Accidental Discoveries in Science, by Royston M. Roberts, pp. 288. ISBN 0-471-60203-5. Wiley-VCH, June 1989., 288.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref185" id="ftnt185">
+     [185]
+    </a>
+    <span>
+     Key:burke2007hybrid Burke, R. (2007). Hybrid web recommender systems. In The adaptive web (pp. 377-408). Springer, Berlin, Heidelberg.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref186" id="ftnt186">
+     [186]
+    </a>
+    <span>
+     Key:lika2014facing Lika, B., Kolomvatsos, K., &amp; Hadjiefthymiades, S. (2014). Facing the cold start problem in recommender systems. Expert Systems with Applications, 41(4), 2065-2073.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref187" id="ftnt187">
+     [187]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
@@ -11736,8 +12344,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref178" id="ftnt178">
-     [178]
+    <a href="#ftnt_ref188" id="ftnt188">
+     [188]
     </a>
     <span>
     </span>
@@ -11752,8 +12360,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref179" id="ftnt179">
-     [179]
+    <a href="#ftnt_ref189" id="ftnt189">
+     [189]
     </a>
     <span>
     </span>
@@ -11766,8 +12374,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref180" id="ftnt180">
-     [180]
+    <a href="#ftnt_ref190" id="ftnt190">
+     [190]
     </a>
     <span>
     </span>
@@ -11780,8 +12388,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref181" id="ftnt181">
-     [181]
+    <a href="#ftnt_ref191" id="ftnt191">
+     [191]
     </a>
     <span>
     </span>
@@ -11802,8 +12410,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref182" id="ftnt182">
-     [182]
+    <a href="#ftnt_ref192" id="ftnt192">
+     [192]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -11818,8 +12426,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref183" id="ftnt183">
-     [183]
+    <a href="#ftnt_ref193" id="ftnt193">
+     [193]
     </a>
     <span>
      Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
@@ -11828,8 +12436,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref184" id="ftnt184">
-     [184]
+    <a href="#ftnt_ref194" id="ftnt194">
+     [194]
     </a>
     <span>
      Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341). IEEE.
@@ -11838,8 +12446,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref185" id="ftnt185">
-     [185]
+    <a href="#ftnt_ref195" id="ftnt195">
+     [195]
     </a>
     <span>
      Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275). IEEE.
@@ -11848,8 +12456,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref186" id="ftnt186">
-     [186]
+    <a href="#ftnt_ref196" id="ftnt196">
+     [196]
     </a>
     <span>
      Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
@@ -11858,8 +12466,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref187" id="ftnt187">
-     [187]
+    <a href="#ftnt_ref197" id="ftnt197">
+     [197]
     </a>
     <span>
      Key:mensio2018TODO
@@ -11868,8 +12476,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref188" id="ftnt188">
-     [188]
+    <a href="#ftnt_ref198" id="ftnt198">
+     [198]
     </a>
     <span>
     </span>
@@ -11884,8 +12492,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref189" id="ftnt189">
-     [189]
+    <a href="#ftnt_ref199" id="ftnt199">
+     [199]
     </a>
     <span>
      Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
@@ -11894,8 +12502,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref190" id="ftnt190">
-     [190]
+    <a href="#ftnt_ref200" id="ftnt200">
+     [200]
     </a>
     <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
@@ -11909,8 +12517,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref191" id="ftnt191">
-     [191]
+    <a href="#ftnt_ref201" id="ftnt201">
+     [201]
     </a>
     <span>
      Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
@@ -11919,8 +12527,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref192" id="ftnt192">
-     [192]
+    <a href="#ftnt_ref202" id="ftnt202">
+     [202]
     </a>
     <span>
      Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
@@ -11929,8 +12537,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref193" id="ftnt193">
-     [193]
+    <a href="#ftnt_ref203" id="ftnt203">
+     [203]
     </a>
     <span>
      Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
@@ -11939,8 +12547,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref194" id="ftnt194">
-     [194]
+    <a href="#ftnt_ref204" id="ftnt204">
+     [204]
     </a>
     <span>
     </span>
@@ -11955,8 +12563,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref195" id="ftnt195">
-     [195]
+    <a href="#ftnt_ref205" id="ftnt205">
+     [205]
     </a>
     <span>
     </span>
@@ -11971,8 +12579,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref196" id="ftnt196">
-     [196]
+    <a href="#ftnt_ref206" id="ftnt206">
+     [206]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -11987,8 +12595,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref197" id="ftnt197">
-     [197]
+    <a href="#ftnt_ref207" id="ftnt207">
+     [207]
     </a>
     <span>
      Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
@@ -11997,8 +12605,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref198" id="ftnt198">
-     [198]
+    <a href="#ftnt_ref208" id="ftnt208">
+     [208]
     </a>
     <span>
      Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
@@ -12007,8 +12615,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref199" id="ftnt199">
-     [199]
+    <a href="#ftnt_ref209" id="ftnt209">
+     [209]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -12023,8 +12631,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref200" id="ftnt200">
-     [200]
+    <a href="#ftnt_ref210" id="ftnt210">
+     [210]
     </a>
     <span>
      Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
@@ -12033,8 +12641,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref201" id="ftnt201">
-     [201]
+    <a href="#ftnt_ref211" id="ftnt211">
+     [211]
     </a>
     <span>
      Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
@@ -12043,8 +12651,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref202" id="ftnt202">
-     [202]
+    <a href="#ftnt_ref212" id="ftnt212">
+     [212]
     </a>
     <span>
     </span>
@@ -12059,8 +12667,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref203" id="ftnt203">
-     [203]
+    <a href="#ftnt_ref213" id="ftnt213">
+     [213]
     </a>
     <span>
     </span>
@@ -12075,8 +12683,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref204" id="ftnt204">
-     [204]
+    <a href="#ftnt_ref214" id="ftnt214">
+     [214]
     </a>
     <span>
     </span>
@@ -12091,8 +12699,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref205" id="ftnt205">
-     [205]
+    <a href="#ftnt_ref215" id="ftnt215">
+     [215]
     </a>
     <span>
     </span>
@@ -12107,8 +12715,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref206" id="ftnt206">
-     [206]
+    <a href="#ftnt_ref216" id="ftnt216">
+     [216]
     </a>
     <span>
     </span>
@@ -12123,8 +12731,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref207" id="ftnt207">
-     [207]
+    <a href="#ftnt_ref217" id="ftnt217">
+     [217]
     </a>
     <span>
     </span>
@@ -12139,8 +12747,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref208" id="ftnt208">
-     [208]
+    <a href="#ftnt_ref218" id="ftnt218">
+     [218]
     </a>
     <span>
     </span>
@@ -12155,8 +12763,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref209" id="ftnt209">
-     [209]
+    <a href="#ftnt_ref219" id="ftnt219">
+     [219]
     </a>
     <span>
     </span>
@@ -12171,8 +12779,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref210" id="ftnt210">
-     [210]
+    <a href="#ftnt_ref220" id="ftnt220">
+     [220]
     </a>
     <span>
     </span>
@@ -12187,8 +12795,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref211" id="ftnt211">
-     [211]
+    <a href="#ftnt_ref221" id="ftnt221">
+     [221]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -12197,8 +12805,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref212" id="ftnt212">
-     [212]
+    <a href="#ftnt_ref222" id="ftnt222">
+     [222]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -12207,8 +12815,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref213" id="ftnt213">
-     [213]
+    <a href="#ftnt_ref223" id="ftnt223">
+     [223]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
