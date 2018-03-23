@@ -5841,7 +5841,7 @@
   </p>
   <p>
    <span>
-    The only features that need to be provided are the ratings that link one entity of type users to one entity of type item, no features about those two distinct entities are necessary, only the ability to identify all the ratings that link them. The goal is always to correlate them. And Collaborative approaches use two techniques for that
+    The only features that need to be provided are the ratings that link one entity of type users to one entity of type item, no features about those two distinct entities are necessary, only the ability to identify all the ratings that link them. The goal is always to correlate them. And Collaborative approaches can use two different techniques for that
    </span>
    <sup>
     <a href="#ftnt183" id="ftnt_ref183">
@@ -5860,15 +5860,18 @@
    </li>
    <li>
     <span>
-     Latent factor models: using matrix factorization like SVD, transform both items and users to the same space, always by using the feedbacks as input features. The idea behind is to model the interactions between users and items by capturing some latent characteristics of the two edges of relationships. For example some factors of the users may be their preference and one of the items may be their category.
+     Latent factor models
+    </span>
+    <sup>
+     <a href="#ftnt184" id="ftnt_ref184">
+      [184]
+     </a>
+    </sup>
+    <span>
+     : using matrix factorization like SVD, transform both items and users to the same space, always by using the feedbacks as input features. The idea behind is to model the interactions between users and items by capturing some latent characteristics of the two edges of relationships. For example some factors of the users may be their preference and one of the items may be their category. Once user and item vectors are inferred from rating patterns (explicit or implicit feedback), the predicted rating is the dot product between the two vectors.
     </span>
    </li>
   </ul>
-  <p>
-   <span>
-    TODO cite third paper below for matrix factorization
-   </span>
-  </p>
   <p>
    <span>
     With both techniques, the corresponding models are built from training, and learn to predict ratings of users for new items without having a feature-based description of any of the two sides of the relationships. They are inferred as part of the model.
@@ -5882,8 +5885,8 @@
     serendipity
    </span>
    <sup>
-    <a href="#ftnt184" id="ftnt_ref184">
-     [184]
+    <a href="#ftnt185" id="ftnt_ref185">
+     [185]
     </a>
    </sup>
    <span>
@@ -5911,8 +5914,8 @@
     The combination of the different sides can be done in several ways
    </span>
    <sup>
-    <a href="#ftnt185" id="ftnt_ref185">
-     [185]
+    <a href="#ftnt186" id="ftnt_ref186">
+     [186]
     </a>
    </sup>
    <span>
@@ -5948,12 +5951,20 @@
   </p>
   <p>
    <span>
-    TODO integrate other sources, first paper
+    Those reason make necessary to employ other techniques. To solve the user-relative cold start problem, a possible solution is to use third party external data
+   </span>
+   <sup>
+    <a href="#ftnt187" id="ftnt_ref187">
+     [187]
+    </a>
+   </sup>
+   <span>
+    . Doing an association between the empty new user and social network, enables to learn things from interests and interactions that occurred on with the user profile. Many applications employ this technique, letting the user link their Facebook, Google+, Twitter accounts to acquire as many useful information as possible. But the problem is that not all the people are likely to share personal details in this way, and it may seem too much invasive.
    </span>
   </p>
   <p>
    <span>
-    Those reason make necessary to employ other techniques. One of them to solve the user-relative cold start, is to use a
+    For this reason another technique is to use a
    </span>
    <span>
     bootstrap
@@ -5962,184 +5973,25 @@
     phase in which the new user is required to answer some initial questions to give a general model of him. This short interview can be very effective if the questions themselves adapt to the responses. An approach of this kind has been proposed in
    </span>
    <sup>
-    <a href="#ftnt186" id="ftnt_ref186">
-     [186]
+    <a href="#ftnt188" id="ftnt_ref188">
+     [188]
     </a>
    </sup>
    <span>
-    , where a decision tree is built for the sentences to be prompted, enabling a grouping process that has as outputs some initial features of the user that can solve the cold start problem. Then by interacting more and more the user model is refined and better recommendations can be given.
+    , where a decision tree is built for the sentences to be prompted, enabling a grouping process that has as outputs some initial features of the user that can solve the cold start problem. In
+   </span>
+   <sup>
+    <a href="#ftnt189" id="ftnt_ref189">
+     [189]
+    </a>
+   </sup>
+   <span>
+    instead the authors examine how, instead of prompting a single question per screen, using multiple questions at each node of the decision tree can maximize the accuracy while minimizing the user efforts.
    </span>
   </p>
   <p>
    <span>
-    TODO multiple questions, second paper
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Dealing with the new user cold-start problem in recommender systems: A comparative review”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: compare existing algorithms (collaborative filtering) on the cold-start problem. Types of systems:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Uses additional data sources (e.g. demographic data): a limitation of these systems is that sometimes data is not available (because user did not associate social profile)
-    </span>
-   </li>
-   <li>
-    <span>
-     Selects a group of analogous users (without additional data sources): construct a decision tree where nodes are questions. NHSM also takes into account the global preference of user behaviors, using three factors of similarity: Proximity (how much two ratings are near), Significance (how much distant from the median) and Singularity (how the two ratings are different from others). Limitations: how to choose the optimal number of groups and splitting criteria. Must have some rating from new user (bootstrap)
-    </span>
-   </li>
-   <li>
-    <span>
-     Hybrid methods:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     FARAMS: using multiple approaches (fuzzy sets and association rules).
-    </span>
-   </li>
-   <li>
-    <span>
-     HU-FCF: combines analysis on demographic data (fuzzy similarity matrix) and on rating data (hard similarity matrix)
-    </span>
-   </li>
-   <li>
-    <span>
-     Limitations: irrelevant users are still included in the computation of similarities
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Results: NHSM is the best one, both for accuracy and for computational time
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Learning multiple-question decision trees for cold-start recommendation”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Proposition: find a solution to the cold-start recommendation problem that maximizes accuracy and minimizes user efforts. Problem of classic bootstrap is that user usually does not know items in the first interactions. The idea is to build a tree with multiple questions at each node.
-    </span>
-   </li>
-   <li>
-    <span>
-     Results:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Accuracy is better than single-question based system (because for each node/page more information are extracted) and also better than linear-combination of multiple trees
-    </span>
-   </li>
-   <li>
-    <span>
-     Time increment to answer more questions per screen is sublinear
-    </span>
-   </li>
-   <li>
-    <span>
-     Time difference between rating scale and binary answer doesn’t have strong dependency on the number of questions
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    “Matrix Factorization Techniques for Recommender Systems”
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Collaborative filtering Approaches:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Neighborhood methods:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     User-oriented: find similar users to the target user, and from them find the items that they like
-    </span>
-   </li>
-   <li>
-    <span>
-     Product-oriented: find items similar to the ones liked by the target user
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Latent factor models: characterize items and users on some factors (user/item vector) inferred from rating patterns (explicit or implicit feedback). Predicted rating is the dot product between the two vectors
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Learning algorithms for extracting the factor vectors:
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Stochastic gradient descent: easier and faster
-    </span>
-   </li>
-   <li>
-    <span>
-     Alternating least squares: can be parallelized, better on sparse data
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Temporal dynamics: the model should be dynamic because some terms vary over time (item biases, user biases and user preferences)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
+    What is important to notice of those bootstrap techniques is that the recommendation at the beginning will be not very accurate, because it is difficult to capture the personal traits from a limited set of questions. Then by interacting more and more the user model is refined and better recommendations can be given.
    </span>
   </p>
   <h3 id="h.zh2zox2uk29p">
@@ -6361,20 +6213,13 @@
     First of all, one to interface with the different messaging platforms. This is responsible to make messages arrive to the “brain” of the bot and to deliver responses back. Something about this component will be told in the
    </span>
    <span>
-    <a href="#h.t6vk6kn3atxd">
-     next paragraph
-    </a>
+    next paragraph [REF:approachOmnichannel]
    </span>
    <span>
     and in the
    </span>
    <span>
-    <a href="#h.8zj60ofw3oog">
-     implementation chapter
-    </a>
-   </span>
-   <span>
-    . Then another component will do the NLU, providing intents and resolved entities. Passing through the dialogue manager, that contains the rules for managing the conversation, the flow will reach the personalization module that will collect episodic knowledge and together with the contextual knowledge will provide recommendations. The responses will be generated by combining the results and some templates will be filled.
+    implementation chapter [REF:implementationInteraction]. Then another component will do the NLU, providing intents and resolved entities. Passing through the dialogue manager, that contains the rules for managing the conversation, the flow will reach the personalization module that will collect episodic knowledge and together with the contextual knowledge will provide recommendations. The responses will be generated by combining the results and some templates will be filled.
    </span>
   </p>
   <p>
@@ -6766,8 +6611,8 @@
     The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed in
    </span>
    <sup>
-    <a href="#ftnt187" id="ftnt_ref187">
-     [187]
+    <a href="#ftnt190" id="ftnt_ref190">
+     [190]
     </a>
    </sup>
    <span>
@@ -6789,8 +6634,8 @@
     The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
    </span>
    <sup>
-    <a href="#ftnt188" id="ftnt_ref188">
-     [188]
+    <a href="#ftnt191" id="ftnt_ref191">
+     [191]
     </a>
    </sup>
    <span>
@@ -6817,24 +6662,24 @@
     As mentioned before, the bot has as requirement to support also the italian language. For the english language several preprocessed word embeddings are available, trained on different corpuses and with different algorithms. Instead for italian, the found pre-trained embeddings are GloVe and word2vec trained by the Human Language Technologies of Pisa
    </span>
    <sup>
-    <a href="#ftnt189" id="ftnt_ref189">
-     [189]
+    <a href="#ftnt192" id="ftnt_ref192">
+     [192]
     </a>
    </sup>
    <span>
     and the official fastText
    </span>
    <sup>
-    <a href="#ftnt190" id="ftnt_ref190">
-     [190]
+    <a href="#ftnt193" id="ftnt_ref193">
+     [193]
     </a>
    </sup>
    <span>
     , all trained on the Wikipedia corpus. Another widely used corpus is CommonCrawl
    </span>
    <sup>
-    <a href="#ftnt191" id="ftnt_ref191">
-     [191]
+    <a href="#ftnt194" id="ftnt_ref194">
+     [194]
     </a>
    </sup>
    <span>
@@ -6856,8 +6701,8 @@
     As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper
    </span>
    <sup>
-    <a href="#ftnt192" id="ftnt_ref192">
-     [192]
+    <a href="#ftnt195" id="ftnt_ref195">
+     [195]
     </a>
    </sup>
    <span>
@@ -6897,32 +6742,32 @@
     For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context (like
    </span>
    <sup>
-    <a href="#ftnt193" id="ftnt_ref193">
-     [193]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
-    <a href="#ftnt194" id="ftnt_ref194">
-     [194]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
-    <a href="#ftnt195" id="ftnt_ref195">
-     [195]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
     <a href="#ftnt196" id="ftnt_ref196">
      [196]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt197" id="ftnt_ref197">
+     [197]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt198" id="ftnt_ref198">
+     [198]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt199" id="ftnt_ref199">
+     [199]
     </a>
    </sup>
    <span>
@@ -6934,16 +6779,16 @@
     The work that follows for the contextual intent classification, is taken from
    </span>
    <sup>
-    <a href="#ftnt197" id="ftnt_ref197">
-     [197]
+    <a href="#ftnt200" id="ftnt_ref200">
+     [200]
     </a>
    </sup>
    <span>
     done for the “Hybrid Question Answering with Structured and Unstructured Knowledge” (in the following denoted with HQA2018) workshop
    </span>
    <sup>
-    <a href="#ftnt198" id="ftnt_ref198">
-     [198]
+    <a href="#ftnt201" id="ftnt_ref201">
+     [201]
     </a>
    </sup>
    <span>
@@ -7007,8 +6852,8 @@
     The approach proposed in
    </span>
    <sup>
-    <a href="#ftnt199" id="ftnt_ref199">
-     [199]
+    <a href="#ftnt202" id="ftnt_ref202">
+     [202]
     </a>
    </sup>
    <span>
@@ -7465,8 +7310,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt200" id="ftnt_ref200">
-      [200]
+     <a href="#ftnt203" id="ftnt_ref203">
+      [203]
      </a>
     </sup>
     <span>
@@ -7526,18 +7371,18 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt201" id="ftnt_ref201">
-     [201]
+    <a href="#ftnt204" id="ftnt_ref204">
+     [204]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt202" id="ftnt_ref202">
-     [202]
+    <a href="#ftnt205" id="ftnt_ref205">
+     [205]
     </a>
    </sup>
    <sup>
-    <a href="#ftnt203" id="ftnt_ref203">
-     [203]
+    <a href="#ftnt206" id="ftnt_ref206">
+     [206]
     </a>
    </sup>
    <span>
@@ -8209,8 +8054,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt204" id="ftnt_ref204">
-     [204]
+    <a href="#ftnt207" id="ftnt_ref207">
+     [207]
     </a>
    </sup>
    <span>
@@ -8365,8 +8210,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt205" id="ftnt_ref205">
-     [205]
+    <a href="#ftnt208" id="ftnt_ref208">
+     [208]
     </a>
    </sup>
    <span>
@@ -8391,8 +8236,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt206" id="ftnt_ref206">
-     [206]
+    <a href="#ftnt209" id="ftnt_ref209">
+     [209]
     </a>
    </sup>
    <span>
@@ -8629,8 +8474,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt207" id="ftnt_ref207">
-      [207]
+     <a href="#ftnt210" id="ftnt_ref210">
+      [210]
      </a>
     </sup>
    </li>
@@ -8639,8 +8484,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt208" id="ftnt_ref208">
-      [208]
+     <a href="#ftnt211" id="ftnt_ref211">
+      [211]
      </a>
     </sup>
    </li>
@@ -8802,8 +8647,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt209" id="ftnt_ref209">
-     [209]
+    <a href="#ftnt212" id="ftnt_ref212">
+     [212]
     </a>
    </sup>
    <span>
@@ -8841,8 +8686,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt210" id="ftnt_ref210">
-     [210]
+    <a href="#ftnt213" id="ftnt_ref213">
+     [213]
     </a>
    </sup>
    <span>
@@ -9118,8 +8963,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt211" id="ftnt_ref211">
-     [211]
+    <a href="#ftnt214" id="ftnt_ref214">
+     [214]
     </a>
    </sup>
    <span>
@@ -9141,36 +8986,12 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt212" id="ftnt_ref212">
-     [212]
-    </a>
-   </sup>
-   <span>
-    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
-   </span>
-   <sup>
-    <a href="#ftnt213" id="ftnt_ref213">
-     [213]
-    </a>
-   </sup>
-   <span>
-    , Google’s Api.ai
-   </span>
-   <sup>
-    <a href="#ftnt214" id="ftnt_ref214">
-     [214]
-    </a>
-   </sup>
-   <span>
-    , Microsoft’s Luis
-   </span>
-   <sup>
     <a href="#ftnt215" id="ftnt_ref215">
      [215]
     </a>
    </sup>
    <span>
-    , Apple’s SiriKit
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
     <a href="#ftnt216" id="ftnt_ref216">
@@ -9178,7 +8999,7 @@
     </a>
    </sup>
    <span>
-    , IBM’s Watson
+    , Google’s Api.ai
    </span>
    <sup>
     <a href="#ftnt217" id="ftnt_ref217">
@@ -9186,7 +9007,7 @@
     </a>
    </sup>
    <span>
-    , Facebook’s Wit
+    , Microsoft’s Luis
    </span>
    <sup>
     <a href="#ftnt218" id="ftnt_ref218">
@@ -9194,7 +9015,7 @@
     </a>
    </sup>
    <span>
-    , and Snips
+    , Apple’s SiriKit
    </span>
    <sup>
     <a href="#ftnt219" id="ftnt_ref219">
@@ -9202,11 +9023,35 @@
     </a>
    </sup>
    <span>
-    itself. The dataset used for their benchmark
+    , IBM’s Watson
    </span>
    <sup>
     <a href="#ftnt220" id="ftnt_ref220">
      [220]
+    </a>
+   </sup>
+   <span>
+    , Facebook’s Wit
+   </span>
+   <sup>
+    <a href="#ftnt221" id="ftnt_ref221">
+     [221]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt222" id="ftnt_ref222">
+     [222]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt223" id="ftnt_ref223">
+     [223]
     </a>
    </sup>
    <span>
@@ -9262,8 +9107,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt221" id="ftnt_ref221">
-     [221]
+    <a href="#ftnt224" id="ftnt_ref224">
+     [224]
     </a>
    </sup>
    <span>
@@ -9357,8 +9202,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt222" id="ftnt_ref222">
-     [222]
+    <a href="#ftnt225" id="ftnt_ref225">
+     [225]
     </a>
    </sup>
    <span>
@@ -9506,8 +9351,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt223" id="ftnt_ref223">
-     [223]
+    <a href="#ftnt226" id="ftnt_ref226">
+     [226]
     </a>
    </sup>
    <span>
@@ -12305,7 +12150,7 @@
      [184]
     </a>
     <span>
-     Key:roberts1989serendipity Roberts, R. M. (1989). Serendipity: Accidental discoveries in science. Serendipity: Accidental Discoveries in Science, by Royston M. Roberts, pp. 288. ISBN 0-471-60203-5. Wiley-VCH, June 1989., 288.
+     Key:koren2009matrix Koren, Y., Bell, R., &amp; Volinsky, C. (2009). Matrix factorization techniques for recommender systems. Computer, 42(8).
     </span>
    </p>
   </div>
@@ -12315,7 +12160,7 @@
      [185]
     </a>
     <span>
-     Key:burke2007hybrid Burke, R. (2007). Hybrid web recommender systems. In The adaptive web (pp. 377-408). Springer, Berlin, Heidelberg.
+     Key:roberts1989serendipity Roberts, R. M. (1989). Serendipity: Accidental discoveries in science. Serendipity: Accidental Discoveries in Science, by Royston M. Roberts, pp. 288. ISBN 0-471-60203-5. Wiley-VCH, June 1989., 288.
     </span>
    </p>
   </div>
@@ -12325,7 +12170,7 @@
      [186]
     </a>
     <span>
-     Key:lika2014facing Lika, B., Kolomvatsos, K., &amp; Hadjiefthymiades, S. (2014). Facing the cold start problem in recommender systems. Expert Systems with Applications, 41(4), 2065-2073.
+     Key:burke2007hybrid Burke, R. (2007). Hybrid web recommender systems. In The adaptive web (pp. 377-408). Springer, Berlin, Heidelberg.
     </span>
    </p>
   </div>
@@ -12333,6 +12178,36 @@
    <p>
     <a href="#ftnt_ref187" id="ftnt187">
      [187]
+    </a>
+    <span>
+     Key:son2016dealing Son, L. H. (2016). Dealing with the new user cold-start problem in recommender systems A comparative review.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref188" id="ftnt188">
+     [188]
+    </a>
+    <span>
+     Key:lika2014facing Lika, B., Kolomvatsos, K., &amp; Hadjiefthymiades, S. (2014). Facing the cold start problem in recommender systems. Expert Systems with Applications, 41(4), 2065-2073.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref189" id="ftnt189">
+     [189]
+    </a>
+    <span>
+     Key:sun2013learning Sun, M., Li, F., Lee, J., Zhou, K., Lebanon, G., &amp; Zha, H. (2013, February). Learning multiple-question decision trees for cold-start recommendation. In Proceedings of the sixth ACM international conference on Web search and data mining (pp. 445-454). ACM.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref190" id="ftnt190">
+     [190]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
@@ -12344,8 +12219,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref188" id="ftnt188">
-     [188]
+    <a href="#ftnt_ref191" id="ftnt191">
+     [191]
     </a>
     <span>
     </span>
@@ -12360,8 +12235,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref189" id="ftnt189">
-     [189]
+    <a href="#ftnt_ref192" id="ftnt192">
+     [192]
     </a>
     <span>
     </span>
@@ -12374,8 +12249,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref190" id="ftnt190">
-     [190]
+    <a href="#ftnt_ref193" id="ftnt193">
+     [193]
     </a>
     <span>
     </span>
@@ -12388,8 +12263,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref191" id="ftnt191">
-     [191]
+    <a href="#ftnt_ref194" id="ftnt194">
+     [194]
     </a>
     <span>
     </span>
@@ -12410,8 +12285,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref192" id="ftnt192">
-     [192]
+    <a href="#ftnt_ref195" id="ftnt195">
+     [195]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -12426,41 +12301,11 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref193" id="ftnt193">
-     [193]
-    </a>
-    <span>
-     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref194" id="ftnt194">
-     [194]
-    </a>
-    <span>
-     Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341). IEEE.
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref195" id="ftnt195">
-     [195]
-    </a>
-    <span>
-     Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275). IEEE.
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
     <a href="#ftnt_ref196" id="ftnt196">
      [196]
     </a>
     <span>
-     Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
+     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
     </span>
    </p>
   </div>
@@ -12470,7 +12315,7 @@
      [197]
     </a>
     <span>
-     Key:mensio2018TODO
+     Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341). IEEE.
     </span>
    </p>
   </div>
@@ -12478,6 +12323,36 @@
    <p>
     <a href="#ftnt_ref198" id="ftnt198">
      [198]
+    </a>
+    <span>
+     Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref199" id="ftnt199">
+     [199]
+    </a>
+    <span>
+     Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref200" id="ftnt200">
+     [200]
+    </a>
+    <span>
+     Key:mensio2018multi Mensio, M., Rizzo, G., Morisio, M. (2018) Multi-turn QA: A RNN Contextual Approach to Intent Classification for Goal-oriented Systems. The 2018 Web Conference Companion, April 23--27, 2018, Lyon, France
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref201" id="ftnt201">
+     [201]
     </a>
     <span>
     </span>
@@ -12492,8 +12367,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref199" id="ftnt199">
-     [199]
+    <a href="#ftnt_ref202" id="ftnt202">
+     [202]
     </a>
     <span>
      Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140). IEEE.
@@ -12502,8 +12377,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref200" id="ftnt200">
-     [200]
+    <a href="#ftnt_ref203" id="ftnt203">
+     [203]
     </a>
     <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
@@ -12517,8 +12392,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref201" id="ftnt201">
-     [201]
+    <a href="#ftnt_ref204" id="ftnt204">
+     [204]
     </a>
     <span>
      Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
@@ -12527,8 +12402,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref202" id="ftnt202">
-     [202]
+    <a href="#ftnt_ref205" id="ftnt205">
+     [205]
     </a>
     <span>
      Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
@@ -12537,8 +12412,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref203" id="ftnt203">
-     [203]
+    <a href="#ftnt_ref206" id="ftnt206">
+     [206]
     </a>
     <span>
      Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
@@ -12547,8 +12422,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref204" id="ftnt204">
-     [204]
+    <a href="#ftnt_ref207" id="ftnt207">
+     [207]
     </a>
     <span>
     </span>
@@ -12563,8 +12438,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref205" id="ftnt205">
-     [205]
+    <a href="#ftnt_ref208" id="ftnt208">
+     [208]
     </a>
     <span>
     </span>
@@ -12574,42 +12449,6 @@
      </a>
     </span>
     <span>
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref206" id="ftnt206">
-     [206]
-    </a>
-    <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
-    </span>
-    <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
-    </span>
-    <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref207" id="ftnt207">
-     [207]
-    </a>
-    <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref208" id="ftnt208">
-     [208]
-    </a>
-    <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -12635,7 +12474,7 @@
      [210]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -12645,7 +12484,7 @@
      [211]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -12653,6 +12492,42 @@
    <p>
     <a href="#ftnt_ref212" id="ftnt212">
      [212]
+    </a>
+    <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref213" id="ftnt213">
+     [213]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref214" id="ftnt214">
+     [214]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref215" id="ftnt215">
+     [215]
     </a>
     <span>
     </span>
@@ -12667,8 +12542,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref213" id="ftnt213">
-     [213]
+    <a href="#ftnt_ref216" id="ftnt216">
+     [216]
     </a>
     <span>
     </span>
@@ -12683,8 +12558,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref214" id="ftnt214">
-     [214]
+    <a href="#ftnt_ref217" id="ftnt217">
+     [217]
     </a>
     <span>
     </span>
@@ -12699,8 +12574,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref215" id="ftnt215">
-     [215]
+    <a href="#ftnt_ref218" id="ftnt218">
+     [218]
     </a>
     <span>
     </span>
@@ -12715,8 +12590,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref216" id="ftnt216">
-     [216]
+    <a href="#ftnt_ref219" id="ftnt219">
+     [219]
     </a>
     <span>
     </span>
@@ -12731,8 +12606,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref217" id="ftnt217">
-     [217]
+    <a href="#ftnt_ref220" id="ftnt220">
+     [220]
     </a>
     <span>
     </span>
@@ -12747,8 +12622,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref218" id="ftnt218">
-     [218]
+    <a href="#ftnt_ref221" id="ftnt221">
+     [221]
     </a>
     <span>
     </span>
@@ -12763,8 +12638,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref219" id="ftnt219">
-     [219]
+    <a href="#ftnt_ref222" id="ftnt222">
+     [222]
     </a>
     <span>
     </span>
@@ -12779,8 +12654,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref220" id="ftnt220">
-     [220]
+    <a href="#ftnt_ref223" id="ftnt223">
+     [223]
     </a>
     <span>
     </span>
@@ -12795,8 +12670,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref221" id="ftnt221">
-     [221]
+    <a href="#ftnt_ref224" id="ftnt224">
+     [224]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -12805,8 +12680,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref222" id="ftnt222">
-     [222]
+    <a href="#ftnt_ref225" id="ftnt225">
+     [225]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -12815,8 +12690,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref223" id="ftnt223">
-     [223]
+    <a href="#ftnt_ref226" id="ftnt226">
+     [226]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
