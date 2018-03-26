@@ -6894,7 +6894,24 @@
   </p>
   <p>
    <span>
-    This section explains how the personalization techniques can be applied to the interactions with a chatbot, providing personalized content recommendations in a tailored communication fashion. This approach is composed of two main parts: content recommendation, that is usually analyzed in the RecSys community, and in this specific case the contents that are provided as recommendations are places around the user that he could be interested in. The second part instead is relative to the interaction itself: the goal is to change the behaviour of the bot relatively to the mood of the user, in a dynamic way.
+    This section explains how the personalization techniques can be applied to the interactions with a chatbot, providing personalized content recommendations in a tailored communication fashion. This approach is composed of two main parts:
+   </span>
+   <span>
+    content recommendation
+   </span>
+   <span>
+    , that is usually analyzed in the RecSys community, and in this specific case the contents that are provided as recommendations are places around the user that he could be interested in. The second part instead is relative to the
+   </span>
+   <span>
+    interaction itself
+   </span>
+   <span>
+    : the goal is to change the behaviour of the bot relatively to the mood of the user, in a dynamic way.
+   </span>
+  </p>
+  <p>
+   <span>
+    It is very important to notice that the topics here discussed have been used in a design phase but, as the lack of a corresponding section in the implementation chapter underlines, they have not been added to the bot prototype. However we kept this section as part of this work because its content can be used for future studies (as discussed in the conclusion [REF:conclusion]) that may implement the idea represented here. Furthermore, not only a personalization approach is presented, but also a bit of analysis of third party information providers that could enable this scenario, such as Facebook Graph API or Big Five predictors (in [REF:approachIR]).
    </span>
   </p>
   <h3 id="h.avx4n4low1rk">
@@ -6909,27 +6926,22 @@
   </p>
   <p>
    <span>
-    For giving content recommendations, the objective of the recommender is to provide interesting places for the user around his trip. The area of search is therefore established by the results of the information: different strategies could be used to determine this surface, but the fastest one, that helps also querying providers of places information (e.g. Foursquare, Facebook Places, Google Places), is to use a circle determined by its center (the mean point between the source and the destination) and its radius (chosen to cover the source and destination, with some margin).
+    For giving content recommendations, the objective of the recommender is to provide interesting places for the user around his trip. The area of search is therefore established by the results of the information: different strategies could be used to determine this surface, but the fastest one, that helps also querying providers of places information (e.g. Foursquare, Facebook Places, Google Places), is to use a circle determined by its center. As can be seen in figure [REF FIG:placesSearch], the circle is centred in the mean point between the source and the destination, while its radius is chosen to cover the source and the destination plus an additional margin. The margin enables to provide also some places nearby the source or the destination that would be clipped out otherwise.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 301.33px;">
+    <img alt="" src="https://lh6.googleusercontent.com/fBcG382JXSUPKSzOZDSEAnRY4ZgjW399I7Z988LLnxeySxSxjvLUlyRC2swTgAFjlst9iuWCcwwhDrL_5wBCpFBBuwFHmQC-xVTeYTSvtVx2rDcnYXud_r_mg8lWJ4AW0gzEVlto" style="width: 602.00px; height: 301.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    TODO add figure please
+    [FIG:placesSearch CAPTION:The geographical constraints to search places for the recommendation]
    </span>
   </p>
   <p>
    <span>
-    [FIG:placesSearch CAPTION:The geographical constraints to search places to be recommended]
-   </span>
-  </p>
-  <p>
-   <span>
-    Determined the valid surface, the places in it are candidates for the recommendation. To restrict the places list and provide one as recommendation, the strategy to be applied is to determine a category that the user could be interested in.
-   </span>
-  </p>
-  <p>
-   <span>
-    To find this category, a bit of user modeling needs to be done.
+    Determined the valid surface, the places in it are candidates for the recommendation. To restrict the places list and to provide one of them as recommendation, the strategy to be applied is to determine a place category that the user could be interested in. To find this category, a bit of user modeling needs to be done.
    </span>
   </p>
   <h4 id="h.9j2yq7sjjkvs">
@@ -6939,22 +6951,22 @@
   </h4>
   <p>
    <span>
-    First of all, it is important to understand which variables need to be collected to build the user model. Some manifest variables like gender, age, profession, religion, political orientation are used for many profiling techniques, but not always they are available. Moreover, from a bot that is giving bike sharing information it is strange to be asked for those values, and can only make the user stop using the bot because it’s asking strange questions. For these reasons, those information are not even asked to the user.
+    First of all, it is important to understand which variables need to be collected to build the user model. Some manifest variables like gender, age, profession, religion, political orientation are used for many profiling techniques, but not always they are available. Moreover, from a bot that is giving bike sharing information it is strange to be asked for those values, and can only make the user stop using the bot because it’s asking strange questions. For these reasons, this kind of information is not even asked to the user.
    </span>
   </p>
   <p>
    <span>
-    As explicit data collection, some questions can be asked to the user in a more appropriate way, relatively to bike sharing. For example asking why the user makes use of bike sharing, to go to school, work or simply to run errands around the city. This type of information can be collected at the beginning as bootstrap questions, or also after some dialogue with the user has been done. In this way the user can soon use the service without being blocked by bootstrap questions, but after some minutes of inactivity he can be sent some questions in order to improve the service.
+    As explicit data collection, some questions can be asked to the user in a more appropriate way, relatively to bike sharing. For example asking why the user makes use of bike sharing: to go to school, work or simply to run errands around the city. This type of information can be collected at the beginning as bootstrap questions, or also after some dialogue with the user has been done. In this way the user can soon use the service without being blocked by bootstrap questions, but after some minutes of inactivity he can be sent some questions in order to improve the service. In any case, waiting for responses should not block in any way the understanding process of new requests. For this reason it is important that the classification of intents continues to work, distinguishing dynamically if the user is keeping the discourse in the bootstrap environment or if he is providing his own intent to reach some
    </span>
   </p>
   <p>
    <span>
-    Other explicit information can be collected when the recommendation is in act, as feedback to the suggestions: feedback can be positive or negative, collected through specific buttons or intercepting the user clicking on the information given about the place. The feedback can help refining the user interest and also understanding his attitude towards recommendations (as will be seen in the “tailored communication”).
+    Other explicit information can be collected when the recommendation is in act, as feedback to the suggestions: feedback can be positive or negative, collected through specific buttons or intercepting the user clicking on the information given about the place. The feedback can help refining the user interest and also understanding his attitude towards recommendations (as will be seen in subsection [REF:approachPersonalizationCommunication]).
    </span>
   </p>
   <p>
    <span>
-    As implicit user modeling, observing the patterns (temporal and spatial) of the queries performed can help find users similarity and improve the collaborative filtering approach (see the following on recommendation paths). The patterns in the spatial dimension correspond to frequent places, while in the temporal dimension can be interpreted as habits.
+    As implicit user modeling, observing the patterns (temporal and spatial) of the queries performed can help find users similarity and improve the collaborative filtering approach (as will be described soon). The patterns in the spatial dimension correspond to frequent places, while in the temporal dimension can be interpreted as habits.
    </span>
   </p>
   <p>
@@ -6964,16 +6976,46 @@
   </p>
   <p>
    <span>
-    Given the social network footprints, a prediction on the Big5 personality traits can be done using some online available APIs: the big5 will be user features, together with “concentration” on different areas. Mention where those model come from.
+    Given the social network footprints, a prediction on the
+   </span>
+   <span>
+    big five
+   </span>
+   <span>
+    personality traits can be done using some online available APIs (see the related Information Retrieval description in [REF:approachIRbig5]): the user features will be the
+   </span>
+   <span>
+    big five
+   </span>
+   <span>
+    together with
+   </span>
+   <span>
+    concentration
+   </span>
+   <span>
+    on different areas. These models of features, as described previously in [REF:soaPersonalizationFeatures], come from expert psychological studies
+   </span>
+   <sup>
+    <a href="#ftnt206" id="ftnt_ref206">
+     [206]
+    </a>
+   </sup>
+   <span>
+    and are proved to be able to predict unpublished user features
+   </span>
+   <sup>
+    <a href="#ftnt207" id="ftnt_ref207">
+     [207]
+    </a>
+   </sup>
+   <span>
+    .
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Once these inputs are collected, different recommendation paths can be used to suggest the categories of places.
+    Once these inputs are collected, different recommendation paths have been modeled to suggest the categories of places inside the selected area.
    </span>
   </p>
   <h4 id="h.bcvzzw13ygcz">
@@ -6983,16 +7025,35 @@
   </h4>
   <p>
    <span>
-    As will be explained in this section, the recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques.
+    As will be explained here, the recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques.
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 561.00px; height: 451.00px;">
-    <img alt="" src="https://lh4.googleusercontent.com/gfkKUsOl5LQqgxCQHeQNKmRMkp9ojnlyyp02ODanU3dO4CqHaFB6oF7xkLY_6mM04yaXQoaxsxLpSXBHYkRKS0EdWcvMUPlzmOVJSkap1cI4HG6Ro416yOGSdEI1nHSHUPsVxlVD" style="width: 561.00px; height: 451.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 317.33px;">
+    <img alt="" src="https://lh3.googleusercontent.com/iuzUr2GCVSbyqJ1WaZLw3QhScmJsdGvW8gPF2JzKFWBpOuvJT9k-VwYl-i3UA3e29WP3XF2fLj5TqIwWWtimRKIE4tHM2zXs7r6UtlF17UXaIYduEiZ5EeVu47zjXx9gNTZ3AOFg" style="width: 602.00px; height: 317.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
+    [FIG:recommendationPaths CAPTION:An overview of the possible recommendation paths between the user and the places]
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    As can be seen in figure [REF FIG:recommendationPaths],
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO clear this discourse of data collection and data exploitation for paths
    </span>
   </p>
   <p>
@@ -7008,7 +7069,7 @@
   <ul>
    <li>
     <span>
-     Big5 personal traits
+     Big five personal traits
     </span>
    </li>
    <li>
@@ -7133,11 +7194,16 @@
     How to measure the success of recommendations? Accuracy, diversity, serendipity
    </span>
   </p>
-  <h3 id="h.vzxoff8ahoem">
+  <h3 id="h.lkratao7dd2k">
    <span>
     Tailored communication
    </span>
   </h3>
+  <p>
+   <span>
+    [LABEL:approachPersonalizationCommunication]
+   </span>
+  </p>
   <p>
    <span>
     This part of personalization is not relative to the content of recommendation, but is about how to adapt the communication dynamically with the behaviour of the user.
@@ -7208,12 +7274,12 @@
   </p>
   <h4 id="h.phdcqfmwyzs7">
    <span>
-    Linguistic Style
+    Linguistic Style and mood
    </span>
   </h4>
   <p>
    <span>
-    TODO explain
+    TODO explain those generative modifications
    </span>
   </p>
   <p>
@@ -7224,6 +7290,11 @@
   <p>
    <span>
     Example: [Jiwei Li, Michel Galley, Chris Brockett, Georgios P Spithourakis, Jianfeng Gao,and Bill Dolan. 2016.  A persona-based neural conversation model.The 54thAnnual Meeting of the Association for Computational Linguistics1, 994–1003].
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO add imitation of emotions: cakechat, papers about generative biasing of emotions
    </span>
   </p>
   <h2 id="h.5jp7qco42re1">
@@ -7283,8 +7354,8 @@
      The bike sharing providers may not want to make available their data to third-party players, both for privacy issues (data disclosure can be quite a problem also in this domain
     </span>
     <sup>
-     <a href="#ftnt206" id="ftnt_ref206">
-      [206]
+     <a href="#ftnt208" id="ftnt_ref208">
+      [208]
      </a>
     </sup>
     <span>
@@ -7344,18 +7415,18 @@
     A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
    </span>
    <sup>
-    <a href="#ftnt207" id="ftnt_ref207">
-     [207]
-    </a>
-   </sup>
-   <sup>
-    <a href="#ftnt208" id="ftnt_ref208">
-     [208]
-    </a>
-   </sup>
-   <sup>
     <a href="#ftnt209" id="ftnt_ref209">
      [209]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt210" id="ftnt_ref210">
+     [210]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt211" id="ftnt_ref211">
+     [211]
     </a>
    </sup>
    <span>
@@ -7499,11 +7570,16 @@
     TODO update. Talk also about not saving personal details of users, only looking at likes and tagged places
    </span>
   </p>
-  <h4 id="h.pbn2tcklf6dj">
+  <h4 id="h.94tbwfjttna9">
    <span>
     Big5 computation
    </span>
   </h4>
+  <p>
+   <span>
+    [LABEL:approachIRbig5]
+   </span>
+  </p>
   <p>
    <span>
     MagicSauce
@@ -8027,8 +8103,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt210" id="ftnt_ref210">
-     [210]
+    <a href="#ftnt212" id="ftnt_ref212">
+     [212]
     </a>
    </sup>
    <span>
@@ -8183,8 +8259,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt211" id="ftnt_ref211">
-     [211]
+    <a href="#ftnt213" id="ftnt_ref213">
+     [213]
     </a>
    </sup>
    <span>
@@ -8209,8 +8285,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt212" id="ftnt_ref212">
-     [212]
+    <a href="#ftnt214" id="ftnt_ref214">
+     [214]
     </a>
    </sup>
    <span>
@@ -8447,8 +8523,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt213" id="ftnt_ref213">
-      [213]
+     <a href="#ftnt215" id="ftnt_ref215">
+      [215]
      </a>
     </sup>
    </li>
@@ -8457,8 +8533,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt214" id="ftnt_ref214">
-      [214]
+     <a href="#ftnt216" id="ftnt_ref216">
+      [216]
      </a>
     </sup>
    </li>
@@ -8620,8 +8696,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt215" id="ftnt_ref215">
-     [215]
+    <a href="#ftnt217" id="ftnt_ref217">
+     [217]
     </a>
    </sup>
    <span>
@@ -8659,8 +8735,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt216" id="ftnt_ref216">
-     [216]
+    <a href="#ftnt218" id="ftnt_ref218">
+     [218]
     </a>
    </sup>
    <span>
@@ -8915,11 +8991,6 @@
    <span>
     In the search of datasets available for the Natural Language Understanding, two main types have been found, respectively for single-turn interaction and for multi-turn interactions.
    </span>
-   <sup>
-    <a href="#cmnt6" id="cmnt_ref6">
-     [f]
-    </a>
-   </sup>
   </p>
   <h4 id="h.8wekmvpcm5ph">
    <span>
@@ -8936,8 +9007,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt217" id="ftnt_ref217">
-     [217]
+    <a href="#ftnt219" id="ftnt_ref219">
+     [219]
     </a>
    </sup>
    <span>
@@ -8959,28 +9030,12 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt218" id="ftnt_ref218">
-     [218]
-    </a>
-   </sup>
-   <span>
-    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
-   </span>
-   <sup>
-    <a href="#ftnt219" id="ftnt_ref219">
-     [219]
-    </a>
-   </sup>
-   <span>
-    , Google’s Api.ai
-   </span>
-   <sup>
     <a href="#ftnt220" id="ftnt_ref220">
      [220]
     </a>
    </sup>
    <span>
-    , Microsoft’s Luis
+    as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
     <a href="#ftnt221" id="ftnt_ref221">
@@ -8988,7 +9043,7 @@
     </a>
    </sup>
    <span>
-    , Apple’s SiriKit
+    , Google’s Api.ai
    </span>
    <sup>
     <a href="#ftnt222" id="ftnt_ref222">
@@ -8996,7 +9051,7 @@
     </a>
    </sup>
    <span>
-    , IBM’s Watson
+    , Microsoft’s Luis
    </span>
    <sup>
     <a href="#ftnt223" id="ftnt_ref223">
@@ -9004,7 +9059,7 @@
     </a>
    </sup>
    <span>
-    , Facebook’s Wit
+    , Apple’s SiriKit
    </span>
    <sup>
     <a href="#ftnt224" id="ftnt_ref224">
@@ -9012,7 +9067,7 @@
     </a>
    </sup>
    <span>
-    , and Snips
+    , IBM’s Watson
    </span>
    <sup>
     <a href="#ftnt225" id="ftnt_ref225">
@@ -9020,11 +9075,27 @@
     </a>
    </sup>
    <span>
-    itself. The dataset used for their benchmark
+    , Facebook’s Wit
    </span>
    <sup>
     <a href="#ftnt226" id="ftnt_ref226">
      [226]
+    </a>
+   </sup>
+   <span>
+    , and Snips
+   </span>
+   <sup>
+    <a href="#ftnt227" id="ftnt_ref227">
+     [227]
+    </a>
+   </sup>
+   <span>
+    itself. The dataset used for their benchmark
+   </span>
+   <sup>
+    <a href="#ftnt228" id="ftnt_ref228">
+     [228]
     </a>
    </sup>
    <span>
@@ -9080,8 +9151,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt227" id="ftnt_ref227">
-     [227]
+    <a href="#ftnt229" id="ftnt_ref229">
+     [229]
     </a>
    </sup>
    <span>
@@ -9175,8 +9246,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt228" id="ftnt_ref228">
-     [228]
+    <a href="#ftnt230" id="ftnt_ref230">
+     [230]
     </a>
    </sup>
    <span>
@@ -9324,8 +9395,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt229" id="ftnt_ref229">
-     [229]
+    <a href="#ftnt231" id="ftnt_ref231">
+     [231]
     </a>
    </sup>
    <span>
@@ -12378,6 +12449,32 @@
      [206]
     </a>
     <span>
+     Key:costa2008revised Costa, P.T. Jr. &amp; McCrae, R.R. (1992). Revised NEO Personality Inventory (NEO-PI-R) and NEO Five-Factor Inventory (NEO-FFI) manual.
+    </span>
+    <span>
+     Odessa, FL: Psychological Assessment Resources
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref207" id="ftnt207">
+     [207]
+    </a>
+    <span>
+     Key:kosinski2013private Kosinski, M., Stillwell, D., Graepel, Y. (2013). Private traits and attributes are predictable from digital records of human behavior.
+    </span>
+    <span>
+     Proceedings of the National Academy of Sciences (PNAS).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref208" id="ftnt208">
+     [208]
+    </a>
+    <span>
      Zoey Chong. (2017, December 6). Obike becomes latest victim of global data breach. CNET. Retrieved from
     </span>
     <span>
@@ -12389,8 +12486,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref207" id="ftnt207">
-     [207]
+    <a href="#ftnt_ref209" id="ftnt209">
+     [209]
     </a>
     <span>
      Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
@@ -12399,8 +12496,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref208" id="ftnt208">
-     [208]
+    <a href="#ftnt_ref210" id="ftnt210">
+     [210]
     </a>
     <span>
      Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
@@ -12409,8 +12506,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref209" id="ftnt209">
-     [209]
+    <a href="#ftnt_ref211" id="ftnt211">
+     [211]
     </a>
     <span>
      Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
@@ -12419,8 +12516,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref210" id="ftnt210">
-     [210]
+    <a href="#ftnt_ref212" id="ftnt212">
+     [212]
     </a>
     <span>
     </span>
@@ -12435,8 +12532,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref211" id="ftnt211">
-     [211]
+    <a href="#ftnt_ref213" id="ftnt213">
+     [213]
     </a>
     <span>
     </span>
@@ -12451,8 +12548,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref212" id="ftnt212">
-     [212]
+    <a href="#ftnt_ref214" id="ftnt214">
+     [214]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -12462,26 +12559,6 @@
     </span>
     <span>
      . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref213" id="ftnt213">
-     [213]
-    </a>
-    <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref214" id="ftnt214">
-     [214]
-    </a>
-    <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -12491,6 +12568,26 @@
      [215]
     </a>
     <span>
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref216" id="ftnt216">
+     [216]
+    </a>
+    <span>
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref217" id="ftnt217">
+     [217]
+    </a>
+    <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
@@ -12503,28 +12600,28 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref216" id="ftnt216">
-     [216]
-    </a>
-    <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref217" id="ftnt217">
-     [217]
-    </a>
-    <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
     <a href="#ftnt_ref218" id="ftnt218">
      [218]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref219" id="ftnt219">
+     [219]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref220" id="ftnt220">
+     [220]
     </a>
     <span>
     </span>
@@ -12539,8 +12636,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref219" id="ftnt219">
-     [219]
+    <a href="#ftnt_ref221" id="ftnt221">
+     [221]
     </a>
     <span>
     </span>
@@ -12555,8 +12652,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref220" id="ftnt220">
-     [220]
+    <a href="#ftnt_ref222" id="ftnt222">
+     [222]
     </a>
     <span>
     </span>
@@ -12571,8 +12668,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref221" id="ftnt221">
-     [221]
+    <a href="#ftnt_ref223" id="ftnt223">
+     [223]
     </a>
     <span>
     </span>
@@ -12587,8 +12684,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref222" id="ftnt222">
-     [222]
+    <a href="#ftnt_ref224" id="ftnt224">
+     [224]
     </a>
     <span>
     </span>
@@ -12603,8 +12700,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref223" id="ftnt223">
-     [223]
+    <a href="#ftnt_ref225" id="ftnt225">
+     [225]
     </a>
     <span>
     </span>
@@ -12619,8 +12716,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref224" id="ftnt224">
-     [224]
+    <a href="#ftnt_ref226" id="ftnt226">
+     [226]
     </a>
     <span>
     </span>
@@ -12635,8 +12732,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref225" id="ftnt225">
-     [225]
+    <a href="#ftnt_ref227" id="ftnt227">
+     [227]
     </a>
     <span>
     </span>
@@ -12651,8 +12748,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref226" id="ftnt226">
-     [226]
+    <a href="#ftnt_ref228" id="ftnt228">
+     [228]
     </a>
     <span>
     </span>
@@ -12667,8 +12764,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref227" id="ftnt227">
-     [227]
+    <a href="#ftnt_ref229" id="ftnt229">
+     [229]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -12677,8 +12774,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref228" id="ftnt228">
-     [228]
+    <a href="#ftnt_ref230" id="ftnt230">
+     [230]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -12687,8 +12784,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref229" id="ftnt229">
-     [229]
+    <a href="#ftnt_ref231" id="ftnt231">
+     [231]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
@@ -12761,16 +12858,6 @@
     </a>
     <span>
      GoBee abbandona Torino: http://torino.repubblica.it/cronaca/2018/02/09/news/gobee_bike_colosso_asiatico_delle_bici_a_nollegio_dopo_la_francia_abbandona_pure_torino-188432125/
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#cmnt_ref6" id="cmnt6">
-     [f]
-    </a>
-    <span>
-     aggiungere l'asse della lingua
     </span>
    </p>
   </div>
