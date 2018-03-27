@@ -9285,7 +9285,7 @@
   </p>
   <h3 id="h.cf6oldpt7ig8">
    <span>
-    Evaluation Protocol
+    Evaluation Protocol and results
    </span>
   </h3>
   <p>
@@ -9308,29 +9308,148 @@
   </p>
   <p>
    <span>
-    So for both settings (single turn and multi-turn) the measures chosen to evaluate the results are the following:
+    So for both single and multi turn settings the measure chosen to evaluate the results is the F1 score on the intents and slots (a slot is correctly detected if both type and start and end are correct).
    </span>
   </p>
-  <ul>
-   <li>
-    <span>
-     F1 measure on the intents
-    </span>
-   </li>
-   <li>
-    <span>
-     F1 measure for the slots (a slot is correctly detected if both type and start and end are correct)
-    </span>
-   </li>
-   <li>
-    <span>
-     F1 measure on the IOB annotation level
-    </span>
-    <span>
-     highly unbalanced because ‘O’ annotation is prevalent
-    </span>
-   </li>
-  </ul>
+  <p>
+   <span>
+    The following paragraphs illustrate the results obtained. First of all, a dedicated evaluation to the Italian Embeddings computed will show how the different preprocessing allows to reach higher scores on the analogy test. Then different variations (such as the embedding dictionary size, the choice of LSTM vs GRU and the usage of attention mechanism) will be measured on the single-turn setting. At the end also some evaluation on the
+   </span>
+  </p>
+  <h4 id="h.6nn7ofbjzye2">
+   <span>
+    Italian embeddings analogy evaluation
+   </span>
+  </h4>
+  <p>
+   <span>
+    To evaluate the goodness of word embeddings, a commonly used test is the analogy test. Since in the embeddings space, words should distribute relatively to their meaning, semantic relations can be characterized by a traslation. For example the relation
+   </span>
+   <span>
+    singular-plural
+   </span>
+   <span>
+    can be exploited to find a
+   </span>
+   <span>
+    plural
+   </span>
+   <span>
+    of one word by using the analogy of coordinates between another pair of
+   </span>
+   <span>
+    singular and plural words (e.g. queens = queen - king + kings). The evaluation is done by comparing the predicted word against the true one.
+   </span>
+   <span>
+    Here we are considering the translated version of this analogy test, used by
+   </span>
+   <sup>
+    <a href="#ftnt270" id="ftnt_ref270">
+     [270]
+    </a>
+   </sup>
+   <span>
+    too.
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <a id="t.8ffcb2fa2ffce234a89870e88120de936ec82309">
+  </a>
+  <a id="t.4">
+  </a>
+  <table>
+   <tbody>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Word embeddings
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        accuracy
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Italian values from
+       </span>
+       <sup>
+        <a href="#ftnt271" id="ftnt_ref271">
+         [271]
+        </a>
+       </sup>
+       <span>
+        on Wikipedia
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        44.81%
+       </span>
+      </p>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        Computed italian values on Wikipedia
+       </span>
+      </p>
+     </td>
+     <td colspan="1" rowspan="1">
+      <p>
+       <span>
+        58.14%
+       </span>
+      </p>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   <span>
+    [TABLE:italianEmbeddingsAnalogy CAPTION:A comparison of the analogy scores for the italian datasets]
+   </span>
+  </p>
+  <p>
+   <span>
+    Table [REF TABLE:italianEmbeddingsAnalogy] shows how the different preprocessing, applying the SpaCy tokenization, allows to reach better values for the analogy test.
+   </span>
+  </p>
+  <h4 id="h.j90e99z9m9az">
+   <span>
+    Single turn variations
+   </span>
+  </h4>
+  <p>
+   <span>
+    Embedding size effect on intents and slots for each dataset + trainable embeddings
+   </span>
+  </p>
+  <p>
+   <span>
+    LSTM vs GRU effect on intents and slots for each dataset
+   </span>
+  </p>
+  <p>
+   <span>
+    Attention vs non attention on intents and slots for each dataset
+   </span>
+  </p>
   <p>
    <span>
     For the comparison different approaches have been considered in order to evaluate several choices:
@@ -9387,11 +9506,6 @@
      Attention vs non attention
     </span>
    </li>
-   <li>
-    <span>
-     Intent decoder rnn vs last state of bidirectional encoder
-    </span>
-   </li>
   </ul>
   <ul>
    <li>
@@ -9437,128 +9551,6 @@
     The results of the evaluation
    </span>
   </p>
-  <h4 id="h.ystjzzsyuhmx">
-   <span>
-    Word embeddings
-   </span>
-  </h4>
-  <p>
-   <span>
-    TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
-   </span>
-   <sup>
-    <a href="#ftnt270" id="ftnt_ref270">
-     [270]
-    </a>
-   </sup>
-   <span>
-    see for understanding if those wv computed are better than  39.91% → YES: 58.14%
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 306, Correct: 96.41%, Incorrect: 3.59%, Set: capital-common-countries
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 915, Correct: 84.70%, Incorrect: 15.30%, Set: capital-world
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 106, Correct: 1.89%, Incorrect: 98.11%, Set: currency
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 782, Correct: 28.64%, Incorrect: 71.36%, Set: city-in-state
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 342, Correct: 40.06%, Incorrect: 59.94%, Set: regione capoluogo
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 272, Correct: 71.69%, Incorrect: 28.31%, Set: family
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 506, Correct: 10.28%, Incorrect: 89.72%, Set: gram1-adjective-to-adverb
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 30, Correct: 16.67%, Incorrect: 83.33%, Set: gram2-opposite
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 12, Correct: 8.33%, Incorrect: 91.67%, Set: gram3-comparative
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 57, Correct: 42.11%, Incorrect: 57.89%, Set: gram4-superlative (assoluto)
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 342, Correct: 61.11%, Incorrect: 38.89%, Set: gram5-present-participle (gerundio)
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 1371, Correct: 82.57%, Incorrect: 17.43%, Set: gram6-nationality-adjective
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 420, Correct: 42.14%, Incorrect: 57.86%, Set: gram7-past-tense
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 756, Correct: 43.39%, Incorrect: 56.61%, Set: gram8-plural
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 273, Correct: 79.85%, Incorrect: 20.15%, Set: gram9-plural-verbs (3rd person)
-   </span>
-  </p>
-  <p>
-   <span>
-    Error for Set gram10-plural-verbs (1st person)
-   </span>
-  </p>
-  <p>
-   <span>
-    Error for Set gram11-remote-past-verbs (1st person)
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 132, Correct: 58.33%, Incorrect: 41.67%, Set: gram12-noun-masculine-feminine-singular
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 2, Correct: 0.00%, Incorrect: 100.00%, Set: gram13-noun-masculine-feminine-plural
-   </span>
-  </p>
-  <p>
-   <span>
-    Total sentences: 6624, Correct: 58.14%, Incorrect: 41.86%, Set: total
-   </span>
-  </p>
   <p>
    <span>
    </span>
@@ -9601,6 +9593,16 @@
     </span>
    </li>
   </ul>
+  <h4 id="h.m109kxv6phwu">
+   <span>
+    Single-turn variations
+   </span>
+  </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <h4 id="h.vybi8bw7eizb">
    <span>
     The multi-turn
@@ -13420,6 +13422,16 @@
    <p>
     <a href="#ftnt_ref270" id="ftnt270">
      [270]
+    </a>
+    <span>
+     Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref271" id="ftnt271">
+     [271]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
