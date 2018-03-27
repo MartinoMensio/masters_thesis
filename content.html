@@ -678,7 +678,7 @@
   </p>
   <p>
    <span>
-    The main capabilities that are missing, as Lake et al.
+    The main capabilities that are missing, as pointed out in
    </span>
    <sup>
     <a href="#ftnt34" id="ftnt_ref34">
@@ -686,7 +686,7 @@
     </a>
    </sup>
    <span>
-    point out, are:
+    , are:
    </span>
   </p>
   <ul>
@@ -762,7 +762,7 @@
   </p>
   <p>
    <span>
-    Following the article by Pearl et al.
+    Following
    </span>
    <sup>
     <a href="#ftnt39" id="ftnt_ref39">
@@ -3077,7 +3077,7 @@
   </p>
   <p>
    <span>
-    Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by Bengio, et al. (1994)
+    Those problem have the same origin: the simple RNN is not able to manage long-term dependencies. This problem has been analyzed in detail by
    </span>
    <sup>
     <a href="#ftnt108" id="ftnt_ref108">
@@ -3085,7 +3085,7 @@
     </a>
    </sup>
    <span>
-    , Hochreiter et al. (1998)
+    ,
    </span>
    <sup>
     <a href="#ftnt109" id="ftnt_ref109">
@@ -7975,7 +7975,7 @@
   </p>
   <p>
    <span>
-    The overall architecture of all the distributed components can be viewed in figure [REF FIG:physicalComponents]. In this figure different types of components can be seen. On the left the user devices are shown, that can interface with different messaging platforms and websites. Those red components are not manageable from the bot developer. Usually an account is built for the bot, but the communication with the user is completely handled by the reference platform. Going a bit on the right, we can see the concentration role of the Bot Framework server, that handles dishomogeneous data on the left and transforms them to a more standardized form on the right. This component is configurable from the bo developer, that through a web graphical interface can add and configure the channels on the left and at the same moment configure the external webservice on the right (the Bot Server)
+    The overall architecture of all the distributed components can be viewed in figure [REF FIG:physicalComponents]. In this figure different types of components can be seen. On the left the user devices are shown, that can interface with different messaging platforms and websites. Those red components, the channels, are not manageable from the bot developer. Usually an account is built for the bot, but the communication with the user is completely handled by the reference platform. A special case is played by the website in blue, that provides an additional platform to chat with the bot without requiring any messenger accounts. Going a bit on the right, we can see the concentration role of the Bot Framework server, that handles dishomogeneous data on the left and transforms them to a more standardized form on the right. This component is configurable from the bo developer, that through a web graphical interface can add and configure the channels on the left and at the same moment configure the external webservice on the right (the Bot Server). The Bot Server, under the full control of the developer, applies extra transformations of messages and plays also the role of a web server. The intelligent part, containing the Bot Core, is deployed on another machine without being reachable from the outside.
    </span>
   </p>
   <p>
@@ -7984,8 +7984,8 @@
    </span>
   </p>
   <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 198.67px;">
-    <img alt="" src="https://lh3.googleusercontent.com/n67W0imUwhn7IMKKLLXAxPq4bpZ5ifh92ZLwH3ktc3UuqANU33rsRl_Lq7vpIaDdEeTGgMNzxCS1YDxX4FysQZcLMlt1ItU1XTFyyBoVhVFlV33eW9DqQ720Mp06fbun3XDxQ81U" style="width: 602.00px; height: 198.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 177.33px;">
+    <img alt="" src="https://lh3.googleusercontent.com/n67W0imUwhn7IMKKLLXAxPq4bpZ5ifh92ZLwH3ktc3UuqANU33rsRl_Lq7vpIaDdEeTGgMNzxCS1YDxX4FysQZcLMlt1ItU1XTFyyBoVhVFlV33eW9DqQ720Mp06fbun3XDxQ81U" style="width: 602.00px; height: 177.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -7999,121 +7999,155 @@
   </p>
   <p>
    <span>
-    THE CONNECTIONS
+    The communication between the two custom components (in blue in the figure) is done over a websocket to allow asynchronous messages to be sent in both directions, without using polling techniques that may consume resources and bandwidth. The Bot Server exposes two different endpoints for Bot Cores, one for the English version and one for the Italian one. Those endpoints thanks to HTTPS protocol offer a reliable channel that provides data encryption to protect data in motion and authentication through a symmetric key shared between the two parts. The data is transferred between those two components with the JSON standard over the websocket, with a format that does not depend on any specific messaging platform.
    </span>
   </p>
   <p>
    <span>
-    The communication with the Core of the bot is done over a websocket to allow asynchronous messages to be sent in both directions, without using polling techniques that may consume resources and bandwidth. The Bot Server exposes two different endpoints for Bot Cores, one for the English version and one for the Italian one. Those endpoints thanks to HTTPS protocol offer a reliable channel that provides data encryption to protect data in motion and authentication through a symmetric key shared between the two parts.
+    The Bot Server is not put directly in contact with the Messaging platforms because it would have required to implement all the webhook endpoints for them and also to translate from and to all the platform dialects. The most easy way to implement it has been found by interacting with a third-party component (Microsoft Bot Framework) that can be configured on a web portal to reach the different platforms. This removed a lot of implementation effort but brought to an architecture that is not very elegant and compact. The communication between the Bot Server and the Bot Framework is done in a way that is similar to the one required by messaging platforms: both components expose web endpoints (that must provide HTTPS connections with digital certificates that have as root a trusted CA) that are used for one-directional communications (the only response that is given is a status code that represent the outcome of the request) and each message is sent independently in its direction.
    </span>
   </p>
   <p>
    <span>
-    The data is transferred between those two components with the JSON standard over the websocket, with a format that does not depend on any specific messaging platform.
+    The supported platforms that have been configured for users to chat with the bot are the following:
    </span>
   </p>
+  <ul>
+   <li>
+    <span>
+     Telegram: chosen because it is easy to create bots and is a “must” for historical reasons. This channel is available both for english
+    </span>
+    <sup>
+     <a href="#ftnt232" id="ftnt_ref232">
+      [232]
+     </a>
+    </sup>
+    <span>
+     and italian
+    </span>
+    <sup>
+     <a href="#ftnt233" id="ftnt_ref233">
+      [233]
+     </a>
+    </sup>
+    <span>
+     languages. A particularity of this platform is that it allows using a special kind of buttons that enables the user to send his current location.
+    </span>
+   </li>
+   <li>
+    <span>
+     Facebook Messenger: chosen because linked to Facebook it is one of the messaging platform with the biggest number of potential users. This channel too is available both in english
+    </span>
+    <sup>
+     <a href="#ftnt234" id="ftnt_ref234">
+      [234]
+     </a>
+    </sup>
+    <span>
+     and italian
+    </span>
+    <sup>
+     <a href="#ftnt235" id="ftnt_ref235">
+      [235]
+     </a>
+    </sup>
+    <span>
+     languages. Similarly to what happens on Telegram, a special button can be built with the capability to pick a location on a map.
+    </span>
+   </li>
+   <li>
+    <span>
+     Skype: exploiting the exclusive Bot Framework support for the platform, that is not usable otherwise, this channel is added both for english
+    </span>
+    <sup>
+     <a href="#ftnt236" id="ftnt_ref236">
+      [236]
+     </a>
+    </sup>
+    <span>
+     and italian.
+    </span>
+    <sup>
+     <a href="#ftnt237" id="ftnt_ref237">
+      [237]
+     </a>
+    </sup>
+    <span>
+     However the majority of people don’t even know that bots can live on skype.
+    </span>
+   </li>
+   <li>
+    <span>
+     Slack: used for internal experimental testing on a dedicated workspace.
+    </span>
+   </li>
+   <li>
+    <span>
+     Web site: a dedicated website
+    </span>
+    <sup>
+     <a href="#ftnt238" id="ftnt_ref238">
+      [238]
+     </a>
+    </sup>
+    <span>
+     allows to test the bot without using messenger apps.
+    </span>
+   </li>
+  </ul>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    On the other side, the Bot Server is not put directly in contact with the Messaging platforms because it would have required to implement all the webhook endpoints for them and also to translate from and to all the platform dialects. The most easy way to implement it has been found by interacting with a third-party component (Microsoft Bot Framework) that can be configured on a web portal to reach the different platforms. This removed a lot of implementation effort but brought to an architecture that is not very elegant and compact. The communication between the Bot Server and the Bot Framework is done in a way that is similar to the one required by messaging platforms: both components expose web endpoints (that must provide HTTPS connections with digital certificates that have as root a trusted CA) that are used for one-directional communications (the only response is is given is a status code that represent the outcome of the request) and each message is sent independently in its direction.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    BOT SERVER ROLES
-   </span>
-  </p>
-  <p>
-   <span>
-    The main role of the Bot Server is to receive the messages on one side and provide them to the other one, by transforming their representation. The Bot Framework works well in the direction of receiving the messages from the user, but on the other directions does not provide all the features specific to the messaging platform. For instance, both on Facebook Messenger and on Telegram, buttons can be shown to the user in order to send the current position, while other platforms don’t support it. To send those types of messages, it is necessary to send attachments in the native form of the platform (‘quick_replies’ with ‘content_type’: ‘location’ for Facebook, ‘reply_markup’ with ‘request_location’: true for Telegram).
-   </span>
-  </p>
-  <p>
-   <span>
-    Another role the Bot Server covers is the management of the Facebook Login: as will be explained in the personalization details, it exposes a dynamic web page that is reached after the user performs the login, and manages the retrieval of the user likes and user locations.
-   </span>
-  </p>
-  <p>
-   <span>
-    Furthermore, this component also provides a web page where users can test the bot without using messaging platforms.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    WHY NOT A SINGLE COMPONENT
-   </span>
-  </p>
-  <p>
-   <span>
-    Having two different custom components has many advantages: both conceptual and practical.
-   </span>
-  </p>
-  <p>
-   <span>
-    The main conceptual advantage is that the coupling with messaging platforms is reduced: the bot core does not know anything related to them, and interacts with a representation of data that is human-readable and has no dependencies.
-   </span>
-  </p>
-  <p>
-   <span>
-    The practical ones are many, generated from different needs. First of all: performance needs. The Bot Server does not require high computation resources because is simply a proxy that manipulates the representation of information. The Bot Core instead, running Neural Networks to classify the sentences, needs disk space and RAM (the language models are quite huge), together with a computing power that should be sufficient to produce outputs in short times.
-   </span>
-  </p>
-  <p>
-   <span>
-    The Bot Server then requires to host a web server with a fixed hostname and with good certificates trusted from the Bot Framework. Configuring the Facebook Login requires a destination URL that contains a hostname (not an IP) that will receive as parameters the token that can be used to query the Graph API (as will be described later). The Bot Framework needs to be configured with webhooks endpoints to whom send POST requests with the incoming messages. The certificates for HTTPS need to be provided by a trusted Certification Authority.
-   </span>
-  </p>
-  <p>
-   <span>
-    Having those needs and opting for a cheap feasible option (without buying a powerful VPS with all those features), the choice has been to split those components.
-   </span>
-  </p>
-  <p>
-   <span>
-    The Bot Server is hosted on heroku
+    The main role of the Bot Server is to receive the messages on one side and provide them to the other one, by transforming their representation. The Bot Framework works well in the direction of receiving the messages from the user, but on the other directions does not provide all the features specific to the messaging platform. For instance, both on Facebook Messenger and on Telegram, buttons can be shown to the user in order to send the current position, while other platforms don’t support it. To send these types of messages, it is necessary to send attachments in the native form of the platform (‘quick_replies’ with ‘content_type’: ‘location’ for Facebook, ‘reply_markup’ with ‘request_location’: true for Telegram). Furthermore, this component also provides a web page where users can test the bot without using messaging platforms, as has been described previously. Also the Bot Server source code is made available openly,
    </span>
    <sup>
-    <a href="#ftnt232" id="ftnt_ref232">
-     [232]
+    <a href="#ftnt239" id="ftnt_ref239">
+     [239]
     </a>
    </sup>
    <span>
-    with a free plan that has limitations in computing power and space, but fits the requirements for this component. Especially, the platform supports natively HTTPS that are covered by a wildcard certificate (every application receives a URL that matching with *.herokuapp.com is valid). Websites and Web Server applications can easily be created (using one of a large set of supported languages and frameworks) and pushed to the platform and the deployment will occur with no pains in configuration.
+    and makes internally usage of the Botkit library
+   </span>
+   <sup>
+    <a href="#ftnt240" id="ftnt_ref240">
+     [240]
+    </a>
+   </sup>
+   <span>
+    to interface correctly with the Bot Framework.
    </span>
   </p>
   <p>
    <span>
-    Having the websocket endpoints exposed on the Bot Server, the Bot Core does not require to act as a server: no hostname is required, no certificate, no port forwarding on NATs, no ports open on the machine that runs it. Furthermore also the websockets are HTTPS as offered by the Bot Server, so no plaintext interactions that could be intercepted.
+    Having two different custom components has many advantages: both conceptual and practical. The main conceptual advantage is that the coupling with messaging platforms is reduced: the bot core does not know anything related to them, and interacts with a representation of data that is human-readable and has no dependencies. The practical ones are many, generated from different needs, first of all performance. The Bot Server does not require high computation resources because is simply a proxy that manipulates the representation of information. The Bot Core instead, running Neural Networks to classify the sentences, needs disk space and RAM (the language models are quite huge), together with a computing power that should be sufficient to produce outputs in short times. The Bot Server instead requires to host a web server with a fixed hostname and with good certificates provided by a CA trusted from the Bot Framework. This hostname needs to be configured as a webhook endpoint to whom send POST requests with the incoming messages.
    </span>
   </p>
   <p>
    <span>
+    Having those needs and opting for a cheap feasible option (without buying a powerful VPS with all those features), the choice has been to split those components. The Bot Server is hosted on heroku
+   </span>
+   <sup>
+    <a href="#ftnt241" id="ftnt_ref241">
+     [241]
+    </a>
+   </sup>
+   <span>
+    with a free plan that has limitations in computing power and space, but fits the requirements for this component. Especially, the platform supports natively HTTPS that are covered by a wildcard certificate (every application receives a URL that matching with
+   </span>
+   <span>
+    *.herokuapp.com
+   </span>
+   <span>
+    is covered). Websites and Web Server applications can easily be created (using one of a large set of supported languages and frameworks) and pushed to the platform and the deployment will occur with no pains in configuration. Having the websocket endpoints exposed on the Bot Server, the Bot Core does not require to act as a server: no hostname is required, no certificate, no port forwarding on NATs, no ports open on the machine that runs it. This enforces a lot the security of the system. Furthermore also the websockets are HTTPS as offered by the Bot Server, so no plaintext interactions can be intercepted.
    </span>
   </p>
   <p>
    <span>
-    AN EXAMPLE
+    To make clear how all the components work together, let’s follow what happens from when a user sends a message until he receives back a response. First of all, the user connected to a messaging platform (Facebook Messenger) sends some text, that arrives to the Facebook Servers. From there, since the destination account is a page that has been configured to receive messages at a certain webhook location, the message is sent to the Bot Framework. From the Bot Framework, the message is forwarded to the Bot Server that is finally one of the two custom components that has been developed. The Bot Server, checking that a Bot Core is connected over websocket for the specific language, delivers the message. The Bot Core processes the message (NLU, Information Retrieval, Response Generation) and replies on the websocket. The Bot Server transforms the response for the dialect of the destination platform and forwards the message to the Bot Framework that delivers it to the Facebook Servers. Finally the user receives the message.
    </span>
   </p>
   <p>
    <span>
-    To make clear how all the components work together, let’s follow what happens from when a user sends a message until he receives back a response.
-   </span>
-  </p>
-  <p>
-   <span>
-    First of all, the user connected to a messaging platform (Facebook Messenger) sends some text, that arrives to the Facebook Servers. From there, since the destination account is a page that has been configured to receive messages at a certain webhook location, the message is sent to the Bot Framework. From the Bot Framework, the message is forwarded to the Bot Server that is finally one of the two components that has been developed. The Bot Server, checking that a Bot Core is connected over websocket for the specific language, delivers the message. The Bot Core processes the message (NLU, Information Retrieval, Response Generation) and replies on the websocket. The Bot Server transforms the response for the dialect of the destination platform and forwards the message to the Bot Framework that delivers it to the Facebook Servers. Finally the user receives the message.
+    The flow is quite intricate but has all the advantages listed above.
    </span>
   </p>
   <h2 id="h.tyotzig5oet">
@@ -8128,12 +8162,7 @@
   </p>
   <p>
    <span>
-    This chapter focuses on the implementation that has been done relatively to NLU.
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO overview: wit prototype, developing RNN, word embeddings, datasets
+    This section focuses on the implementation that has been done relatively to the Natural Language Understanding described on the previous chapter [REF:approachNLU]. Firstly, a description is done of the external NLU provider that has been used to initially handle the understanding process and successively has been kept as a single-turn dataset collector and manager ([REF:implementationWit]). Then the discourse will cover some details about the frameworks used for implementing the neural networks in [REF:implementationNN], and also about some specific issues risen in the development in [REF:implementationNNDetails]. A dedicated subsection is then given to word embeddings in [REF:implementationWV] and the last part explains how the datasets have been collected and preprocessed to uniformly feed them to the neural network in [REF:implementationDatasets].
    </span>
   </p>
   <h3 id="h.khvhakjb4317">
@@ -8148,27 +8177,25 @@
   </p>
   <p>
    <span>
-    In the early stages of the bot, the Natural Language Understanding has been delegated to an external provider: wit.ai. It was chosen for its simplicity to use and for being a standalone product that just provides NLU that are usable through a web API.
+    In the early stages of the bot, the Natural Language Understanding has been delegated to an external provider: wit.ai
+   </span>
+   <sup>
+    <a href="#ftnt242" id="ftnt_ref242">
+     [242]
+    </a>
+   </sup>
+   <span>
+    . It was chosen for its simplicity to use and for being a standalone product that just provides NLU usable through a web API.
    </span>
   </p>
   <p>
    <span>
-    While giving the advantage to have an almost ready to use NLU (the configuration of intents and entities requires few steps and few examples), it also helps building a dataset. All the sentences that are sent for analysis are stored in a inbox, that can be analyzed and the responses can be interactively fixed and validated (inserted in the dataset). The dataset can also be downloaded, and because it is stored in comprehensible JSON format can be used as annotated dataset to later train another NLU system.
+    While giving the advantage to have an almost ready to use NLU (the configuration of intents and entities requires few steps and few examples), it also helps building a dataset. All the sentences that are sent for analysis are stored in a inbox, that can be analyzed and the responses can be interactively fixed and validated (inserted in the dataset). The dataset can also be downloaded, and because it is stored in comprehensible JSON format can be used as annotated dataset to later train another NLU system. A limitation of this service is that it handles only single turn interactions, so the datasets that have been collected for both italian and english languages can be only used for this type of interaction.
    </span>
   </p>
   <p>
    <span>
-    A limitation of this service is that it handles only single turn interactions, so the datasets that have been collected for both italian and english languages can be only used for this type of interaction.
-   </span>
-  </p>
-  <p>
-   <span>
-    This stage of development has been done in order to understand the main needs of the users, and progressively new intents and examples have been added. On the other side, this experimentation also helped understanding what the NLU tasks are, giving an orientation in the very big landscape of Natural Language Processing.
-   </span>
-  </p>
-  <p>
-   <span>
-    This helped directioning the study of literature towards approaches that could do a similar sentence classification and entity extraction.
+    This stage of development has been done in order to understand the main needs of the users, and progressively new intents and examples have been added. On the other side, this experimentation also helped understanding what the NLU tasks are, giving an orientation in the very big landscape of Natural Language Processing. This helped directioning the study of literature towards approaches that could do a similar sentence classification and parameters extraction.
    </span>
   </p>
   <p>
@@ -8194,7 +8221,7 @@
   <ul>
    <li>
     <span>
-     Stanford Core NLP: a java library that provides Tokenizer, NER, POS, Dependency Parsing, Coreference Resolution for languages: English, Arabic, Chinese, French, German, and Spanish
+     Stanford Core NLP: a java library that provides Tokenizer, NER, POS, Dependency Parsing, Coreference Resolution for languages: English, Arabic, Chinese, French, German, and Spanish;
     </span>
    </li>
    <li>
@@ -8204,12 +8231,12 @@
    </li>
    <li>
     <span>
-     Syntaxnet: a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains pre-built models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths
+     Syntaxnet: a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains pre-built models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths;
     </span>
    </li>
    <li>
     <span>
-     SpaCy: an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with pre-built models, and also fast
+     SpaCy: an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with pre-built models, and also fast.
     </span>
    </li>
   </ul>
@@ -8223,25 +8250,38 @@
     Experimenting with Neural Networks has become easier and easier in the last years thanks to open source libraries that provide high-level APIs and, being used more and more, the support is really easy to obtain on online communities (such as
    </span>
    <span>
-    <a href="https://stackoverflow.com/">
-     StackOverflow
-    </a>
-   </span>
-   <span>
-    ) or on the official documentation or directly on the official code repositories. The programming languages that are supported for Neural Networks are many, but the most used nowadays is Python. In Python the most used frameworks are Keras and TensorFlow.
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
+    StackOverflow
    </span>
    <sup>
-    <a href="#ftnt233" id="ftnt_ref233">
-     [233]
+    <a href="#ftnt243" id="ftnt_ref243">
+     [243]
+    </a>
+   </sup>
+   <span>
+    ) or on the official documentation or directly on the official code repositories (by means of interlined comments or “
+   </span>
+   <span>
+    self-documenting code
+   </span>
+   <span>
+    ”
+   </span>
+   <sup>
+    <a href="#ftnt244" id="ftnt_ref244">
+     [244]
+    </a>
+   </sup>
+   <span>
+    ). The programming languages that are supported for Neural Networks are many, but the most used nowadays is Python. In Python the most used frameworks are Keras and TensorFlow.
+   </span>
+  </p>
+  <p>
+   <span>
+    For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as default backend uses TensorFlow and TensorFlow recognizes Keras as its high-level interface
+   </span>
+   <sup>
+    <a href="#ftnt245" id="ftnt_ref245">
+     [245]
     </a>
    </sup>
    <span>
@@ -8253,21 +8293,16 @@
     Initially, when trying to emulate a
    </span>
    <span>
-    RNN approach for Intent Classification (see section [REF:soaIntent], Keras has been used to implement it.
+    RNN approach for Intent Classification (see section [REF:soaIntent], Keras has been used to implement it. Without considering the data preprocessing part that is needed to get the desired shape and values for the inputs and outputs (as inputs word vectors corresponding to the words in the sentence and as outputs the corresponding intent type), the building of the computation graph (a bidirectional LSTM layer followed by a densely connected layer) and its training just required few lines of code.
    </span>
   </p>
   <p>
    <span>
-    Without considering the data preprocessing part that is needed to get the desired shape and values for the inputs and outputs (as inputs word vectors corresponding to the words in the sentence and as outputs the corresponding intent type), the building of the computation graph (a LSTM layer followed by a densely connected layer) and its training just required few lines of code.
-   </span>
-  </p>
-  <p>
-   <span>
-    But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
+    But when trying to implement less regular models, such as the encoder-decoder of
    </span>
    <sup>
-    <a href="#ftnt234" id="ftnt_ref234">
-     [234]
+    <a href="#ftnt246" id="ftnt_ref246">
+     [246]
     </a>
    </sup>
    <span>
@@ -8286,7 +8321,7 @@
    <span>
    </span>
   </p>
-  <a id="t.294588e8659ce0c2920741efb4cbbf1ec9cf419c">
+  <a id="t.f109b02f6c9e0bade872594895436aa78e635ecc">
   </a>
   <a id="t.3">
   </a>
@@ -8333,7 +8368,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Can go down to reach single operations, but also high level API provided by lots of classes
+        Can go down to reach single operations, but also high level API is provided by lots of classes
        </span>
       </p>
      </td>
@@ -8449,16 +8484,11 @@
   </h4>
   <p>
    <span>
-    Also when working on recurrent networks, using Keras layers is like playing with LEGO: blocks can be easily stacked one on the top of the other (also forks and joins are quite easy to perform).
-   </span>
-  </p>
-  <p>
-   <span>
-    Keras Recurrent API is described extensively on its documentation,
+    Also when working on recurrent networks, using Keras layers is like playing with LEGO: blocks can be easily stacked one on the top of the other (also forks and joins are quite easy to perform). Keras Recurrent API is described extensively on its documentation,
    </span>
    <sup>
-    <a href="#ftnt235" id="ftnt_ref235">
-     [235]
+    <a href="#ftnt247" id="ftnt_ref247">
+     [247]
     </a>
    </sup>
    <span>
@@ -8473,12 +8503,13 @@
     layer
    </span>
    <span>
-    in Keras the class keras.layer.RNN takes as argument a RNN cell. Some parameters can be used to define how the layer will behave.
+    in Keras the class
    </span>
-  </p>
-  <p>
    <span>
-    A
+    keras.layer.RNN
+   </span>
+   <span>
+    takes as argument a RNN cell. Some parameters can be used to define how the layer will behave. A
    </span>
    <span>
     RNN cell
@@ -8496,44 +8527,65 @@
   <ul>
    <li>
     <span>
-     SimpleRNNCell: a fully connected RNN
+     SimpleRNNCell
+    </span>
+    <span>
+     : a cell that simply concatenates the input with the previous state and passes it through a feedforward layer
     </span>
    </li>
    <li>
     <span>
-     GRUCell: Gated Recurrent Unit
+     GRUCell
+    </span>
+    <span>
+     : Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt236" id="ftnt_ref236">
-      [236]
+     <a href="#ftnt248" id="ftnt_ref248">
+      [248]
      </a>
     </sup>
    </li>
    <li>
     <span>
-     LSTMCell: Long-Short Term Memory layer
+     LSTMCell
+    </span>
+    <span>
+     : Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt237" id="ftnt_ref237">
-      [237]
+     <a href="#ftnt249" id="ftnt_ref249">
+      [249]
      </a>
     </sup>
    </li>
   </ul>
   <p>
    <span>
-    Layers can be easily stacked and the creation of deep recurrent network is very easy. Networks that are a simple stack of different layers (Recurrent, Dropout, Dense) won’t find any problem in implementation. But when the networks are not so linear in the flow or when some advanced layers are required, there might not be an already implemented solution. For example there is no native implementation for seq2seq models and layers, no Attention mechanism and is not possible to have a ready to use help for doing output dependency modeling (feeding back the outputs in a decoding layer). They can be implemented with the existing API, but they are not part of the library itself (some implementations can be found online
+    Layers can be easily stacked and the creation of deep recurrent network is very easy. Networks that are a simple stack of different layers (Recurrent, Dropout regularizations, Dense feedforward) won’t find any problem in implementation. But when the networks are not so linear in the flow or when some advanced layers are required, there might not be an already implemented solution. For example there is no native implementation for
+   </span>
+   <span>
+    seq2seq
+   </span>
+   <span>
+    models and layers, no
+   </span>
+   <span>
+    Attention
+   </span>
+   <span>
+    mechanism and it is not possible to have a ready to use help for doing output dependency modeling (feeding back the outputs in a decoding layer). They can be implemented with the existing API, but they are not part of the library itself (some implementations can be found online
    </span>
    <span>
     ,
    </span>
    <sup>
-    <a href="#ftnt238" id="ftnt_ref238">
-     [238]
+    <a href="#ftnt250" id="ftnt_ref250">
+     [250]
     </a>
    </sup>
    <span>
-    but the number of people working on it is order of magnitude smaller than the tensorflow community
+    but the number of people working on it is order of magnitude smaller than the one involved in the TensorFlow community
    </span>
    <span>
     ).
@@ -8571,8 +8623,8 @@
     More details about the available classes can be found in the official documentation of the seq2seq package.
    </span>
    <sup>
-    <a href="#ftnt239" id="ftnt_ref239">
-     [239]
+    <a href="#ftnt251" id="ftnt_ref251">
+     [251]
     </a>
    </sup>
   </p>
@@ -8675,11 +8727,11 @@
   </p>
   <p>
    <span>
-    As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
+    As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach of
    </span>
    <sup>
-    <a href="#ftnt240" id="ftnt_ref240">
-     [240]
+    <a href="#ftnt252" id="ftnt_ref252">
+     [252]
     </a>
    </sup>
    <span>
@@ -8691,16 +8743,16 @@
     The papers come with an implementation that is not complete
    </span>
    <sup>
-    <a href="#ftnt241" id="ftnt_ref241">
-     [241]
+    <a href="#ftnt253" id="ftnt_ref253">
+     [253]
     </a>
    </sup>
    <span>
     : output label dependencies are not considered. Another negative property of the implementation is that it does not use the latest API available, that provides higher level functionalities and helper functions. Another implementation has been found that uses the latest API and is really a lot more understandable that the original one.
    </span>
    <sup>
-    <a href="#ftnt242" id="ftnt_ref242">
-     [242]
+    <a href="#ftnt254" id="ftnt_ref254">
+     [254]
     </a>
    </sup>
    <span>
@@ -8717,16 +8769,12 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt243" id="ftnt_ref243">
-     [243]
+    <a href="#ftnt255" id="ftnt_ref255">
+     [255]
     </a>
    </sup>
    <span>
     in the preprocessing part, a slightly different implementation has been developed.
-   </span>
-  </p>
-  <p>
-   <span>
    </span>
   </p>
   <h4 id="h.jspx6kh9zcn4">
@@ -8763,11 +8811,16 @@
     The last kind of modifications that have been done are relative to saving the models trained and being able to resume them for inference time. This is possible thanks to the naming of tensors, that allows to save the computational graph to the disk and resume it without re-defining all the variables that were present previously. To interact with the graph, it is possible to retrieve the input and output tensors by name and all the intermediate steps will be internally managed by tensorflow. As will be underlined in integrating spacy in the graph in [REF:implementationSpacyPyFunc], the only parts that cannot be serialized are the external functions, but a solution exists also for this problem.
    </span>
   </p>
-  <h4 id="h.l1f0mzomvabv">
+  <h4 id="h.h058nwks6isp">
    <span>
     Multi-turn
    </span>
   </h4>
+  <p>
+   <span>
+    TODO
+   </span>
+  </p>
   <p>
    <span>
     Is there something to tell specifically to the implementation of multi-turn? Is it detailed enough in Approach? Maybe talk about why propagating the intent value and not the logits in top RNN
@@ -8820,6 +8873,11 @@
   </p>
   <p>
    <span>
+    TODO
+   </span>
+  </p>
+  <p>
+   <span>
     To integrate the embeddings values provided by this library in the computational graph written in tensorflow, the `py_func` method has been used. In this way a function declared in definition time will be called in runtime: tensorflow manages this by making the py_func wrapper work externally on tensors and internally with numpy arrays.
    </span>
   </p>
@@ -8835,27 +8893,28 @@
   </h4>
   <p>
    <span>
-    For the italian language, SpaCy has an incomplete model that does not contain word vectors. For this reason, a side work has been done, taking the wikipedia corpus and computing GloVe vectors on it. Some preprocessing has been done to extract the text only of the wikipedia dumps (available at
+    For the italian language, SpaCy has an incomplete model that does not contain word vectors. For this reason, a side work has been done, taking the wikipedia corpus and computing GloVe vectors on it. Some preprocessing has been done to extract the text only of the wikipedia dumps
    </span>
-   <span>
-    <a href="https://dumps.wikimedia.org/itwiki/">
-     https://dumps.wikimedia.org/itwiki/
+   <sup>
+    <a href="#ftnt256" id="ftnt_ref256">
+     [256]
     </a>
-   </span>
+   </sup>
    <span>
-    ) with a tool written at Pisa University (
+    with a tool written by the SpaCy developers
    </span>
-   <span>
-    <a href="http://medialab.di.unipi.it/wiki/Wikipedia_Extractor">
-     http://medialab.di.unipi.it/wiki/Wikipedia_Extractor
+   <sup>
+    <a href="#ftnt257" id="ftnt_ref257">
+     [257]
     </a>
-   </span>
+   </sup>
    <span>
-    ), and eventually changing the whitespace separation of words in order to align it to the tokenization done by SpaCy. In this way the dictionary used in the training of the word embeddings is the same that is used by the computational graph (tokenization: how the input sentences are separated in single words)
+    that changes the whitespace separation of words in order to align it to the tokenization done by SpaCy. In this way the dictionary used in the training of the word embeddings is the same that is used by the computational graph (tokenization: how the input sentences are separated in single words)
    </span>
   </p>
   <p>
    <span>
+    TODO
    </span>
   </p>
   <p>
@@ -8878,6 +8937,12 @@
     </a>
    </span>
    <span>
+    too huge
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO tell where the produced model can be retrieved
    </span>
   </p>
   <h3 id="h.x106sk22d6zg">
@@ -8892,17 +8957,17 @@
   </p>
   <p>
    <span>
+    TODO
+   </span>
+  </p>
+  <p>
+   <span>
     From wit.ai exploitation for single turn, collection of BotCycle singleturn.
    </span>
   </p>
   <p>
    <span>
     Talk about the sessions collection process and the resulting dataset
-   </span>
-  </p>
-  <p>
-   <span>
-    See also validation
    </span>
   </p>
   <p>
@@ -8926,6 +8991,11 @@
   <p>
    <span>
     [LABEL:validation]
+   </span>
+  </p>
+  <p>
+   <span>
+    TODO
    </span>
   </p>
   <p>
@@ -8989,8 +9059,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt244" id="ftnt_ref244">
-     [244]
+    <a href="#ftnt258" id="ftnt_ref258">
+     [258]
     </a>
    </sup>
    <span>
@@ -9012,72 +9082,72 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt245" id="ftnt_ref245">
-     [245]
+    <a href="#ftnt259" id="ftnt_ref259">
+     [259]
     </a>
    </sup>
    <span>
     as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
-    <a href="#ftnt246" id="ftnt_ref246">
-     [246]
+    <a href="#ftnt260" id="ftnt_ref260">
+     [260]
     </a>
    </sup>
    <span>
     , Google’s Api.ai
    </span>
    <sup>
-    <a href="#ftnt247" id="ftnt_ref247">
-     [247]
+    <a href="#ftnt261" id="ftnt_ref261">
+     [261]
     </a>
    </sup>
    <span>
     , Microsoft’s Luis
    </span>
    <sup>
-    <a href="#ftnt248" id="ftnt_ref248">
-     [248]
+    <a href="#ftnt262" id="ftnt_ref262">
+     [262]
     </a>
    </sup>
    <span>
     , Apple’s SiriKit
    </span>
    <sup>
-    <a href="#ftnt249" id="ftnt_ref249">
-     [249]
+    <a href="#ftnt263" id="ftnt_ref263">
+     [263]
     </a>
    </sup>
    <span>
     , IBM’s Watson
    </span>
    <sup>
-    <a href="#ftnt250" id="ftnt_ref250">
-     [250]
+    <a href="#ftnt264" id="ftnt_ref264">
+     [264]
     </a>
    </sup>
    <span>
     , Facebook’s Wit
    </span>
    <sup>
-    <a href="#ftnt251" id="ftnt_ref251">
-     [251]
+    <a href="#ftnt265" id="ftnt_ref265">
+     [265]
     </a>
    </sup>
    <span>
     , and Snips
    </span>
    <sup>
-    <a href="#ftnt252" id="ftnt_ref252">
-     [252]
+    <a href="#ftnt266" id="ftnt_ref266">
+     [266]
     </a>
    </sup>
    <span>
     itself. The dataset used for their benchmark
    </span>
    <sup>
-    <a href="#ftnt253" id="ftnt_ref253">
-     [253]
+    <a href="#ftnt267" id="ftnt_ref267">
+     [267]
     </a>
    </sup>
    <span>
@@ -9133,8 +9203,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt254" id="ftnt_ref254">
-     [254]
+    <a href="#ftnt268" id="ftnt_ref268">
+     [268]
     </a>
    </sup>
    <span>
@@ -9228,8 +9298,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt255" id="ftnt_ref255">
-     [255]
+    <a href="#ftnt269" id="ftnt_ref269">
+     [269]
     </a>
    </sup>
    <span>
@@ -9377,8 +9447,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt256" id="ftnt_ref256">
-     [256]
+    <a href="#ftnt270" id="ftnt_ref270">
+     [270]
     </a>
    </sup>
    <span>
@@ -12788,8 +12858,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.heroku.com/">
-      https://www.heroku.com/
+     <a href="https://telegram.me/botcycle_bot">
+      https://telegram.me/botcycle_bot
      </a>
     </span>
     <span>
@@ -12804,8 +12874,8 @@
     <span>
     </span>
     <span>
-     <a href="http://www.fast.ai/2017/01/03/keras/">
-      http://www.fast.ai/2017/01/03/keras/
+     <a href="https://telegram.me/botcycle_it_bot">
+      https://telegram.me/botcycle_it_bot
      </a>
     </span>
     <span>
@@ -12818,13 +12888,13 @@
      [234]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://m.me/BotCycleEn">
+      https://m.me/BotCycleEn
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12836,8 +12906,8 @@
     <span>
     </span>
     <span>
-     <a href="https://keras.io/layers/recurrent/">
-      https://keras.io/layers/recurrent/
+     <a href="https://m.me/BotCycleIt">
+      https://m.me/BotCycleIt
      </a>
     </span>
     <span>
@@ -12850,7 +12920,13 @@
      [236]
     </a>
     <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
+    </span>
+    <span>
+     <a href="https://join.skype.com/bot/2cb007d1-5dd5-441a-8503-23268e2df32d">
+      https://join.skype.com/bot/2cb007d1-5dd5-441a-8503-23268e2df32d
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12860,7 +12936,13 @@
      [237]
     </a>
     <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
+    </span>
+    <span>
+     <a href="https://join.skype.com/bot/db2aa777-2e46-40fc-9e49-9bc9d1db201b">
+      https://join.skype.com/bot/db2aa777-2e46-40fc-9e49-9bc9d1db201b
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12872,8 +12954,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/farizrahman4u/recurrentshop">
-      https://github.com/farizrahman4u/recurrentshop
+     <a href="https://botcycle-server.herokuapp.com/">
+      https://botcycle-server.herokuapp.com/
      </a>
     </span>
     <span>
@@ -12888,8 +12970,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
-      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
+     <a href="https://github.com/MartinoMensio/botcycle-server">
+      https://github.com/MartinoMensio/botcycle-server
      </a>
     </span>
     <span>
@@ -12902,13 +12984,13 @@
      [240]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://botkit.ai/">
+      https://botkit.ai/
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12920,8 +13002,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/HadoopIt/rnn-nlu">
-      https://github.com/HadoopIt/rnn-nlu
+     <a href="https://www.heroku.com/">
+      https://www.heroku.com/
      </a>
     </span>
     <span>
@@ -12936,8 +13018,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
-      https://github.com/applenob/RNN-for-Joint-NLU
+     <a href="https://wit.ai/">
+      https://wit.ai/
      </a>
     </span>
     <span>
@@ -12950,7 +13032,13 @@
      [243]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+    <span>
+     <a href="https://stackoverflow.com/">
+      https://stackoverflow.com/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12960,7 +13048,7 @@
      [244]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:raskin2005comments Raskin, J. (2005). Comments are more important than code. Queue, 3(2), 64-65.
     </span>
    </p>
   </div>
@@ -12972,8 +13060,8 @@
     <span>
     </span>
     <span>
-     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
-      https://snips.ai/content/sdk-benchmark-visualisation/
+     <a href="http://www.fast.ai/2017/01/03/keras/">
+      http://www.fast.ai/2017/01/03/keras/
      </a>
     </span>
     <span>
@@ -12986,13 +13074,13 @@
      [246]
     </a>
     <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     <a href="https://developer.amazon.com/alexa">
-      https://developer.amazon.com/alexa
-     </a>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
     </span>
     <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -13004,8 +13092,8 @@
     <span>
     </span>
     <span>
-     <a href="https://api.ai/">
-      https://api.ai/
+     <a href="https://keras.io/layers/recurrent/">
+      https://keras.io/layers/recurrent/
      </a>
     </span>
     <span>
@@ -13018,13 +13106,7 @@
      [248]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://www.luis.ai/">
-      https://www.luis.ai/
-     </a>
-    </span>
-    <span>
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -13034,13 +13116,7 @@
      [249]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://developer.apple.com/sirikit/">
-      https://developer.apple.com/sirikit/
-     </a>
-    </span>
-    <span>
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -13052,8 +13128,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
-      https://www.ibm.com/watson/developercloud/nl-classifier.html
+     <a href="https://github.com/farizrahman4u/recurrentshop">
+      https://github.com/farizrahman4u/recurrentshop
      </a>
     </span>
     <span>
@@ -13068,8 +13144,8 @@
     <span>
     </span>
     <span>
-     <a href="https://wit.ai/">
-      https://wit.ai/
+     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
+      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
      </a>
     </span>
     <span>
@@ -13080,6 +13156,218 @@
    <p>
     <a href="#ftnt_ref252" id="ftnt252">
      [252]
+    </a>
+    <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref253" id="ftnt253">
+     [253]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/HadoopIt/rnn-nlu">
+      https://github.com/HadoopIt/rnn-nlu
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref254" id="ftnt254">
+     [254]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
+      https://github.com/applenob/RNN-for-Joint-NLU
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref255" id="ftnt255">
+     [255]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref256" id="ftnt256">
+     [256]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://dumps.wikimedia.org/itwiki/">
+      https://dumps.wikimedia.org/itwiki/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref257" id="ftnt257">
+     [257]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/explosion/spacy-dev-resources">
+      https://github.com/explosion/spacy-dev-resources
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref258" id="ftnt258">
+     [258]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref259" id="ftnt259">
+     [259]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+      https://snips.ai/content/sdk-benchmark-visualisation/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref260" id="ftnt260">
+     [260]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.amazon.com/alexa">
+      https://developer.amazon.com/alexa
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref261" id="ftnt261">
+     [261]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://api.ai/">
+      https://api.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref262" id="ftnt262">
+     [262]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.luis.ai/">
+      https://www.luis.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref263" id="ftnt263">
+     [263]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.apple.com/sirikit/">
+      https://developer.apple.com/sirikit/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref264" id="ftnt264">
+     [264]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
+      https://www.ibm.com/watson/developercloud/nl-classifier.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref265" id="ftnt265">
+     [265]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://wit.ai/">
+      https://wit.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref266" id="ftnt266">
+     [266]
     </a>
     <span>
     </span>
@@ -13094,8 +13382,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref253" id="ftnt253">
-     [253]
+    <a href="#ftnt_ref267" id="ftnt267">
+     [267]
     </a>
     <span>
     </span>
@@ -13110,8 +13398,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref254" id="ftnt254">
-     [254]
+    <a href="#ftnt_ref268" id="ftnt268">
+     [268]
     </a>
     <span>
      Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
@@ -13120,8 +13408,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref255" id="ftnt255">
-     [255]
+    <a href="#ftnt_ref269" id="ftnt269">
+     [269]
     </a>
     <span>
      Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
@@ -13130,8 +13418,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref256" id="ftnt256">
-     [256]
+    <a href="#ftnt_ref270" id="ftnt270">
+     [270]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
