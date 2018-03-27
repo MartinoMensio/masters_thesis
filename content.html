@@ -7362,209 +7362,176 @@
   </h4>
   <p>
    <span>
-    Instead on the side of geographical tools, two main needs are addressed: geocoding capabilities, as tools for the entity resolver that needs to turn textual entities into geographical objects, and the computation of paths between sets of points with specific contstraints.
+    Instead on the side of geographical tools, two main needs are addressed: geocoding capabilities, as tools for the entity resolver that needs to turn textual entities into geographical objects, and the computation of paths between sets of points with specific constraints.
    </span>
   </p>
   <p>
    <span>
-    For the geocoding capabilities, translating text into positions
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO paths:
-   </span>
-  </p>
-  <p>
-   <span>
-    Having information on the bike sharing and on the user position and desired destination, the bot should provide a navigation path with the selected constraints. Since many web APIs exist with good results, the approach is to find a service with the desired functionalities and use it.
-   </span>
-  </p>
-  <p>
-   <span>
-    The main feature requested is to compute paths that are suitable for cycling: respecting the street laws, avoiding highways, preferring cycle lanes are just the main examples.
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Google Maps Directions API support for bicycles does not cover the city of Turin
-    </span>
-   </li>
-   <li>
-    <span>
-     Mapbox → used because simpler and seems reliable
-    </span>
-   </li>
-   <li>
-    <span>
-     osm
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
+    For the geocoding capabilities, translating text into positions can be achieved by using online services such as Google Geocoding Service,
    </span>
    <sup>
     <a href="#ftnt215" id="ftnt_ref215">
      [215]
     </a>
    </sup>
+   <span>
+    OpenStreetMap Nominatim
+   </span>
    <sup>
     <a href="#ftnt216" id="ftnt_ref216">
      [216]
     </a>
    </sup>
+   <span>
+    , Mapbox
+   </span>
    <sup>
     <a href="#ftnt217" id="ftnt_ref217">
      [217]
     </a>
    </sup>
    <span>
+    or many others. Among them, Google seems to be the most reliable and comprehensive even in terms of incomplete textual descriptions. The query can ask even for preference in a given bounding box, and the response provides back a list of candidates. The information retrieved through this service provides the source and destination points used to search the bike stations and to compute the paths.
+   </span>
+  </p>
+  <p>
+   <span>
+    Given the locations of source, destination and possible stations involved, a path has to be computed to give directions to the user
+   </span>
+   <span>
+    with the selected constraints. Since many web APIs exist with good results, the approach is to find a service with the desired functionalities and use it. The main feature requested is to compute paths that are suitable for cycling: respecting the street laws, avoiding highways, preferring cycle lanes are just the examples that show how important the mean of transport is while computing the paths. Looking for this functionality, three major providers have been analyzed. First of all, the Google Maps Directions API,
+   </span>
+   <sup>
+    <a href="#ftnt218" id="ftnt_ref218">
+     [218]
+    </a>
+   </sup>
+   <span>
+    that should support bicycle directions. But however the service does not work in the city of Turin, so it has been discarded. The second system considered has been one of the many based on the OpenStreetMaps informations: OpenCycleMap
+   </span>
+   <sup>
+    <a href="#ftnt219" id="ftnt_ref219">
+     [219]
+    </a>
+   </sup>
+   <span>
+    . Even though the information provided should be the most accurate because of the collaborative open source data, it seemed too much complicated to integrate and had some strange behaviour that made it not totally reliable. The last and definitive service has been the Mapbox Directions API,
+   </span>
+   <sup>
+    <a href="#ftnt220" id="ftnt_ref220">
+     [220]
+    </a>
+   </sup>
+   <span>
+    fully supporting bike paths and having only as negative point a limited number of calls per month (50000, that is quite huge though).
+   </span>
+  </p>
+  <p>
+   <span>
+    A feature that would have been interesting to consider is the possibility to choose the path with criterions different from shortest or faster, for example considering the smells and happiness of the places in the route. This could potentially provide results that offer a better quality of the path, but have currently be done as an experiment only in the city of London
+   </span>
+   <sup>
+    <a href="#ftnt221" id="ftnt_ref221">
+     [221]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt222" id="ftnt_ref222">
+     [222]
+    </a>
+   </sup>
+   <sup>
+    <a href="#ftnt223" id="ftnt_ref223">
+     [223]
+    </a>
+   </sup>
+   <span>
     . This feature was not considered, in favour of the usual optimal path.
    </span>
   </p>
-  <h4 id="h.kbb2yw2mio7z">
+  <h4 id="h.mvejy7yxrs7l">
    <span>
     Places
    </span>
   </h4>
   <p>
    <span>
-    Foursquare
+    Instead for the information about the places, required for the recommendation strategy described above, there are different options that can be considered.
    </span>
+  </p>
+  <p>
    <span>
-    <a href="https://developer.foursquare.com/docs/venues/explore">
-     https://developer.foursquare.com/docs/venues/explore
+    The first one is again by Google with the Places API,
+   </span>
+   <sup>
+    <a href="#ftnt224" id="ftnt_ref224">
+     [224]
     </a>
-   </span>
+   </sup>
    <span>
-    can easily ask for suggestion on venues with specific category/property (120.000 requests per day, bigger coverage)
+    that provides up to 1000 requests per day freely. A similar role is played by Foursquare that makes available different tools for place discovery: one traditional place search API
    </span>
-  </p>
-  <p>
-   <span>
-    Google places API
-   </span>
-   <span>
-    <a href="https://developers.google.com/places/web-service/search">
-     https://developers.google.com/places/web-service/search
+   <sup>
+    <a href="#ftnt225" id="ftnt_ref225">
+     [225]
     </a>
-   </span>
+   </sup>
    <span>
-    provides similar features (1.000 requests per day)
+    that can be used to search places by name, location, category or other criterion and can be used also to match places from other external sources (like the pages that some user expressed interest to, that can be used with the “match” intent that requires the position to be the same with high precision); an explore API
    </span>
-  </p>
-  <p>
-   <span>
-    <a href="https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API">
-     https://www.quora.com/What-are-the-pros-and-cons-of-each-Places-API
+   <sup>
+    <a href="#ftnt226" id="ftnt_ref226">
+     [226]
     </a>
-   </span>
+   </sup>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
+    that can be used to search for relevant places inside a selected area on a given section (that corresponds to high level categories: food, drinks, coffee, shops, arts, outdoors, sights, trending, venues frequently visited after a given one, or a mix of recommendations generated without a query from the user called topPicks). This second API can be used to get more recommendation-related items against search-related results: the objective of search is really different. Furthermore the call limits of Foursquare are even bigger (120.000 requests per day) and this makes it the best candidate for the required features.
    </span>
   </p>
-  <p>
+  <h4 id="h.awxbbia6w877">
    <span>
-    TODO take from implementation
-   </span>
-  </p>
-  <h4 id="h.s4795m4nagev">
-   <span>
-    Facebook GRAPH
+    Facebook Graph API
    </span>
   </h4>
   <p>
    <span>
-    To retrieve user information (interests) we chose to use Facebook because of its larger coverage
+    The personalization approach described before requires an analysis of social networks to perform an analysis of user features and the pages and places that are liked by them. Nowadays the most widespread social network is undoubtedly Facebook. With around 1.4 billion users active daily,
    </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Why facebook
-    </span>
-   </li>
-   <li>
-    <span>
-     Already talking on facebook messenger, why doing login?
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The data that is available directly from the messenger API is the following: first_name,last_name,profile_pic,locale,timezone,gender,is_payment_enabled
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     How (the flow)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    In order to be able to do personalization, there exists a way to link the messenger id (page-scoped) to other ids (also facebook id indirectly):
-   </span>
-   <span>
-    <a href="https://developers.facebook.com/docs/messenger-platform/account-linking">
-     https://developers.facebook.com/docs/messenger-platform/account-linking
+   <sup>
+    <a href="#ftnt227" id="ftnt_ref227">
+     [227]
     </a>
+   </sup>
+   <span>
+    it is a mine of data that gets feeded constantly with multimedia content. Users tend to voluntarily disclose personal details on this platform, following the pages of the places they have been to, self-tagging themselves in places to show their experiences to their friends, personal interests like music, films and arts. This is the perfect source of profiling that can be found. For this reason, a quite cumbersome management of read permission has been developed in order to make users a bit more conscious about what they are sharing with applications linked to the platform.
    </span>
   </p>
   <p>
    <span>
-    Once the facebook id is retrieved, it is possible to use the facebook graph API.
+    For example chatbots, when messaged by users, only see their name, picture, locale and gender. To see other details a Facebook Login
+   </span>
+   <sup>
+    <a href="#ftnt228" id="ftnt_ref228">
+     [228]
+    </a>
+   </sup>
+   <span>
+    needs to be performed. This login can be done on any messenger platform because the procedure is handled by a flow that only requires to have a web browser installed that will carry some authorization information towards a destination web server that is configured as endpoint.
    </span>
   </p>
   <p>
    <span>
-    To the external account the messenger platform sends a request to an url specified by the developer, adding account_linking_token and redirect_uri (page to redirect user after login). The external site, if login successful, redirects to redirect_uri with authentication_code custom (maybe put there the id in order to allow the bot to do the join)
+    The login follows this flow. First of all, the bot provides an url to login on facebook, specifying the destination endpoint URL (owned by the developer and configured on the corresponding Facebook Application as trusted domain). Then the Facebook login is shown to the user, that authenticates himself and selects which permissions to give to the application. After this, the user is redirected to the endpoint URL with a parameter that contains a short-term token usable to retrieve the user informations using the Graph API.
    </span>
   </p>
   <p>
    <span>
-    From the other side, the oauth flow:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Redirect user to facebook oauth with client_id (the app id) and redirect_uri (where facebook will send the user)
-    </span>
-   </li>
-   <li>
-    <span>
-     After that user gives permissions, fb will redirect to redirect_uri with other parameters
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The procedure seems quite complicated and requires a web server component that interacts on one side with messenger platform and on the other side handles the facebook login.
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Which details
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    TODO update. Talk also about not saving personal details of users, only looking at likes and tagged places
+    The identified scopes that are necessary to retrieve both the user likes and the tagged locations are “user_likes” and “user_tagged_places”. The data obtained can be used to estimate the personality traits and to obtain a list of places categories that the user has shown interest for. To make the correspondence between Facebook places and Foursquare places, the intent of matching is specified to the places search API.
    </span>
   </p>
   <h4 id="h.94tbwfjttna9">
    <span>
-    Big5 computation
+    Big Five computation
    </span>
   </h4>
   <p>
@@ -7574,7 +7541,29 @@
   </p>
   <p>
    <span>
-    MagicSauce
+    Another third-party component, that is very useful for the personalization approach, is the computation of the
+   </span>
+   <span>
+    big five
+   </span>
+   <span>
+    personality traits
+   </span>
+   <sup>
+    <a href="#ftnt229" id="ftnt_ref229">
+     [229]
+    </a>
+   </sup>
+   <span>
+    . Since having a mapping from personal preferences and tastes to this five-factors representation requires a lot of training data, it is quite unfeasible to start from scratch without an existing dataset. For this reason, a search of online services has been done. The requirement that we searched for, beyond free usage, is to avoid personal detail disclosure. For this reason only solutions that allow anonymous data to be sent and retrieved were considered (no third party application login, only sending anonymous features to obtain a response over the personality traits). In an exploration phase, an interesting service has been found, that only requires a list of facebook pages identifier to compute the personality traits. This service is ApplyMagicSauce,
+   </span>
+   <sup>
+    <a href="#ftnt230" id="ftnt_ref230">
+     [230]
+    </a>
+   </sup>
+   <span>
+    that can be used both on their site, allowing their application to read the personal profile, or can be used as a web service, sending simply the list of pages in any way indicating which user is linked. The results provided are both the big five and some concentration areas described before. They can be used to fill the user vector and to understand better his personality.
    </span>
   </p>
   <h4 id="h.bfdsu7aum8vc">
@@ -7584,35 +7573,29 @@
   </h4>
   <p>
    <span>
-    Bootstrap: how to ask question in chat without being invasive
+    Other additional data sources can refer for example to the weather conditions. Being bikes vehicles subject to bad weather conditions, considering precipitations could be advantageous for the user. For example while retrieving the informations for a trip, the bot could warn the user of an imminent storm.
    </span>
   </p>
   <p>
    <span>
-    Meteo?
+    Different weather API are available online, and the criteria to choose which one to use should be the accuracy and the availability of detailed information.
    </span>
   </p>
   <p>
    <span>
-    Weather forecasts: if bad weather is expected, tell user
-   </span>
-   <span>
-    <a href="https://www.wunderground.com/weather/api/">
-     https://www.wunderground.com/weather/api/
-    </a>
-   </span>
-   <span>
+    TODO expand that?
    </span>
   </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.78zc2qf1izjb">
+  <h3 id="h.sqk494c7jv65">
    <span>
     Data modeling
    </span>
   </h3>
+  <p>
+   <span>
+    TODO tell there how the data is stored in persistence, which informations are linked to others, ...
+   </span>
+  </p>
   <p>
    <span>
     Relative to manipulation of information and the persistence.
@@ -7932,48 +7915,47 @@
   </p>
   <p>
    <span>
-    This section focuses on the bot prototype that has been developed to put in practise some of the studies that have been done. The implementation can be divided in three main areas:
+    This chapter focuses on the bot prototype that has been developed to put in practise some of the studies that have been done. Differently from the previous chapter, that delineed the idea of the approach and is therefore more design-centred, this chapter only talks about the things that have reached the implementation stage. The implementation can be divided in two main areas:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Omnichannel implementation, with platform-dependent code completely decoupled from the core of the bot
+     Omnichannel implementation: platform-dependent code completely decoupled from the core of the bot;
     </span>
    </li>
    <li>
     <span>
-     Natural Language Understanding, with the implementation of recurrent neural network for joint intent detection and slot filling in a multiturn environment
-    </span>
-   </li>
-   <li>
-    <span>
-     Personalization and interaction with the FB graph API
+     Natural Language Understanding: the implementation of recurrent neural network for joint intent detection and slot filling in single and multi turn environments.
     </span>
    </li>
   </ul>
   <p>
    <span>
+    As mentioned previously the personalization part remained as a draft only and is not active in the prototype.
    </span>
   </p>
   <p>
    <span>
-    TODO add details about which features have been implemented, specify again that no personalization
+    While the first part is really bound to the bot scenario, where it is important to interface with the messaging platforms, the second one can also be used as a standalone framework to evaluate performances on different datasets.
    </span>
   </p>
   <p>
    <span>
-    While the first two areas have a complete path in this work (from approach choice to implementation and measurements), the personalization has not reached the implementation stage.
+    TODO this part about public implementation is relevant?
    </span>
   </p>
   <p>
    <span>
-    The implementation focused more on experiments with NLU techniques and experimentation of them.
+    The whole implementation of the system is available as a open source repository,
    </span>
-  </p>
-  <p>
+   <sup>
+    <a href="#ftnt231" id="ftnt_ref231">
+     [231]
+    </a>
+   </sup>
    <span>
-    TODO add link to implementation github?
+    that contains two modules: one dedicated to the specific bot for the bike sharing, while the other is relative to the Natural Language Understanding and neural networks.
    </span>
   </p>
   <h2 id="h.xhx4g788ab7d">
@@ -7993,7 +7975,7 @@
   </p>
   <p>
    <span>
-    The overall architecture of all the distributed components can be viewed in figure [REF FIG:physicalComponents].
+    The overall architecture of all the distributed components can be viewed in figure [REF FIG:physicalComponents]. In this figure different types of components can be seen. On the left the user devices are shown, that can interface with different messaging platforms and websites. Those red components are not manageable from the bot developer. Usually an account is built for the bot, but the communication with the user is completely handled by the reference platform. Going a bit on the right, we can see the concentration role of the Bot Framework server, that handles dishomogeneous data on the left and transforms them to a more standardized form on the right. This component is configurable from the bo developer, that through a web graphical interface can add and configure the channels on the left and at the same moment configure the external webservice on the right (the Bot Server)
    </span>
   </p>
   <p>
@@ -8102,8 +8084,8 @@
     The Bot Server is hosted on heroku
    </span>
    <sup>
-    <a href="#ftnt218" id="ftnt_ref218">
-     [218]
+    <a href="#ftnt232" id="ftnt_ref232">
+     [232]
     </a>
    </sup>
    <span>
@@ -8258,8 +8240,8 @@
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as backed uses TensorFlow as default and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt219" id="ftnt_ref219">
-     [219]
+    <a href="#ftnt233" id="ftnt_ref233">
+     [233]
     </a>
    </sup>
    <span>
@@ -8284,8 +8266,8 @@
     But when trying to implement less regular models, such as the encoder-decoder by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt220" id="ftnt_ref220">
-     [220]
+    <a href="#ftnt234" id="ftnt_ref234">
+     [234]
     </a>
    </sup>
    <span>
@@ -8475,8 +8457,8 @@
     Keras Recurrent API is described extensively on its documentation,
    </span>
    <sup>
-    <a href="#ftnt221" id="ftnt_ref221">
-     [221]
+    <a href="#ftnt235" id="ftnt_ref235">
+     [235]
     </a>
    </sup>
    <span>
@@ -8522,8 +8504,8 @@
      GRUCell: Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt222" id="ftnt_ref222">
-      [222]
+     <a href="#ftnt236" id="ftnt_ref236">
+      [236]
      </a>
     </sup>
    </li>
@@ -8532,8 +8514,8 @@
      LSTMCell: Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt223" id="ftnt_ref223">
-      [223]
+     <a href="#ftnt237" id="ftnt_ref237">
+      [237]
      </a>
     </sup>
    </li>
@@ -8546,8 +8528,8 @@
     ,
    </span>
    <sup>
-    <a href="#ftnt224" id="ftnt_ref224">
-     [224]
+    <a href="#ftnt238" id="ftnt_ref238">
+     [238]
     </a>
    </sup>
    <span>
@@ -8589,8 +8571,8 @@
     More details about the available classes can be found in the official documentation of the seq2seq package.
    </span>
    <sup>
-    <a href="#ftnt225" id="ftnt_ref225">
-     [225]
+    <a href="#ftnt239" id="ftnt_ref239">
+     [239]
     </a>
    </sup>
   </p>
@@ -8696,8 +8678,8 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach by Liu et al.
    </span>
    <sup>
-    <a href="#ftnt226" id="ftnt_ref226">
-     [226]
+    <a href="#ftnt240" id="ftnt_ref240">
+     [240]
     </a>
    </sup>
    <span>
@@ -8709,16 +8691,16 @@
     The papers come with an implementation that is not complete
    </span>
    <sup>
-    <a href="#ftnt227" id="ftnt_ref227">
-     [227]
+    <a href="#ftnt241" id="ftnt_ref241">
+     [241]
     </a>
    </sup>
    <span>
     : output label dependencies are not considered. Another negative property of the implementation is that it does not use the latest API available, that provides higher level functionalities and helper functions. Another implementation has been found that uses the latest API and is really a lot more understandable that the original one.
    </span>
    <sup>
-    <a href="#ftnt228" id="ftnt_ref228">
-     [228]
+    <a href="#ftnt242" id="ftnt_ref242">
+     [242]
     </a>
    </sup>
    <span>
@@ -8735,8 +8717,8 @@
     Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt229" id="ftnt_ref229">
-     [229]
+    <a href="#ftnt243" id="ftnt_ref243">
+     [243]
     </a>
    </sup>
    <span>
@@ -9007,8 +8989,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt230" id="ftnt_ref230">
-     [230]
+    <a href="#ftnt244" id="ftnt_ref244">
+     [244]
     </a>
    </sup>
    <span>
@@ -9030,72 +9012,72 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt231" id="ftnt_ref231">
-     [231]
+    <a href="#ftnt245" id="ftnt_ref245">
+     [245]
     </a>
    </sup>
    <span>
     as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
-    <a href="#ftnt232" id="ftnt_ref232">
-     [232]
+    <a href="#ftnt246" id="ftnt_ref246">
+     [246]
     </a>
    </sup>
    <span>
     , Google’s Api.ai
    </span>
    <sup>
-    <a href="#ftnt233" id="ftnt_ref233">
-     [233]
+    <a href="#ftnt247" id="ftnt_ref247">
+     [247]
     </a>
    </sup>
    <span>
     , Microsoft’s Luis
    </span>
    <sup>
-    <a href="#ftnt234" id="ftnt_ref234">
-     [234]
+    <a href="#ftnt248" id="ftnt_ref248">
+     [248]
     </a>
    </sup>
    <span>
     , Apple’s SiriKit
    </span>
    <sup>
-    <a href="#ftnt235" id="ftnt_ref235">
-     [235]
+    <a href="#ftnt249" id="ftnt_ref249">
+     [249]
     </a>
    </sup>
    <span>
     , IBM’s Watson
    </span>
    <sup>
-    <a href="#ftnt236" id="ftnt_ref236">
-     [236]
+    <a href="#ftnt250" id="ftnt_ref250">
+     [250]
     </a>
    </sup>
    <span>
     , Facebook’s Wit
    </span>
    <sup>
-    <a href="#ftnt237" id="ftnt_ref237">
-     [237]
+    <a href="#ftnt251" id="ftnt_ref251">
+     [251]
     </a>
    </sup>
    <span>
     , and Snips
    </span>
    <sup>
-    <a href="#ftnt238" id="ftnt_ref238">
-     [238]
+    <a href="#ftnt252" id="ftnt_ref252">
+     [252]
     </a>
    </sup>
    <span>
     itself. The dataset used for their benchmark
    </span>
    <sup>
-    <a href="#ftnt239" id="ftnt_ref239">
-     [239]
+    <a href="#ftnt253" id="ftnt_ref253">
+     [253]
     </a>
    </sup>
    <span>
@@ -9151,8 +9133,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt240" id="ftnt_ref240">
-     [240]
+    <a href="#ftnt254" id="ftnt_ref254">
+     [254]
     </a>
    </sup>
    <span>
@@ -9246,8 +9228,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt241" id="ftnt_ref241">
-     [241]
+    <a href="#ftnt255" id="ftnt_ref255">
+     [255]
     </a>
    </sup>
    <span>
@@ -9395,8 +9377,8 @@
     TODO Evaluation of word2vec: “italian Word Embeddings Go to Italy: a Comparison of Models and Training Datasets”
    </span>
    <sup>
-    <a href="#ftnt242" id="ftnt_ref242">
-     [242]
+    <a href="#ftnt256" id="ftnt_ref256">
+     [256]
     </a>
    </sup>
    <span>
@@ -12556,7 +12538,13 @@
      [215]
     </a>
     <span>
-     Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
+    </span>
+    <span>
+     <a href="https://developers.google.com/maps/documentation/geocoding/intro">
+      https://developers.google.com/maps/documentation/geocoding/intro
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12566,7 +12554,13 @@
      [216]
     </a>
     <span>
-     Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
+    </span>
+    <span>
+     <a href="https://nominatim.openstreetmap.org/">
+      https://nominatim.openstreetmap.org/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12576,7 +12570,13 @@
      [217]
     </a>
     <span>
-     Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
+    </span>
+    <span>
+     <a href="https://www.mapbox.com/geocoding/">
+      https://www.mapbox.com/geocoding/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12588,8 +12588,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.heroku.com/">
-      https://www.heroku.com/
+     <a href="https://developers.google.com/maps/documentation/directions/">
+      https://developers.google.com/maps/documentation/directions/
      </a>
     </span>
     <span>
@@ -12604,8 +12604,8 @@
     <span>
     </span>
     <span>
-     <a href="http://www.fast.ai/2017/01/03/keras/">
-      http://www.fast.ai/2017/01/03/keras/
+     <a href="https://www.opencyclemap.org/">
+      https://www.opencyclemap.org/
      </a>
     </span>
     <span>
@@ -12618,13 +12618,13 @@
      [220]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://www.mapbox.com/api-documentation/%23directions">
+      https://www.mapbox.com/api-documentation/#directions
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12634,13 +12634,7 @@
      [221]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://keras.io/layers/recurrent/">
-      https://keras.io/layers/recurrent/
-     </a>
-    </span>
-    <span>
+     Key:quercia2015smelly Daniele Quercia, Rossano Schifanella, Luca Maria Aiello, Kate McLean. Smelly Maps: The Digital Life of Urban Smellscapes. In Proc. of the 9th International AAAI Conference on Web and Social Media (ICWSM), 2015.
     </span>
    </p>
   </div>
@@ -12650,7 +12644,7 @@
      [222]
     </a>
     <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
+     Key:quercia2016emotional Daniele Quercia, Luca Maria Aiello, Rossano Schifanella. The Emotional and Chromatic Layers of Urban Smells. In Proc. of the 10th International AAAI Conference on Web and Social Media (ICWSM), 2016.
     </span>
    </p>
   </div>
@@ -12660,7 +12654,7 @@
      [223]
     </a>
     <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
+     Key:aiello2016chatty Luca Maria Aiello, Rossano Schifanella, Daniele Quercia, Francesco Aletta. Chatty maps: constructing sound maps of urban areas from social media data. Royal Society Open Science (RSOS), 2016.
     </span>
    </p>
   </div>
@@ -12672,8 +12666,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/farizrahman4u/recurrentshop">
-      https://github.com/farizrahman4u/recurrentshop
+     <a href="https://developers.google.com/places/web-service/search">
+      https://developers.google.com/places/web-service/search
      </a>
     </span>
     <span>
@@ -12688,8 +12682,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
-      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
+     <a href="https://developer.foursquare.com/docs/api/venues/search">
+      https://developer.foursquare.com/docs/api/venues/search
      </a>
     </span>
     <span>
@@ -12702,13 +12696,13 @@
      [226]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://developer.foursquare.com/docs/venues/explore">
+      https://developer.foursquare.com/docs/venues/explore
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12720,8 +12714,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/HadoopIt/rnn-nlu">
-      https://github.com/HadoopIt/rnn-nlu
+     <a href="https://zephoria.com/top-15-valuable-facebook-statistics/">
+      https://zephoria.com/top-15-valuable-facebook-statistics/
      </a>
     </span>
     <span>
@@ -12736,8 +12730,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
-      https://github.com/applenob/RNN-for-Joint-NLU
+     <a href="https://developers.facebook.com/docs/facebook-login/permissions/">
+      https://developers.facebook.com/docs/facebook-login/permissions/
      </a>
     </span>
     <span>
@@ -12750,7 +12744,7 @@
      [229]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:goldberg1993structure Goldberg, L. R. (1993). The structure of phenotypic personality traits. American Psychologist. 48: 26–34. doi:10.1037/0003-066x.48.1.26
     </span>
    </p>
   </div>
@@ -12760,7 +12754,13 @@
      [230]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+    <span>
+     <a href="https://applymagicsauce.com/research.html">
+      https://applymagicsauce.com/research.html
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12772,8 +12772,8 @@
     <span>
     </span>
     <span>
-     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
-      https://snips.ai/content/sdk-benchmark-visualisation/
+     <a href="https://github.com/D2KLab/botcycle">
+      https://github.com/D2KLab/botcycle
      </a>
     </span>
     <span>
@@ -12788,8 +12788,8 @@
     <span>
     </span>
     <span>
-     <a href="https://developer.amazon.com/alexa">
-      https://developer.amazon.com/alexa
+     <a href="https://www.heroku.com/">
+      https://www.heroku.com/
      </a>
     </span>
     <span>
@@ -12804,8 +12804,8 @@
     <span>
     </span>
     <span>
-     <a href="https://api.ai/">
-      https://api.ai/
+     <a href="http://www.fast.ai/2017/01/03/keras/">
+      http://www.fast.ai/2017/01/03/keras/
      </a>
     </span>
     <span>
@@ -12818,13 +12818,13 @@
      [234]
     </a>
     <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     <a href="https://www.luis.ai/">
-      https://www.luis.ai/
-     </a>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
     </span>
     <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12836,8 +12836,8 @@
     <span>
     </span>
     <span>
-     <a href="https://developer.apple.com/sirikit/">
-      https://developer.apple.com/sirikit/
+     <a href="https://keras.io/layers/recurrent/">
+      https://keras.io/layers/recurrent/
      </a>
     </span>
     <span>
@@ -12850,13 +12850,7 @@
      [236]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
-      https://www.ibm.com/watson/developercloud/nl-classifier.html
-     </a>
-    </span>
-    <span>
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -12866,13 +12860,7 @@
      [237]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://wit.ai/">
-      https://wit.ai/
-     </a>
-    </span>
-    <span>
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -12884,8 +12872,8 @@
     <span>
     </span>
     <span>
-     <a href="https://snips.ai/">
-      https://snips.ai/
+     <a href="https://github.com/farizrahman4u/recurrentshop">
+      https://github.com/farizrahman4u/recurrentshop
      </a>
     </span>
     <span>
@@ -12900,8 +12888,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/snipsco/nlu-benchmark">
-      https://github.com/snipsco/nlu-benchmark
+     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
+      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
      </a>
     </span>
     <span>
@@ -12914,7 +12902,13 @@
      [240]
     </a>
     <span>
-     Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
+    </span>
+    <span>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
+    </span>
+    <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -12924,7 +12918,13 @@
      [241]
     </a>
     <span>
-     Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
+    </span>
+    <span>
+     <a href="https://github.com/HadoopIt/rnn-nlu">
+      https://github.com/HadoopIt/rnn-nlu
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12932,6 +12932,206 @@
    <p>
     <a href="#ftnt_ref242" id="ftnt242">
      [242]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
+      https://github.com/applenob/RNN-for-Joint-NLU
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref243" id="ftnt243">
+     [243]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref244" id="ftnt244">
+     [244]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref245" id="ftnt245">
+     [245]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+      https://snips.ai/content/sdk-benchmark-visualisation/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref246" id="ftnt246">
+     [246]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.amazon.com/alexa">
+      https://developer.amazon.com/alexa
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref247" id="ftnt247">
+     [247]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://api.ai/">
+      https://api.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref248" id="ftnt248">
+     [248]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.luis.ai/">
+      https://www.luis.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref249" id="ftnt249">
+     [249]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.apple.com/sirikit/">
+      https://developer.apple.com/sirikit/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref250" id="ftnt250">
+     [250]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
+      https://www.ibm.com/watson/developercloud/nl-classifier.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref251" id="ftnt251">
+     [251]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://wit.ai/">
+      https://wit.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref252" id="ftnt252">
+     [252]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/">
+      https://snips.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref253" id="ftnt253">
+     [253]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/snipsco/nlu-benchmark">
+      https://github.com/snipsco/nlu-benchmark
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref254" id="ftnt254">
+     [254]
+    </a>
+    <span>
+     Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref255" id="ftnt255">
+     [255]
+    </a>
+    <span>
+     Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref256" id="ftnt256">
+     [256]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
