@@ -1382,7 +1382,7 @@
   </p>
   <p>
    <span>
-    The fifth chapter [REF:validation] contains the evaluation of the system, both for the Natural Language Understanding performance [REF:validationNLU] and for the overall system [REF:validationWhole]. For the NLU are presented the datasets used [REF:validationDatasets] both for single-turn and multi-turn interactions, then a description of the measures [REF:validationMeasures] and the obtained results [REF:validationResults], comparing the effects of different choices.
+    The fifth chapter [REF:validation] contains the evaluation of the system, both for the Natural Language Understanding performance [REF:validationNLU] and for the overall system [REF:validationWhole]. For the NLU are presented the datasets used [REF:validationDatasets] both for single-turn and multi-turn interactions, then a description of the measures and the obtained results [REF:validationMeasures], comparing the effects of different choices.
    </span>
   </p>
   <p>
@@ -7289,24 +7289,14 @@
   </p>
   <p>
    <span>
-    This section instead analyzes the kinds of information that both have been used in the prototype and may be used for the implementation of the personalization approach. After giving some details about each data source with the respective APIs, a brief description is given about how those structured informations have been treated and used in the implementation.
+    This section instead analyzes the kinds of information that both have been used in the prototype and may be used for the implementation of the personalization approach. Some details are given about each data source that is necessary, together  with the respective APIs that can be used. The sources of data cover different domains: from the bike sharing informations, passing through the computation of directions and geocoding, and going in the direction of personalization by means of APIs to retrieve the recommendation items or APIs to compute user features. Below are listed the different data sources that need to be queried to provide updated information to the users.
    </span>
   </p>
-  <h3 id="h.kiwn3l8bofka">
-   <span>
-    Data Sources
-   </span>
-  </h3>
-  <p>
-   <span>
-    The sources of data cover different domains: from the bike sharing informations, passing through the computation of directions and geocoding, and going in the direction of personalization by means of APIs to retrieve the recommendation items or APIs to compute user features Below are listed the different data sources that need to be queried to provide updated information to the users.
-   </span>
-  </p>
-  <h4 id="h.5z1ti99xp363">
+  <h3 id="h.5z1ti99xp363">
    <span>
     Bikes
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     Bike sharing is an expanding market, where every day more companies are investing in, and more people decide to use them for their relatively small cost and for their easiness in the urban environment. The majority of the providers have station-based systems, where the users begin and end their trip at fixed locations (the stations). However nowadays station-free systems are being spread in the major cities, with the advantage of being able to leave the vehicle in any responsible place.
@@ -7355,11 +7345,11 @@
     This library interfaces with different bike sharing providers, by using open RESTful APIs when available, or using web scraping to connect to other ones. The structured informations about the bikes and stations can be updated from the source and be used for any computation. Being completely open-source, everyone can contribute and make it work for additional systems.
    </span>
   </p>
-  <h4 id="h.kiq28t792vyx">
+  <h3 id="h.kiq28t792vyx">
    <span>
     Geographical informations
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     Instead on the side of geographical tools, two main needs are addressed: geocoding capabilities, as tools for the entity resolver that needs to turn textual entities into geographical objects, and the computation of paths between sets of points with specific constraints.
@@ -7449,11 +7439,11 @@
     . This feature was not considered, in favour of the usual optimal path.
    </span>
   </p>
-  <h4 id="h.mvejy7yxrs7l">
+  <h3 id="h.mvejy7yxrs7l">
    <span>
     Places
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     Instead for the information about the places, required for the recommendation strategy described above, there are different options that can be considered.
@@ -7488,11 +7478,11 @@
     that can be used to search for relevant places inside a selected area on a given section (that corresponds to high level categories: food, drinks, coffee, shops, arts, outdoors, sights, trending, venues frequently visited after a given one, or a mix of recommendations generated without a query from the user called topPicks). This second API can be used to get more recommendation-related items against search-related results: the objective of search is really different. Furthermore the call limits of Foursquare are even bigger (120.000 requests per day) and this makes it the best candidate for the required features.
    </span>
   </p>
-  <h4 id="h.awxbbia6w877">
+  <h3 id="h.awxbbia6w877">
    <span>
     Facebook Graph API
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     The personalization approach described before requires an analysis of social networks to perform an analysis of user features and the pages and places that are liked by them. Nowadays the most widespread social network is undoubtedly Facebook. With around 1.4 billion users active daily,
@@ -7529,11 +7519,11 @@
     The identified scopes that are necessary to retrieve both the user likes and the tagged locations are “user_likes” and “user_tagged_places”. The data obtained can be used to estimate the personality traits and to obtain a list of places categories that the user has shown interest for. To make the correspondence between Facebook places and Foursquare places, the intent of matching is specified to the places search API.
    </span>
   </p>
-  <h4 id="h.94tbwfjttna9">
+  <h3 id="h.94tbwfjttna9">
    <span>
     Big Five computation
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     [LABEL:approachIRbig5]
@@ -7566,11 +7556,11 @@
     that can be used both on their site, allowing their application to read the personal profile, or can be used as a web service, sending simply the list of pages in any way indicating which user is linked. The results provided are both the big five and some concentration areas described before. They can be used to fill the user vector and to understand better his personality.
    </span>
   </p>
-  <h4 id="h.bfdsu7aum8vc">
+  <h3 id="h.bfdsu7aum8vc">
    <span>
     Other
    </span>
-  </h4>
+  </h3>
   <p>
    <span>
     Other additional data sources can refer for example to the weather conditions. Being bikes vehicles subject to bad weather conditions, considering precipitations could be advantageous for the user. For example while retrieving the informations for a trip, the bot could warn the user of an imminent storm.
@@ -7579,323 +7569,6 @@
   <p>
    <span>
     Different weather API are available online, and the criteria to choose which one to use should be the accuracy and the availability of detailed information.
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO expand that?
-   </span>
-  </p>
-  <h3 id="h.sqk494c7jv65">
-   <span>
-    Data modeling
-   </span>
-  </h3>
-  <p>
-   <span>
-    TODO tell there how the data is stored in persistence, which informations are linked to others, ...
-   </span>
-  </p>
-  <p>
-   <span>
-    Relative to manipulation of information and the persistence.
-   </span>
-  </p>
-  <p>
-   <span>
-    Some data modelling
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Request: {utterance: {userID, time, content}, NLP: {intent, entities:[type,value]}, context, info: {stations:[], places:[], meteo:[]}, recommendations: [type,value,confidence], decision: {}}
-   </span>
-  </p>
-  <p>
-   <span>
-    Is filled along the pipeline. Each stage is adding an element to it
-   </span>
-  </p>
-  <p>
-   <span>
-    NLP
-   </span>
-  </p>
-  <p>
-   <span>
-    From utterance:
-   </span>
-   <span>
-    utteranceID
-   </span>
-   <span>
-    , userID, time, content
-   </span>
-  </p>
-  <p>
-   <span>
-    To: {intent,entities[type,value]}
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Entity resolver
-   </span>
-  </p>
-  <p>
-   <span>
-    From user model:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     User city
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     User position
-    </span>
-   </li>
-   <li>
-    <span>
-     User places: home, work/school
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The location entities become references to places in the DB (using places API):
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     From name to place (the name in the utterance is used as keyword to do a search in the city proximity)
-    </span>
-   </li>
-   <li>
-    <span>
-     From position to place (when user sends position, find a relevant place in the proximity)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Core
-   </span>
-  </p>
-  <p>
-   <span>
-    Internal state:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Previous questions / topic (field of dialogue): to understand messages without explicit intent and to resume interaction (stack of interactions: “i want a bike” PUSH “where are you?” -&gt; “i am at XXX” -&gt; “ok got it” POP “you can find 3 bikes at YYY”)
-    </span>
-   </li>
-   <li>
-    <span>
-     Special topic of bootstrap: activated at the beginning
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    Core steps:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     Intent
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     If the intent is not specified (or generic intent “approve”/”disapprove”), look at the entity provided and if a previous state is saved. Based on these, derive the intent
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     Preparation of parameters for functions (take from entities) and check requirements
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     If requirements are ok, proceed with steps
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     If previous state, pop it
-    </span>
-   </li>
-  </ul>
-  <ul>
-   <li>
-    <span>
-     If some requirements are missing, save current state (push) and ask for requirement
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Bike sharing:
-   </span>
-  </p>
-  <p>
-   <span>
-    Station:
-   </span>
-   <span>
-    stationID
-   </span>
-   <span>
-    , name, description
-   </span>
-   <span>
-    , (lat,long), free_bikes, free_slots
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Personalization:
-   </span>
-  </p>
-  <p>
-   <span>
-    User:
-   </span>
-   <span>
-    userID
-   </span>
-   <span>
-    , Name, Surname, sex, age
-   </span>
-  </p>
-  <p>
-   <span>
-    Episodic KB:
-   </span>
-   <span>
-    userID, location, time
-   </span>
-   <span>
-    , action (was at/took bike/left bike)
-   </span>
-  </p>
-  <p>
-   <span>
-    Explicit rating: collecting user feedback after recommendation / bootstrap / unsolicited rating → needs to be investigated
-   </span>
-  </p>
-  <p>
-   <span>
-    User features (built by the model): favorite/recurrent places, sportiveness, art interest
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     RecurrentAction:
-    </span>
-    <span>
-     ID
-    </span>
-    <span>
-     , userID, type, frequency (days in week pattern), time of day, userPlaceID (external key to UserPlace)
-    </span>
-   </li>
-   <li>
-    <span>
-     UserPlaces:
-    </span>
-    <span>
-     userID, placeID
-    </span>
-    <span>
-     , role (home/work/school/other)
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span>
-    The stimulus link from the result provider to the recommender contains: trip information / direct question to the recommending system
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    User_feature:
-   </span>
-   <span>
-    userID, featureID
-   </span>
-   <span>
-    , value ← output of user modeler, input to recommender
-   </span>
-  </p>
-  <p>
-   <span>
-    Place:
-   </span>
-   <span>
-    placeID
-   </span>
-   <span>
-    , name, description, (lat,long), category, subcategory
-   </span>
-  </p>
-  <p>
-   <span>
-    Place_feature:
-   </span>
-   <span>
-    placeID, featureID
-   </span>
-   <span>
-    , value
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
@@ -8162,7 +7835,7 @@
   </p>
   <p>
    <span>
-    This section focuses on the implementation that has been done relatively to the Natural Language Understanding described on the previous chapter [REF:approachNLU]. Firstly, a description is done of the external NLU provider that has been used to initially handle the understanding process and successively has been kept as a single-turn dataset collector and manager ([REF:implementationWit]). Then the discourse will cover some details about the frameworks used for implementing the neural networks in [REF:implementationNN], and also about some specific issues risen in the development in [REF:implementationNNDetails]. A dedicated subsection is then given to word embeddings in [REF:implementationWV] and the last part explains how the datasets have been collected and preprocessed to uniformly feed them to the neural network in [REF:implementationDatasets].
+    This section focuses on the implementation that has been done relatively to the Natural Language Understanding described on the previous chapter [REF:approachNLU]. Firstly, a description is done of the external NLU provider that has been used to initially handle the understanding process and successively has been kept as a single-turn dataset collector and manager ([REF:implementationWit]). Then the discourse will cover some details about the frameworks used for implementing the neural networks in [REF:implementationNN], and also about some specific issues risen in the development in [REF:implementationNNDetails]. A dedicated subsection is then given to word embeddings in [REF:implementationWV] and the last part explains how the datasets have been collected and preprocessed to uniformly be fed to the neural network in [REF:implementationDatasets].
    </span>
   </p>
   <h3 id="h.khvhakjb4317">
@@ -8195,12 +7868,7 @@
   </p>
   <p>
    <span>
-    This stage of development has been done in order to understand the main needs of the users, and progressively new intents and examples have been added. On the other side, this experimentation also helped understanding what the NLU tasks are, giving an orientation in the very big landscape of Natural Language Processing. This helped directioning the study of literature towards approaches that could do a similar sentence classification and parameters extraction.
-   </span>
-  </p>
-  <p>
-   <span>
-    It has been noticed that for the intent classification task a promising approach is to use Recurrent Neural Networks, so the studies (both theoretical and practical) went deeper in exploring this field.
+    This stage of development has been done in order to understand the main needs of the users, and progressively new intents and examples have been added. On the other side, this experimentation also helped understanding what the NLU tasks are, giving an orientation in the very big landscape of Natural Language Processing. This helped directioning the study of literature towards approaches that could do a similar sentence classification and parameters extraction. During this stage, it has been noticed that for the intent classification task a promising approach is to use Recurrent Neural Networks, so the studies (both theoretical and practical) went deeper in exploring this field.
    </span>
   </p>
   <h3 id="h.lp7vop78km60">
@@ -8221,22 +7889,54 @@
   <ul>
    <li>
     <span>
-     Stanford Core NLP: a java library that provides Tokenizer, NER, POS, Dependency Parsing, Coreference Resolution for languages: English, Arabic, Chinese, French, German, and Spanish;
+     Stanford Core NLP:
+    </span>
+    <sup>
+     <a href="#ftnt243" id="ftnt_ref243">
+      [243]
+     </a>
+    </sup>
+    <span>
+     a java library that provides Tokenizer, NER, POS, Dependency Parsing, Coreference Resolution for languages: English, Arabic, Chinese, French, German, and Spanish;
     </span>
    </li>
    <li>
     <span>
-     NLTK: a python library that focuses on Tokenizers, n-grams, POS, NER
+     NLTK:
+    </span>
+    <sup>
+     <a href="#ftnt244" id="ftnt_ref244">
+      [244]
+     </a>
+    </sup>
+    <span>
+     a python library that focuses on Tokenizers, n-grams, POS, NER
     </span>
    </li>
    <li>
     <span>
-     Syntaxnet: a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains pre-built models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths;
+     Syntaxnet:
+    </span>
+    <sup>
+     <a href="#ftnt245" id="ftnt_ref245">
+      [245]
+     </a>
+    </sup>
+    <span>
+     a neural-network NLP framework for TensorFlow. Helps building POS and Parsers. It contains pre-built models for POS and parsing. It is the most accurate parser for english, able to parse correctly garden-paths;
     </span>
    </li>
    <li>
     <span>
-     SpaCy: an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with pre-built models, and also fast.
+     SpaCy:
+    </span>
+    <sup>
+     <a href="#ftnt246" id="ftnt_ref246">
+      [246]
+     </a>
+    </sup>
+    <span>
+     an open source NLP framework that provides Tokenizer, NER, POS, Dependencies, Word Vectors, Parsing for different languages with the goal of being ready to use with pre-built models, and also fast.
     </span>
    </li>
   </ul>
@@ -8253,8 +7953,8 @@
     StackOverflow
    </span>
    <sup>
-    <a href="#ftnt243" id="ftnt_ref243">
-     [243]
+    <a href="#ftnt247" id="ftnt_ref247">
+     [247]
     </a>
    </sup>
    <span>
@@ -8267,21 +7967,34 @@
     ”
    </span>
    <sup>
-    <a href="#ftnt244" id="ftnt_ref244">
-     [244]
+    <a href="#ftnt248" id="ftnt_ref248">
+     [248]
     </a>
    </sup>
    <span>
-    ). The programming languages that are supported for Neural Networks are many, but the most used nowadays is Python. In Python the most used frameworks are Keras and TensorFlow.
+    ). The programming languages that are supported for Neural Networks are many, but the most used nowadays is Python. In Python the most used frameworks are Keras
    </span>
+   <sup>
+    <a href="#ftnt249" id="ftnt_ref249">
+     [249]
+    </a>
+   </sup>
+   <span>
+    and TensorFlow.
+   </span>
+   <sup>
+    <a href="#ftnt250" id="ftnt_ref250">
+     [250]
+    </a>
+   </sup>
   </p>
   <p>
    <span>
     For choosing between Keras and Tensorflow, experiments have been done with both. It is important to say that the two frameworks are not uncorrelated, because Keras as default backend uses TensorFlow and TensorFlow recognizes Keras as its high-level interface
    </span>
    <sup>
-    <a href="#ftnt245" id="ftnt_ref245">
-     [245]
+    <a href="#ftnt251" id="ftnt_ref251">
+     [251]
     </a>
    </sup>
    <span>
@@ -8301,12 +8014,12 @@
     But when trying to implement less regular models, such as the encoder-decoder of
    </span>
    <sup>
-    <a href="#ftnt246" id="ftnt_ref246">
-     [246]
+    <a href="#ftnt252" id="ftnt_ref252">
+     [252]
     </a>
    </sup>
    <span>
-    , the criticality of using only high level API came out, especially considering complex parts as output dependencies.
+    , the criticality of using only high level API came out, especially considering complex parts like output dependencies.
    </span>
   </p>
   <p>
@@ -8484,11 +8197,19 @@
   </h4>
   <p>
    <span>
-    Also when working on recurrent networks, using Keras layers is like playing with LEGO: blocks can be easily stacked one on the top of the other (also forks and joins are quite easy to perform). Keras Recurrent API is described extensively on its documentation,
+    Similarly to what happens with feedforward neural network, also when working on recurrent ones handling Keras layers is like playing with LEGO
    </span>
    <sup>
-    <a href="#ftnt247" id="ftnt_ref247">
-     [247]
+    <a href="#ftnt253" id="ftnt_ref253">
+     [253]
+    </a>
+   </sup>
+   <span>
+    : blocks can be easily stacked one on the top of the other (also forks and joins are quite easy to perform). Keras Recurrent API is described extensively on its documentation,
+   </span>
+   <sup>
+    <a href="#ftnt254" id="ftnt_ref254">
+     [254]
     </a>
    </sup>
    <span>
@@ -8530,7 +8251,7 @@
      SimpleRNNCell
     </span>
     <span>
-     : a cell that simply concatenates the input with the previous state and passes it through a feedforward layer
+     : a cell that simply concatenates the input with the previous state and passes it through a feedforward layer;
     </span>
    </li>
    <li>
@@ -8541,10 +8262,13 @@
      : Gated Recurrent Unit
     </span>
     <sup>
-     <a href="#ftnt248" id="ftnt_ref248">
-      [248]
+     <a href="#ftnt255" id="ftnt_ref255">
+      [255]
      </a>
     </sup>
+    <span>
+     ;
+    </span>
    </li>
    <li>
     <span>
@@ -8554,10 +8278,13 @@
      : Long-Short Term Memory layer
     </span>
     <sup>
-     <a href="#ftnt249" id="ftnt_ref249">
-      [249]
+     <a href="#ftnt256" id="ftnt_ref256">
+      [256]
      </a>
     </sup>
+    <span>
+     .
+    </span>
    </li>
   </ul>
   <p>
@@ -8580,8 +8307,8 @@
     ,
    </span>
    <sup>
-    <a href="#ftnt250" id="ftnt_ref250">
-     [250]
+    <a href="#ftnt257" id="ftnt_ref257">
+     [257]
     </a>
    </sup>
    <span>
@@ -8614,7 +8341,7 @@
    </li>
    <li>
     <span>
-     Seq2Seq native support: classes for defining encoders and decoders, with some helpers for modeling output dependencies can make a lot easier to build complex models that are not a linear chain of layers but contain links that move backwards (as in output dependencies, where the output label is fed back to the decoder RNN). For example to build a decoder that considers output dependencies, in tensorflow 3 components are needed: a RNN cell (e.g. LSTMCell), a CustomHelper (that is responsible to provide values to the cell and take the outputs. All this by simply declaring three custom functions) and a BasicDecoder that combines the cell with the helper and builds a layer. By dividing the roles of the cell and of the helper, a complex decoder can be built without a big effort.
+     Seq2Seq native support: classes for defining encoders and decoders, with some helpers for modeling output dependencies can make a lot easier to build complex models that are not a linear chain of layers but contain links that move backwards in the stacked layers (as in output dependencies, where the output label is fed back to the decoder RNN). For example to build a decoder that considers output dependencies, in tensorflow three components are needed: a RNN cell (e.g. LSTMCell), a CustomHelper (that is responsible to provide values to the cell and take the outputs by simply declaring three custom functions) and a BasicDecoder that combines the cell with the helper and builds a layer. By dividing the roles of the cell and of the helper, a complex decoder can be built without a big effort.
     </span>
    </li>
   </ul>
@@ -8623,8 +8350,8 @@
     More details about the available classes can be found in the official documentation of the seq2seq package.
    </span>
    <sup>
-    <a href="#ftnt251" id="ftnt_ref251">
-     [251]
+    <a href="#ftnt258" id="ftnt_ref258">
+     [258]
     </a>
    </sup>
   </p>
@@ -8635,18 +8362,18 @@
   </h4>
   <p>
    <span>
-    The objectives of the decision are:
+    The objectives of the decision between the frameworks are:
    </span>
   </p>
   <ul>
    <li>
     <span>
-     Ability to build the proposed network without too much headache. Especially for the decoding stage, some advanced wiring is needed and would like not to start from scratch (error-prone) but have some support from the library
+     Ability to build the proposed network without too much headache. Especially for the decoding stage, some advanced wiring is needed and would like not to start from scratch (being really error-prone) but have some native support from the library;
     </span>
    </li>
    <li>
     <span>
-     Code readability/maintainability: possibly using quite high level operations, no reinventing the wheel (in a buggy version)
+     Code readability and maintainability: possibly using quite high level operations, no reinventing the wheel (in a buggy version)
     </span>
    </li>
    <li>
@@ -8657,7 +8384,7 @@
   </ul>
   <p>
    <span>
-    Considering those objectives, the choice has been to use the native TensorFlow APIs for building the solution, using the seq2seq package for faster implementation.
+    Considering these objectives, the choice has been to use the native TensorFlow APIs for building the solution, using the seq2seq package for faster implementation. The additional work required to build even simple networks is compensated by the great flexibility of the library.
    </span>
   </p>
   <h3 id="h.gj9dqxa5vak1">
@@ -8683,7 +8410,7 @@
     tensors
    </span>
    <span>
-    : they are a generalization of (multidimensional) vectors that will be used to contain values. Using and connecting them in computational graphs means defining how the values contained will be processed. The big difference with normal variables is when the computations defined will be executed.
+    : they are a generalization of (multidimensional) vectors that will be used to contain values. Using and connecting them in computational graphs means defining how the values contained will be processed. The big difference with normal variables is the time of execution of the computations defined.
    </span>
   </p>
   <p>
@@ -8708,17 +8435,38 @@
    </span>
    <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=c%3Da%2Bb"/>
    <span>
-    is executed the resulting tensor won’t contain 4. It will be stored that c can be computed by summing what is contained in a and b. In this way the operations can be defined once and the same computational graph can be run different times. To actually run the graph is necessary to build a session, that is the execution environment.
+    is executed the resulting tensor won’t contain 4. It will be stored that c can be computed by summing what is contained in
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=a"/>
+   <span>
+    and
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=b"/>
+   <span>
+    . In this way the operations can be defined once and the same computational graph can be run different times. To actually run the graph it is necessary to build a session, that is the execution environment. But in order to have different inputs to the same graph, there is the need to define the starting tensors not as Variables but as placeholders. Later when running the session, the placeholder values can be fed to the graph and the results can be evaluated. The library is powerful in how allows to define variables that can be initialized and automatically optimized by internally using the packpropagation of gradients. The only things that the programmer needs to do is to define the graph with all the tunable variables and declare a loss function to be optimized. No manual calculation of gradients, it’s handled by TensorFlow.
    </span>
   </p>
   <p>
    <span>
-    But in order to have different inputs to the same graph, there is the need to define the starting tensors not as Variables but as placeholders. Later when running the session, the placeholder values can be fed to the graph and the results can be evaluated.
+    The most difficult things to do while using this library are:
    </span>
-  </p>
-  <p>
    <span>
-    When using multi-dimensional tensors, the tricky part is to manipulate them in the correct way. A lot of tensorflow operations have the “axes” parameter that is crucial to perform reduction operation over the correct dimensions.
+    (1)
+   </span>
+   <span>
+    know which operation to use, because there are so many classes available that only after a deep dive into documentation a solution is found;
+   </span>
+   <span>
+    (2)
+   </span>
+   <span>
+    manipulate in the correct way multi-dimensional tensors, without making confusion. Both difficulties decrease by the increasing time used to experiment with it, but it is important to understand soon how to work with the “
+   </span>
+   <span>
+    axes
+   </span>
+   <span>
+    ” parameter, crucial to perform reduction operation over the correct dimensions in nearly all the operations.
    </span>
   </p>
   <p>
@@ -8730,51 +8478,55 @@
     As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach of
    </span>
    <sup>
-    <a href="#ftnt252" id="ftnt_ref252">
-     [252]
+    <a href="#ftnt259" id="ftnt_ref259">
+     [259]
     </a>
    </sup>
    <span>
-    .
+    . The paper comes with a TensorFlow implementation that is not complete:
+   </span>
+   <sup>
+    <a href="#ftnt260" id="ftnt_ref260">
+     [260]
+    </a>
+   </sup>
+   <span>
+    output label dependencies are not considered. Another negative property of the implementation is that it does not use a recent API, that would provide higher level functionalities and helper functions. Another implementation has been found that uses a more recent API and is really a lot more understandable that the original one.
+   </span>
+   <sup>
+    <a href="#ftnt261" id="ftnt_ref261">
+     [261]
+    </a>
+   </sup>
+   <span>
+    It makes use of the
+   </span>
+   <span>
+    seq2seq
+   </span>
+   <span>
+    native package,
+   </span>
+   <sup>
+    <a href="#ftnt262" id="ftnt_ref262">
+     [262]
+    </a>
+   </sup>
+   <span>
+    that can be used for all the quite complicated networks that process sequences, like NMT or generative processing by employing classes that are relatively simple to use with respect to what they do.
    </span>
   </p>
   <p>
    <span>
-    The papers come with an implementation that is not complete
+    So this last implementation has been used as starting point. Starting from this last implementation, that highly depend on the ATIS dataset
    </span>
    <sup>
-    <a href="#ftnt253" id="ftnt_ref253">
-     [253]
+    <a href="#ftnt263" id="ftnt_ref263">
+     [263]
     </a>
    </sup>
    <span>
-    : output label dependencies are not considered. Another negative property of the implementation is that it does not use the latest API available, that provides higher level functionalities and helper functions. Another implementation has been found that uses the latest API and is really a lot more understandable that the original one.
-   </span>
-   <sup>
-    <a href="#ftnt254" id="ftnt_ref254">
-     [254]
-    </a>
-   </sup>
-   <span>
-    So this implementation has been used as reference.
-   </span>
-  </p>
-  <p>
-   <span>
-    TODO say something about the seq2seq package and how can be used
-   </span>
-  </p>
-  <p>
-   <span>
-    Starting from this last implementation, that highly depend on the ATIS dataset
-   </span>
-   <sup>
-    <a href="#ftnt255" id="ftnt_ref255">
-     [255]
-    </a>
-   </sup>
-   <span>
-    in the preprocessing part, a slightly different implementation has been developed.
+    in the preprocessing part, a slightly different implementation has been developed. The differences are described in the following paragraphs.
    </span>
   </p>
   <h4 id="h.jspx6kh9zcn4">
@@ -8784,21 +8536,27 @@
   </h4>
   <p>
    <span>
-    The main changes are not on the network structure, that is the one of the original paper, but in some details about the inputs.
+    The main changes are not on the network structure, that is the one of the original paper, but in some details about the inputs and outputs.
    </span>
   </p>
   <p>
    <span>
-    First of all, the inputs of the computational graph have been changed from word indexes to string tensors (that exist in TensorFlow although its math-preponderance). In this way the dictionaries are part of the graph. Translation from word to indexes and inverse is possible thanks to the package tf.contrib.lookup that can be used to implement lookup tables for both the directions (words to indexes and indexes to words).
+    First of all, the inputs of the computational graph, previously feeded as word indexes, have been changed to string tensors (that exist as native type in TensorFlow although its math-preponderance). In this way the dictionaries are part of the graph. Translation from word to indexes and the inverse operation is possible thanks to the package
+   </span>
+   <span>
+    tf.contrib.lookup
+   </span>
+   <span>
+    that can be used to implement lookup tables for both the directions (words to indexes and indexes to words).
    </span>
   </p>
   <p>
    <span>
-    Then, having the lookup operations inside the computational graph and having the string tensors as inputs, it has been possible to define different ways to obtain the embedding values with the same interface. Both preceding implementations contain the embedding matrix as a trainable Variable with size
+    Then, having the lookup operations inside the computational graph and having the string tensors as inputs, it has been possible to define different ways to obtain the embedding values with the same interface. Both proceeding implementations contained the embedding matrix as a trainable Variable with size
    </span>
-   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5Bvocabulary%5C_size%5C+x%5C+embedding%5C_size%5D"/>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=%5Bvocabulary%5C_size%5C+%5Ctimes%7B%7D%5C+embedding%5C_size%5D"/>
    <span>
-    , and this embedding technique has been moved in a specific class. The other way to obtain the embedding values, that corresponds to pretrained fixed values, is to use an external library (SpaCy, see the details and implications below in word embeddings section [REF:implementationWV]) to get those values. The library requires words as parameters to get their representation, and it would not have possible to pass them the word ids as in the previous implementation.
+    , and this embedding technique has been moved in a specific class. The other way to obtain the embedding values, that corresponds to pretrained fixed values, is to use an external library (SpaCy, see the details and implications below in word embeddings section [REF:implementationWV]) to get those values. The library requires words as parameters to get their representation, and it would not have possible to pass the word ids as in the previous implementation.
    </span>
   </p>
   <p>
@@ -8808,7 +8566,24 @@
   </p>
   <p>
    <span>
-    The last kind of modifications that have been done are relative to saving the models trained and being able to resume them for inference time. This is possible thanks to the naming of tensors, that allows to save the computational graph to the disk and resume it without re-defining all the variables that were present previously. To interact with the graph, it is possible to retrieve the input and output tensors by name and all the intermediate steps will be internally managed by tensorflow. As will be underlined in integrating spacy in the graph in [REF:implementationSpacyPyFunc], the only parts that cannot be serialized are the external functions, but a solution exists also for this problem.
+    To make more understandable also the management of output dictionaries (intent types and IOB annotation types), the same strategy has been used. This time only trainable embeddings not precomputed have been used, because the words do not belong to the english or italian dictionary (for example the word
+   </span>
+   <span>
+    search_bike
+   </span>
+   <span>
+    or
+   </span>
+   <span>
+    B-location
+   </span>
+   <span>
+    ).
+   </span>
+  </p>
+  <p>
+   <span>
+    The last kind of modifications that have been done are relative to saving the models trained and being able to resume them for inference time. This is possible thanks to the naming of tensors, that allows to save the computational graph and the values of the variables to the disk and resume it without re-defining all the variables that were present previously. To interact with the graph, it is possible to retrieve the input and output tensors by name and all the intermediate steps will be internally managed by TensorFlow. As will be described in [REF:implementationSpacyPyFunc], the only parts that cannot be serialized are the external python functions, but a solution exists also for this problem.
    </span>
   </p>
   <h4 id="h.h058nwks6isp">
@@ -8818,12 +8593,29 @@
   </h4>
   <p>
    <span>
-    TODO
+    Relatively to the multi-turn implementation described in subsection [REF:approachMultiTurn], the modifications for considering the previous agent turn are only on the preprocessing step, while for doing the top level intent RNN an addition has been done on the top of the intent logits. As can be seen in figure [REF FIG:approachMultiTurnDifferences], instead of passing them to a softmax layer that estimates their value, the current turn intent logits are passed to a LSTM cell that receives as previous state the previous intent value. This specific point has been critical because the original idea was to propagate the previous state directly, as a vector of floating values, that would have allowed the backpropagation to go through the previous turns and optimize also tunable parameters of the past. But maintaining the state of this cell would have been difficult in the training phase specially. The training samples would have needed to be fed in the correct order (using the cell in stateful mode), or the whole discussion would have needed to be fed for each new user sentence. Both of these solution are not good for performance, so the decision has been to use directly the previous value of the intent instead of the state of the cell. This is something that is also done in sequence to sequence approaches, where previously generated words are fed as inputs to the decoding stages. In this case, the previous value of the intent is translated from string to an index (using the lookup table) and then transformed into a one hot encoding (a vector of zeros with a
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=1"/>
+   <span>
+    at the correct index).
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 316.00px;">
+    <img alt="" src="https://lh3.googleusercontent.com/aE-bxoow33hSUjSDuAMz7HE3fZsxWjGPE335SGP909sh9arspp9F54L4qYEyi58iEpUHTD70WgxCJKcKo2g7xxg9emNdqkL1EVHupNJNwOB7NTkMrDxJz0tDoKzkOyyP5A3ClC74" style="width: 602.00px; height: 316.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
    <span>
-    Is there something to tell specifically to the implementation of multi-turn? Is it detailed enough in Approach? Maybe talk about why propagating the intent value and not the logits in top RNN
+    [FIG:approachMultiTurnDifferences CAPTION:The differences of the multi-turn with respect to
+   </span>
+   <sup>
+    <a href="#ftnt264" id="ftnt_ref264">
+     [264]
+    </a>
+   </sup>
+   <span>
+    ]
    </span>
   </p>
   <h3 id="h.gtjq3t21gyb3">
@@ -8838,17 +8630,68 @@
   </p>
   <p>
    <span>
-    TODO introduce why SpaCy (also because used in early experimentation with entities)
+    To work with word embeddings different strategies and libraries can be applied. The most TensorFlow-purist one is to declare the embedding matrix (one vector for each word) directly as a TensorFlow variable. This is the simplest solution from word embeddings that are randomly initialized and are tunable. However it may have implementation and memory issues when the values come precomputed on bigger corpuses (all the embedding matrix is loaded simultaneously in memory, and it is very important to keep only one copy of it in memory
+   </span>
+   <sup>
+    <a href="#ftnt265" id="ftnt_ref265">
+     [265]
+    </a>
+   </sup>
+   <span>
+    ). Furthermore, it is necessary to get the word embeddings from third party sources and manage the download of them carefully (the implementation presented in this work is based on docker
+   </span>
+   <span>
+    containers
+   </span>
+   <sup>
+    <a href="#ftnt266" id="ftnt_ref266">
+     [266]
+    </a>
+   </sup>
+   <span>
+    to provide high portability). And third party libraries can be necessary also to do common text processing or IOB label management.
    </span>
   </p>
   <p>
    <span>
-    Advantages of the spacy models (size, performance)
+    For all these reasons, our implementation integrates a neural network library with a NLP library. For NLP, Spacy has been chosen for its good performances
+   </span>
+   <sup>
+    <a href="#ftnt267" id="ftnt_ref267">
+     [267]
+    </a>
+   </sup>
+   <span>
+    and models supporting word embeddings.
+   </span>
+   <sup>
+    <a href="#ftnt268" id="ftnt_ref268">
+     [268]
+    </a>
+   </sup>
+   <span>
+    It has been used also in an early stage of experimentation for identifying the entities with its native functionalities. The natively provided models come in different sizes, where the most spatial occupation is given by the word vectors. For example on the English language, four different models are available
+   </span>
+   <sup>
+    <a href="#ftnt269" id="ftnt_ref269">
+     [269]
+    </a>
+   </sup>
+   <span>
+    where also the biggest one only occupies around 600MB.
    </span>
   </p>
   <p>
    <span>
-    A library for common NLP tasks, SpaCy, has been used for tokenization and for pretrained word embeddings on the english language. The corpus used comes from CommonCrawl, and the word embeddings have a size of 300. Different models come with the library, and they change how much space the word embeddings take. The biggest one, used in the implementation, contains 1.1m of words in the dictionary. Smaller models apply a reduction on the number of vectors and on the dictionary size; the mapping between those two dimensions is not always one-to-one: different words can be mapped on the same vector for further reduction in space.
+    For some other non-english languages only the smallest model is available, that does not contain precomputed word vectors. Instead, using character-based informations, SpaCy provides contextual tensors
+   </span>
+   <sup>
+    <a href="#ftnt270" id="ftnt_ref270">
+     [270]
+    </a>
+   </sup>
+   <span>
+    that are estimated by applying a 4-level convolutional network sensitive to up to four words on either side of a word. The performances of these tensors are also analyzed in the validation chapter [REF:validationMeasures], but generally they are not as good as word vectors precomputed on large corpuses. However SpaCy allows quite easily to build new models that can integrate a native language model with externally computed word vectors.
    </span>
   </p>
   <h4 id="h.hicafqiwqr81">
@@ -8858,12 +8701,36 @@
   </h4>
   <p>
    <span>
-    The chosen tokenization scheme, between the different possibilities explored in section [REF:soaVocabulary], is the one employed by the library Spacy. TODO
+    For splitting the sentences into words, with knowledge of the common problems explored in section [REF:soaVocabulary] when discussing about keeping or removing punctuation and special cases like apostrophes, the chosen approach is the one employed by the library SpaCy. This is done by applying rules specific to each language. Just as an example, punctuation is split off, like commas or periods at end of sentences, but "
+   </span>
+   <span>
+    U.K.
+   </span>
+   <span>
+    " remains one token. English expressions like “
+   </span>
+   <span>
+    don’t
+   </span>
+   <span>
+    ” are tokenized into [“
+   </span>
+   <span>
+    do
+   </span>
+   <span>
+    ”, “
+   </span>
+   <span>
+    n’t
+   </span>
+   <span>
+    ”] and for this reason a lot of rules are applied. For other languages that don’t have a full model, like the italian one, the tokenization is more trivial because no one has yet worked on those rules. However it is always done better than a whitespace tokenization (splitting the words basing on spaces or other separator signs) combined with punctuation removal.
    </span>
   </p>
   <h4 id="h.veqzygdxclk">
    <span>
-    Integrating SpaCy word vectors in the computational graph
+    Integrating SpaCy with TensorFlow
    </span>
   </h4>
   <p>
@@ -8873,17 +8740,58 @@
   </p>
   <p>
    <span>
-    TODO
+    To integrate the Spacy NLP utilities inside a computation graph defined in TensorFlow, two different things have been done.
    </span>
   </p>
   <p>
    <span>
-    To integrate the embeddings values provided by this library in the computational graph written in tensorflow, the `py_func` method has been used. In this way a function declared in definition time will be called in runtime: tensorflow manages this by making the py_func wrapper work externally on tensors and internally with numpy arrays.
+    The first one is relative to the tokenization. To simplify the process of transform the sentences into vectors of words, it has been chosen to put this operation in the preprocessing step. A motivation for this solution is that the ATIS dataset
+   </span>
+   <sup>
+    <a href="#ftnt271" id="ftnt_ref271">
+     [271]
+    </a>
+   </sup>
+   <span>
+    has a predefined word tokenization based on whitespaces. To maintain the measurements comparable with other papers, in this specific case the tokenization is not modified while for other corpuses, that only define sentences without saying how the words are separated, the SpaCy tokenization is applied. Having different tokenization models, to simplify the feeding of inputs the tokenization has been managed in the normalization procedure of datasets. The source datasets are preprocessed and saved to disk in a uniformed format (that can be seen in the
+   </span>
+   <span>
+    preprocessed
+   </span>
+   <span>
+    folders
+   </span>
+   <sup>
+    <a href="#ftnt272" id="ftnt_ref272">
+     [272]
+    </a>
+   </sup>
+   <span>
+    ).
    </span>
   </p>
   <p>
    <span>
-    Issue of serialization and solution
+    The second point of contact between the NLP library and the computational graph is established when the word embedding values are retrieved. Being inside the computational graph the only way to call a custom function, as a block that works with tensors, is to use the
+   </span>
+   <span>
+    py_func
+   </span>
+   <span>
+    helper. This method allows to put in the graph a python function, possibly idempotent to avoid side-effects that may generate unwanted behaviour since the training is usually done together with randomization of samples, that will receive and produce numpy arrays
+   </span>
+   <sup>
+    <a href="#ftnt273" id="ftnt_ref273">
+     [273]
+    </a>
+   </sup>
+   <span>
+    translated back and forth to tensors for the graph.
+   </span>
+  </p>
+  <p>
+   <span>
+    The only problem of using this helper is that the graph won’t be fully serialized to disk for future usage. The solution to this problem is to declare again the same function when the restoration of the graph and parameters are done, before declaring and using a running session.
    </span>
   </p>
   <h4 id="h.rhub0ifx6or2">
@@ -8893,57 +8801,67 @@
   </h4>
   <p>
    <span>
-    For the italian language, SpaCy has an incomplete model that does not contain word vectors. For this reason, a side work has been done, taking the wikipedia corpus and computing GloVe vectors on it. Some preprocessing has been done to extract the text only of the wikipedia dumps
+    As has been said previously, for the italian language, SpaCy has an incomplete model that does not contain precomputed word vectors but only contextual tensors (generated on the fly by a convolutional network) are available. For this reason, a side work has been done, taking the Wikipedia italian corpus
    </span>
    <sup>
-    <a href="#ftnt256" id="ftnt_ref256">
-     [256]
+    <a href="#ftnt274" id="ftnt_ref274">
+     [274]
     </a>
    </sup>
    <span>
-    with a tool written by the SpaCy developers
+    and computing GloVe vectors on it. Some preprocessing has been done to extract the text only of the dump with a mix of tools written by the SpaCy developers
    </span>
    <sup>
-    <a href="#ftnt257" id="ftnt_ref257">
-     [257]
+    <a href="#ftnt275" id="ftnt_ref275">
+     [275]
     </a>
    </sup>
    <span>
-    that changes the whitespace separation of words in order to align it to the tokenization done by SpaCy. In this way the dictionary used in the training of the word embeddings is the same that is used by the computational graph (tokenization: how the input sentences are separated in single words)
+    and people from the University of Pisa
    </span>
-  </p>
-  <p>
-   <span>
-    TODO
-   </span>
-  </p>
-  <p>
-   <span>
-    Look at commoncrawl preprocessed corpus
-   </span>
-   <span>
-    <a href="http://data.statmt.org/ngrams/deduped/">
-     http://data.statmt.org/ngrams/deduped/
+   <sup>
+    <a href="#ftnt276" id="ftnt_ref276">
+     [276]
     </a>
+   </sup>
+   <span>
+    . From the text, cleaned of all the markup and XML tags,
    </span>
    <span>
-    76GB
+    a re-tokenization is applied to feed correctly the text to the GloVe algorithm.
    </span>
-  </p>
-  <p>
-   <span>
-    <a href="http://slides.com/smerity/common-crawl-for-nlp%23/">
-     http://slides.com/smerity/common-crawl-for-nlp#/
+   <sup>
+    <a href="#ftnt277" id="ftnt_ref277">
+     [277]
     </a>
-   </span>
+   </sup>
    <span>
-    too huge
+    In this way both the dictionary and the tokenization used in the training of the word embeddings is the same that is used by the computational graph.
    </span>
   </p>
   <p>
    <span>
-    TODO tell where the produced model can be retrieved
+    The output of this process is a SpaCy model that is made available openly
    </span>
+   <sup>
+    <a href="#ftnt278" id="ftnt_ref278">
+     [278]
+    </a>
+   </sup>
+   <span>
+    and can be installed easily with
+   </span>
+   <span>
+    pip
+   </span>
+   <span>
+    .
+   </span>
+   <sup>
+    <a href="#ftnt279" id="ftnt_ref279">
+     [279]
+    </a>
+   </sup>
   </p>
   <h3 id="h.x106sk22d6zg">
    <span>
@@ -8957,17 +8875,28 @@
   </p>
   <p>
    <span>
-    TODO
+    This last subsection contains some details about how some datasets have been collected for the specific bike sharing domain. The goal is to be able to have enough annotated sentences for both single and multi turn, in order to train the selected approach and be able to provide measures (see next chapter [REF:validationNLU]) that have a bit of statistical significance.
    </span>
   </p>
   <p>
    <span>
-    From wit.ai exploitation for single turn, collection of BotCycle singleturn.
+    Starting with the single-turn settings, it has been described in subsection [REF:implementationWit] that wit.ai has been exploited to gradually collect sentences. By using this online platform it has been quite simple to annotate new samples, that also come from online usage of the bot thanks to the recording capabilities. The platform offers support for a quite wide variety of languages, and the English and Italian are between them.
    </span>
   </p>
   <p>
    <span>
-    Talk about the sessions collection process and the resulting dataset
+    Instead for the collection of multi-turn dialogue sessions, a logging of all the incoming and outcoming messages has been done in the local database to capture as more dialogues as possible. With the basis of these dialogues, that are characterized by some features typical of a very restricted experimental setup (such as repetitivity and lack of variety, high ratio of wrong responses, preponderance of sentences sent to test the bot and not to really use the informations provided), a successive cleaning has been done to only insert proper sentences in the training set. This cleaning has been done to identify the relevant dialogues that should contain multi-turn interactions, using a TSV TODO
+   </span>
+  </p>
+  <p>
+   <span>
+    But a big problem avoided collecting a good dataset: a circular dependency. The system was expected to collect a dataset for the multi-turn dialogues while it only provided single-turn capabilities. The most common example is when the user does not provide a required parameter (e.g. searches a bike without saying where), the bot asks for the location, the user provides it without forming a complete sentence (only the entity value provided, without the “
+   </span>
+   <span>
+    i am in
+   </span>
+   <span>
+    ” prologue) and the bot fails because no intent has been detected (lack of the multi-turn model). To solve this problem other strategies may be applied, like building a restricted dataset by hand without an online setting, and proceeding with incremental cycles of testing, collecting and training. Or even better would be to enable a Reinforcement Learning based approach to increase the performance while conversing with the user.
    </span>
   </p>
   <p>
@@ -9059,8 +8988,8 @@
     The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)
    </span>
    <sup>
-    <a href="#ftnt258" id="ftnt_ref258">
-     [258]
+    <a href="#ftnt280" id="ftnt_ref280">
+     [280]
     </a>
    </sup>
    <span>
@@ -9082,72 +9011,72 @@
     Another dataset, that have been used always in the specificity of single turned interactions, is the nlu-benchmark that was published by Snips
    </span>
    <sup>
-    <a href="#ftnt259" id="ftnt_ref259">
-     [259]
+    <a href="#ftnt281" id="ftnt_ref281">
+     [281]
     </a>
    </sup>
    <span>
     as an effort to compare and evaluate different NLU commercial providers like Amazon’s Alexa
    </span>
    <sup>
-    <a href="#ftnt260" id="ftnt_ref260">
-     [260]
+    <a href="#ftnt282" id="ftnt_ref282">
+     [282]
     </a>
    </sup>
    <span>
     , Google’s Api.ai
    </span>
    <sup>
-    <a href="#ftnt261" id="ftnt_ref261">
-     [261]
+    <a href="#ftnt283" id="ftnt_ref283">
+     [283]
     </a>
    </sup>
    <span>
     , Microsoft’s Luis
    </span>
    <sup>
-    <a href="#ftnt262" id="ftnt_ref262">
-     [262]
+    <a href="#ftnt284" id="ftnt_ref284">
+     [284]
     </a>
    </sup>
    <span>
     , Apple’s SiriKit
    </span>
    <sup>
-    <a href="#ftnt263" id="ftnt_ref263">
-     [263]
+    <a href="#ftnt285" id="ftnt_ref285">
+     [285]
     </a>
    </sup>
    <span>
     , IBM’s Watson
    </span>
    <sup>
-    <a href="#ftnt264" id="ftnt_ref264">
-     [264]
+    <a href="#ftnt286" id="ftnt_ref286">
+     [286]
     </a>
    </sup>
    <span>
     , Facebook’s Wit
    </span>
    <sup>
-    <a href="#ftnt265" id="ftnt_ref265">
-     [265]
+    <a href="#ftnt287" id="ftnt_ref287">
+     [287]
     </a>
    </sup>
    <span>
     , and Snips
    </span>
    <sup>
-    <a href="#ftnt266" id="ftnt_ref266">
-     [266]
+    <a href="#ftnt288" id="ftnt_ref288">
+     [288]
     </a>
    </sup>
    <span>
     itself. The dataset used for their benchmark
    </span>
    <sup>
-    <a href="#ftnt267" id="ftnt_ref267">
-     [267]
+    <a href="#ftnt289" id="ftnt_ref289">
+     [289]
     </a>
    </sup>
    <span>
@@ -9203,8 +9132,8 @@
     The only dataset found in literature is the Key-Value Retrieval
    </span>
    <sup>
-    <a href="#ftnt268" id="ftnt_ref268">
-     [268]
+    <a href="#ftnt290" id="ftnt_ref290">
+     [290]
     </a>
    </sup>
    <span>
@@ -9298,8 +9227,8 @@
     To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually
    </span>
    <sup>
-    <a href="#ftnt269" id="ftnt_ref269">
-     [269]
+    <a href="#ftnt291" id="ftnt_ref291">
+     [291]
     </a>
    </sup>
    <span>
@@ -9344,8 +9273,8 @@
     Here we are considering the translated version of this analogy test, used by
    </span>
    <sup>
-    <a href="#ftnt270" id="ftnt_ref270">
-     [270]
+    <a href="#ftnt292" id="ftnt_ref292">
+     [292]
     </a>
    </sup>
    <span>
@@ -9385,8 +9314,8 @@
         Italian values from
        </span>
        <sup>
-        <a href="#ftnt271" id="ftnt_ref271">
-         [271]
+        <a href="#ftnt293" id="ftnt_ref293">
+         [293]
         </a>
        </sup>
        <span>
@@ -9795,7 +9724,7 @@
   <ul>
    <li>
     <span>
-     Point out what has been achieved: competences, multi-turn approach?
+     Point out what has been achieved: competences, multi-turn approach on intent, difficulty of collecting datasets that underlines how the bottleneck of machine learning is the lack of specific datasets for new problems and importance of RL
     </span>
    </li>
    <li>
@@ -9830,6 +9759,11 @@
    <li>
     <span>
      Combination with a generative approach for chit-chat?
+    </span>
+   </li>
+   <li>
+    <span>
+     Serious collection of multi-turn dialogues
     </span>
    </li>
   </ul>
@@ -12969,8 +12903,8 @@
     <span>
     </span>
     <span>
-     <a href="https://stackoverflow.com/">
-      https://stackoverflow.com/
+     <a href="https://nlp.stanford.edu/software/">
+      https://nlp.stanford.edu/software/
      </a>
     </span>
     <span>
@@ -12983,7 +12917,13 @@
      [244]
     </a>
     <span>
-     Key:raskin2005comments Raskin, J. (2005). Comments are more important than code. Queue, 3(2), 64-65.
+    </span>
+    <span>
+     <a href="https://www.nltk.org/">
+      https://www.nltk.org/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -12995,8 +12935,8 @@
     <span>
     </span>
     <span>
-     <a href="http://www.fast.ai/2017/01/03/keras/">
-      http://www.fast.ai/2017/01/03/keras/
+     <a href="https://github.com/tensorflow/models/tree/master/research/syntaxnet">
+      https://github.com/tensorflow/models/tree/master/research/syntaxnet
      </a>
     </span>
     <span>
@@ -13009,13 +12949,13 @@
      [246]
     </a>
     <span>
-     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     Attention-based recurrent neural network models for joint intent detection and slot filling
+     <a href="https://spacy.io/">
+      https://spacy.io/
+     </a>
     </span>
     <span>
-     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -13027,8 +12967,8 @@
     <span>
     </span>
     <span>
-     <a href="https://keras.io/layers/recurrent/">
-      https://keras.io/layers/recurrent/
+     <a href="https://stackoverflow.com/">
+      https://stackoverflow.com/
      </a>
     </span>
     <span>
@@ -13041,7 +12981,7 @@
      [248]
     </a>
     <span>
-     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
+     Key:raskin2005comments Raskin, J. (2005). Comments are more important than code. Queue, 3(2), 64-65.
     </span>
    </p>
   </div>
@@ -13051,7 +12991,13 @@
      [249]
     </a>
     <span>
-     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
+    </span>
+    <span>
+     <a href="https://keras.io/">
+      https://keras.io/
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -13063,8 +13009,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/farizrahman4u/recurrentshop">
-      https://github.com/farizrahman4u/recurrentshop
+     <a href="https://www.tensorflow.org/">
+      https://www.tensorflow.org/
      </a>
     </span>
     <span>
@@ -13079,8 +13025,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
-      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
+     <a href="http://www.fast.ai/2017/01/03/keras/">
+      http://www.fast.ai/2017/01/03/keras/
      </a>
     </span>
     <span>
@@ -13111,8 +13057,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/HadoopIt/rnn-nlu">
-      https://github.com/HadoopIt/rnn-nlu
+     <a href="https://www.lego.com/">
+      https://www.lego.com/
      </a>
     </span>
     <span>
@@ -13127,8 +13073,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
-      https://github.com/applenob/RNN-for-Joint-NLU
+     <a href="https://keras.io/layers/recurrent/">
+      https://keras.io/layers/recurrent/
      </a>
     </span>
     <span>
@@ -13141,7 +13087,7 @@
      [255]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+     Key:cho2014learning Cho, K. et al. (2014). Learning phrase representations using RNN encoder-decoder for statistical machine translation. Proc. Conference on Empirical Methods in Natural Language Processing 1724–1734
     </span>
    </p>
   </div>
@@ -13151,13 +13097,7 @@
      [256]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://dumps.wikimedia.org/itwiki/">
-      https://dumps.wikimedia.org/itwiki/
-     </a>
-    </span>
-    <span>
+     Key:hochreiter1997long Hochreiter, S., Schmidhuber, J. (1997). Long short-term memory. Neural computation - MIT Press
     </span>
    </p>
   </div>
@@ -13169,8 +13109,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/explosion/spacy-dev-resources">
-      https://github.com/explosion/spacy-dev-resources
+     <a href="https://github.com/farizrahman4u/recurrentshop">
+      https://github.com/farizrahman4u/recurrentshop
      </a>
     </span>
     <span>
@@ -13183,7 +13123,13 @@
      [258]
     </a>
     <span>
-     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+    <span>
+     <a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq">
+      https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -13193,13 +13139,13 @@
      [259]
     </a>
     <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
-      https://snips.ai/content/sdk-benchmark-visualisation/
-     </a>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
     </span>
     <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -13211,8 +13157,8 @@
     <span>
     </span>
     <span>
-     <a href="https://developer.amazon.com/alexa">
-      https://developer.amazon.com/alexa
+     <a href="https://github.com/HadoopIt/rnn-nlu">
+      https://github.com/HadoopIt/rnn-nlu
      </a>
     </span>
     <span>
@@ -13227,8 +13173,8 @@
     <span>
     </span>
     <span>
-     <a href="https://api.ai/">
-      https://api.ai/
+     <a href="https://github.com/applenob/RNN-for-Joint-NLU">
+      https://github.com/applenob/RNN-for-Joint-NLU
      </a>
     </span>
     <span>
@@ -13243,8 +13189,8 @@
     <span>
     </span>
     <span>
-     <a href="https://www.luis.ai/">
-      https://www.luis.ai/
+     <a href="https://www.tensorflow.org/api_guides/python/contrib.seq2seq">
+      https://www.tensorflow.org/api_guides/python/contrib.seq2seq
      </a>
     </span>
     <span>
@@ -13257,13 +13203,7 @@
      [263]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://developer.apple.com/sirikit/">
-      https://developer.apple.com/sirikit/
-     </a>
-    </span>
-    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
     </span>
    </p>
   </div>
@@ -13273,13 +13213,13 @@
      [264]
     </a>
     <span>
+     Key:liu2016attention Liu, B. and Lane, I. (2016).
     </span>
     <span>
-     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
-      https://www.ibm.com/watson/developercloud/nl-classifier.html
-     </a>
+     Attention-based recurrent neural network models for joint intent detection and slot filling
     </span>
     <span>
+     . Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
@@ -13291,8 +13231,8 @@
     <span>
     </span>
     <span>
-     <a href="https://wit.ai/">
-      https://wit.ai/
+     <a href="https://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow">
+      https://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow
      </a>
     </span>
     <span>
@@ -13307,8 +13247,8 @@
     <span>
     </span>
     <span>
-     <a href="https://snips.ai/">
-      https://snips.ai/
+     <a href="https://www.docker.com/">
+      https://www.docker.com/
      </a>
     </span>
     <span>
@@ -13323,8 +13263,8 @@
     <span>
     </span>
     <span>
-     <a href="https://github.com/snipsco/nlu-benchmark">
-      https://github.com/snipsco/nlu-benchmark
+     <a href="https://spacy.io/usage/facts-figures">
+      https://spacy.io/usage/facts-figures
      </a>
     </span>
     <span>
@@ -13337,7 +13277,6 @@
      [268]
     </a>
     <span>
-     Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
     </span>
    </p>
   </div>
@@ -13347,7 +13286,13 @@
      [269]
     </a>
     <span>
-     Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
+    </span>
+    <span>
+     <a href="https://spacy.io/models/en">
+      https://spacy.io/models/en
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -13357,7 +13302,13 @@
      [270]
     </a>
     <span>
-     Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
+    </span>
+    <span>
+     <a href="https://spacy.io/usage/vectors-similarity%23in-context">
+      https://spacy.io/usage/vectors-similarity#in-context
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -13365,6 +13316,328 @@
    <p>
     <a href="#ftnt_ref271" id="ftnt271">
      [271]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref272" id="ftnt272">
+     [272]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/D2KLab/botcycle/tree/master/nlu/data">
+      https://github.com/D2KLab/botcycle/tree/master/nlu/data
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref273" id="ftnt273">
+     [273]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.array.html">
+      https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.array.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref274" id="ftnt274">
+     [274]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="http://dumps.wikimedia.org/itwiki">
+      http://dumps.wikimedia.org/itwiki
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref275" id="ftnt275">
+     [275]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/explosion/spacy-dev-resources">
+      https://github.com/explosion/spacy-dev-resources
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref276" id="ftnt276">
+     [276]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="http://medialab.di.unipi.it/wiki/Wikipedia_Extractor">
+      http://medialab.di.unipi.it/wiki/Wikipedia_Extractor
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref277" id="ftnt277">
+     [277]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/stanfordnlp/GloVe">
+      https://github.com/stanfordnlp/GloVe
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref278" id="ftnt278">
+     [278]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/MartinoMensio/it_vectors_wiki_spacy">
+      https://github.com/MartinoMensio/it_vectors_wiki_spacy
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref279" id="ftnt279">
+     [279]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://pip.pypa.io/en/stable/">
+      https://pip.pypa.io/en/stable/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref280" id="ftnt280">
+     [280]
+    </a>
+    <span>
+     Key:hemphill1990atis Hemphill, C., Godfrey, J., Doddington, G. (1990). The ATIS spoken language systems pilot corpus. DARPA Speech and Natural Language Workshop
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref281" id="ftnt281">
+     [281]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/content/sdk-benchmark-visualisation/">
+      https://snips.ai/content/sdk-benchmark-visualisation/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref282" id="ftnt282">
+     [282]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.amazon.com/alexa">
+      https://developer.amazon.com/alexa
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref283" id="ftnt283">
+     [283]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://api.ai/">
+      https://api.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref284" id="ftnt284">
+     [284]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.luis.ai/">
+      https://www.luis.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref285" id="ftnt285">
+     [285]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://developer.apple.com/sirikit/">
+      https://developer.apple.com/sirikit/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref286" id="ftnt286">
+     [286]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://www.ibm.com/watson/developercloud/nl-classifier.html">
+      https://www.ibm.com/watson/developercloud/nl-classifier.html
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref287" id="ftnt287">
+     [287]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://wit.ai/">
+      https://wit.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref288" id="ftnt288">
+     [288]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://snips.ai/">
+      https://snips.ai/
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref289" id="ftnt289">
+     [289]
+    </a>
+    <span>
+    </span>
+    <span>
+     <a href="https://github.com/snipsco/nlu-benchmark">
+      https://github.com/snipsco/nlu-benchmark
+     </a>
+    </span>
+    <span>
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref290" id="ftnt290">
+     [290]
+    </a>
+    <span>
+     Key:eric2017key Eric, M. and Manning, C. (2017). Key-value retrieval networks for task-oriented dialogue. SIGDIAL 2017: Session on Natural Language Generation for Dialog Systems
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref291" id="ftnt291">
+     [291]
+    </a>
+    <span>
+     Key:tur2010left Tur, G., Hakkani-Tür, D., &amp; Heck, L. (2010, December). What is left to be understood in ATIS?. In Spoken Language Technology Workshop (SLT), 2010 IEEE (pp. 19-24). IEEE.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref292" id="ftnt292">
+     [292]
+    </a>
+    <span>
+     Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#ftnt_ref293" id="ftnt293">
+     [293]
     </a>
     <span>
      Key:berardi2015word Berardi, G., Esuli, A., &amp; Marcheggiani, D. (2015, May). Word Embeddings Go to Italy: A Comparison of Models and Training Datasets. In IIR.
