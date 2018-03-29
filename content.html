@@ -31,7 +31,13 @@
   </h2>
   <p>
    <span>
-    Conversational agents are now, more than ever, the answer to establish a seamless interaction between the end users and any service out there. The spreading of these agents has highlighted an important need: going beyond the simple (often pre-computed) answer and provide personalized answers according to users' profiles.
+    Conversational agents are now, more than ever, the answer to establish a seamless interaction between
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    end users and any service out there. The spreading of these agents has highlighted an important need: going beyond the simple (often pre-computed) answer and provide personalized answers according to users' profiles.
    </span>
   </p>
   <p>
@@ -47,7 +53,40 @@
     Natural Language Interface
    </span>
    <span>
-    enables a communication with the machine in the language that is really used by humans in their everyday interactions with other people. Traditional mobile applications force the human to imitate the computer to exchange information, performing precise questions in the form of commands. The goal of Conversational Interfaces instead, is to reverse this imitation process, in order to bring the interaction closer to the users. Being close to the user means also to use his native language, and this is why bots should be available in local languages too.
+    enables a communication with the machine in the language that is really used by humans in their everyday interactions with other people. Traditional mobile applications force the human to imitate the computer to exchange information, performing precise questions in the form of commands. The goal of Conversational Interfaces instead, is to reverse this imitation process
+   </span>
+   <span>
+    ,
+   </span>
+   <span>
+    in order to bring the interaction closer to the users
+   </span>
+   <span>
+    . Being close to the user means also to
+   </span>
+   <span>
+    us
+   </span>
+   <span>
+    e
+   </span>
+   <span>
+    his
+   </span>
+   <span>
+    native
+   </span>
+   <span>
+    language
+   </span>
+   <span>
+    , and this is why
+   </span>
+   <span>
+    bots should be available in local languages too
+   </span>
+   <span>
+    .
    </span>
   </p>
   <p>
@@ -74,7 +113,13 @@
     i)
    </span>
    <span>
-    analyze the State of the Art in order to identify the approaches that better suit building a Conversational Agent
+    analyze the State of the Art in order to identify the approaches that better suit
+   </span>
+   <span>
+    building
+   </span>
+   <span>
+    a Conversational Agent
    </span>
    <span>
     ii)
@@ -96,7 +141,18 @@
     </a>
    </sup>
    <span>
-    ) computed on large datasets of unlabeled text, to capture syntactic and semantic similarities on big dictionaries. These similarities allow to be more robust towards words that have not been considered in training sets. For the personalization theme instead, the Content-based and Collaborative filtering are explained, together with available methods to extract user features. These user features can be of anagraphic type or can be more undeclared traits such as Big Five Personality Traits
+    ) computed on large datasets of unlabeled text, to capture syntactic and semantic similarities on big dictionaries. These similarities allow to be more robust towards words that have not been considered in training sets. For the personalization theme instead, the Content-based and Collaborative filtering are explained
+   </span>
+   <span>
+    ,
+   </span>
+   <span>
+   </span>
+   <span>
+    together
+   </span>
+   <span>
+    with available methods to extract user features. These user features can be of anagraphic type or can be more undeclared traits such as Big Five Personality Traits
    </span>
    <sup>
     <a href="#ftnt2" id="ftnt_ref2">
@@ -118,8 +174,39 @@
     he domain of urban mobility is chosen, having as specific objective the design and implementation of a Conversational Agent to
    </span>
    <span>
-    retrieve real-time information about the bike sharing system. The bot should offer capabilities to find bikes given the user location, or plan trips between different points of a given city, using the data from the bike sharing providers. To provide a natural interaction with the user, the bot should be able to process requests that are not in the strict form of commands, but in a more conversational way. To reduce the distance between the system and the user, the bot should support both English and Italian languages.
+    retrieve real-time information about the bike sharing system. The
    </span>
+   <span>
+    bot
+   </span>
+   <sup>
+    <a href="#cmnt2" id="cmnt_ref2">
+     [b]
+    </a>
+   </sup>
+   <span>
+    should offer capabilities to find bikes given the user location, or plan trips between different points of a given city, using the data from the bike sharing providers. To provide a natural interaction with
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    user, the bot should be able to process requests that are not in the strict form of commands, but in a more conversational
+   </span>
+   <span>
+    way
+   </span>
+   <span>
+    .
+   </span>
+   <span>
+    To reduce the distance between the system and the user, the bot should support both English and Italian languages.
+   </span>
+   <sup>
+    <a href="#cmnt3" id="cmnt_ref3">
+     [c]
+    </a>
+   </sup>
   </p>
   <h2 id="h.bl1jg0yqtzn6">
    <span>
@@ -128,7 +215,13 @@
   </h2>
   <p>
    <span>
-    Moving on the fulfillment of these goals, the approach is structured as follows. Firstly, an analysis is done of the target scenarios where the bot for bike sharing is meant to be used. After giving a high-level view of the components required to interact with chat platforms (such as Facebook Messenger, Telegram, Skype) and the required services (bike sharing providers, directions provider), the description focuses on Natural Language Understanding. To target two types of interaction (single-turn where each sentence is processed independently and multi-turn where an interaction context exists) the selected approach is described: for the single-turn interactions the reference State of The Art joint approach
+    Moving on the fulfillment of these goals, the approach is structured as follows. Firstly, an analysis is done of the target scenarios where the bot for bike sharing is meant to be used. After giving a high-level view of the components required to interact with chat platforms (such as Facebook Messenger, Telegram, Skype) and the required services (bike sharing providers, directions provider), the description focuses on Natural Language Understanding. To target two types of interaction
+   </span>
+   <span>
+    (single-turn where each sentence is processed independently and multi-turn where an interaction context exists) the selected approach is described
+   </span>
+   <span>
+    : for the single-turn interactions the reference State of The Art joint approach
    </span>
    <sup>
     <a href="#ftnt3" id="ftnt_ref3">
@@ -136,12 +229,50 @@
     </a>
    </sup>
    <span>
-    is chosen, while for the multi-turn ones a slight modification is proposed as novelty. For the personalization theme instead, two main needs are described: providing content recommendation, such as interesting places along the path of the cyclist, and tailoring the communication mean to the needs of the user. The personalization theme actually ends here with a sketch that can be used as guideline for implementation (is neither implemented nor part of the running prototype).
+    is chosen, while for the multi-turn ones
+   </span>
+   <span>
+    a slight modification
+   </span>
+   <span>
+   </span>
+   <span>
+    is proposed
+   </span>
+   <span>
+    as novelty
+   </span>
+   <span>
+    . For the personalization theme instead, two main needs are described: providing content recommendation
+   </span>
+   <span>
+    , such as interesting places along the path of the cyclist, and tailoring the communication mean
+   </span>
+   <span>
+    to the needs of the user. The personalization theme actually
+   </span>
+   <span>
+    ends here
+   </span>
+   <span>
+    with a sketch that can be used as guideline for implementation
+   </span>
+   <span>
+    (is neither implemented nor part of the running prototype).
    </span>
   </p>
   <p>
    <span>
-    Moving to the implementation, a description is done of the details that made it possible to bring the bot prototype to life. The considered parts are the interaction with the chat platforms, the frameworks used for the NLU, and a dedicated section to word embeddings that shows how they have been computed on the Wikipedia Italian corpus
+    Moving to the implementation, a description is done of the details that made it possible to bring the bot prototype to life. The considered parts are the interaction
+   </span>
+   <span>
+    with the chat platforms, the framework
+   </span>
+   <span>
+    s
+   </span>
+   <span>
+    used for the NLU, and a dedicated section to word embeddings that shows how they have been computed on the Wikipedia Italian corpus
    </span>
    <sup>
     <a href="#ftnt4" id="ftnt_ref4">
@@ -154,7 +285,28 @@
   </p>
   <p>
    <span>
-    Finally, for the validation (both of the selected NLU approach and of the prototype) a description is done of the evaluation framework that has been used. For the evaluation of NLU, the datasets (standardized ones and collected ones for the specific bike sharing bot in both English and Italian) are explained and the measures are defined. At the end the results are presented, underlying the importance of features such as word embeddings or the structure of the network itself. For the overall evaluation of the prototype instead, it emerges how difficult is to obtain human-like understanding performances.
+    Finally, for the validation (both of the selected NLU approach and of the prototype) a description is done of the evaluation framework that has been used. For the evaluation of NLU, the datasets (standardized ones and collected ones for the specific bike sharing bot in both English and Italian) are explained and the measures are defined.
+   </span>
+   <span>
+    At the end t
+   </span>
+   <span>
+    he results
+   </span>
+   <span>
+    are presented,
+   </span>
+   <span>
+    underl
+   </span>
+   <span>
+    ying
+   </span>
+   <span>
+    the importance of features such as word embeddings or the structure of the network itself. For the overall evaluation of the prototype instead, it emerges how difficult
+   </span>
+   <span>
+    is to obtain human-like understanding performances.
    </span>
   </p>
   <hr style="page-break-before:always;display:none;"/>
@@ -165,7 +317,13 @@
   </h1>
   <p>
    <span>
-    This chapter provides a general introduction to the work done in this thesis project. Starting with a brief introduction to the setting where this work has been conducted, an introduction to the topic of Conversational Agents (also known as Chatbots or Bots) is given. An overview of the field of Artificial Intelligence is done, by considering both its current achievements and some general purpose guidelines that should lead the research and development of such systems. The chapter ends with an outline of the next chapters.
+    This chapter provides a general introduction to the work done in this thesis project. Starting with a brief introduction
+   </span>
+   <span>
+    to
+   </span>
+   <span>
+    the setting where this work has been conducted, an introduction to the topic of Conversational Agents (also known as Chatbots or Bots) is given. An overview of the field of Artificial Intelligence is done, by considering both its current achievements and some general purpose guidelines that should lead the research and development of such systems. The chapter ends with an outline of the next chapters.
    </span>
   </p>
   <h2 id="h.fyuwi9wr3wod">
@@ -191,12 +349,36 @@
     </a>
    </sup>
    <span>
-    . This institute, founded in 2000 as a research and innovation center by Compagnia di San Paolo and Politecnico di Torino, is organized in different research areas that focus on some core sectors of ICT, like cloud computing, electromagnetics, optical communications, ICT innovation, mobile solutions, wireless systems and sensors, and navigation technologies.
+    . This institute, founded in 2000 as a research and innovation center by Compagnia di San Paolo and Politecnico di Torino, is organized in different research areas that focus on some core sectors of ICT
    </span>
-  </p>
-  <p>
    <span>
-    The research area where the current work has been done is Innovation Development, that provides practical support to public and private decision makers in the use of information and communication technologies as a strategic tool for the promotion of sustainable development. The topics covered by the Data Science group varies from language processing, recommender systems, data semantics, ...
+    , like
+   </span>
+   <span>
+    cloud computing
+   </span>
+   <span>
+    , electromagnetics, optical communications, ICT innovation, mobile solutions,
+   </span>
+   <span>
+    wireless systems and sensors, and navigation technologies.
+   </span>
+   <span>
+   </span>
+   <span>
+    The research area where the current work has been done is
+   </span>
+   <span>
+    Innovation Development
+   </span>
+   <span>
+    ,
+   </span>
+   <span>
+    that
+   </span>
+   <span>
+    provides practical support to public and private decision makers in the use of information and communication technologies as a strategic tool for the promotion of sustainable development. The topics covered by the Data Science group varies from language processing, recommender systems, data semantics, ...
    </span>
   </p>
   <p>
@@ -216,7 +398,30 @@
   </p>
   <p>
    <span>
-    One of them is surely the problem of dominance and control. There is a fight (real or implicit) between the humans and the machines. The dominance can be hold by both sides, and what emerges is the difference between the goals of the robots and the goals of the humans.
+    One of them is surely the problem of dominance and control. There is a fight (real or implicit) between
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    humans and
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    machines. The dominance can be hold by both sides, and what emerges is the difference between the goals of the
+   </span>
+   <span>
+    robots
+   </span>
+   <sup>
+    <a href="#cmnt4" id="cmnt_ref4">
+     [d]
+    </a>
+   </sup>
+   <span>
+    and the goals of the humans.
    </span>
   </p>
   <p>
@@ -227,12 +432,27 @@
     sentient
    </span>
    <span>
-    AI seek understanding of the world together with a purpose of existence, and always arises ethical questions, such as effects on our behavior and interaction, how to keep control over the singularity, what are the rights of both sides.
+    AI seek
+   </span>
+   <span>
+    understanding of the world together with a purpose of existence, and always arises ethical questions, such as effects on our behavior
+   </span>
+   <span>
+    and interaction
+   </span>
+   <span>
+    , how to keep control over the singularity, what are the rights of both sides.
    </span>
   </p>
   <p>
    <span>
-    All those stories, being part of science fiction, are mostly far from reality. But since technology is advancing faster and faster, an analysis should be done on the consequences it can have on the society, and how the existence of some principles could turn those advances into empowering tools for the humans and not something to be afraid of.
+    All those stories, being part of science fiction, are mostly far from reality. But since technology is advancing faster and faster, an analysis should be done on the consequences it can have on the society, and how the existence of some principles could turn those advances into empowering tools for
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    humans and not something to be afraid of.
    </span>
   </p>
   <p>
@@ -242,7 +462,13 @@
   </p>
   <p>
    <span>
-    For this reason, after giving an introduction to Artificial Intelligence that empowers those autonomous agents, looking at its roots and evolution (subsection [REF:aiEvolution]), the discussion will go on some guidelines (subsection [REF:aiGuidelines]) which have been derived from common sense and scientific literature
+    For this reason, after giving an introduction to Artificial Intelligence that empowers those autonomous agents, looking at its roots and evolution (subsection [REF:aiEvolution]), the discussion will go on some guidelines (subsection [REF:aiGuidelines])
+   </span>
+   <span>
+    which
+   </span>
+   <span>
+    have been derived from common sense and scientific literature
    </span>
    <sup>
     <a href="#ftnt7" id="ftnt_ref7">
@@ -280,7 +506,16 @@
   </p>
   <p>
    <span>
-    Here it is provided a bit of background on Artificial Intelligence, starting from the historical roots that lead to development of systems that imitate the human. Successively, an overview is given about what can be done by AI today in different fields. Then a brief exploration of the Machine Learning techniques open the discourse of general Artificial Intelligence.
+    Here it is provided a bit of background on Artificial Intelligence, starting from the historical roots that lead to development of systems that imitate
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    human
+   </span>
+   <span>
+    . Successively, an overview is given about what can be done by AI today in different fields. Then a brief exploration of the Machine Learning techniques open the discourse of general Artificial Intelligence.
    </span>
   </p>
   <h4 id="h.ana2zm6bt6x">
@@ -296,12 +531,26 @@
     brain
    </span>
    <sup>
-    <a href="#cmnt2" id="cmnt_ref2">
-     [b]
+    <a href="#cmnt5" id="cmnt_ref5">
+     [e]
     </a>
    </sup>
    <span>
-    . Empowered by the studies carried in those years about neurons and synapses, imitating those elements and their connection became an active topic of research. The first machines trying to achieve this task didn’t use computers, but were completely controlled by analog circuitry. The first neural network machine was built by Marvin Minsky in 1951
+    . Empowered by the studies carried in those years about neurons and synapses, imitating those elements and their connection
+   </span>
+   <span>
+    became an active topic of research. The first machines trying to achieve this task
+   </span>
+   <span>
+    didn’t
+   </span>
+   <sup>
+    <a href="#cmnt6" id="cmnt_ref6">
+     [f]
+    </a>
+   </sup>
+   <span>
+    use computers, but were completely controlled by analog circuitry. The first neural network machine was built by Marvin Minsky in 1951
    </span>
    <sup>
     <a href="#ftnt11" id="ftnt_ref11">
@@ -340,12 +589,41 @@
     </a>
    </sup>
    <span>
-    in which he sustains that a “thinking machine” machine could be built. The criterion defined to distinguish the thinking process is based on human judgement: if the machine is not distinguishable from another human being in a conversation over a teleprinter, we can say that the machine is able to think. This setting is the so called “Turing Test”. In this test two players (a human and a machine) are tested against a human interrogator, that tries to understand their nature. A machine that passes this test is said to be intelligent.
+    in which he
+   </span>
+   <span>
+    sustains
+   </span>
+   <span>
+    that a “thinking machine”
+   </span>
+   <span>
+    machine
+   </span>
+   <span>
+    could be built. The criterion defined to distinguish the thinking process is based on human judgement: if the machine is not distinguishable from another human being in a conversation over a teleprinter, we can say that the machine is able to think. This setting is the so called “Turing Test”. In this test
+   </span>
+   <span>
+    two players (a human and a machine) are tested against a human interrogator
+   </span>
+   <span>
+    ,
+   </span>
+   <span>
+   </span>
+   <span>
+    that
+   </span>
+   <span>
+    tries to understand their nature. A machine that passes this test is said to be intelligent.
    </span>
   </p>
   <p>
    <span>
-    As we can see, all is based on imitation of humans: at detailed level, the artificial neural networks try to mimic the behaviour of the human brain. If the intelligence of a human is located in its brain, a good reproduction of it can potentially have the same intelligence of the original one. And the root of the abilities of the brain stands in its structure. At more higher level of abstraction, a system can be seen as intelligent if it can emulate a human characteristic (such as holding a conversation over a teleprinter) well enough to convince the interrogator.
+    As we can see, all is based on imitation of humans: at
+   </span>
+   <span>
+    detailed level, the artificial neural networks try to mimic the behaviour of the human brain. If the intelligence of a human is located in its brain, a good reproduction of it can potentially have the same intelligence of the original one. And the root of the abilities of the brain stands in its structure. At more higher level of abstraction, a system can be seen as intelligent if it can emulate a human characteristic (such as holding a conversation over a teleprinter) well enough to convince the interrogator.
    </span>
   </p>
   <p>
@@ -364,12 +642,33 @@
   </p>
   <p>
    <span>
-    But is really the human intelligence the best an autonomous system can achieve? In the world of today, with the enormous quantity of data available, and with the increasing processing power of computers, an artificial system can be seen as smart because combines and extracts the information available very fast and in a way that is useful to the humans using it.
+    But is really the human intelligence the best an autonomous system can achieve?
+   </span>
+   <span>
+    In
+   </span>
+   <span>
+    the
+   </span>
+   <span>
+    world
+   </span>
+   <span>
+    of today
+   </span>
+   <span>
+    , with the enormous quantity of data available, and with the increasing processing power of computers, an artificial system can be seen as smart because combines and extracts the information available very fast and in a way that is useful to the humans using it.
    </span>
   </p>
   <p>
    <span>
-    Having a good distinction between what is human intelligence and what artificial intelligence could be, can help building a roadmap about how the society wants and will like to be empowered by technology.
+    Having a good distinction between what is human intelligence and what artificial intelligence could be
+   </span>
+   <span>
+    ,
+   </span>
+   <span>
+    can help building a roadmap about how the society wants and will like to be empowered by technology.
    </span>
   </p>
   <p>
@@ -6903,7 +7202,7 @@
   </p>
   <p>
    <span>
-    TODO avoid self-plagiarism to HQA2018
+    //TODO avoid self-plagiarism to HQA2018??
    </span>
   </p>
   <p>
@@ -9236,7 +9535,7 @@
    <span>
    </span>
    <span>
-    samples for the english language and 91 samples for the italian one.
+    samples for the english language and 95 samples for the italian one.
    </span>
   </p>
   <p>
@@ -9412,12 +9711,28 @@
   </h5>
   <p>
    <span>
-    As for the single turn, a targeted dataset is needed for the specific application to the bike sharing domain. For this reason, all the conversations between the user and the bot have been recorded, and from them some sessions have been cleaned up, eventually correcting the predicted outputs. The conversations have been generated from a restricted team of testers that knew the limitations of the system and focused the interaction on the actual types of things the system is able to do. Through this technique it has been possible to collect XXX training sessions with an average length of XXX (TODO complete those values).
+    As for the single turn, a targeted dataset is needed for the specific application to the bike sharing domain. For this reason, all the conversations between the user and the bot have been recorded, and from them some sessions have been cleaned up, eventually correcting the predicted outputs. The conversations have been generated from a restricted team of testers that knew the limitations of the system and focused the interaction on the actual types of things the system is able to do. Through this technique it has been possible to collect
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=73"/>
+   <span>
+    sessions with an average length of
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=12.7"/>
+   <span>
+    for the English language and
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=10"/>
+   <span>
+    sessions with an average length of
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=29.4"/>
+   <span>
+    for the Italian one (considering sentences from both interlocutors).
    </span>
   </p>
   <p>
    <span>
-    Actually, this dataset is nearly unusable for all the limitations that have been noticed in subsection [REF:implementationDatasets].
+    Actually, this dataset is nearly unusable for all the limitations that have been noticed in subsection [REF:implementationDatasets], as can be seen also from the quite poor size of the Italian dataset.
    </span>
   </p>
   <h4 id="h.2xcyfcesv60j">
@@ -15276,6 +15591,36 @@
      [b]
     </a>
     <span>
+     se vuoi usare bot in basso come sinonimo di conv agent, va definito in alto
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref3" id="cmnt3">
+     [c]
+    </a>
+    <span>
+     parlerei di multilingualita' per aumentare l'usabilita' dello strumento ad un audience di diverse nazionalita'
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref4" id="cmnt4">
+     [d]
+    </a>
+    <span>
+     parli di autonomous systems, non robot. Cerca di essere + consistente con la terminologia, riducendo a 0 l'uso dei sinonimi
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref5" id="cmnt5">
+     [e]
+    </a>
+    <span>
      forse ne parli dopo, c'e' un progetto EU molto grande https://www.humanbrainproject.eu/en/
     </span>
    </p>
@@ -15291,6 +15636,16 @@
    <p>
     <span>
      https://www.nsf.gov/awardsearch/showAward?AWD_ID=0134732
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref6" id="cmnt6">
+     [f]
+    </a>
+    <span>
+     no contractions, pls check all and remove
     </span>
    </p>
   </div>
