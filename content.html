@@ -2946,7 +2946,7 @@
   </p>
   <p>
    <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 209.33px;">
-    <img alt="" src="https://lh5.googleusercontent.com/S9RRL9JXkf6YFF06ZB7lpoOfksLsHFOzq2RZ8sYzc_-opfJIvcVAl2a0Hw2KRnEBLO2pKfpbRRLI5x8hLvCVGbimeGGlDosEPW5JjGh28--292WCL9-M3WSf7vc9JQoFVzQSRV6o" style="width: 602.00px; height: 209.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+    <img alt="" src="https://lh4.googleusercontent.com/dg0p1PMtnnryKuRz2epUtJTjJnPGNIM6oFHzFpzICubLEPDdC-YdDGrscNf1gmAJxXe7T18ELc5XkSv797QvfJmWHG65Ge7sHxzGSJhXAT8FaA2QnLMvmVprbyzcMzN_y7OSIXFT" style="width: 602.00px; height: 213.32px; margin-left: 0.00px; margin-top: -2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
    </span>
   </p>
   <p>
@@ -7780,27 +7780,12 @@
     -
    </span>
    <span>
-    specific bot. Some parts of it directly address the target bot (such as the scenario in [REF:approachScenarios] or the information retrieval in [REF:approachIR]), others are more general (such as the choices for NLU in [REF:approachNLU] and personalization in [REF:approachPersonalization]), while others are more under a systemic point of view (like in [REF:approachModel]).
+    specific bot. Section [REF:approachNLU] focuses on the major topic of this work, the Natural Language Understanding, treated as a really important component independent from the domain, by giving a description of the most relevant choices that have been done for the single-turn approach. These include word embeddings, that are really important to provide the proper meaning to words, and output dependency modeling, that enable to generate better output sequences for the slot tagging task. Then the novelty introduced for the multi-turn scenario is described to show the importance of the interaction context.
    </span>
   </p>
   <p>
    <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    For this reason, an introduction of the
-   </span>
-   <span>
-    target bot
-   </span>
-   <sup>
-    <a href="#cmnt14" id="cmnt_ref14">
-     [n]
-    </a>
-   </sup>
-   <span>
-    is introduced here. The domain is the urban mobility: the bot goal is to provide a natural language interface towards the bike sharing service. Bike sharing is one of the projects for sustainable mobility that tries to address transportation replacement especially for the so called “last mile”: cover more capillary with a public form of transport areas or trips that would be uncomfortable without using a private vehicle. With respect to car sharing, bikes have much little impact on the environment and are 100%
+    Then Section [REF:approachPrototype] describes the approach chosen for the selected applicative prototype, by starting from the target scenarios in [REF:approachScenarios]. A high level model is provided in [REF:approachModel] and then a personalization strategy is proposed in [REF:approachPersonalization] and the possible sources of information are described in [REF:approachIR]. The domain is the urban mobility: the bot goal is to provide a natural language interface towards the bike sharing service. Bike sharing is one of the projects for sustainable mobility that tries to address transportation replacement especially for the so called “last mile”: cover more capillary with a public form of transport areas or trips that would be uncomfortable without using a private vehicle. With respect to car sharing, bikes have much little impact on the environment and are 100%
    </span>
    <span>
     green
@@ -7811,73 +7796,332 @@
   </p>
   <p>
    <span>
+    It is important to notice that not all the decisions discussed in this chapter have been implemented. By comparing with the next chapter [REF:implementation] it can be seen that only the language understanding and the bike retrieval information have been brought to experimental environment.
+   </span>
+  </p>
+  <h2 id="h.histkg36tof5">
+   <span>
+    NLU
+   </span>
+  </h2>
+  <p>
+   <span>
+    [LABEL:approachNLU]
+   </span>
+  </p>
+  <p>
+   <span>
+    Before describing the NLU module, it is important to remember the approach that has been chosen: it is NLU based, not generative. For this reason the dialogue management is still done using rules and the responses are provided by filling some templates.
+   </span>
+  </p>
+  <p>
+   <span>
+    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example some complex rules like “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside this domain, it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify intents and slots.
+   </span>
+  </p>
+  <h3 id="h.yu4arhcugltb">
+   <span>
+    Single-turn NLU
+   </span>
+  </h3>
+  <p>
+   <span>
+    [LABEL:approachSingleTurn]
+   </span>
+  </p>
+  <p>
+   <span>
+    The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed in
+   </span>
+   <sup>
+    <a href="#ftnt196" id="ftnt_ref196">
+     [196]
+    </a>
+   </sup>
+   <span>
+    because of its “state of the art” condition. By simply providing the words contained in a sentence, both the intent and the slot tags can be computed. This approach was not modified for single-turn interactions, because the performance are already good as will be seen in chapter [REF:validation]. The focus has been on how to provide better inputs to the system in terms of word embeddings and on output dependency modeling for the slot filling.
+   </span>
+  </p>
+  <h4 id="h.o3gm3qxbrx5s">
+   <span>
+    Word embeddings
+   </span>
+  </h4>
+  <p>
+   <span>
+    [LABEL:approachWv]
+   </span>
+  </p>
+  <p>
+   <span>
+    The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
+   </span>
+   <sup>
+    <a href="#ftnt197" id="ftnt_ref197">
+     [197]
+    </a>
+   </sup>
+   <span>
+    however shows that a word embedding layer is part of the model and the values are randomly initialized. Since the datasets on which the evaluation has been done is not very big (especially the ones collected for the bike sharing domain), in the approach chosen fixed word embeddings, pretrained on bigger corpuses, have been used as inputs. This actually gave a little boost on performances (see section [RE:validationResults]) on all the used datasets as can be seen in the evaluation section. Using pre-trained static word embeddings as inputs to the neural network can help reducing the number of tunable parameters and therefore help training small corpuses, in addition to other advantages, like the ability to use word-similarity also with words that were not contained in the training corpus of the domain.
+   </span>
+  </p>
+  <p>
+   <span>
+    This is the most language-dependent part of the network and the goodness of the classification results highly depend on the quality of the embeddings.
+   </span>
+  </p>
+  <p>
+   <span>
+    Natural Language Processing techniques depend a lot on the selected language and also available libraries come with differentiated support based on it. Features such as Part of Speech, or Parse Trees, if they come from statistical models or handcrafted ones, can be good only if a lot of work is done in annotation of big corpora and therefore the efforts mainly fall on the English language.
+   </span>
+  </p>
+  <p>
+   <span>
+    Instead approaches that consider word embeddings are less dependent on annotated corpuses, since those vectors can be built by simply having sentences in the desired language, that have been computed and realised publicly on the  Web, with unsupervised techniques. As mentioned before, the bot has as requirement to support also the Italian language. Concerning English,  several preprocessed word embeddings are available, trained with different corpora and with different algorithms. Concerning Italian, the found pre-trained embeddings are
+   </span>
+   <span>
+    GloVe
+   </span>
+   <span>
+    and
+   </span>
+   <span>
+    Word2Vec
+   </span>
+   <span>
+    trained by the Human Language Technologies of Pisa
+   </span>
+   <sup>
+    <a href="#ftnt198" id="ftnt_ref198">
+     [198]
+    </a>
+   </sup>
+   <span>
+    trained on Wikipedia and the official
+   </span>
+   <span>
+    fastText
+   </span>
+   <span>
+    .
+   </span>
+   <sup>
+    <a href="#ftnt199" id="ftnt_ref199">
+     [199]
+    </a>
+   </sup>
+   <span>
+    A critical aspect to make word embeddings work at their best is to apply the same kind of tokenization both when training the word embeddings and when using them when feeding RNNs. For this application the choice has been to include punctuation in order not to discard any useful hints from the input sentences. An, hence, the two pretrained Italian embeddings have at their base a different tokenization method, removing punctuation and by applying other transformations (such as replacing hyphens and apostrophes with spaces to split the words),  the choice has been to recompute the GloVe vectors. This time the proper tokenization that, as will be seen in the implementation chapter at [REF:implementationWV], has been applied to maximize the performance on a language that has a short representativeness in the domain-specific dataset.
+   </span>
+  </p>
+  <h4 id="h.gorlkbt8j0xz">
+   <span>
+    Output dependencies
+   </span>
+  </h4>
+  <p>
+   <span>
+    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper
+   </span>
+   <sup>
+    <a href="#ftnt200" id="ftnt_ref200">
+     [200]
+    </a>
+   </sup>
+   <span>
+    , the first one has been chosen.
+   </span>
+  </p>
+  <p>
+   <span>
+    In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels.
+   </span>
+  </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 310.67px;">
+    <img alt="" src="https://lh6.googleusercontent.com/EQPr4MXsbJrAL97prqIMPTPb5EhTlVt95gTaMQdbjn27jmgtw_UllErkS9qzMTAqr7MzKMIQFGKHQBjdkSVMl2w4aWGssrWRFML8Vr8VnJ74H-SsmDmHmFL-_Z6kAQpW67kpsaMK" style="width: 602.00px; height: 310.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    [FIG:outputDependencies CAPTION:The selected approach to model the output dependencies]
+   </span>
+  </p>
+  <p>
+   <span>
+    The choice is to use word embeddings. This time however, differently from what happens to input words, the embeddings are on a separate dictionary: the IOB labels. For this reason they are not used pretrained but are included as trainable parameters of the computational graph. As can be seen in Figure [REF FIG:outputDependencies], the embeddings values are concatenated with the current encoded word coming from the encoder. The rest of the graph does not change.
+   </span>
+  </p>
+  <h3 id="h.re7kk9b4p3yn">
+   <span>
+    Multi-turn NLU
+   </span>
+  </h3>
+  <p>
+   <span>
+    [LABEL:approachMultiTurn]
+   </span>
+  </p>
+  <p>
+   <span>
+    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context (like
+   </span>
+   <sup>
+    <a href="#ftnt201" id="ftnt_ref201">
+     [201]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt202" id="ftnt_ref202">
+     [202]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt203" id="ftnt_ref203">
+     [203]
+    </a>
+   </sup>
+   <span>
+    ,
+   </span>
+   <sup>
+    <a href="#ftnt204" id="ftnt_ref204">
+     [204]
+    </a>
+   </sup>
+   <span>
+    ), the decision has been to change the single-turn architecture to consider also previous sentences. The goal does not change: classify the intent and extract the slot values. So no advanced statistical dialogue-tracking techniques are used, but the change focuses to enrich the available inputs with contextual elements to do the selected tasks on the current sentence.
+   </span>
+  </p>
+  <p>
+   <span>
+    The work that follows for the contextual intent classification is taken from
+   </span>
+   <sup>
+    <a href="#ftnt205" id="ftnt_ref205">
+     [205]
+    </a>
+   </sup>
+   <span>
+    done for the “Hybrid Question Answering with Structured and Unstructured Knowledge” workshop,
+   </span>
+   <sup>
+    <a href="#ftnt206" id="ftnt_ref206">
+     [206]
+    </a>
+   </sup>
+   <span>
+    (in the following denoted with HQA2018).
+   </span>
+  </p>
+  <p>
+   <span>
+    Three main challenges are addressed:
+   </span>
+  </p>
+  <ul>
+   <li>
+    <span>
+     detect the change of intent in a multi-turn environment: in other words, to understand dynamically when a certain session (sequence of messages related to a single intent) ends in favour of a new one. This corresponds to choose for each input sentence whether to keep the value of the previous intent or to consider some evidence on the current input. The first case happens when the input sentence is part of a preceding session, and the user is simply continuing the interaction with the same initial intent. The second case instead is when a new intent is expressed in the current sentence, signalling an intent change;
+    </span>
+   </li>
+   <li>
+    <span>
+     capture intent dependencies using the RNN: capturing the sequences of intent values, a better prediction of the sentence can be done knowing the proceeding intents. This can be quite useful with sentences that are not so expressive because they are referring implicitly to some context of the interaction;
+    </span>
+   </li>
+   <li>
+    <span>
+     consider the current agent turn words: having a knowledge about what has been replied to the user can help contextualize the new sentence that may not have evident indicators of the intent.
+    </span>
+   </li>
+  </ul>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 325.33px;">
+    <img alt="" src="https://lh4.googleusercontent.com/1zq0LIz2nyoQxtQwHooimpT3rMAlGNrjiudkYcCA_H2pYjIaovuoav_yU6w11KdZK3vZhhkBeIO1-8iDwtVY7miKq28k_GwA98i42fBtWDAQDu9LwKdRVpEWdsuGA5KnqpVdO7oV" style="width: 602.00px; height: 325.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    [FIG:approachMultiTurn CAPTION:The selected Multi-turn approach]
+   </span>
+  </p>
+  <p>
+   <span>
+   </span>
+  </p>
+  <p>
+   <span>
+    Figure [REF FIG:approachMultiTurn] illustrates our approach. Sentences are encoded in fixed-length vectors using the word-level bidirectional RNN (coloured in blue).The outputs of this first RNN are passed to a second RNN (coloured in red) that models the intent propagation of the user sentences over the different timesteps. This last RNN (in red) for each user sentence produces the contextualized intent value. The agent words are in green, while the words generated by the human are in white boxes.
+   </span>
+  </p>
+  <p>
+   <span>
+    In literature also other studies have been done on the problem of sentence classification inside an interaction context. The approach proposed in
+   </span>
+   <sup>
+    <a href="#ftnt207" id="ftnt_ref207">
+     [207]
+    </a>
+   </sup>
+   <span>
+    on the classification of the domain, that is like the high level class in a hierarchical intent classification, uses the previous model prediction at word-level, concatenating it with each word vector.
+   </span>
+  </p>
+  <p>
+   <span>
+    The approach proposed in this work is different both in the specific point where the previous classification is used (not together with the input words but on the sentence level, using the high-level RNN) and also in the way the word-level features are summarized in sentence-level features and considered for next interactions by the learning network.
+   </span>
+  </p>
+  <p>
+   <span>
+    A critical point where this model should prove the goodness of the chosen cell, is when two completely unrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
+   </span>
+  </p>
+  <h2 id="h.8vjx7p5k7ajl">
+   <span>
+    The bot for bike sharing
+   </span>
+  </h2>
+  <p>
+   <span>
+    [LABEL:approachPrototype]
+   </span>
+  </p>
+  <p>
+   <span>
     Since there is no agreement with the bike sharing providers
    </span>
+   <sup>
+    <a href="#cmnt14" id="cmnt_ref14">
+     [n]
+    </a>
+   </sup>
    <sup>
     <a href="#cmnt15" id="cmnt_ref15">
      [o]
     </a>
    </sup>
-   <sup>
-    <a href="#cmnt16" id="cmnt_ref16">
-     [p]
-    </a>
-   </sup>
    <span>
-    , the information is only available in read mode, and only from public sources. For this reason the main things a user can do with the bot is to ask for information on the station and availability of bikes. No account linking is possible and users ca
-   </span>
-   <span>
-    n
-   </span>
-   <span>
-    not unlock bikes using the bot. The main idea is to provide useful information to the users in a spatial context-aware setting. To provide this, the bot should analyze the area relative to the information and provide some suggestions to the user.
+    , the information is only available in read mode, and only from public sources. For this reason the main things a user can do with the bot is to ask for information on the station and availability of bikes. No account linking is possible and users cannot unlock bikes using the bot. The main idea is to provide useful information to the users in a spatial context-aware setting. To provide this, the bot should analyze the area relative to the information and provide some suggestions to the user.
    </span>
   </p>
   <p>
    <span>
-    A required characteristic for the bot is to support the Italian language too: the agent, being developed in
-   </span>
-   <span>
-    Turin
-   </span>
-   <span>
-    , is supposed to be able to understand
-   </span>
-   <span>
-    both Italian and English.
-   </span>
-   <span>
-    For the sentences of the agent, the solution is simply to have both
-   </span>
-   <span>
-    I
-   </span>
-   <span>
-    talian and
-   </span>
-   <span>
-    E
-   </span>
-   <span>
-    nglish template responses. Instead for the language understanding part, as will be seen especially for the
-   </span>
-   <span>
-    Word Embeddings in [REF:approachWv]
-   </span>
-   <span>
-    , it requires having the requested models for both the languages.
+    A required characteristic for the bot is to support the Italian language too: the agent, being developed in Turin, is supposed to be able to understand both Italian and English. For the sentences of the agent, the solution is simply to have both Italian and English template responses. Instead for the language understanding part, as will be seen especially for the Word Embeddings in [REF:approachWv], it requires having the requested models for both the languages.
    </span>
   </p>
-  <p>
-   <span>
-    It is important to notice that not all the decisions discussed in this chapter have been implemented. By comparing with the next chapter [REF:implementation] it can be seen that only the language understanding and the bike retrieval information have been brought to sperimental environment.
-   </span>
-  </p>
-  <h2 id="h.fs7v46jijgtn">
+  <h3 id="h.fs7v46jijgtn">
    <span>
     Scenarios
    </span>
-  </h2>
+  </h3>
   <p>
    <span>
     [LABEL:approachScenarios]
@@ -7888,11 +8132,11 @@
     We explain there the main scenarios that we want to face with this conversational agent. The main goal is to provide an easy-to-use interface that feels more natural for the user by allowing the interrogation in natural language.
    </span>
   </p>
-  <h3 id="h.5b37239td2lm">
+  <h4 id="h.5b37239td2lm">
    <span>
     Search for bike stations information
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     The main scenario is the one where a user asks for information about bikes and available parking slots. This can be expressed by a search of one station given some parameters or by a search that includes more stations.
@@ -7926,21 +8170,21 @@
     Such response should have the form of natural language, with the possibility to include visual contents such as pictures or links to more detailed information about the results.
    </span>
   </p>
-  <h3 id="h.rca3waw30vmb">
+  <h4 id="h.rca3waw30vmb">
    <span>
     Search for supported cities
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Another scenario is when a user wants to understand the availability of the information for a specific city. In this case the request, expressed in natural language, will contain the name of the city. The system extracts it and finds if any bike sharing providers have support in it. If the city is not supported, information about which nearby locations are supported can be provided in the response.
    </span>
   </p>
-  <h3 id="h.4andgrew3fog">
+  <h4 id="h.4andgrew3fog">
    <span>
     Small talk, refining the user model
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     The last scenarios is the one of small talk: all the sentences that are not necessary to provide information about bikes, but are necessary to handle very basic chit-chat dialogues.
@@ -7973,11 +8217,11 @@
     Having some dialogues of this genre with the user could help understanding more about him, and this kind of information could be useful for refining the personalization model. By having a mixed-initiative interaction instead of letting the system to reply only to the questions, the bot may also ask questions to the user about his interests or explicitly asking for some feedback. In this way the personalization would receive a boost.
    </span>
   </p>
-  <h3 id="h.v3k960rc81yj">
+  <h4 id="h.v3k960rc81yj">
    <span>
     Proactive messages
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Extending the mixed-initiative interaction out of the single dialogue, the bot may be able to actively begin the conversation with the user after some time of inactivity (not possible to start conversations with new users of course). This can be seen as breaking the idea of the bot as a service and for this reason should be only done if there is an advantage for the user. The advantage can exist in two different situations.
@@ -7998,17 +8242,11 @@
     Those messages must be in some way controllable from the user. The suggested way of making them available is to test them once on the user and then getting the feedback: if the user reacts positively (measured by explicit response or interacting with the generated content) the feature can be kept on, otherwise the system will remember not to use the feature with the current user.
    </span>
   </p>
-  <h2 id="h.pnr09fugspju">
+  <h3 id="h.pnr09fugspju">
    <span>
-    High
+    High-level model
    </span>
-   <span>
-    -
-   </span>
-   <span>
-    level model
-   </span>
-  </h2>
+  </h3>
   <p>
    <span>
     [LABEL:approachModel]
@@ -8035,39 +8273,12 @@
   </p>
   <p>
    <span>
-    As can be seen in
-   </span>
-   <span>
-    F
-   </span>
-   <span>
-    igure [REF FIG:systemHighLevel], one component is needed to interface with the different messaging platforms. This is responsible to make messages arrive to the “brain” of the bot and to deliver responses back. Something about this component will be described soon and some implementation details will be given in
-   </span>
-   <span>
-    [REF:implementationInteraction]. Then another component will do the NLU, providing intents and resolved entities. Passing through the dialogue manager, that contains the rules for managing the conversation, the flow will reach the personalization module that will collect episodic knowledge and together with the contextual knowledge will provide recommendations. The responses will be generated by combining the results and some templates will be filled.
+    As can be seen in Figure [REF FIG:systemHighLevel], one component is needed to interface with the different messaging platforms. This is responsible to make messages arrive to the “brain” of the bot and to deliver responses back. Something about this component will be described soon and some implementation details will be given in [REF:implementationInteraction]. Then another component will do the NLU, providing intents and resolved entities. Passing through the dialogue manager, that contains the rules for managing the conversation, the flow will reach the personalization module that will collect episodic knowledge and together with the contextual knowledge will provide recommendations. The responses will be generated by combining the results and some templates will be filled.
    </span>
   </p>
   <p>
    <span>
-    The main sources of information (
-   </span>
-   <span>
-    k
-   </span>
-   <span>
-    nowledge
-   </span>
-   <span>
-    b
-   </span>
-   <span>
-    ase) can be grouped together in two types: the Contextual and Episodic. In the first group
-   </span>
-   <span>
-    can be found
-   </span>
-   <span>
-    the providers of information, that are used in read only mode, inherent to bike sharing, places, meteo. The data is provided by external web API, and may be cached locally for performance improvements. The Information Retrieval module is responsible to manage them providing a higher level API that can be easily used by the dialogue manager. Instead the Episodic Knowledge contains records captured from the interaction with the users. Aggregated information can be computed and put in the user model that collects the user features that can be used for the personalization.
+    The main sources of information (knowledge base) can be grouped together in two types: the Contextual and Episodic. In the first group can be found the providers of information, that are used in read only mode, inherent to bike sharing, places, meteo. The data is provided by external web API, and may be cached locally for performance improvements. The Information Retrieval module is responsible to manage them providing a higher level API that can be easily used by the dialogue manager. Instead the Episodic Knowledge contains records captured from the interaction with the users. Aggregated information can be computed and put in the user model that collects the user features that can be used for the personalization.
    </span>
   </p>
   <p>
@@ -8077,24 +8288,7 @@
   </p>
   <p>
    <span>
-    Starting with one of the first platform to support bots with official API, Telegram Messenger is surely the easiest platform to create bots on, allowing them since June 2015. Bot accounts can
-   </span>
-   <span>
-    be
-   </span>
-   <span>
-    easily
-   </span>
-   <span>
-   </span>
-   <span>
-    created in few seconds with the only principle that the username should end with “bot” in order to be recognizable. User can interact with bots using text, voice, buttons of different kind
-   </span>
-   <span>
-    s
-   </span>
-   <span>
-    , images (any kind of file can be sent) and including them also in chat groups. On mobile devices users can also send their location. This platform is the most friendly for bots, but is not widely used by non-geeks.
+    Starting with one of the first platform to support bots with official API, Telegram Messenger is surely the easiest platform to create bots on, allowing them since June 2015. Bot accounts can be easily created in few seconds with the only principle that the username should end with “bot” in order to be recognizable. User can interact with bots using text, voice, buttons of different kinds, images (any kind of file can be sent) and including them also in chat groups. On mobile devices users can also send their location. This platform is the most friendly for bots, but is not widely used by non-geeks.
    </span>
   </p>
   <p>
@@ -8132,43 +8326,11 @@
     : the core of the chatbot can be put in communication with any messaging platforms, given that the message-proxy component (the part of the two that depends on the specific platform) is correctly configured. This component can make use of one of the many available solutions to manage different channels: Microsoft Bot Framework, Recast.AI Bot Connector, or start from scratch the implementation of the different endpoints. As will be seen in the implementation chapter [REF:implementationInteraction], having this component has many practical advantages.
    </span>
   </p>
-  <h2 id="h.histkg36tof5">
-   <span>
-    NLU
-   </span>
-  </h2>
-  <p>
-   <span>
-    [LABEL:approachNLU]
-   </span>
-  </p>
-  <p>
-   <span>
-    Before describing the NLU module, it is important to remember the approach that has been chosen: it is NLU based, not generative. For this reason the dialogue management is still done using rules and the responses are provided by filling some templates.
-   </span>
-  </p>
-  <p>
-   <span>
-    Without having an existing corpus to train the dialogues in an end-to-end fashion, this is the approach that best fits the situation. For example some complex rules like “to search for a bike you should provide a search criterion or the last known position should be known and recent (2hr or ask for confirmation)” is not manageable from a data-only focused approach. Inside th
-   </span>
-   <span>
-    is
-   </span>
-   <span>
-    domain
-   </span>
-   <span>
-    ,
-   </span>
-   <span>
-    it is better to provide static rules that are handwritten in some configuration files. Although there are several studies on end-to-end goal-oriented dialog, for the implementation of this prototype a rule-based logic has been chosen. The neural network are only applied in the NLU module that is responsible to extract intent and entities from the current dialog, eventually using the multi-turn environment only to better identify intents and slots.
-   </span>
-  </p>
-  <h3 id="h.c061oqibyojs">
+  <h4 id="h.c061oqibyojs">
    <span>
     Intent and slot types
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     [LABEL:approachTypes]
@@ -8492,8 +8654,8 @@
     During the progress of this task many problems can arise. First of all, the user may refer to some place names that are bound to a position only for them: examples are “home” “work” and “school” that are different for each user. For this reason this type of resolution and memorization is required to be personalized. Another common problem is the disambiguation of places with the same name that exists in different contexts. Geocoding can be biased on a specific area to give a preference on a certain bounding box,
    </span>
    <sup>
-    <a href="#ftnt196" id="ftnt_ref196">
-     [196]
+    <a href="#ftnt208" id="ftnt_ref208">
+     [208]
     </a>
    </sup>
    <span>
@@ -8507,428 +8669,18 @@
   </p>
   <p>
    <span>
-    The entity of type LOCATION
-   </span>
-   <span>
-    can be inside the utterance as entity or can be the user position. Other entity types have not been considered for this initial prototype.
-   </span>
-  </p>
-  <h3 id="h.yu4arhcugltb">
-   <span>
-    Single-turn NLU
-   </span>
-  </h3>
-  <p>
-   <span>
-    [LABEL:approachSingleTurn]
+    The entity of type LOCATION can be inside the utterance as entity or can be the user position. Other entity types have not been considered for this initial prototype.
    </span>
   </p>
   <p>
    <span>
-    The computational graph that has been chosen to perform the joint task of intent classification and slot filling is the encoder-decoder model proposed in
-   </span>
-   <sup>
-    <a href="#ftnt197" id="ftnt_ref197">
-     [197]
-    </a>
-   </sup>
-   <span>
-    because of its “state of the art” condition. By simply providing the words contained in a sentence, both the intent and the slot tags can be computed. This approach was not modified for single-turn interactions, because the performance are already good as will be seen in chapter [REF:validation]. The focus has been on how to provide better inputs to the system in terms of word embeddings and on output dependency modeling for the slot filling.
    </span>
   </p>
-  <h4 id="h.o3gm3qxbrx5s">
-   <span>
-    Word embeddings
-   </span>
-  </h4>
-  <p>
-   <span>
-    [LABEL:approachWv]
-   </span>
-  </p>
-  <p>
-   <span>
-    The paper presenting the used model is not describing the way the words are fed into the network. The implementation provided by the authors
-   </span>
-   <sup>
-    <a href="#ftnt198" id="ftnt_ref198">
-     [198]
-    </a>
-   </sup>
-   <span>
-    however shows that a word embedding layer is part of the model and the values are randomly initialized. Since the datasets on which the evaluation has been done is not very big (especially the ones collected for the bike sharing domain), in the approach chosen fixed word embeddings, pretrained on bigger corpuses, have been used as inputs. This ac
-   </span>
-   <span>
-    tu
-   </span>
-   <span>
-    ally gave a little boost on performances (see section [RE:validationResults]) on all the used datasets as can be seen in the evaluation section. Using pre-trained static word embeddings as inputs to the neural network can help reducing the number of tunable parameters and therefore help training small corpuses, in addition to other advantages, like the ability to use word-similarity also with words that were not contained in the training corpus of the domain.
-   </span>
-  </p>
-  <p>
-   <span>
-    This is the most language-dependent part of the network and the goodness of the classification results highly depend on the quality of the embeddings.
-   </span>
-  </p>
-  <p>
-   <span>
-    Natural Language Processing techniques depend a lot on the selected language and also available libraries come with differentiated support based on it. Features
-   </span>
-   <span>
-    such
-   </span>
-   <span>
-    as Part of Speech, or Parse Trees, if they come from statistical models or handcrafted ones, can be good only if a lot of work is done in annotation of big
-   </span>
-   <span>
-    corpora
-   </span>
-   <span>
-    and therefore the efforts mainly fall on the English language.
-   </span>
-  </p>
-  <p>
-   <span>
-    Instead approaches that consider word embeddings are less dependent on annotated corpuses, since those vectors can be built by simply having sentences in the desired language, that
-   </span>
-   <span>
-    have been computed and realised publicly on the
-   </span>
-   <span>
-   </span>
-   <span>
-    W
-   </span>
-   <span>
-    eb, with unsupervised techniques. As mentioned before, the bot has as requirement to support also the
-   </span>
-   <span>
-    I
-   </span>
-   <span>
-    talian language.
-   </span>
-   <span>
-    Concerning English,
-   </span>
-   <span>
-    several preprocessed word embeddings are available, trained
-   </span>
-   <span>
-    with
-   </span>
-   <span>
-    different
-   </span>
-   <span>
-    corpora
-   </span>
-   <span>
-    and with different algorithms.
-   </span>
-   <span>
-    Concerning Italian
-   </span>
-   <span>
-    , the found pre-trained embeddings are
-   </span>
-   <span>
-    GloVe
-   </span>
-   <span>
-    and
-   </span>
-   <span>
-    Word2Vec
-   </span>
-   <span>
-    trained by the Human Language Technologies of Pisa
-   </span>
-   <sup>
-    <a href="#ftnt199" id="ftnt_ref199">
-     [199]
-    </a>
-   </sup>
-   <span>
-    trained on Wikipedia and the official
-   </span>
-   <span>
-    fastText
-   </span>
-   <span>
-    .
-   </span>
-   <sup>
-    <a href="#ftnt200" id="ftnt_ref200">
-     [200]
-    </a>
-   </sup>
-   <span>
-    A critical aspect to make word embeddings work at their best is to apply the same kind of tokenization both when training the word embeddings and when using them when feeding RNNs. For this application the choice has been to include punctuation in order not to discard any useful hints from the input sentences. An
-   </span>
-   <span>
-    , hence,
-   </span>
-   <span>
-    the two pretrained Italian embeddings have at their base a different tokenization method, removing punctuation and by applying other transformations (such as replacing hyphens and apostrophes with spaces to split the words),  the choice has been to recompute the GloVe vectors. This time the proper tokenization that
-   </span>
-   <span>
-    ,
-   </span>
-   <span>
-    as will be seen in the implementation chapter at [REF:implementationWV]
-   </span>
-   <span>
-    ,
-   </span>
-   <span>
-    has been applied
-   </span>
-   <span>
-   </span>
-   <span>
-    to maximize the performance on a language that has
-   </span>
-   <span>
-    a short representativeness in
-   </span>
-   <span>
-    the domain-specific dataset
-   </span>
-   <span>
-    .
-   </span>
-  </p>
-  <h4 id="h.gorlkbt8j0xz">
-   <span>
-    Output dependencies
-   </span>
-  </h4>
-  <p>
-   <span>
-    As mentioned in the state of the art section, modeling the output dependencies is very important in sequence labeling tasks. The different choices available are: feeding output labels as inputs to the decoding stage, or using a linear chain CRF. For its simplicity and also because it is mentioned in the referenced paper
-   </span>
-   <sup>
-    <a href="#ftnt201" id="ftnt_ref201">
-     [201]
-    </a>
-   </sup>
-   <span>
-    , the first one has been chosen.
-   </span>
-  </p>
-  <p>
-   <span>
-    In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels.
-   </span>
-  </p>
-  <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 310.67px;">
-    <img alt="" src="https://lh6.googleusercontent.com/EQPr4MXsbJrAL97prqIMPTPb5EhTlVt95gTaMQdbjn27jmgtw_UllErkS9qzMTAqr7MzKMIQFGKHQBjdkSVMl2w4aWGssrWRFML8Vr8VnJ74H-SsmDmHmFL-_Z6kAQpW67kpsaMK" style="width: 602.00px; height: 310.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
-   </span>
-  </p>
-  <p>
-   <span>
-    [FIG:outputDependencies CAPTION:The selected approach to model the output dependencies]
-   </span>
-  </p>
-  <p>
-   <span>
-    The choice is to use word embeddings. This time however, differently from what happens to input words, the embeddings are on a separate dictionary: the IOB labels. For this reason they are not used pretrained but are included as trainable parameters of the computational graph. As can be seen in Figure [REF FIG:outputDependencies], the embeddings values are concatenated with the current encoded word coming from the encoder. The rest of the graph does not change.
-   </span>
-  </p>
-  <h3 id="h.re7kk9b4p3yn">
-   <span>
-    Multi-turn NLU
-   </span>
-  </h3>
-  <p>
-   <span>
-    [LABEL:approachMultiTurn]
-   </span>
-  </p>
-  <p>
-   <span>
-    For solving the problem of multi-turn NLU, after analyzing solutions in the literature to the problem of keeping the context (like
-   </span>
-   <sup>
-    <a href="#ftnt202" id="ftnt_ref202">
-     [202]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
-    <a href="#ftnt203" id="ftnt_ref203">
-     [203]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
-    <a href="#ftnt204" id="ftnt_ref204">
-     [204]
-    </a>
-   </sup>
-   <span>
-    ,
-   </span>
-   <sup>
-    <a href="#ftnt205" id="ftnt_ref205">
-     [205]
-    </a>
-   </sup>
-   <span>
-    ), the decision has been to change the single-turn architecture to consider also previous sentences. The goal does not change: classify the intent and extract the slot values. So no advanced statistical dialogue-tracking techniques are used, but the
-   </span>
-   <span>
-    change
-   </span>
-   <span>
-    focuses to enrich the available inputs with contextual elements to do the selected tasks on the current sentence. The simple dialogue state management,
-   </span>
-   <span>
-    which
-   </span>
-   <span>
-    has been used also in the single-turn interaction model, is described in next subsection [REF:approachStateManager].
-   </span>
-  </p>
-  <p>
-   <span>
-    The work that follows for the contextual intent classification is taken from
-   </span>
-   <sup>
-    <a href="#ftnt206" id="ftnt_ref206">
-     [206]
-    </a>
-   </sup>
-   <span>
-    done for the “Hybrid Question Answering with Structured and Unstructured Knowledge” workshop,
-   </span>
-   <sup>
-    <a href="#ftnt207" id="ftnt_ref207">
-     [207]
-    </a>
-   </sup>
-   <span>
-    (in the following denoted with HQA2018).
-   </span>
-  </p>
-  <p>
-   <span>
-    Three main challenges are addressed:
-   </span>
-  </p>
-  <ul>
-   <li>
-    <span>
-     detect the change of intent in a multi-turn environment: in other words, to understand dynamically when a certain session (sequence of messages related to a single intent) ends in favour of a new one. This corresponds to choose for each input sentence whether to keep the value of the previous intent or to consider some evidence on the current input.
-    </span>
-    <span>
-    </span>
-    <span>
-     The first case happens when the input sentence is part of a preceding session, and the user is simply continuing the interaction with the same initial intent.
-    </span>
-    <span>
-    </span>
-    <span>
-     The second case instead is when a new intent is expressed in the current sentence, signalling an intent change;
-    </span>
-   </li>
-   <li>
-    <span>
-     capture intent dependencies using the RNN: capturing the sequences of intent values, a better prediction of the sentence can be done knowing the proceeding intents. This can be quite useful with sentences that are not so expressive because they are referring implicitly to some context of the interaction;
-    </span>
-   </li>
-   <li>
-    <span>
-     consider the current agent turn words: having a knowledge about what has been replied to the user can help contextualize the new sentence that may not have evident indicators of the intent.
-    </span>
-   </li>
-  </ul>
-  <p>
-   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 325.33px;">
-    <img alt="" src="https://lh4.googleusercontent.com/1zq0LIz2nyoQxtQwHooimpT3rMAlGNrjiudkYcCA_H2pYjIaovuoav_yU6w11KdZK3vZhhkBeIO1-8iDwtVY7miKq28k_GwA98i42fBtWDAQDu9LwKdRVpEWdsuGA5KnqpVdO7oV" style="width: 602.00px; height: 325.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
-   </span>
-  </p>
-  <p>
-   <span>
-    [FIG:approachMultiTurn CAPTION:The selected Multi-turn approach]
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <p>
-   <span>
-    Figure [REF FIG:approachMultiTurn] illustrates our approach. Sentences are encoded in fixed-length vectors using the word-level bidirectional RNN (
-   </span>
-   <span>
-    coloured in blue
-   </span>
-   <span>
-    ).The outputs of this first RNN are passed to a second RNN (
-   </span>
-   <span>
-    coloured in red
-   </span>
-   <span>
-    )
-   </span>
-   <span>
-    that
-   </span>
-   <span>
-    models the intent propagation of the user sentences over the different timesteps. This last RNN (
-   </span>
-   <span>
-    in
-   </span>
-   <span>
-    red) for each user sentence produces the contextualized intent value. The agent words are in green, while the words generated by the human are in white boxes.
-   </span>
-  </p>
-  <p>
-   <span>
-    In literature also other studies have been done on the problem of sentence classification inside an interaction context. The approach proposed in
-   </span>
-   <sup>
-    <a href="#ftnt208" id="ftnt_ref208">
-     [208]
-    </a>
-   </sup>
-   <span>
-    on the classification of the domain, that is like the high level class in a hierarchical intent classification, uses the previous model prediction at word-level, concatenating it with each word vector.
-   </span>
-  </p>
-  <p>
-   <span>
-    The approach proposed in this work is different both in the specific point where the previous classification is used (not together with the input words but on the sentence level, using the high-level RNN) and also in the way the word-level features are summarized in sentence-level features and considered for next interactions by the learning network.
-   </span>
-  </p>
-  <p>
-   <span>
-    A critical point where this model should prove the goodness of the chosen cell, is when two completely unrelated sentence follow each others (e.g. two different intents). In this case the LSTMs/GRUs should learn to forget their past state in order to provide the new values. In inference time we can never know whether a certain sentence is a follow-up or is a new intent without any logical linking with the previous one, so the only good option is to train the network to learn when this happens. For this motivation, instead of training on single independent sessions, all the sessions have been concatenated. In this way the model will be able to work better both on sentences that belong to the same session (for example answering back to a missing slot) and on other independent questions (for example an independent intent).
-   </span>
-  </p>
-  <p>
-   <span>
-   </span>
-  </p>
-  <h3 id="h.ju7jua6nccwa">
+  <h4 id="h.ju7jua6nccwa">
    <span>
     Dialogue State Management
    </span>
-  </h3>
-  <p>
-   <span>
-    [LABEL:approachStateManager]
-   </span>
-  </p>
+  </h4>
   <p>
    <span>
     The Dialogue State Management module is responsible to handle the mapping from intents and available slots to the actions and responses. For this part, as mentioned before, a rule-based approach has been chosen.
@@ -8955,11 +8707,11 @@
     Once the requirements have been checked, the corresponding actions are called, involving the interrogation of the bike sharing informations and other collateral sources. At the end, when the results are ready in a structured format, the translation back in natural language is done by filling some template responses with some item features.
    </span>
   </p>
-  <h2 id="h.t1pa04y1x2e1">
+  <h3 id="h.t1pa04y1x2e1">
    <span>
     Personalization
    </span>
-  </h2>
+  </h3>
   <p>
    <span>
     [LABEL:approachPersonalization]
@@ -9004,11 +8756,11 @@
     [REF:conclusion]) that may implement the idea represented here. Furthermore, not only a personalization approach is presented, but also a bit of analysis of third party information providers that could enable this scenario, such as Facebook Graph API or Big Five predictors (in [REF:approachIR]).
    </span>
   </p>
-  <h3 id="h.avx4n4low1rk">
+  <h4 id="h.avx4n4low1rk">
    <span>
     Content recommendation
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     [LABEL:approachRec]
@@ -9040,11 +8792,11 @@
     Determined the valid surface, the places in it are candidates for the recommendation. To restrict the places list and to provide one of them as recommendation, the strategy to be applied is to determine a place category that the user could be interested in. To find this category, a bit of user modeling needs to be done.
    </span>
   </p>
-  <h4 id="h.9j2yq7sjjkvs">
+  <h5 id="h.9j2yq7sjjkvs">
    <span>
     User modeling
    </span>
-  </h4>
+  </h5>
   <p>
    <span>
     First of all, it is important to understand which variables need to be collected to build the user model. Some manifest variables like gender, age, profession, religion, political orientation are used for many profiling techniques, but not always they are available. Moreover, from a bot that is giving bike sharing information it is strange to be asked for those values, and can only make the user stop using the bot because it is asking strange questions. For these reasons, this kind of information is not even asked to the user.
@@ -9133,11 +8885,11 @@
     Once these user features are collected, different recommendation paths have been modeled to suggest the categories of places inside the selected area.
    </span>
   </p>
-  <h4 id="h.bcvzzw13ygcz">
+  <h5 id="h.bcvzzw13ygcz">
    <span>
     The trainable relationship
    </span>
-  </h4>
+  </h5>
   <p>
    <span>
     The recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques. As can be seen in Figure [REF FIG:recommendationPaths], there are different entities involved, but the main goal is to learn the mapping from user features to place categories. This is the unknown relationship evidenced in red in the figure. The model needs to retrieve as many details on the two edges of this relation, in order to be more able to suggest the best places for each user.
@@ -9184,11 +8936,11 @@
     All those inputs are used to train this relationship that models how different users with similar interests are likely to appreciate places with similar features. To model this unknown mapping, a simple feedforward neural network can be used and trained with the data of every user. It is a content-based component because users that have expressed a positive opinion on a certain category, will receive recommendations with places that have similar characteristics. But it is also collaborative because the relation is trained with data of all the users, so similar user features map to similar places features.
    </span>
   </p>
-  <h4 id="h.ump5x3plh526">
+  <h5 id="h.ump5x3plh526">
    <span>
     Providing recommendations
    </span>
-  </h4>
+  </h5>
   <p>
    <span>
     So given any user and any constraining circle around his path, different recommendation strategies can be applied depending on which inputs are available.
@@ -9269,11 +9021,11 @@
     If this approach is implemented, measures of its goodness should consider not only the accuracy of recommendations, but also their diversity and serendipity.
    </span>
   </p>
-  <h3 id="h.lkratao7dd2k">
+  <h4 id="h.lkratao7dd2k">
    <span>
     Tailored communication
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     [LABEL:approachPersonalizationCommunication]
@@ -9284,11 +9036,11 @@
     How introduced previously, we think that the personalization strategy in a textual environment should not be limited to content recommendation. Being human conversation itself one of the most dynamic interactions where it is very important to understand the interlocutor to say the things in the right way, in the following paragraphs different modifications to the mean itself of interaction are considered. First of all, some operative modes are defined to represent different behaviours with respect to the recommendation process. Then a memory of the personal preferences, letting the bot remember things that can be useful to fasten the interaction (having places saved with names like “home” and “work”). And finally some considerations that can help reducing the linguistic style distance between the user and the bot.
    </span>
   </p>
-  <h4 id="h.808nus50cz59">
+  <h5 id="h.808nus50cz59">
    <span>
     Operative Modes
    </span>
-  </h4>
+  </h5>
   <p>
    <span>
     Starting from the operative modes, we can define them as states of conversation that model how much the recommendation process should be active and visible to the user. It should reflect how much
@@ -9335,11 +9087,11 @@
     Or signs can be collected from monitoring the destination pages that are linked in the results. For this reason the strategy of link rewriting can be used to intercept the user clicking on the details of the recommendation: an intermediate webserver can be set as the destination when creating the link; when it receives the request, it records the fact that the user has reached it and sends a redirect for the real destination. This strategy is widely used to measure click-through rates by all the big companies (see for example the real URL used in the results of a Google Search, or the links built by Facebook and Twitter).
    </span>
   </p>
-  <h4 id="h.r133th2co0hh">
+  <h5 id="h.r133th2co0hh">
    <span>
     Personal preferences
    </span>
-  </h4>
+  </h5>
   <p>
    <span>
     The personalization, beyond providing the recommended content in the correct way, should also consider some personal preferences that may enable a faster and more comfortable usage, like setting bookmarks or saving form fields in a web browser. In the domain of bike sharing, it can be useful to let the user save favourite stations, linking them with a shorter name, or saving the values for other commonly frequented places, like the home or the work/study location. By having this personal map between names and locations, searches can be performed faster and without the need to remember long addresses every time.
@@ -9350,17 +9102,11 @@
     Other preferences that can be saved for the bot, are values that play the role of settings: set automatic messages in certain time slots, to receive unsolicited messages for bike availability on recurrent habits or to receive constant updates about a bike station in the minutes before its usage. Those are all things that could enhance the user experience.
    </span>
   </p>
-  <h4 id="h.mectvbnqk07t">
+  <h5 id="h.mectvbnqk07t">
    <span>
-    Linguistic
+    Linguistic style and mood
    </span>
-   <span>
-    s
-   </span>
-   <span>
-    tyle and mood
-   </span>
-  </h4>
+  </h5>
   <p>
    <span>
     Furthermore, the personalization strategy could also be expanded to the linguistic style of the user. This can declinate on a targeted choice of language or the usage of emotions. Those enhancements can be used effectively only if responses are provided in a generative fashion.
@@ -9392,11 +9138,11 @@
     shows, the output of generative approaches can be biased on a specific emotion. This can help making the user more understood by reflecting his mood of writing. However, as discussed in the introduction, this emotional content has many potential negative effects on the personality and should be evaluated well in ethical field before giving any implementation.
    </span>
   </p>
-  <h2 id="h.5jp7qco42re1">
+  <h3 id="h.5jp7qco42re1">
    <span>
     Information Retrieval
    </span>
-  </h2>
+  </h3>
   <p>
    <span>
     [LABEL:approachIR]
@@ -9407,11 +9153,11 @@
     This section analyzes the kinds of information that both have been used in the prototype and may be used for the implementation of the personalization approach. Some details are given about each data source that is necessary, together with the respective APIs that can be used. The sources of data cover different domains: from the bike sharing informations, passing through the computation of directions and geocoding, and going in the direction of personalization by means of APIs to retrieve the recommendation items or APIs to compute user features. Below are listed the different data sources that need to be queried to provide updated information to the users.
    </span>
   </p>
-  <h3 id="h.5z1ti99xp363">
+  <h4 id="h.5z1ti99xp363">
    <span>
     Bikes
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Bike sharing is an expanding market, where every day more companies are investing in and more people decide to use them for their relatively small cost and for their easiness in the urban environment. The majority of the providers have station-based systems, where the users begin and end their trip at fixed locations (the stations). However nowadays station-free systems are being spread in major cities, with the advantage of being able to leave the vehicle in any responsible place.
@@ -9472,11 +9218,11 @@
     This library interfaces with different bike sharing providers by using open RESTful APIs when available or using web scraping to connect to other ones. The structured informations about the bikes and stations can be updated from the source and be used for any computation. Being completely open-source, everyone can contribute and make it work for additional systems.
    </span>
   </p>
-  <h3 id="h.kiq28t792vyx">
+  <h4 id="h.kiq28t792vyx">
    <span>
     Geographical information
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Instead on the side of geographical tools, two main needs are addressed: geocoding capabilities, as tools for the entity resolver that needs to turn textual entities into geographical objects, and the computation of paths between sets of points with specific constraints.
@@ -9566,11 +9312,11 @@
     . This feature was not considered, in favour of the usual optimal path.
    </span>
   </p>
-  <h3 id="h.mvejy7yxrs7l">
+  <h4 id="h.mvejy7yxrs7l">
    <span>
     Places
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Instead for the information about the places, required for the recommendation strategy described above, there are different options that can be considered.
@@ -9605,11 +9351,11 @@
     that can be used to search for relevant places inside a selected area on a given section (that corresponds to high level categories: food, drinks, coffee, shops, arts, outdoors, sights, trending, venues frequently visited after a given one, or a mix of recommendations generated without a query from the user called topPicks). This second API can be used to get more recommendation-related items against search-related results: the objective of search is really different. Furthermore the call limits of Foursquare are even bigger (120.000 requests per day) and this makes it the best candidate for the required features.
    </span>
   </p>
-  <h3 id="h.awxbbia6w877">
+  <h4 id="h.awxbbia6w877">
    <span>
     Facebook Graph API
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     The personalization approach described before requires an analysis of social networks to perform an analysis of user features and the pages and places that are liked by them. Nowadays the most widespread social network is undoubtedly Facebook. With around 1.4 billion users active daily,
@@ -9652,11 +9398,11 @@
     The identified scopes that are necessary to retrieve both the user likes and the tagged locations are “user_likes” and “user_tagged_places”. The data obtained can be used to estimate the personality traits and to obtain a list of place categories that the user has shown interest for. To make the correspondence between Facebook places and Foursquare places, the intent of matching is specified to the places search API.
    </span>
   </p>
-  <h3 id="h.94tbwfjttna9">
+  <h4 id="h.94tbwfjttna9">
    <span>
     Big Five computation
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     [LABEL:approachIRbig5]
@@ -9689,11 +9435,11 @@
     that can be used both on their site, allowing their application to read the personal profile, or can be used as a web service, sending simply the list of pages in any way indicating which user is linked. The results provided are both the big five and some concentration areas described before. They can be used to fill the user vector and to understand better his personality.
    </span>
   </p>
-  <h3 id="h.bfdsu7aum8vc">
+  <h4 id="h.bfdsu7aum8vc">
    <span>
     Other
    </span>
-  </h3>
+  </h4>
   <p>
    <span>
     Other additional data sources can refer for example to the weather conditions. Being bikes vehicles subject to bad weather conditions, considering precipitations could be advantageous for the user. For example while retrieving the informations for a trip, the bot could warn the user of an imminent storm.
@@ -13386,8 +13132,8 @@
     assing to future works that can be done on the topics seen in this work, there are many different options because dialogue systems are really an open field of research and the width of subjects involved is really large.
    </span>
    <sup>
-    <a href="#cmnt17" id="cmnt_ref17">
-     [q]
+    <a href="#cmnt16" id="cmnt_ref16">
+     [p]
     </a>
    </sup>
   </p>
@@ -15885,22 +15631,6 @@
      [196]
     </a>
     <span>
-    </span>
-    <span>
-     <a href="https://developers.google.com/maps/documentation/geocoding/intro%23Viewports">
-      https://developers.google.com/maps/documentation/geocoding/intro#Viewports
-     </a>
-    </span>
-    <span>
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref197" id="ftnt197">
-     [197]
-    </a>
-    <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling.
     </span>
     <span>
@@ -15910,8 +15640,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref198" id="ftnt198">
-     [198]
+    <a href="#ftnt_ref197" id="ftnt197">
+     [197]
     </a>
     <span>
     </span>
@@ -15926,8 +15656,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref199" id="ftnt199">
-     [199]
+    <a href="#ftnt_ref198" id="ftnt198">
+     [198]
     </a>
     <span>
     </span>
@@ -15940,8 +15670,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref200" id="ftnt200">
-     [200]
+    <a href="#ftnt_ref199" id="ftnt199">
+     [199]
     </a>
     <span>
     </span>
@@ -15954,8 +15684,8 @@
   </div>
   <div>
    <p>
-    <a href="#ftnt_ref201" id="ftnt201">
-     [201]
+    <a href="#ftnt_ref200" id="ftnt200">
+     [200]
     </a>
     <span>
      Key:liu2016attention Liu, B. and Lane, I. (2016).
@@ -15970,11 +15700,21 @@
   </div>
   <div>
    <p>
+    <a href="#ftnt_ref201" id="ftnt201">
+     [201]
+    </a>
+    <span>
+     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
     <a href="#ftnt_ref202" id="ftnt202">
      [202]
     </a>
     <span>
-     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140).
+     Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341).
     </span>
    </p>
   </div>
@@ -15984,7 +15724,7 @@
      [203]
     </a>
     <span>
-     Key:bhargava2013easy Bhargava, A., Celikyilmaz, A., Hakkani-Tür, D., &amp; Sarikaya, R. (2013, May). Easy contextual intent prediction and slot detection. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on (pp. 8337-8341).
+     Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275).
     </span>
    </p>
   </div>
@@ -15994,7 +15734,7 @@
      [204]
     </a>
     <span>
-     Key:shi2015contextual Shi, Y., Yao, K., Chen, H., Pan, Y. C., Hwang, M. Y., &amp; Peng, B. (2015, April). Contextual spoken language understanding using recurrent neural networks. In Acoustics, Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on (pp. 5271-5275).
+     Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
     </span>
    </p>
   </div>
@@ -16004,7 +15744,7 @@
      [205]
     </a>
     <span>
-     Key:serban2016building Serban, I. V., Sordoni, A., Bengio, Y., Courville, A. C., &amp; Pineau, J. (2016, February). Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models. In AAAI (Vol. 16, pp. 3776-3784).
+     Key:mensio2018multi Mensio, M., Rizzo, G., Morisio, M. (2018) Multi-turn QA: A RNN Contextual Approach to Intent Classification for Goal-oriented Systems. The 2018 Web Conference Companion, April 23--27, 2018, Lyon, France
     </span>
    </p>
   </div>
@@ -16012,16 +15752,6 @@
    <p>
     <a href="#ftnt_ref206" id="ftnt206">
      [206]
-    </a>
-    <span>
-     Key:mensio2018multi Mensio, M., Rizzo, G., Morisio, M. (2018) Multi-turn QA: A RNN Contextual Approach to Intent Classification for Goal-oriented Systems. The 2018 Web Conference Companion, April 23--27, 2018, Lyon, France
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#ftnt_ref207" id="ftnt207">
-     [207]
     </a>
     <span>
     </span>
@@ -16036,11 +15766,27 @@
   </div>
   <div>
    <p>
+    <a href="#ftnt_ref207" id="ftnt207">
+     [207]
+    </a>
+    <span>
+     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140).
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
     <a href="#ftnt_ref208" id="ftnt208">
      [208]
     </a>
     <span>
-     Key:xu2014contextual Xu, P., &amp; Sarikaya, R. (2014, May). Contextual domain classification in spoken language understanding systems using recurrent neural network. In Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE International Conference on (pp. 136-140).
+    </span>
+    <span>
+     <a href="https://developers.google.com/maps/documentation/geocoding/intro%23Viewports">
+      https://developers.google.com/maps/documentation/geocoding/intro#Viewports
+     </a>
+    </span>
+    <span>
     </span>
    </p>
   </div>
@@ -17770,7 +17516,7 @@
      [n]
     </a>
     <span>
-     cos'e' un target bot? consiglio: all'inizio del paragrafo riprendi il concetto di domain-specidfic bot, poi introduci subito il dominio di utilizzo
+     cosa vuol dire? si fa sempre accesso ad una API ...
     </span>
    </p>
   </div>
@@ -17780,7 +17526,7 @@
      [o]
     </a>
     <span>
-     cosa vuol dire? si fa sempre accesso ad una API ...
+     spiegato
     </span>
    </p>
   </div>
@@ -17788,16 +17534,6 @@
    <p>
     <a href="#cmnt_ref16" id="cmnt16">
      [p]
-    </a>
-    <span>
-     spiegato
-    </span>
-   </p>
-  </div>
-  <div>
-   <p>
-    <a href="#cmnt_ref17" id="cmnt17">
-     [q]
     </a>
     <span>
      riformula: As future work we plan ...
