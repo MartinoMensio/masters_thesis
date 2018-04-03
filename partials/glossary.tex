@@ -6,53 +6,153 @@
 \newglossaryentry{attention}
 {
   name={attention},
-  description={In Neural Machine Translation, attention is a mechanism that allows to use all words of input sentence to predict the current output word. The learning decides on how much amount of each of input word needs to be used to produce the current output word by learning probabilities}
+  description={In Neural Machine Translation, attention is a mechanism that allows to use all words of input sentence to predict the current output word introduced in \cite{bahdanau2014neural}. The training decides how much amount of each of input word needs to be used to produce the current output word by learning these probabilities jointly with the translations}
 }
 \newglossaryentry{context}
 {
   name={context},
-  description={Things around the target that can give additional informations. The term is used to indicate the interaction context, that denotes the elements outside of the considered sentence that help understanding it better, TODO}
+  description={The set of circumstances that preceed or follow a specific target that can give additional information influencing its meaning. The term is used to indicate the interaction context, that denotes the elements outside of the considered sentence that help understanding it better}
 }
 \newglossaryentry{stopword}
 {
   name={stopword},
-  description={The most common words in a language, that give carry no meaning for sentence classification. For the English lanugage some examples are ``the'', ``a'' TODO}
+  description={The most common words in a language, that carry no meaning for tasks like sentence classification. For the English lanugage some examples are ``the'' or ``a''}
 }
 \newglossaryentry{chain rule}
 {
   name={chain rule},
-  description={The chain rule is a formula for computing the derivative of a composed function}
+  description={The chain rule is a formula for computing the derivative of a composed function by multiplying the local gradients}
 }
-\newacronym{AI}{AI}{Artificial Intelligence}
-\newacronym{RNN}{RNN}{Recurrent Neural Network}
-\newacronym{CNN}{CNN}{Convolutional Neural Network}
-\newacronym{ML}{ML}{Machine Learning}
-\newacronym{RL}{RL}{Reinforcement Learning}
-\newacronym{LSTM}{LSTM}{Long Short-Term Memory}
-\newacronym{GRU}{GRU}{Gated Recurrent Unit}
-\newacronym{NL}{NL}{Natural Language}
-\newacronym{NLP}{NLP}{Natural Language Processing}
-\newacronym{NLU}{NLU}{Natural Language Understanding}
-\newacronym{seq2seq}{seq2seq}{Sequence to Sequence}
-\newacronym{ASR}{ASR}{Automatic Speech Recognition}
-\newacronym{TTS}{TTS}{Text To Speech}
-\newacronym{STT}{STT}{Speech To Text}
-\newacronym{OCR}{OCR}{Optical Character Recognition}
-\newacronym{API}{API}{Application Programming Interface}
-\newacronym{tf-idf}{tf-idf}{term frequency-inverse document frequency}
-\newacronym{AIML}{AIML}{Artificial Intelligence Markup Language}
-\newacronym{FSM}{FSM}{Finite State Machine}
-\newacronym{PoS}{PoS}{Part of Speech}
-\newacronym{NER}{NER}{Named Entity Recognition}
-\newacronym{IOB}{IOB}{Inside Out Beginning}
-\newacronym{RDF}{RDF}{Resourse Description Framework}
-\newacronym{CBOW}{CBOW}{Continuous Bag Of Words}
-\newacronym{KB}{KB}{Knowledge Base}
-\newacronym{JSON}{JSON}{JavaScript Object Notation}
-\newacronym{NMT}{NMT}{Neural Machine Translation}
-\newacronym{XML}{XML}{eXtensible Markup Language}
-\newacronym{TSV}{TSV}{Tab-Separated Values}
-\newacronym{SaaS}{SaaS}{Software as a Service}
-
+\newglossaryentry{Semantic Analysis}
+{
+  name={Semantic Analysis},
+  description={In machine learning, semantic analysis of a corpus is the task of building structures that approximate concepts from a large set of documents}
+}
+\newglossaryentry{Deep Semantic Learning}
+{
+  name={Deep Semantic Learning},
+  description={An approach that combines Deep Learning with Semantic Analysis. Models are built from the observation of examples (Learning) without manually selecting handcrafted features but relying on stacked recurrent layers (Deep) that take as input the word embeddings that map words to a distributed representation that captures their meaning}
+}
+\newglossaryentry{Web Scraping}
+{
+  name={Web Scraping},
+  description={Extraction of data from websites, using automated tools that emulate the browser behaviour and parse the retrieved HTML content to find relevant information}
+}
+\newglossaryentry{AI}{
+  name={AI},
+  description={Artificial Intelligence is intelligence demonstrated by machines. It can be intended as an imitation of the human intelligence or can exploit the different nature of the owner to provide smart and useful features, for examples analyzing big quantities of data in small amounts of time}
+}
+\newglossaryentry{ANN}{
+  name={Artificial Neural Network},
+  description={Inspired by the biological neural networks, such systems ``learn'' tasks by considering examples, modeling complex function that relate the inputs to the outputs thanks to matrices of parameters that get tuned to minimize a specific function}
+}
+\newglossaryentry{RNN}{
+  name={RNN},
+  description={Recurrent Neural Networks~\cite{jordan1997serial} are a specific type of Artificial Neural Networks that have recurrent loops that propagate information along different timesteps. Their ability is to capture features belonging to sequences of inputs}
+}
+\newglossaryentry{CNN}{
+  name={CNN},
+  description={Convolutional Neural Networks are a type of feedforward Artificial Neural Networks that achieve good results on image analysis}
+}
+\newglossaryentry{ML}{
+  name={ML},
+  description={Machine Learning is a field of computer science that focuses on systems that ``learn'' with data, without being explicitly programmed}
+}
+\newglossaryentry{DL}{
+  name={DL},
+  description={Deep Learning is a branch of Machine Learning that uses several layers of Artificial Neural Networks to perform complex tasks starting from raw features, instead of having features engineered by hand}
+}
+\newglossaryentry{RL}{
+  name={RL},
+  description={Reinforcement Learning is an area of Machine Learning focusing on systems that learn to take actions by interacting with an environment to optimize some rewarding functions}
+}
+\newglossaryentry{LSTM}{
+  name={LSTM},
+  description={Long Short-Term Memory~\cite{hochreiter1997long} are building units for RNNs that model the propagation of their state over timesteps thanks to input, output and forget gates. They have been proposed to solve the vanishing gradient problem}
+}
+\newglossaryentry{GRU}{
+  name={GRU},
+  description={Gated Recurrent Unit~\cite{cho2014learning}, similarly to LSTM are RNNs building units. They have less gates than LSTM but generally they have comparable performance in sequence elaboration}
+}
+\newglossaryentry{NL}{
+  name={Natural Language},
+  description={A Natural Language, in contrast to constructed and formal languages, is any language that has evolved naturally in humans through use and repetition. It denotes the language used when people talk to each others}
+}
+\newglossaryentry{NLP}{
+  name={NLP},
+  description={Natural Language Processing is the area of computer science that provides a set of tools to let machines understand and process the Natural Language}
+}
+\newglossaryentry{NLU}{
+  name={NLU},  
+  description={Natural Language Understanding corresponds to sentence classification and extraction of parameters from Natural Language sentences, to provide a structured representation of the intent expressed by the human and the entities mentioned with their role (slots)}
+}
+\newglossaryentry{seq2seq}{
+  name={seq2seq},
+  description={Sequence-to-Sequence is an application of sequence processing where both the inputs and outputs are sequences. The goal is to produce an output sequence, belonging to another domain (different language, different vocabulary), starting from an input sequence. The language modeling capabilities of RNN express their power in Sequence-to-Sequence models}
+}
+\newglossaryentry{ASR}{
+  name={ASR},
+  description={Automatic Speech Recognition (or Speech to Text) is a set of methodologies and technologies that enable the recognition and translation of spoken language into text}
+}
+\newglossaryentry{TTS}{
+  name={TTS},
+  description={Text To Speech is a technique that converts language text into speech}
+}
+\newglossaryentry{OCR}{
+  name={OCR},
+  description={Optical Character Recognition is a technique that converts written signs into text}
+}
+\newglossaryentry{API}{
+  name={API},
+  description={Application Programming Interface is a set of methods, protocols and tools for building application software by providing building blocks that can be easily combined}
+}
+\newglossaryentry{Tf-idf}{
+  name={Tf-idf},
+  description={Term frequency-inverse document frequency is a function used in information retrieval tasks to measure the importance of a term with respect to a document or a collection of documents. This function increases proportionally with the number of times that the term is contained in the document, but decreases as the frequency of the term becomes high in the collection}
+}
+\newglossaryentry{AIML}{
+  name={AIML},
+  description={Artificial Intelligence Markup Language is a XML dialect that allows to write rule-based agents. Patterns are used to match with the inputs and the corresponding actions and responses are declared in templates}
+}
+\newglossaryentry{PoS}{
+  name={PoS},
+  description={Part of Speech is a category to which a word is assigned in accordance with its syntactic functions. In English the main parts of speech are noun, pronoun, adjective, determiner, verb, adverb, preposition, conjunction, and interjection}
+}
+\newglossaryentry{NER}{
+  name={NER},
+  description={Named Entity Recognition is a text processing task that identifies certain words as belonging to one class or another (for example person, organization, locations, dates, times)}
+}
+\newglossaryentry{IOB}{
+  name={IOB},
+  description={Inside Out Beginning, proposed in~\cite{ramshaw1999text} allow to annotate multi-word entities by using the \texttt{B} for the beginning and the \texttt{I} with a word that continues the entity of the previous word}
+}
+\newglossaryentry{RDF}{
+  name={RDF},
+  description={Resourse Description Framework is a tool proposed by W3C to encode, exchange and reuse structured metadata. It allows semantic interoperability between applications that share information on the Web}
+}
+\newglossaryentry{KB}{
+  name={KB},
+  description={A Knowledge Base is a technology used to store complex structured and unstructured information used by a computer system}
+}
+\newglossaryentry{NMT}{
+  name={NMT},
+  description={Neural Machine Translation are approaches which use artificial neural network}
+  }
+\newglossaryentry{JSON}{
+  name={JSON},
+  description={JavaScript Object Notation is an open-standard file format that uses human-readable text to transmit data objects}
+}
+\newglossaryentry{XML}{
+  name={XML},
+  description={eXtensible Markup Language is a set of rules for encoding documents in a format that is both human-readable and machine-readable}
+}
+\newglossaryentry{TSV}{
+  name={TSV},
+  description={Tab-Separated Values is a simple text format for storing data in a tabular structure, by separing the fields of the same row with the TAB character}
+}
+\newglossaryentry{SaaS}{
+  name={SaaS},
+  description={Software as a Service is a software licensing and delivery model in which software is licensed on a subscription basis and is centrally hosted}
+}
 % TODO remove this line
 \glsaddall
