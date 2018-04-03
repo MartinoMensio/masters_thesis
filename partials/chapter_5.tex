@@ -92,28 +92,7 @@ To evaluate the goodness of word embeddings, a commonly used test is the analogy
 
 %%%%%%%%%%%%%%%%%%%% Table No: 5 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{2.94in}p{2.94in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{2.94in}}{\textbf{Word embeddings}} & 
-\multicolumn{1}{|p{2.94in}|}{\textbf{accuracy}} \\
-\hhline{--}
-%row no:2
-\multicolumn{1}{|p{2.94in}}{Italian values from~\cite{berardi2015word} on Wikipedia} & 
-\multicolumn{1}{|p{2.94in}|}{44.81$\%$ } \\
-\hhline{--}
-%row no:3
-\multicolumn{1}{|p{2.94in}}{Computed Italian values on Wikipedia} & 
-\multicolumn{1}{|p{2.94in}|}{58.14$\%$ } \\
-\hhline{--}
-
-\end{tabular}
- \caption{A comparison of the analogy scores for the Italian Wikipedia datasets}\label{tab:italianEmbeddingsAnalogy}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/italianEmbeddingsAnalogy}
+\input{tables/italianEmbeddingsAnalogy}
 
 Table~\ref{tab:italianEmbeddingsAnalogy} shows how the different preprocessing, applying the SpaCy tokenization, allows to reach better values for the analogy test.
 
@@ -124,99 +103,11 @@ The first comparison we want to do is how the choice of embeddings influences th
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.05in}}{\textbf{Embeddings type}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
-\hhline{-----}
-%row no:2
-\multicolumn{1}{|p{1.05in}}{Trainable, randomly initialized} & 
-\multicolumn{1}{|p{1.05in}}{0.9740} & 
-\multicolumn{1}{|p{1.05in}}{0.9928} & 
-\multicolumn{1}{|p{1.05in}}{0.9428} & 
-\multicolumn{1}{|p{1.05in}|}{0.8947} \\
-\hhline{-----}
-%row no:3
-\multicolumn{1}{|p{1.05in}}{Contextual tensors} & 
-\multicolumn{1}{|p{1.05in}}{0.7140} & 
-\multicolumn{1}{|p{1.05in}}{0.2542} & 
-\multicolumn{1}{|p{1.05in}}{0.4000} & 
-\multicolumn{1}{|p{1.05in}|}{0.4736} \\
-\hhline{-----}
-%row no:4
-\multicolumn{1}{|p{1.05in}}{Precomputed medium (English: 685k keys with 20k unique vectors, Italian~\cite{berardi2015word}: 730k unique vectors)} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9660}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9928}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9714}} & 
-\multicolumn{1}{|p{1.05in}|}{0.8421} \\
-\hhline{-----}
-%row no:5
-\multicolumn{1}{|p{1.05in}}{Precomputed large (English: 685k keys with 685k unique vectors, Italian: 758k unique vectors proposed)} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9860}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9928}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9714}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{0.8947}} \\
-\hhline{-----}
-
-\end{tabular}
- \caption{The F1 scores for intent classification with different embeddings}\label{tab:intentsEmbeddingsChoice}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/intentsEmbeddingsChoice}
+\input{tables/intentsEmbeddingsChoice}
 
 %%%%%%%%%%%%%%%%%%%% Table No: 7 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.05in}}{\textbf{Embeddings type}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
-\hhline{-----}
-%row no:2
-\multicolumn{1}{|p{1.05in}}{Trainable, randomly initialized} & 
-\multicolumn{1}{|p{1.05in}}{0.9425} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9177}} & 
-\multicolumn{1}{|p{1.05in}}{0.9000} & 
-\multicolumn{1}{|p{1.05in}|}{0.5000} \\
-\hhline{-----}
-%row no:3
-\multicolumn{1}{|p{1.05in}}{Contextual tensors} & 
-\multicolumn{1}{|p{1.05in}}{0.1658} & 
-\multicolumn{1}{|p{1.05in}}{0.0032} & 
-\multicolumn{1}{|p{1.05in}}{0.3391} & 
-\multicolumn{1}{|p{1.05in}|}{0.1818} \\
-\hhline{-----}
-%row no:4
-\multicolumn{1}{|p{1.05in}}{Medium (English: 685k keys with 20k unique vectors, Italian~\cite{berardi2015word}: 730k unique vectors)} & 
-\multicolumn{1}{|p{1.05in}}{0.9588} & 
-\multicolumn{1}{|p{1.05in}}{0.8970} & 
-\multicolumn{1}{|p{1.05in}}{0.9375} & 
-\multicolumn{1}{|p{1.05in}|}{0.5666} \\
-\hhline{-----}
-%row no:5
-\multicolumn{1}{|p{1.05in}}{Large (English: 685k keys with 685k unique vectors, Italian: 758k unique vectors proposed)} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9649}} & 
-\multicolumn{1}{|p{1.05in}}{0.9170} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{0.6153}} \\
-\hhline{-----}
-
-\end{tabular}
- \caption{The F1 scores for slot tagging with different embeddings}\label{tab:slotsEmbeddingsChoice}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/slotsEmbeddingsChoice}
+\input{tables/slotsEmbeddingsChoice}
 
 As we can see, the correct choice of word embeddings can play a big difference. The best performance is reached by using fixed pretrained vectors computed on large corpora (with just one exception for the slots on the nlu-benchmark dataset). The contextual tensors provided by SpaCy show a very poor performance, because they are observing only the current sentence and have no knowledge about the real meaning of words. The large model only provides a delta from the medium one on the slot tagging task, while for the intents they have the same performance. For the Italian embeddings, the $``$medium$"$  row corresponds to the embeddings from~\cite{berardi2015word}, while the $``$large$"$  row is the computed embedding values computed on the Wikipedia corpus preprocessed with SpaCy (explained in subsection \ref{implementationWV}).
 
@@ -224,87 +115,13 @@ A second modification can be done by trying to substitute the LSTM cells with GR
 
 %%%%%%%%%%%%%%%%%%%% Table No: 8 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.05in}}{} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
-\hhline{-----}
-%row no:2
-\multicolumn{1}{|p{1.05in}}{LSTM intents} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9860}} & 
-\multicolumn{1}{|p{1.05in}}{0.9928} & 
-\multicolumn{1}{|p{1.05in}}{0.9714} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{0.8947}} \\
-\hhline{-----}
-%row no:3
-\multicolumn{1}{|p{1.05in}}{GRU intents} & 
-\multicolumn{1}{|p{1.05in}}{0.9820} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9942}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9809}} & 
-\multicolumn{1}{|p{1.05in}|}{0.8421} \\
-\hhline{-----}
-%row no:4
-\multicolumn{1}{|p{1.05in}}{LSTM slots} & 
-\multicolumn{1}{|p{1.05in}}{0.9649} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9170}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
-\multicolumn{1}{|p{1.05in}|}{0.6153} \\
-\hhline{-----}
-%row no:5
-\multicolumn{1}{|p{1.05in}}{GRU slots} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9678}} & 
-\multicolumn{1}{|p{1.05in}}{0.9114} & 
-\multicolumn{1}{|p{1.05in}}{0.9565} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{0.6400}} \\
-\hhline{-----}
-
-\end{tabular}
- \caption{The F1 scores for intents and slots comparing LSTM vs GRU}\label{tab:LSTMvsGRU}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/LSTMvsGRU}
+\input{tables/LSTMvsGRU}
 
 Another variation is to consider the attention in the decoding stage for the slots. Table~\ref{tab:attentionVsNot} shows the comparison of the same network by enabling or disabling the attention wrapper around the LSTM of the slot label decoder. The performances are better for the model with the attention, except for the Italian dataset. Probably this result indicates that the attention has too many parameters to be tuned with a little dataset. In fact the Italian dataset is the smallest one.
 
 %%%%%%%%%%%%%%%%%%%% Table No: 9 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.05in}}{} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
-\hhline{-----}
-%row no:2
-\multicolumn{1}{|p{1.05in}}{With attention} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9649}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9170}} & 
-\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
-\multicolumn{1}{|p{1.05in}|}{0.6153} \\
-\hhline{-----}
-%row no:3
-\multicolumn{1}{|p{1.05in}}{Without attention} & 
-\multicolumn{1}{|p{1.05in}}{0.9638} & 
-\multicolumn{1}{|p{1.05in}}{0.9132} & 
-\multicolumn{1}{|p{1.05in}}{0.9625} & 
-\multicolumn{1}{|p{1.05in}|}{\textbf{0.6956}} \\
-\hhline{-----}
-
-\end{tabular}
- \caption{The comparison between F1 scores for slots by using or not the attention}\label{tab:attentionVsNot}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/attentionVsNot}
+\input{tables/attentionVsNot}
 
 \subsubsection{The multi-turn}
 This evaluation is inspired by the work proposed in~\cite{mensio2018multi}. The dataset is the kvret~\cite{eric2017key}, used to measure separately the effects of the two modifications that have been described in subsection \ref{approachMultiTurn}. For this reason, two more approaches have been considered: the first one considers the single-turn network with the only addition of the agent words, while the second one considers the proposed multi-turn without the agents words (resulting in the only addition of the top-level RNN working on the intent values). The comparison is extended to a CRF~\cite{lafferty2001conditional} simply applied at word-level with words as inputs and intent labels as outputs (to obtain the estimated intent on a sentence, a majority vote is applied by the words belonging to the original sentences). 
@@ -313,70 +130,7 @@ In this case two different configurations have been used: in the first one, the 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 10 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{1.37in}p{1.37in}p{1.37in}p{1.37in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.37in}}{\textbf{row}} & 
-\multicolumn{1}{|p{1.37in}}{\textbf{approach}} & 
-\multicolumn{1}{|p{1.37in}}{\textbf{F1 (intent)}} & 
-\multicolumn{1}{|p{1.37in}|}{\textbf{epoch}} \\
-\hhline{----}
-%row no:2
-\multicolumn{1}{|p{1.37in}}{1} & 
-\multicolumn{1}{|p{1.37in}}{Multi-turn approach with LSTM} & 
-\multicolumn{1}{|p{1.37in}}{\textbf{0.9987}} & 
-\multicolumn{1}{|p{1.37in}|}{\textbf{7}} \\
-\hhline{----}
-%row no:3
-\multicolumn{1}{|p{1.37in}}{2} & 
-\multicolumn{1}{|p{1.37in}}{Multi-turn approach without agent words LSTM} & 
-\multicolumn{1}{|p{1.37in}}{\textbf{0.9987}} & 
-\multicolumn{1}{|p{1.37in}|}{8} \\
-\hhline{----}
-%row no:4
-\multicolumn{1}{|p{1.37in}}{3} & 
-\multicolumn{1}{|p{1.37in}}{Multi-turn approach with GRU} & 
-\multicolumn{1}{|p{1.37in}}{0.9975} & 
-\multicolumn{1}{|p{1.37in}|}{14} \\
-\hhline{----}
-%row no:5
-\multicolumn{1}{|p{1.37in}}{4} & 
-\multicolumn{1}{|p{1.37in}}{~\cite{liu2016attention} with extension of agent words} & 
-\multicolumn{1}{|p{1.37in}}{0.9951} & 
-\multicolumn{1}{|p{1.37in}|}{5} \\
-\hhline{----}
-%row no:6
-\multicolumn{1}{|p{1.37in}}{5} & 
-\multicolumn{1}{|p{1.37in}}{Multi-turn approach without agent words GRU} & 
-\multicolumn{1}{|p{1.37in}}{0.9585} & 
-\multicolumn{1}{|p{1.37in}|}{9} \\
-\hhline{----}
-%row no:7
-\multicolumn{1}{|p{1.37in}}{6} & 
-\multicolumn{1}{|p{1.37in}}{} & 
-\multicolumn{1}{|p{1.37in}}{0.8524} & 
-\multicolumn{1}{|p{1.37in}|}{8} \\
-\hhline{----}
-%row no:8
-\multicolumn{1}{|p{1.37in}}{7} & 
-\multicolumn{1}{|p{1.37in}}{CRF on pretrained word embeddings} & 
-\multicolumn{1}{|p{1.37in}}{0.7049} & 
-\multicolumn{1}{|p{1.37in}|}{100} \\
-\hhline{----}
-%row no:9
-\multicolumn{1}{|p{1.37in}}{8} & 
-\multicolumn{1}{|p{1.37in}}{CRF on words} & 
-\multicolumn{1}{|p{1.37in}}{0.4976} & 
-\multicolumn{1}{|p{1.37in}|}{100} \\
-\hhline{----}
-
-\end{tabular}
- \caption{F1 scores of the selected approaches for the kvret~\cite{eric2017key} dataset}\label{tab:multiTurnScores}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/multiTurnScores}
+\input{tables/multiTurnScores}
 
 Table~\ref{tab:multiTurnScores} reports the results of the F1 measure on the selected approaches. From the results obtained, we can observe that the role of the interaction context is crucial to perform a better understanding. Natural Language dialogues have great dependencies between the sentences used by both parties. The experimental results show also that the intent changes are correctly detected on the sequence of input samples. We can observe that, considering only the previous value of the intent without concatenating the agent words, gives also an increase with respect to the single-turn model. Then, by looking at the F1 measure change between the couples of rows (1,2), (3,5) and (4,6), we can notice that the agent words on their own give an important contribution in terms of both score and epoch number. Combining the two  modifications helps going a little bit higher with the score achieving the top score faster. The comparison with the simple CRF approach highlights how important is to work on a properly encoded sentence using RNN.
 
@@ -389,72 +143,7 @@ A first group of measure is identified by their infeasiblility to be collected f
 
 %%%%%%%%%%%%%%%%%%%% Table No: 11 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{2.94in}p{2.94in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{2.94in}}{\textbf{measure}} & 
-\multicolumn{1}{|p{2.94in}|}{\textbf{value}} \\
-\hhline{--}
-%row no:2
-\multicolumn{1}{|p{2.94in}}{Average number of messages for each session} & 
-\multicolumn{1}{|p{2.94in}|}{14.7} \\
-\hhline{--}
-%row no:3
-\multicolumn{1}{|p{2.94in}}{Total number of messages received} & 
-\multicolumn{1}{|p{2.94in}|}{535} \\
-\hhline{--}
-%row no:4
-\multicolumn{1}{|p{2.94in}}{Total number of messages sent} & 
-\multicolumn{1}{|p{2.94in}|}{569} \\
-\hhline{--}
-%row no:5
-\multicolumn{1}{|p{2.94in}}{Average length of sentences} & 
-\multicolumn{1}{|p{2.94in}|}{4.7 words} \\
-\hhline{--}
-%row no:6
-\multicolumn{1}{|p{2.94in}}{Average time to provide a response} & 
-\multicolumn{1}{|p{2.94in}|}{1.41 s} \\
-\hhline{--}
-%row no:7
-\multicolumn{1}{|p{2.94in}}{Average memory footprint for each language} & 
-\multicolumn{1}{|p{2.94in}|}{1042.5 MB} \\
-\hhline{--}
-%row no:8
-\multicolumn{1}{|p{2.94in}}{Average CPU usage at rest} & 
-\multicolumn{1}{|p{2.94in}|}{0.18 $\%$ } \\
-\hhline{--}
-%row no:9
-\multicolumn{1}{|p{2.94in}}{CPU peak to process a single message} & 
-\multicolumn{1}{|p{2.94in}|}{13 $\%$ } \\
-\hhline{--}
-%row no:10
-\multicolumn{1}{|p{2.94in}}{Percentage of no intent detection} & 
-\multicolumn{1}{|p{2.94in}|}{30 $\%$ } \\
-\hhline{--}
-%row no:11
-\multicolumn{1}{|p{2.94in}}{$\#$ Errors/$\#$ results while providing information} & 
-\multicolumn{1}{|p{2.94in}|}{12 $\%$ } \\
-\hhline{--}
-%row no:12
-\multicolumn{1}{|p{2.94in}}{Number of positive feedback button} & 
-\multicolumn{1}{|p{2.94in}|}{13} \\
-\hhline{--}
-%row no:13
-\multicolumn{1}{|p{2.94in}}{Number of negative feedback button} & 
-\multicolumn{1}{|p{2.94in}|}{5} \\
-\hhline{--}
-%row no:14
-\multicolumn{1}{|p{2.94in}}{Number of thank you intents} & 
-\multicolumn{1}{|p{2.94in}|}{31} \\
-\hhline{--}
-
-\end{tabular}
- \caption{Some statistics about the experimental online scenario with the bot}\label{tab:botStatistics}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/botStatistics}
+\input{tables/botStatistics}
 
 A second group of measures is about statistical measure. Those numbers do not indicate directly the goodness of the system, but they can give some general ideas about its usage. Their values are shown in Table~\ref{tab:botStatistics}, and are computed by referring to the machine where the Core of the bot was deployed (a virtual machine running on a Intel® Xeon® X5570 with 4GB of RAM). They include statistics about the physical occupation of resources (CPU, memory), about the sessions with the users, and also some other measures.
 

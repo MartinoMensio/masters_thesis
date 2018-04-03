@@ -136,40 +136,7 @@ We can do a classification of chatbot systems based on how much has to be specif
 
 %%%%%%%%%%%%%%%%%%%% Table No: 1 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{0.79in}p{1.91in}p{1.12in}p{1.64in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{0.79in}}{\textbf{Dynamicity level}} & 
-\multicolumn{1}{|p{1.91in}}{\textbf{Understanding }} & 
-\multicolumn{1}{|p{1.12in}}{\textbf{Information retrieval}} & 
-\multicolumn{1}{|p{1.64in}|}{\textbf{Response generation}} \\
-\hhline{----}
-%row no:2
-\multicolumn{1}{|p{0.79in}}{0} & 
-\multicolumn{1}{|p{1.91in}}{Pattern based (entities and intents)} & 
-\multicolumn{1}{|p{1.12in}}{None / Fixed data} & 
-\multicolumn{1}{|p{1.64in}|}{Rule-based template} \\
-\hhline{----}
-%row no:3
-\multicolumn{1}{|p{0.79in}}{1} & 
-\multicolumn{1}{|p{1.91in}}{Machine Learning (entities and intents)} & 
-\multicolumn{1}{|p{1.12in}}{Fixed API} & 
-\multicolumn{1}{|p{1.64in}|}{Dynamic template: retrieval based} \\
-\hhline{----}
-%row no:4
-\multicolumn{1}{|p{0.79in}}{2} & 
-\multicolumn{1}{|p{1.91in}}{Encoding (sentence embeddings)} & 
-\multicolumn{1}{|p{1.12in}}{Dynamic exploration} & 
-\multicolumn{1}{|p{1.64in}|}{Generative} \\
-\hhline{----}
-
-\end{tabular}
- \caption{The different approaches to Understanding, Information Retrieval and Response Generation}\label{tab:approachCombination}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/approachCombination}
+\input{tables/approachCombination}
 
 The understanding task is the one related to turning the natural language sentences into something that can be understood by the machine: its output can be a pattern match for level 0, structured data for level 1 (NLU) or an encoded representation for level 2. 
 
@@ -865,104 +832,7 @@ As of today, there are a lot of platforms that provide Natural Language Understa
 
 %%%%%%%%%%%%%%%%%%%% Table No: 2 starts here %%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
- 			\centering
-\begin{tabular}{p{0.66in}p{0.4in}p{0.4in}p{0.4in}p{0.42in}p{0.8in}p{0.58in}p{0.78in}p{0.78in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{0.66in}}{\textbf{provider}} & 
-\multicolumn{1}{|p{0.4in}}{\textbf{deployment}} & 
-\multicolumn{1}{|p{0.4in}}{\textbf{Messenger platforms integration}} & 
-\multicolumn{1}{|p{0.4in}}{\textbf{intent}} & 
-\multicolumn{1}{|p{0.42in}}{\textbf{slots}} & 
-\multicolumn{1}{|p{0.8in}}{\textbf{required parameters management}} & 
-\multicolumn{1}{|p{0.58in}}{\textbf{e2e trainable}} & 
-\multicolumn{1}{|p{0.78in}}{\textbf{pre-defined intents}} & 
-\multicolumn{1}{|p{0.78in}|}{\textbf{open source}} \\
-\hhline{---------}
-%row no:2
-\multicolumn{1}{|p{0.66in}}{wit.ai} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{no} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{no} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{no} & 
-\multicolumn{1}{|p{0.78in}|}{proprietary} \\
-\hhline{---------}
-%row no:3
-\multicolumn{1}{|p{0.66in}}{DialogFlow} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{yes} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{yes} & 
-\multicolumn{1}{|p{0.78in}|}{proprietary} \\
-\hhline{---------}
-%row no:4
-\multicolumn{1}{|p{0.66in}}{LUIS} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{no} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{no} & 
-\multicolumn{1}{|p{0.78in}|}{proprietary} \\
-\hhline{---------}
-%row no:5
-\multicolumn{1}{|p{0.66in}}{IBM} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{no} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{yes} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{no} & 
-\multicolumn{1}{|p{0.78in}|}{proprietary} \\
-\hhline{---------}
-%row no:6
-\multicolumn{1}{|p{0.66in}}{alexa} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{yes} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{yes} & 
-\multicolumn{1}{|p{0.78in}|}{proprietary} \\
-\hhline{---------}
-%row no:7
-\multicolumn{1}{|p{0.66in}}{recast.ai} & 
-\multicolumn{1}{|p{0.4in}}{web service} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{no} & 
-\multicolumn{1}{|p{0.58in}}{no} & 
-\multicolumn{1}{|p{0.78in}}{yes} & 
-\multicolumn{1}{|p{0.78in}|}{Partially open} \\
-\hhline{---------}
-%row no:8
-\multicolumn{1}{|p{0.66in}}{RASA} & 
-\multicolumn{1}{|p{0.4in}}{self} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.4in}}{yes} & 
-\multicolumn{1}{|p{0.42in}}{yes} & 
-\multicolumn{1}{|p{0.8in}}{no} & 
-\multicolumn{1}{|p{0.58in}}{yes} & 
-\multicolumn{1}{|p{0.78in}}{no} & 
-\multicolumn{1}{|p{0.78in}|}{open} \\
-\hhline{---------}
-
-\end{tabular}
- \caption{A comparison between the major NLU providers}\label{tab:soaNLUproviders}
-\end{table}
-%%%%% TODO replace this table with next line
-%\input{tables/soaNLUproviders}
+\input{tables/soaNLUproviders}
 
 Those platforms usually provide intent classification and slot filling, with an approach that is not usually trainable in a end-to-end way. The provided features, as can be seen in Table~\ref{tab:soaNLUproviders}, turn the user sentences in structured data. Some platforms offer a way to force the user to provide some parameters (compulsory entities for some intents), managing the questions that the bot should ask when they are missing and call the fulfillment endpoint (the service owned by the developers of the bot, receiving the structured data) only when those parameters have been provided. The programmers are left to the role of handling the dialogue state, retrieving the information and providing a response.
 
