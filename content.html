@@ -258,7 +258,7 @@
     This chapter provides a general introduction to the work done in this thesis project. Starting with a brief introduction
    </span>
    <span>
-    to
+    of
    </span>
    <span>
     the setting where this work has been conducted, an introduction to the topic of Conversational Agents (also known as Chatbots or Bots) is given. An overview of the field of Artificial Intelligence is done, by considering both its current achievements and some general purpose guidelines that should lead the research and development of such systems. The chapter ends with an outline of the next chapters.
@@ -274,7 +274,7 @@
     This work has been conducted
    </span>
    <span>
-    in
+    as
    </span>
    <span>
     a joint collaboration between Politecnico di Torino
@@ -296,10 +296,7 @@
     This institute, founded in 2000 as a research and innovation center by Compagnia di San Paolo and Politecnico di Torino, is organized in different research areas that focus on some core sectors of ICT
    </span>
    <span>
-    such as
-   </span>
-   <span>
-    mobile solutions,
+    such as mobile solutions,
    </span>
    <span>
     cloud computing wireless systems and sensors, and navigation technologies.
@@ -324,8 +321,6 @@
    <span>
     investigates the future of data-driven innovations doing research on three different axes: data science, data experience and economics.
    </span>
-  </p>
-  <p>
    <span>
     This work, being on the topics of Natural Language and Personalization, has been supported by the Data Science Group through its studies and development.
    </span>
@@ -7753,7 +7748,23 @@
   </h1>
   <p>
    <span>
-    [LABEL:approach]
+    [LABEL:
+   </span>
+   <span>
+    approach
+   </span>
+   <sup>
+    <a href="#cmnt14" id="cmnt_ref14">
+     [n]
+    </a>
+   </sup>
+   <sup>
+    <a href="#cmnt15" id="cmnt_ref15">
+     [o]
+    </a>
+   </sup>
+   <span>
+    ]
    </span>
   </p>
   <p>
@@ -7794,7 +7805,7 @@
   </p>
   <p>
    <span>
-    [FIG:multiTurnImportance LABEL:An example of interaction where the interaction context is important for the intent classification]
+    [FIG:multiTurnImportance CAPTION:An example of interaction where the interaction context is important for the intent classification]
    </span>
   </p>
   <p>
@@ -8107,13 +8118,13 @@
     Since there is no agreement with the bike sharing providers
    </span>
    <sup>
-    <a href="#cmnt14" id="cmnt_ref14">
-     [n]
+    <a href="#cmnt16" id="cmnt_ref16">
+     [p]
     </a>
    </sup>
    <sup>
-    <a href="#cmnt15" id="cmnt_ref15">
-     [o]
+    <a href="#cmnt17" id="cmnt_ref17">
+     [q]
     </a>
    </sup>
    <span>
@@ -9497,7 +9508,7 @@
    </li>
    <li>
     <span>
-     Natural Language Understanding: the implementation of recurrent neural network for joint intent detection and slot filling in single and multi turn environments.
+     Natural Language Understanding: the implementation of recurrent neural network for joint intent detection and slot filling in single and multi-turn environments.
     </span>
    </li>
   </ul>
@@ -9793,7 +9804,7 @@
   </p>
   <p>
    <span>
-    While giving the advantage to have an almost ready to use NLU (the configuration of intents and entities requires few steps and few examples), it also helps building a dataset. All the sentences that are sent for analysis are stored in a inbox, that can be analyzed and the responses can be interactively fixed and validated (inserted in the dataset). The dataset can also be downloaded, and because it is stored in comprehensible JSON format can be used as annotated dataset to later train another NLU system. A limitation of this service is that it handles only single turn interactions, so the datasets that have been collected for both Italian and English languages can be only used for this type of interaction.
+    While giving the advantage to have an almost ready to use NLU (the configuration of intents and entities requires few steps and few examples), it also helps building a dataset. All the sentences that are sent for analysis are stored in a inbox, that can be analyzed and the responses can be interactively fixed and validated (inserted in the dataset). The dataset can also be downloaded, and because it is stored in comprehensible JSON format can be used as annotated dataset to later train another NLU system. A limitation of this service is that it handles only single-turn interactions, so the datasets that have been collected for both Italian and English languages can be only used for this type of interaction.
    </span>
   </p>
   <p>
@@ -10815,7 +10826,7 @@
   </p>
   <p>
    <span>
-    This last subsection contains some details about how some datasets have been collected for the specific bike sharing domain. The goal is to be able to have enough annotated sentences for both single and multi turn, in order to train the selected approach and be able to provide measures (see next chapter [REF:validationNLU]) that have a bit of statistical significance.
+    This last subsection contains some details about how some datasets have been collected for the specific bike sharing domain. The goal is to be able to have enough annotated sentences for both single and multi-turn, in order to train the selected approach and be able to provide measures (see next chapter [REF:validationNLU]) that have a bit of statistical significance.
    </span>
   </p>
   <p>
@@ -10923,26 +10934,19 @@
     Here we provide a list of them, with some statistics and details of each one. About the language of the datasets, the found ones
    </span>
    <span>
-    both for single
+    are in English
    </span>
    <span>
-    and multi
+    both for single: no availability of Italian annotated datasets have been found. The Italian dataset used for the embeddings is
    </span>
    <span>
-   </span>
-   <span>
-    turn are in English only
-   </span>
-   <span>
-    : no availability of Italian annotated datasets have been found. The Italian dataset used for the embeddings is
-   </span>
-   <span>
-    treated
+    discussed
    </span>
    <span>
     in the last part of this subsection, but the key point is that these corpora are not annotated because the word embeddings algorithms are unsupervised. For both single and multi
    </span>
    <span>
+    -
    </span>
    <span>
     turn, in addition to the available datasets, an English and Italian dataset is proposed for the domain of bike sharing, collected with the methods described in subsection [REF:implementationDatasets].
@@ -10953,6 +10957,7 @@
     Single
    </span>
    <span>
+    -
    </span>
    <span>
     turn
@@ -10963,15 +10968,10 @@
     For the single
    </span>
    <span>
+    -
    </span>
    <span>
-    turn, a lot of datasets can be found online, each one with a different domain of application. The characteristics of these datasets is that each sentence is annotated with the values of the intent (a feature of the whole sentence) and of the slots (
-   </span>
-   <span>
-    a feature of
-   </span>
-   <span>
-    word groups, also called
+    turn, a lot of datasets can be found online, each one with a different domain of application. The characteristics of these datasets is that each sentence is annotated with the values of the intent (a feature of the whole sentence) and of the slots (word groups, also called
    </span>
    <span>
     spans
@@ -11043,13 +11043,10 @@
   </p>
   <p>
    <span>
-    The dataset has 4978 training samples and 893 test samples: the original division is only in two splits, no “development” set is available. However some works have additionally divided the
+    The dataset has 4978 training samples and 893 test samples: the original division is only in two splits, no “development” set is available. However some works have additionally divided the train
    </span>
    <span>
-    the
-   </span>
-   <span>
-    train
+    ing
    </span>
    <span>
     set into two parts to leave the validation set on its own for the final evaluation and not for the hyperparameters optimization.
@@ -11062,36 +11059,19 @@
   </h5>
   <p>
    <span>
-    Another dataset
+    Another dataset that
    </span>
    <span>
-    ,
-   </span>
-   <span>
-    that
-   </span>
-   <span>
-    have
+    has
    </span>
    <span>
     been used in the specificity of single
    </span>
    <span>
+    -
    </span>
    <span>
-    turn
-   </span>
-   <span>
-    ed
-   </span>
-   <span>
-    interactions
-   </span>
-   <span>
-    ,
-   </span>
-   <span>
-    is the
+    turn interactions is the
    </span>
    <span>
     nlu-benchmark
@@ -11175,6 +11155,9 @@
     a total of 1942 train
    </span>
    <span>
+    ing
+   </span>
+   <span>
     samples and 100 test ones. Instead the entities are annotated on spans directly, because the sentences are provided pre-split on the edges of the slot values (e.g. [“
    </span>
    <span>
@@ -11222,13 +11205,7 @@
   </p>
   <p>
    <span>
-    This dataset has been used by Snips to
-   </span>
-   <span>
-    to
-   </span>
-   <span>
-    a benchmark that considers only the intents, but on the measurements we show also the results for the slots.
+    This dataset has been used by Snips to do a benchmark that considers only the intents, but on the measurements we show also the results for the slots.
    </span>
   </p>
   <h5 id="h.n6d2unjva2y0">
@@ -11241,10 +11218,13 @@
     More specific to the prototype built for this project, BotCycle, two single-turn datasets have been collected with the support of wit.ai platform: one in English and one in Italian. The collection of samples begun with the early stages of the prototype,
    </span>
    <span>
-    that
+    which
    </span>
    <span>
     was relying on wit.ai for the understanding part
+   </span>
+   <span>
+    back then
    </span>
    <span>
     . This platform provides a friendly GUI where the intents and slots can be configured, and also some training samples can be provided. Moreover it keeps track of the “inbox” messages used in operational environment, that can be later reviewed and added to the gold standard. Even when the understanding part switched to local deployment, we kept sending the requests for processing to wit.ai in order to continue increasing the dataset. With this technique we collected 522
@@ -11283,6 +11263,7 @@
     Multi
    </span>
    <span>
+    -
    </span>
    <span>
     turn
@@ -11293,12 +11274,13 @@
     Instead for the multi
    </span>
    <span>
+    -
    </span>
    <span>
     turn NLU,
    </span>
    <span>
-    that
+    wich
    </span>
    <span>
     is described in subsection [REF:approachMultiTurn], the number of datasets used is more restricted because less have been found with the required characteristics. The data that we wanted had to contain multi-turn sessions with messages from both sides, where at least on the user sentences it could be possible to obtain the intent value and the slot annotations.
@@ -11427,18 +11409,33 @@
     The selected multi-turn approach, while providing also outputs for the slot labels being trained jointly, is here analyzed mainly under the point of view of the intents, so this is actually not a problem. The main goal is to be able to automatically recognize when a certain session ends or continue, where
    </span>
    <span>
+    a
+   </span>
+   <span>
     time-based session split can be misleading and a working solution should rely on the contents only.
    </span>
   </p>
   <p>
    <span>
-    This dataset, therefore, satisfies our needs: each sentence is annotated with its speaker and the intent values are available. The preprocessing is composed of three steps: 1 annotation of the intent from session-level to sentence-level by copying the values; 2 concatenation of all
+    This dataset, therefore, satisfies our needs: each sentence is annotated with its speaker and the intent values are available. The preprocessing is composed of three steps:
    </span>
    <span>
-    the
+    1)
    </span>
    <span>
-    sentences, removing the concept of session that remains only on the intent values; 3 consider as samples only the driver sentences, each one stored together with the current and previous intent value and with the previous sentence of the agent.
+    annotation of the intent from session-level to sentence-level by copying the values;
+   </span>
+   <span>
+    2)
+   </span>
+   <span>
+    concatenation of all sentences, removing the concept of session that remains only on the intent values;
+   </span>
+   <span>
+    3)
+   </span>
+   <span>
+    consider as samples only the driver sentences, each one stored together with the current and previous intent value and with the previous sentence of the agent.
    </span>
   </p>
   <p>
@@ -11446,7 +11443,26 @@
     With this setup of the samples, on the train
    </span>
    <span>
-    set there are 1583 intent changes over 6429 samples, while on the test set 189 changes over 820 samples.
+    ing
+   </span>
+   <span>
+    set there are
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=1583"/>
+   <span>
+    intent changes over
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=6429"/>
+   <span>
+    samples, while on the test set
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=189"/>
+   <span>
+    changes over
+   </span>
+   <img src="https://www.google.com/chart?cht=tx&amp;chf=bg,s,FFFFFF00&amp;chco=000000&amp;chl=820"/>
+   <span>
+    samples.
    </span>
   </p>
   <h5 id="h.ftgmlmugryqn">
@@ -11459,6 +11475,7 @@
     As for the single
    </span>
    <span>
+    -
    </span>
    <span>
     turn, a targeted dataset is needed for the specific application to the bike sharing domain. For this reason, all the conversations between the user and the bot have been recorded, and from them some sessions have been cleaned up, eventually correcting the predicted outputs. The conversations have been generated from a restricted team of testers that knew the limitations of the system and focused the interaction on the actual types of things the system is able to do. Through this technique it has been possible to collect
@@ -11508,13 +11525,10 @@
     </a>
    </sup>
    <span>
-    consists of nearly 2.3GB of text contained in the articles. This dataset contain quite formal language and does not cover well
+    consists of nearly 2.3GB of text contained in the articles. This dataset contain quite formal language and does not cover well the
    </span>
    <span>
-    all
-   </span>
-   <span>
-    the
+    entire
    </span>
    <span>
     Italian dictionary (covering only
@@ -11523,13 +11537,13 @@
     758358
    </span>
    <sup>
-    <a href="#cmnt16" id="cmnt_ref16">
-     [p]
+    <a href="#cmnt18" id="cmnt_ref18">
+     [r]
     </a>
    </sup>
    <sup>
-    <a href="#cmnt17" id="cmnt_ref17">
-     [q]
+    <a href="#cmnt19" id="cmnt_ref19">
+     [s]
     </a>
    </sup>
    <span>
@@ -11547,6 +11561,9 @@
    </sup>
    <span>
     to have only a size of 76GB. This corpus contains text found on a lot of websites, and will therefore have a larger dictionary. However
+   </span>
+   <span>
+    ,
    </span>
    <span>
     for its size it is impossible to be processed in an environment without server farms.
@@ -11580,15 +11597,16 @@
     </a>
    </sup>
    <span>
-    the performance is evaluated by computing the intent error rate and the F1 measure for the slot filling. It is important to notice that in classification tasks for which every test case is guaranteed to be assigned to exactly one class, F-measure on micro level (globally counting
+    the performance is evaluated by computing the intent error rate and the F1 measure for the slot filling. It is important to notice that in classification tasks for which every test case is guaranteed to be assigned to exactly one class, F-measure on micro level (globally counting t
    </span>
    <span>
-    TP,FN,FP
+    rue positives,false negatives, false positives
    </span>
    <span>
     ) is equivalent to accuracy. So for both single and multi
    </span>
    <span>
+    -
    </span>
    <span>
     turn settings the measure chosen to evaluate the results is the F1 score on the intents and slots (a slot is correctly detected if both type and start and end are correct).
@@ -11616,7 +11634,7 @@
     . Since in the embeddings space, words should distribute relatively to their meaning, semantic relations can be characterized by a
    </span>
    <span>
-    traslation
+    translation
    </span>
    <span>
     . For example the relation
@@ -11757,34 +11775,28 @@
   </h4>
   <p>
    <span>
-    For the evaluation of the single-turn approach, since it has been shown to reach
+    For the evaluation of the single-turn approach, since it has been shown to reach State
    </span>
    <span>
-    the
-   </span>
-   <span>
-    State
-   </span>
-   <span>
+    -
    </span>
    <span>
     of
    </span>
    <span>
+    -
    </span>
    <span>
     the
    </span>
    <span>
+    -
    </span>
    <span>
     Art condition on the tasks of intent classification and slot filling, we are here analyzing how some variations in the structure or in the inputs affect the performances on the collected datasets.
    </span>
    <span>
-    A
-   </span>
-   <span>
-    ll t
+    T
    </span>
    <span>
     he measures shown are the selection of the best score reached over a maximum of 20 training epochs.
@@ -11799,7 +11811,7 @@
    <span>
    </span>
   </p>
-  <a id="t.5a6b07a664b2124cecf73472c0646799b9caf9ed">
+  <a id="t.a01bb61bc8dbef0f0fd8928ce8a3758107754408">
   </a>
   <a id="t.5">
   </a>
@@ -11846,7 +11858,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Trainable, random initialized
+        Trainable, randomly initialized
        </span>
       </p>
      </td>
@@ -11920,7 +11932,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        m
+        M
        </span>
        <span>
         edium
@@ -11960,7 +11972,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        l
+        L
        </span>
        <span>
         arge
@@ -12007,7 +12019,7 @@
    <span>
    </span>
   </p>
-  <a id="t.0baf95053f5450cc6263b644fca09c0459963362">
+  <a id="t.a4c42785d0a3730565da12809c32f9f2abe867fd">
   </a>
   <a id="t.6">
   </a>
@@ -12054,7 +12066,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Trainable, random initialized
+        Trainable, randomly initialized
        </span>
       </p>
      </td>
@@ -12128,7 +12140,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        m
+        M
        </span>
        <span>
         edium
@@ -12168,7 +12180,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        l
+        L
        </span>
        <span>
         arge
@@ -12213,13 +12225,7 @@
   </p>
   <p>
    <span>
-    As we can see, the correct choice of word embeddings can play a big difference. The best performance is reached by using fixed pretrained vectors computed on large corpora (with just one exception for the slots on the nlu-benchmark dataset). The contextual tensors provided by SpaCy show a very poor performance, because they are observing only the current sentence and have no knowledge about the real meaning of words. The large model only provides a delta from the medium one on the slot tagging task, while for the intents they have the same performance
-   </span>
-   <span>
-    s
-   </span>
-   <span>
-    . For the Italian embeddings, the “medium” row corresponds to the embeddings from
+    As we can see, the correct choice of word embeddings can play a big difference. The best performance is reached by using fixed pretrained vectors computed on large corpora (with just one exception for the slots on the nlu-benchmark dataset). The contextual tensors provided by SpaCy show a very poor performance, because they are observing only the current sentence and have no knowledge about the real meaning of words. The large model only provides a delta from the medium one on the slot tagging task, while for the intents they have the same performance. For the Italian embeddings, the “medium” row corresponds to the embeddings from
    </span>
    <sup>
     <a href="#ftnt307" id="ftnt_ref307">
@@ -12245,7 +12251,7 @@
    <span>
    </span>
   </p>
-  <a id="t.1e79e1a8872e7ef9267870eed31840e448cf6d8b">
+  <a id="t.e1804e6641d43ef6993696d3e42eb6cceb0888cc">
   </a>
   <a id="t.7">
   </a>
@@ -12357,38 +12363,6 @@
       <p>
        <span>
         0.8421
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
        </span>
       </p>
      </td>
@@ -12613,25 +12587,25 @@
   </h4>
   <p>
    <span>
-    Instead for the multi-turn, t
+    T
    </span>
    <span>
     h
    </span>
    <span>
-    e
+    is
    </span>
    <span>
     evaluation
    </span>
    <span>
-    retakes
+    is inspired by
    </span>
    <span>
     the work
    </span>
    <span>
-    done
+    proposed
    </span>
    <span>
     in
@@ -12670,7 +12644,7 @@
    <span>
    </span>
   </p>
-  <a id="t.5239895849270254a0e249dda67a13a7a457c3a4">
+  <a id="t.447f08546abc08c75c069dd9ae6e6b1740fda99b">
   </a>
   <a id="t.9">
   </a>
@@ -12717,7 +12691,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        multi-turn approach with LSTM
+        Multi-turn approach with LSTM
        </span>
       </p>
      </td>
@@ -12973,7 +12947,7 @@
     Table [REF TABLE:multiTurnScores] reports the results of the F1 measure on the selected approaches. From the results obtained, we can observe that the role of the interaction context is crucial to perform a better understanding. Natural Language dialogues have great dependencies between the sentences used by both parties. The experimental results show also that the intent changes are correctly detected on the sequence of input samples. We can observe that, considering only the previous value of the intent without concatenating the agent words, gives also an increase with respect to the single-turn model. Then, by looking at the F1 measure change between the couples of rows (1,2), (3,5) and (4,6), we can notice that the agent words on their own give an important contribution in terms of both score and epoch number. Combining
    </span>
    <span>
-    both
+    the two
    </span>
    <span>
     modifications helps going a little bit higher with the score achieving the top score faster. The comparison with the simple CRF approach highlights how important is to work on a properly encoded sentence using RNN.
@@ -13012,30 +12986,24 @@
     it is clear that evaluat
    </span>
    <span>
-    e
+    ing
    </span>
    <span>
-    the overall performance of dialogue systems is very difficult: the difference between human judgement and automatic methods is very big, especially because the definition of good responses itself is complicated. Furthermore the approach used is not generative but is based on the processing of a finite set of intents. The sentences in response are built from a set of template properly filled with some structured information. For this reason the most important part that has been already evaluated is the Natural Language Understanding, that focuses on supervised automatic metrics that compare with the expected output. However to evaluate the overall performance
+    the overall performance of dialogue systems is very difficult: the difference between human judgement and automatic methods is very big, especially because the definition of good responses itself is complicated. Furthermore the approach used is not generative but is based on the processing of a finite set of intents. The sentences in response are built from a set of template properly filled with some structured information. For this reason the most important part that has been already evaluated is the Natural Language Understanding, that focuses on supervised automatic metrics that compare with the expected output. However to evaluate the overall performance of the system it is necessary to measure some values from an online setting, collecting statistics directly on the real dialogues between the bot and the users.
+   </span>
+  </p>
+  <p>
+   <span>
+    A first group of measure is identified by their infeasiblility to be collected for the implemented prototype. First of all, to measure the success of the bot, the sentiment analysis could raise as a promising technique. However, for a bot that provides bike sharing informations, the majority of sentences will not have any indicators of positive or negative attitude. Only extreme case
    </span>
    <span>
     s
    </span>
    <span>
-    of the system it is necessary to measure some values from an online setting, collecting statistics directly on the real dialogues between the bot and the users.
-   </span>
-  </p>
-  <p>
-   <span>
-    A first group of measure is identified
-   </span>
-   <span>
-    , identified
-   </span>
-   <span>
-    by their infeasiblility to be collected for the implemented prototype. First of all, to measure the success of the bot, the sentiment analysis could raise as a promising technique. However, for a bot that provides bike sharing informations, the majority of sentences will not have any indicators of positive or negative attitude. Only extreme case
-   </span>
-   <span>
     of anger and frustration can be identified, or very sparse signal of happiness. However, being only an early stage prototype, those measures will not be easy to collect and consider. Another infeasible strategy could be the implicit measurement of the dialogue success rate. Some rules should be defined to establish when a dialogue fails or succeeds. An indicator of failure could be the repeatment of questions or rephrasing in a short temporal range to indicate the same concept not previously understood by the system. However
+   </span>
+   <span>
+    ,
    </span>
    <span>
     this is quite complicated to do, also because this could simply express the need of the user to receive new and updated information, so also this strategy has been abandoned.
@@ -13287,10 +13255,13 @@
     A second group of measures is
    </span>
    <span>
-    of
+    about
    </span>
    <span>
     statistical measure. Those numbers do not indicate directly the goodness of the system, but
+   </span>
+   <span>
+    they
    </span>
    <span>
     can give some general ideas about its usage. Their values are shown in Table [REF TABLE:botStatistics], and are computed by referring to the machine where the Core of the bot was deployed (a virtual machine running on a Intel
@@ -13308,6 +13279,9 @@
   <p>
    <span>
     In this last set, some can be used as indicator of the goodness of the experience with the system. For example the count of sentences that have been classified as not belonging to any intents. There are many different reasons for these situations, because requests themselves can be out of domain (for example asking for car sharing) where the system cannot in any way provide a response, or can be into the domain but unforeseen in the design phase (e.g. asking to find another station because the user does not like the one selected) that can be fixed by adding a new intent and handling correctly the application logic with new methods, or could simply be that the sentence has not been classified but already a corresponding intent exists (failure of generalization of the classifier). Instead
+   </span>
+   <span>
+    ,
    </span>
    <span>
     the errors occurred while providing the results are generated by errors of the PyBikes module, that can fail because the source of information is not reachable (website down or internal server errors) or is not parseable (in the case of changes in the layout of the pages scraped). The positive and negative buttons are used also to count the immediate feedback from the users, as also the “thank you” intent.
@@ -13338,13 +13312,7 @@
   </p>
   <p>
    <span>
-    In this last chapter of the thesis some conclusions are provided
-   </span>
-   <span>
-    ,
-   </span>
-   <span>
-    by resuming some achievements and presenting some possible future works.
+    In this last chapter of the thesis some conclusions are provided by resuming some achievements and presenting some possible future works.
    </span>
   </p>
   <p>
@@ -13410,7 +13378,6 @@
     a detailed investigation on the deep
    </span>
    <span>
-    -
    </span>
    <span>
     learning-based solutions for Natural Language Understanding processes.
@@ -13464,7 +13431,7 @@
   </p>
   <p>
    <span>
-    Passing to
+    About
    </span>
    <span>
     goal
@@ -17831,7 +17798,7 @@
      [n]
     </a>
     <span>
-     cosa vuol dire? si fa sempre accesso ad una API ...
+     definire Deep Semantic Learning
     </span>
    </p>
   </div>
@@ -17841,7 +17808,7 @@
      [o]
     </a>
     <span>
-     spiegato
+     definito
     </span>
    </p>
   </div>
@@ -17851,7 +17818,7 @@
      [p]
     </a>
     <span>
-     riverifica il numero, mi sembra fuori scala (leggo che circa 1M di parole fanno parte del dizionario di italiano)
+     cosa vuol dire? si fa sempre accesso ad una API ...
     </span>
    </p>
   </div>
@@ -17859,6 +17826,26 @@
    <p>
     <a href="#cmnt_ref17" id="cmnt17">
      [q]
+    </a>
+    <span>
+     spiegato
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref18" id="cmnt18">
+     [r]
+    </a>
+    <span>
+     riverifica il numero, mi sembra fuori scala (leggo che circa 1M di parole fanno parte del dizionario di italiano)
+    </span>
+   </p>
+  </div>
+  <div>
+   <p>
+    <a href="#cmnt_ref19" id="cmnt19">
+     [s]
     </a>
     <span>
      ho verificato dal modello ottenuto con GloVe. Sembra già un numero enorme, ma tiene conto di tutte le forme flesse (ad esempio coniugazioni,singolare/plurale). Lorenzetti stimava nel 2004 in più di due milioni «il numero delle parole dicibili e scrivibili in italiano» (fonte http://www.treccani.it/magazine/lingua_italiana/domande_e_risposte/varie/varie_026.html). I vettori di FastText per l'italiano as esempio coprono 2M di parole https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md
