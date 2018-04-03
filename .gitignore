@@ -2,7 +2,7 @@
 main.pdf
 abstract_only.pdf
 
-partials/*
+#partials/*
 media/
 !partials/properties.tex
 !partials/glossary.tex

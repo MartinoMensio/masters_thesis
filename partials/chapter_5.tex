@@ -1,0 +1,466 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+% This content has been generated automatically from https://www.docx2latex.com/docx2latex_free and https://github.com/MartinoMensio/doc2latex_process_chapters 
+% Consider editing the source Google Doc instead of this one!
+
+
+\chapter{Validation}
+\label{validation}
+
+This chapter is relative to the validation of the dialogue system. What is evaluated can be divided into two main parts: one is relative to the NLU approach described in \ref{approachNLU} considering different datasets and different variations of the model; the second one instead focuses more on the bot prototype, looking at some measures that can be done to evaluate its global performance from the point of view of the users.
+
+\section{NLU evaluation}
+\label{validationNLU}
+
+This section  describes the datasets used in \ref{validationDatasets}, the evaluation protocol and the measures analysis in \ref{validationMeasures}.
+
+\subsection{Datasets}
+\label{validationDatasets}
+
+In the search of datasets available for the Natural Language Understanding, two main types of corpora have been found, respectively for single-turn and for multi-turn interactions. Here we provide a list of them, with some statistics and details of each one. About the language of the datasets, the found ones are in English both for single: no availability of Italian annotated datasets have been found. The Italian dataset used for the embeddings is discussed in the last part of this subsection, but the key point is that these corpora are not annotated because the word embeddings algorithms are unsupervised. For both single and multi-turn, in addition to the available datasets, an English and Italian dataset is proposed for the domain of bike sharing, collected with the methods described in subsection \ref{implementationDatasets}.
+
+\subsubsection{Single-turn}
+For the single-turn, a lot of datasets can be found online, each one with a different domain of application. The characteristics of these datasets is that each sentence is annotated with the values of the intent (a feature of the whole sentence) and of the slots (word groups, also called \textit{spans}). While the annotation of the intent is more or less standardized, for the annotation of slots different notations can be used, representing different features. Those specific elements will be explained for each dataset.
+
+\paragraph{ATIS}
+The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)~\cite{hemphill1990atis}. This dataset contains transcriptions of questions obtained from
+
+the Official Airline Guide\footnote{\url{https://www.oag.com/}} in 1990: each question is annotated with its intent, over 18 different intent types, and with the relative slots, over 127 IOB slot types (corresponding to 80 slot types reducing the $``$\textit{B-}$"$  and $``$\textit{I-}$"$ ). The slot types correspond to entity types with a specific role: for example the slot type $``$\textit{fromloc.city\_name}$"$  corresponds to the entity type $``$\textit{city\_name}$"$  with the role $``$\textit{fromloc}$"$  that expresses that this is the source city in the sentence. The dataset notation is done using the IOB format. For this reason, the inputs and outputs of the dataset are provided already tokenized by using a whitespace tokenizer. This is the only dataset considered that constraints the division of words because the other ones usually represent slots as start and end indexes of the sentence.
+
+The dataset has 4978 training samples and 893 test samples: the original division is only in two splits, no $``$development$"$  set is available. However some works have additionally divided the training set into two parts to leave the validation set on its own for the final evaluation and not for the hyperparameters optimization.
+
+\paragraph{NLU Benchmark}
+Another dataset that has been used in the specificity of single-turn interactions is the \textit{nlu-benchmark} that is published by Snips\footnote{\url{https://snips.ai/content/sdk-benchmark-visualisation/}} as an effort to compare and evaluate different NLU commercial providers like Amazon Alexa,\footnote{\url{https://developer.amazon.com/alexa}} Google Api.ai,\footnote{\url{https://api.ai/}} Microsoft Luis,\footnote{\url{https://www.luis.ai/}} Apple SiriKit,\footnote{\url{https://developer.apple.com/sirikit/}} IBM Watson Conversation,\footnote{\url{https://www.ibm.com/watson/developercloud/nl-classifier.html}} Facebook Wit,\footnote{\url{https://wit.ai/}} and Snips\footnote{\url{https://snips.ai/}} itself. The dataset used for their benchmark\footnote{\url{https://github.com/snipsco/nlu-benchmark}} is considered here for the custom intents: 7 different intents are provided over a total of 1942 training samples and 100 test ones. Instead the entities are annotated on spans directly, because the sentences are provided pre-split on the edges of the slot values (e.g. [$``$\textit{Add another }$"$ , $``$\textit{song}$"$ , $``$\textit{ to the }$"$ , $``$\textit{Cita Romántica}$"$ , $``$\textit{ playlist. }$"$ ] where $``$\textit{song}$"$  and $``$\textit{Cita Romántica}$"$  are two different slots). There are 39 different slot types.
+
+This dataset has been used by Snips to do a benchmark that considers only the intents, but on the measurements we show also the results for the slots.
+
+\paragraph{Wit.ai}
+More specific to the prototype built for this project, BotCycle, two single-turn datasets have been collected with the support of wit.ai platform: one in English and one in Italian. The collection of samples begun with the early stages of the prototype, which was relying on wit.ai for the understanding part back then. This platform provides a friendly GUI where the intents and slots can be configured, and also some training samples can be provided. Moreover it keeps track of the $``$inbox$"$  messages used in operational environment, that can be later reviewed and added to the gold standard. Even when the understanding part switched to local deployment, we kept sending the requests for processing to wit.ai in order to continue increasing the dataset. With this technique we collected 522 samples for the English language and 95 samples for the Italian one.
+
+As described in subsection \ref{approachTypes}, there are X intents types and three slot types belonging to the same type of entity: \textit{from.location}, \textit{to.location} and \textit{location} without a specific role. The slots are annotated by providing the start and end indexes, together with the intent type and the optional role.
+
+\subsubsection{Multi-turn}
+Instead for the multi-turn NLU, wich is described in subsection \ref{approachMultiTurn}, the number of datasets used is more restricted because less have been found with the required characteristics. The data that we wanted had to contain multi-turn sessions with messages from both sides, where at least on the user sentences it could be possible to obtain the intent value and the slot annotations.
+
+The problem of multi-turn has been analyzed mostly on proprietary datasets~\cite{shi2015contextual}~\cite{xu2014contextual}~\cite{bhargava2013easy}, or requiring a participation in a challenge (like the Dialogue State Tracking Challenge~\cite{williams2013dialog}). Others, focusing mainly on memory networks and simple questions, are not very relevant for the multi-turn goal-oriented problem (bAbI). The Frames dataset~\cite{asri2017frames} is publicly available but it only contains a single intent ($``$\textit{book}$"$ ), and focuses more on the tracking of user and machine actions.
+
+\paragraph{Key-Value Retrieval}
+The only dataset found in literature is the Key-Value Retrieval~\cite{eric2017key}, that contains sessions of interaction between a driver and his smart car. Each session begins with an utterance of the driver that clearly states his intent (out of 3 possible values: Calendar Scheduling, Weather Information Retrieval, POI Navigation), and the subsequent turns of both parties continue the dialogue to refine the search and to reach the desired final response. About the annotation of the slots, they are available but not annotated in a straightforward way: each slot (15 types available) is stored with its value, but there are some problems in identifying their displacement in the sentences, because a normalization step would have been required. The major problems are:
+
+\begin{itemize}
+	\item trailing spaces in the slot annotation: solved by trimming strings;
+
+	\item capitalization differences between slot annotation and text of the sentence: solved by applying match insensitive;
+
+	\item slots annotated on later turns referring to previous turns: solved by reversing the look-up processing order on the sentences and annotations, in order to enable backward references to text;
+
+	\item multiple matches for the same word in a sentence: by keeping the forward slots to be referenced, sometimes multiple entities overlap partially in the sentences, that is not allowed by the IOB annotation scheme;
+
+	\item incomplete slot value: for example $``$\textit{take my pills}$"$  in the sentence is annotated as $``$\textit{take pills}$"$ , and this is not solvable by simple look-up strategies;
+
+	\item entity\ resolution problems:  for example the reference $``$there$"$  is annotated with its resolution (the place mentioned before), or $``$\textit{today}$"$  in the text is annotated as $``$wednesday$"$  in the slots;
+
+	\item other entity resolution problems that could be solved by looking at the attached Knowledge Base: those are not resolved since it is not the only limitation;
+\end{itemize}
+
+The selected multi-turn approach, while providing also outputs for the slot labels being trained jointly, is here analyzed mainly under the point of view of the intents, so this is actually not a problem. The main goal is to be able to automatically recognize when a certain session ends or continue, where a time-based session split can be misleading and a working solution should rely on the contents only.
+
+This dataset, therefore, satisfies our needs: each sentence is annotated with its speaker and the intent values are available. The preprocessing is composed of three steps: \textit{1)} annotation of the intent from session-level to sentence-level by copying the values; \textit{2)} concatenation of all sentences, removing the concept of session that remains only on the intent values; \textit{3)} consider as samples only the driver sentences, each one stored together with the current and previous intent value and with the previous sentence of the agent.
+
+With this setup of the samples, on the training set there are  \( 1583 \)  intent changes over  \( 6429 \)  samples, while on the test set  \( 189 \)  changes over  \( 820 \)  samples.
+
+\paragraph{BotCycle multi-turn}
+As for the single-turn, a targeted dataset is needed for the specific application to the bike sharing domain. For this reason, all the conversations between the user and the bot have been recorded, and from them some sessions have been cleaned up, eventually correcting the predicted outputs. The conversations have been generated from a restricted team of testers that knew the limitations of the system and focused the interaction on the actual types of things the system is able to do. Through this technique it has been possible to collect  \( 73 \)  sessions with an average length of  \( 12.7 \)  for the English language and  \( 10 \)  sessions with an average length of  \( 29.4 \)  for the Italian one (considering sentences from both interlocutors).
+
+Actually, this dataset is nearly unusable for all the limitations that have been noticed in subsection \ref{implementationDatasets}, as can be seen also from the quite poor size of the Italian dataset.
+
+\subsubsection{Italian Word Embeddings}
+For the Italian Word embeddings actually the datasets available are mainly two: Wikipedia or CommonCrawl. Both can provide statistical information of word co-occurrences and be used to train unsupervised representations like word embeddings.
+
+The Wikipedia Italian dump\footnote{\url{http://dumps.wikimedia.org/itwiki}} consists of nearly 2.3GB of text contained in the articles. This dataset contain quite formal language and does not cover well the entire Italian dictionary (covering only 758358 different words), but it is the only feasible to be used for such huge calculation.
+
+With proper machines (calculation power and storage), another dataset is the CommonCrawl one, available on a preprocessed version where duplicated sentences have been removed\footnote{\url{http://data.statmt.org/ngrams/deduped/}} to have only a size of 76GB. This corpus contains text found on a lot of websites, and will therefore have a larger dictionary. However, for its size it is impossible to be processed in an environment without server farms.
+
+\subsection{Evaluation Protocol and results}
+\label{validationMeasures}
+
+The following paragraphs illustrate the results obtained. First of all, a dedicated evaluation to the Italian embeddings computed will show how the different preprocessing allows to reach higher scores on the analogy test~\cite{mikolov2013linguistic}. Then different variations (such as the embedding dictionary size, the choice of LSTM vs GRU and the usage of attention mechanism) will be measured on the single-turn setting. At the end also some evaluation on the multi-turn setting are shown. To evaluate the performance of the computational graph, a search of commonly used measures has been done. For the ATIS dataset usually~\cite{tur2010left} the performance is evaluated by computing the intent error rate and the F1 measure for the slot filling. It is important to notice that in classification tasks for which every test case is guaranteed to be assigned to exactly one class, F-measure on micro level (globally counting true positives,false negatives, false positives) is equivalent to accuracy. So for both single and multi-turn settings the measure chosen to evaluate the results is the F1 score on the intents and slots (a slot is correctly detected if both type and start and end are correct).
+
+\subsubsection{Italian embeddings analogy evaluation}
+To evaluate the goodness of word embeddings, a commonly used test is the analogy test~\cite{mikolov2013linguistic}. Since in the embeddings space, words should distribute relatively to their meaning, semantic relations can be characterized by a translation. For example the relation singular-plural can be exploited to find a plural of one word by using the analogy of coordinates between another pair of singular and plural words (e.g. \textit{queens} = \textit{queen} - \textit{king} + \textit{kings}). The evaluation is done by comparing the predicted word against the true one. Here we are considering the translated version of this analogy test, used by~\cite{berardi2015word} too.
+
+%%%%%%%%%%%%%%%%%%%% Table No: 5 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{2.94in}p{2.94in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{2.94in}}{\textbf{Word embeddings}} & 
+\multicolumn{1}{|p{2.94in}|}{\textbf{accuracy}} \\
+\hhline{--}
+%row no:2
+\multicolumn{1}{|p{2.94in}}{Italian values from~\cite{berardi2015word} on Wikipedia} & 
+\multicolumn{1}{|p{2.94in}|}{44.81$\%$ } \\
+\hhline{--}
+%row no:3
+\multicolumn{1}{|p{2.94in}}{Computed Italian values on Wikipedia} & 
+\multicolumn{1}{|p{2.94in}|}{58.14$\%$ } \\
+\hhline{--}
+
+\end{tabular}
+ \caption{A comparison of the analogy scores for the Italian Wikipedia datasets}\label{tab:italianEmbeddingsAnalogy}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/italianEmbeddingsAnalogy}
+
+Table~\ref{tab:italianEmbeddingsAnalogy} shows how the different preprocessing, applying the SpaCy tokenization, allows to reach better values for the analogy test.
+
+\subsubsection{Single-turn variations}
+For the evaluation of the single-turn approach, since it has been shown to reach State-of-the-Art condition on the tasks of intent classification and slot filling, we are here analyzing how some variations in the structure or in the inputs affect the performances on the collected datasets. The measures shown are the selection of the best score reached over a maximum of 20 training epochs.
+
+The first comparison we want to do is how the choice of embeddings influences the quality of results in terms of F1 score. For this reason in tables~\ref{tab:intentsEmbeddingsChoice} and~\ref{tab:slotsEmbeddingsChoice} different embeddings strategies are applied (random, contextual tensors, precomputed\footnote{\url{https://spacy.io/models/en}}).
+
+%%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.05in}}{\textbf{Embeddings type}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
+\hhline{-----}
+%row no:2
+\multicolumn{1}{|p{1.05in}}{Trainable, randomly initialized} & 
+\multicolumn{1}{|p{1.05in}}{0.9740} & 
+\multicolumn{1}{|p{1.05in}}{0.9928} & 
+\multicolumn{1}{|p{1.05in}}{0.9428} & 
+\multicolumn{1}{|p{1.05in}|}{0.8947} \\
+\hhline{-----}
+%row no:3
+\multicolumn{1}{|p{1.05in}}{Contextual tensors} & 
+\multicolumn{1}{|p{1.05in}}{0.7140} & 
+\multicolumn{1}{|p{1.05in}}{0.2542} & 
+\multicolumn{1}{|p{1.05in}}{0.4000} & 
+\multicolumn{1}{|p{1.05in}|}{0.4736} \\
+\hhline{-----}
+%row no:4
+\multicolumn{1}{|p{1.05in}}{Precomputed medium (English: 685k keys with 20k unique vectors, Italian~\cite{berardi2015word}: 730k unique vectors)} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9660}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9928}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9714}} & 
+\multicolumn{1}{|p{1.05in}|}{0.8421} \\
+\hhline{-----}
+%row no:5
+\multicolumn{1}{|p{1.05in}}{Precomputed large (English: 685k keys with 685k unique vectors, Italian: 758k unique vectors proposed)} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9860}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9928}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9714}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{0.8947}} \\
+\hhline{-----}
+
+\end{tabular}
+ \caption{The F1 scores for intent classification with different embeddings}\label{tab:intentsEmbeddingsChoice}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/intentsEmbeddingsChoice}
+
+%%%%%%%%%%%%%%%%%%%% Table No: 7 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.05in}}{\textbf{Embeddings type}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
+\hhline{-----}
+%row no:2
+\multicolumn{1}{|p{1.05in}}{Trainable, randomly initialized} & 
+\multicolumn{1}{|p{1.05in}}{0.9425} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9177}} & 
+\multicolumn{1}{|p{1.05in}}{0.9000} & 
+\multicolumn{1}{|p{1.05in}|}{0.5000} \\
+\hhline{-----}
+%row no:3
+\multicolumn{1}{|p{1.05in}}{Contextual tensors} & 
+\multicolumn{1}{|p{1.05in}}{0.1658} & 
+\multicolumn{1}{|p{1.05in}}{0.0032} & 
+\multicolumn{1}{|p{1.05in}}{0.3391} & 
+\multicolumn{1}{|p{1.05in}|}{0.1818} \\
+\hhline{-----}
+%row no:4
+\multicolumn{1}{|p{1.05in}}{Medium (English: 685k keys with 20k unique vectors, Italian~\cite{berardi2015word}: 730k unique vectors)} & 
+\multicolumn{1}{|p{1.05in}}{0.9588} & 
+\multicolumn{1}{|p{1.05in}}{0.8970} & 
+\multicolumn{1}{|p{1.05in}}{0.9375} & 
+\multicolumn{1}{|p{1.05in}|}{0.5666} \\
+\hhline{-----}
+%row no:5
+\multicolumn{1}{|p{1.05in}}{Large (English: 685k keys with 685k unique vectors, Italian: 758k unique vectors proposed)} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9649}} & 
+\multicolumn{1}{|p{1.05in}}{0.9170} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{0.6153}} \\
+\hhline{-----}
+
+\end{tabular}
+ \caption{The F1 scores for slot tagging with different embeddings}\label{tab:slotsEmbeddingsChoice}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/slotsEmbeddingsChoice}
+
+As we can see, the correct choice of word embeddings can play a big difference. The best performance is reached by using fixed pretrained vectors computed on large corpora (with just one exception for the slots on the nlu-benchmark dataset). The contextual tensors provided by SpaCy show a very poor performance, because they are observing only the current sentence and have no knowledge about the real meaning of words. The large model only provides a delta from the medium one on the slot tagging task, while for the intents they have the same performance. For the Italian embeddings, the $``$medium$"$  row corresponds to the embeddings from~\cite{berardi2015word}, while the $``$large$"$  row is the computed embedding values computed on the Wikipedia corpus preprocessed with SpaCy (explained in subsection \ref{implementationWV}).
+
+A second modification can be done by trying to substitute the LSTM cells with GRU. Table~\ref{tab:LSTMvsGRU} shows the F1 scores computed for the intent and slots with both cell types. As can be seen, the two different cells have very similar performances, and for each dataset their relative order changes.
+
+%%%%%%%%%%%%%%%%%%%% Table No: 8 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.05in}}{} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
+\hhline{-----}
+%row no:2
+\multicolumn{1}{|p{1.05in}}{LSTM intents} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9860}} & 
+\multicolumn{1}{|p{1.05in}}{0.9928} & 
+\multicolumn{1}{|p{1.05in}}{0.9714} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{0.8947}} \\
+\hhline{-----}
+%row no:3
+\multicolumn{1}{|p{1.05in}}{GRU intents} & 
+\multicolumn{1}{|p{1.05in}}{0.9820} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9942}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9809}} & 
+\multicolumn{1}{|p{1.05in}|}{0.8421} \\
+\hhline{-----}
+%row no:4
+\multicolumn{1}{|p{1.05in}}{LSTM slots} & 
+\multicolumn{1}{|p{1.05in}}{0.9649} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9170}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
+\multicolumn{1}{|p{1.05in}|}{0.6153} \\
+\hhline{-----}
+%row no:5
+\multicolumn{1}{|p{1.05in}}{GRU slots} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9678}} & 
+\multicolumn{1}{|p{1.05in}}{0.9114} & 
+\multicolumn{1}{|p{1.05in}}{0.9565} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{0.6400}} \\
+\hhline{-----}
+
+\end{tabular}
+ \caption{The F1 scores for intents and slots comparing LSTM vs GRU}\label{tab:LSTMvsGRU}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/LSTMvsGRU}
+
+Another variation is to consider the attention in the decoding stage for the slots. Table~\ref{tab:attentionVsNot} shows the comparison of the same network by enabling or disabling the attention wrapper around the LSTM of the slot label decoder. The performances are better for the model with the attention, except for the Italian dataset. Probably this result indicates that the attention has too many parameters to be tuned with a little dataset. In fact the Italian dataset is the smallest one.
+
+%%%%%%%%%%%%%%%%%%%% Table No: 9 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.05in}p{1.05in}p{1.05in}p{1.05in}p{1.05in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.05in}}{} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{ATIS}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{nlu-benchmark}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{wit\_en}} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{wit\_it}} \\
+\hhline{-----}
+%row no:2
+\multicolumn{1}{|p{1.05in}}{With attention} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9649}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9170}} & 
+\multicolumn{1}{|p{1.05in}}{\textbf{0.9689}} & 
+\multicolumn{1}{|p{1.05in}|}{0.6153} \\
+\hhline{-----}
+%row no:3
+\multicolumn{1}{|p{1.05in}}{Without attention} & 
+\multicolumn{1}{|p{1.05in}}{0.9638} & 
+\multicolumn{1}{|p{1.05in}}{0.9132} & 
+\multicolumn{1}{|p{1.05in}}{0.9625} & 
+\multicolumn{1}{|p{1.05in}|}{\textbf{0.6956}} \\
+\hhline{-----}
+
+\end{tabular}
+ \caption{The comparison between F1 scores for slots by using or not the attention}\label{tab:attentionVsNot}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/attentionVsNot}
+
+\subsubsection{The multi-turn}
+This evaluation is inspired by the work proposed in~\cite{mensio2018multi}. The dataset is the kvret~\cite{eric2017key}, used to measure separately the effects of the two modifications that have been described in subsection \ref{approachMultiTurn}. For this reason, two more approaches have been considered: the first one considers the single-turn network with the only addition of the agent words, while the second one considers the proposed multi-turn without the agents words (resulting in the only addition of the top-level RNN working on the intent values). The comparison is extended to a CRF~\cite{lafferty2001conditional} simply applied at word-level with words as inputs and intent labels as outputs (to obtain the estimated intent on a sentence, a majority vote is applied by the words belonging to the original sentences). 
+
+In this case two different configurations have been used: in the first one, the lower cased words are used as input features, while in the second one the pre-trained word embeddings.
+
+%%%%%%%%%%%%%%%%%%%% Table No: 10 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{1.37in}p{1.37in}p{1.37in}p{1.37in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{1.37in}}{\textbf{row}} & 
+\multicolumn{1}{|p{1.37in}}{\textbf{approach}} & 
+\multicolumn{1}{|p{1.37in}}{\textbf{F1 (intent)}} & 
+\multicolumn{1}{|p{1.37in}|}{\textbf{epoch}} \\
+\hhline{----}
+%row no:2
+\multicolumn{1}{|p{1.37in}}{1} & 
+\multicolumn{1}{|p{1.37in}}{Multi-turn approach with LSTM} & 
+\multicolumn{1}{|p{1.37in}}{\textbf{0.9987}} & 
+\multicolumn{1}{|p{1.37in}|}{\textbf{7}} \\
+\hhline{----}
+%row no:3
+\multicolumn{1}{|p{1.37in}}{2} & 
+\multicolumn{1}{|p{1.37in}}{Multi-turn approach without agent words LSTM} & 
+\multicolumn{1}{|p{1.37in}}{\textbf{0.9987}} & 
+\multicolumn{1}{|p{1.37in}|}{8} \\
+\hhline{----}
+%row no:4
+\multicolumn{1}{|p{1.37in}}{3} & 
+\multicolumn{1}{|p{1.37in}}{Multi-turn approach with GRU} & 
+\multicolumn{1}{|p{1.37in}}{0.9975} & 
+\multicolumn{1}{|p{1.37in}|}{14} \\
+\hhline{----}
+%row no:5
+\multicolumn{1}{|p{1.37in}}{4} & 
+\multicolumn{1}{|p{1.37in}}{~\cite{liu2016attention} with extension of agent words} & 
+\multicolumn{1}{|p{1.37in}}{0.9951} & 
+\multicolumn{1}{|p{1.37in}|}{5} \\
+\hhline{----}
+%row no:6
+\multicolumn{1}{|p{1.37in}}{5} & 
+\multicolumn{1}{|p{1.37in}}{Multi-turn approach without agent words GRU} & 
+\multicolumn{1}{|p{1.37in}}{0.9585} & 
+\multicolumn{1}{|p{1.37in}|}{9} \\
+\hhline{----}
+%row no:7
+\multicolumn{1}{|p{1.37in}}{6} & 
+\multicolumn{1}{|p{1.37in}}{} & 
+\multicolumn{1}{|p{1.37in}}{0.8524} & 
+\multicolumn{1}{|p{1.37in}|}{8} \\
+\hhline{----}
+%row no:8
+\multicolumn{1}{|p{1.37in}}{7} & 
+\multicolumn{1}{|p{1.37in}}{CRF on pretrained word embeddings} & 
+\multicolumn{1}{|p{1.37in}}{0.7049} & 
+\multicolumn{1}{|p{1.37in}|}{100} \\
+\hhline{----}
+%row no:9
+\multicolumn{1}{|p{1.37in}}{8} & 
+\multicolumn{1}{|p{1.37in}}{CRF on words} & 
+\multicolumn{1}{|p{1.37in}}{0.4976} & 
+\multicolumn{1}{|p{1.37in}|}{100} \\
+\hhline{----}
+
+\end{tabular}
+ \caption{F1 scores of the selected approaches for the kvret~\cite{eric2017key} dataset}\label{tab:multiTurnScores}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/multiTurnScores}
+
+Table~\ref{tab:multiTurnScores} reports the results of the F1 measure on the selected approaches. From the results obtained, we can observe that the role of the interaction context is crucial to perform a better understanding. Natural Language dialogues have great dependencies between the sentences used by both parties. The experimental results show also that the intent changes are correctly detected on the sequence of input samples. We can observe that, considering only the previous value of the intent without concatenating the agent words, gives also an increase with respect to the single-turn model. Then, by looking at the F1 measure change between the couples of rows (1,2), (3,5) and (4,6), we can notice that the agent words on their own give an important contribution in terms of both score and epoch number. Combining the two  modifications helps going a little bit higher with the score achieving the top score faster. The comparison with the simple CRF approach highlights how important is to work on a properly encoded sentence using RNN.
+
+\section{Bot prototype}
+\label{validationPrototype}
+
+From the literature~\cite{liu2016not}~\cite{li2015diversity} it is clear that evaluating the overall performance of dialogue systems is very difficult: the difference between human judgement and automatic methods is very big, especially because the definition of good responses itself is complicated. Furthermore the approach used is not generative but is based on the processing of a finite set of intents. The sentences in response are built from a set of template properly filled with some structured information. For this reason the most important part that has been already evaluated is the Natural Language Understanding, that focuses on supervised automatic metrics that compare with the expected output. However to evaluate the overall performance of the system it is necessary to measure some values from an online setting, collecting statistics directly on the real dialogues between the bot and the users.
+
+A first group of measure is identified by their infeasiblility to be collected for the implemented prototype. First of all, to measure the success of the bot, the sentiment analysis could raise as a promising technique. However, for a bot that provides bike sharing information, the majority of sentences will not have any indicators of positive or negative attitude. Only extreme cases of anger and frustration can be identified, or very sparse signal of happiness. However, being only an early stage prototype, those measures will not be easy to collect and consider. Another infeasible strategy could be the implicit measurement of the dialogue success rate. Some rules should be defined to establish when a dialogue fails or succeeds. An indicator of failure could be the repeatment of questions or rephrasing in a short temporal range to indicate the same concept not previously understood by the system. However, this is quite complicated to do, also because this could simply express the need of the user to receive new and updated information, so also this strategy has been abandoned.
+
+%%%%%%%%%%%%%%%%%%%% Table No: 11 starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+ 			\centering
+\begin{tabular}{p{2.94in}p{2.94in}}
+\hline
+%row no:1
+\multicolumn{1}{|p{2.94in}}{\textbf{measure}} & 
+\multicolumn{1}{|p{2.94in}|}{\textbf{value}} \\
+\hhline{--}
+%row no:2
+\multicolumn{1}{|p{2.94in}}{Average number of messages for each session} & 
+\multicolumn{1}{|p{2.94in}|}{14.7} \\
+\hhline{--}
+%row no:3
+\multicolumn{1}{|p{2.94in}}{Total number of messages received} & 
+\multicolumn{1}{|p{2.94in}|}{535} \\
+\hhline{--}
+%row no:4
+\multicolumn{1}{|p{2.94in}}{Total number of messages sent} & 
+\multicolumn{1}{|p{2.94in}|}{569} \\
+\hhline{--}
+%row no:5
+\multicolumn{1}{|p{2.94in}}{Average length of sentences} & 
+\multicolumn{1}{|p{2.94in}|}{4.7 words} \\
+\hhline{--}
+%row no:6
+\multicolumn{1}{|p{2.94in}}{Average time to provide a response} & 
+\multicolumn{1}{|p{2.94in}|}{1.41 s} \\
+\hhline{--}
+%row no:7
+\multicolumn{1}{|p{2.94in}}{Average memory footprint for each language} & 
+\multicolumn{1}{|p{2.94in}|}{1042.5 MB} \\
+\hhline{--}
+%row no:8
+\multicolumn{1}{|p{2.94in}}{Average CPU usage at rest} & 
+\multicolumn{1}{|p{2.94in}|}{0.18 $\%$ } \\
+\hhline{--}
+%row no:9
+\multicolumn{1}{|p{2.94in}}{CPU peak to process a single message} & 
+\multicolumn{1}{|p{2.94in}|}{13 $\%$ } \\
+\hhline{--}
+%row no:10
+\multicolumn{1}{|p{2.94in}}{Percentage of no intent detection} & 
+\multicolumn{1}{|p{2.94in}|}{30 $\%$ } \\
+\hhline{--}
+%row no:11
+\multicolumn{1}{|p{2.94in}}{$\#$ Errors/$\#$ results while providing information} & 
+\multicolumn{1}{|p{2.94in}|}{12 $\%$ } \\
+\hhline{--}
+%row no:12
+\multicolumn{1}{|p{2.94in}}{Number of positive feedback button} & 
+\multicolumn{1}{|p{2.94in}|}{13} \\
+\hhline{--}
+%row no:13
+\multicolumn{1}{|p{2.94in}}{Number of negative feedback button} & 
+\multicolumn{1}{|p{2.94in}|}{5} \\
+\hhline{--}
+%row no:14
+\multicolumn{1}{|p{2.94in}}{Number of thank you intents} & 
+\multicolumn{1}{|p{2.94in}|}{31} \\
+\hhline{--}
+
+\end{tabular}
+ \caption{Some statistics about the experimental online scenario with the bot}\label{tab:botStatistics}
+\end{table}
+%%%%% TODO replace this table with next line
+%\input{tables/botStatistics}
+
+A second group of measures is about statistical measure. Those numbers do not indicate directly the goodness of the system, but they can give some general ideas about its usage. Their values are shown in Table~\ref{tab:botStatistics}, and are computed by referring to the machine where the Core of the bot was deployed (a virtual machine running on a Intel® Xeon® X5570 with 4GB of RAM). They include statistics about the physical occupation of resources (CPU, memory), about the sessions with the users, and also some other measures.
+
+In this last set, some can be used as indicator of the goodness of the experience with the system. For example the count of sentences that have been classified as not belonging to any intents. There are many different reasons for these situations, because requests themselves can be out of domain (for example asking for car sharing) where the system cannot in any way provide a response, or can be into the domain but unforeseen in the design phase (e.g. asking to find another station because the user does not like the one selected) that can be fixed by adding a new intent and handling correctly the application logic with new methods, or could simply be that the sentence has not been classified but already a corresponding intent exists (failure of generalization of the classifier). Instead, the errors occurred while providing the results are generated by errors of the PyBikes module, that can fail because the source of information is not reachable (website down or internal server errors) or is not parseable (in the case of changes in the layout of the pages scraped). The positive and negative buttons are used also to count the immediate feedback from the users, as also the $``$thank you$"$  intent.
+
+Another strategy that could have been employed to collect the feedback in a more explicit way, would have been to propose a survey to a selected wide set of users, including evaluation scores on a discrete scale for different factors. Those may include points for usefulness, usability, relevance of results or even open optional questions asking for missing features. However this kind of survey has not been adopted.
+
+ %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
+
