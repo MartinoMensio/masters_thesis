@@ -1,0 +1,19 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{Lcccc}
+    \toprule
+    \textbf{Embeddings type} & \textbf{ATIS} & \textbf{nlu-benchmark} & \textbf{wit\_en} & \textbf{wit\_it} \\
+    \midrule
+    Trainable, randomly initialized & 0.9425 & \textbf{0.9177} & 0.9000 & 0.5000 \\
+    \midrule
+    Contextual tensors & 0.1658 & 0.0032 & 0.3391 & 0.1818 \\
+    \midrule
+    Medium & 0.9588 & 0.8970 & 0.9375 & 0.5666 \\
+    \midrule
+    large & \textbf{0.9649} & 0.9170 & \textbf{0.9689} & \textbf{0.6153} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{The F1 scores for slot tagging with different embeddings}\label{tab:slotsEmbeddingsChoice}
+\end{table}

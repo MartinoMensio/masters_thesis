@@ -1,0 +1,22 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{crlc}
+    \toprule
+    Row & Approach & F1(intent) & epoch\\
+    \midrule
+    1 & Multi-turn approach with LSTM & \textbf{0.9987} & \textbf{7} \\ % dev 0.9987 7
+    2 & Multi-turn approach without agent words LSTM & \textbf{0.9987} & 8 \\ % dev 0.9987 9
+    3 & Multi-turn approach with GRU & 0.9975 & 14 \\ % dev 0.9987 10
+    %\midrule
+    4 & \cite{liu2016attention} with extension of agent words & 0.9951 & 5 \\ % 0.9987 dev
+    5 & Multi-turn approach without agent words GRU & 0.9585 & 9 \\ % dev 0.9455 8
+    6 & \cite{liu2016attention} & 0.8524 & 8\\ % dev 0.8696 9
+    \midrule
+    7 & CRF on pretrained word embeddings & 0.7049 & 100 \\ % majority vote, otherwise 0.491463, dev 0.7177
+    8 & CRF on words & 0.4976 & 100 \\ % majority vote, otherwise 0.410975, dev 0.5088
+    \bottomrule
+  \end{tabularx}
+  \caption{F1 scores of the selected approaches for the kvret~\cite{eric2017key} dataset}\label{tab:multiTurnScores}
+\end{table}

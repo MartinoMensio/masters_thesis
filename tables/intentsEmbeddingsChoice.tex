@@ -1,0 +1,19 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+	\begin{tabularx}{\textwidth}{Lcccc}
+		\toprule
+		\textbf{Embeddings type} & \textbf{ATIS} & \textbf{nlu-benchmark} & \textbf{wit\_en} & \textbf{wit\_it} \\
+		\midrule
+		Trainable, randomly initialized & 0.9740 & 0.9928 & 0.9428 & 0.8947 \\
+		\midrule
+		Contextual tensors & 0.7140 & 0.2542 & 0.4000 & 0.4736 \\
+		\midrule
+		Medium & \textbf{0.9660} & \textbf{0.9928} &\textbf{0.9714} & 0.8421 \\
+		\midrule
+		Large & \textbf{0.9860} & \textbf{0.9928} & \textbf{0.9714} & \textbf{0.8947} \\
+		\bottomrule
+	\end{tabularx}
+	\caption{The F1 scores for intent classification with different embeddings}\label{tab:intentsEmbeddingsChoice}
+\end{table}

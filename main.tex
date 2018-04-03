@@ -8,7 +8,7 @@
 
 %\usepackage[a4paper,top=4.3cm,bottom=5.5cm,left=3cm,right=3cm,bindingoffset=5mm]{geometry}
 % TODO for agsm style import the package natbib
-\usepackage{natbib}
+%\usepackage{natbib}
 
 \usepackage{lipsum}
 \usepackage{amsmath}
@@ -26,6 +26,13 @@
 \usepackage{ragged2e}
 \usepackage{bookmark}
 \usepackage{comment}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{hyphenat}
+\usepackage{rotating} % rotate text in table
+\usepackage{amssymb} % tick sign
+\usepackage{pifont} % tick sign
 
 %for max height
 \usepackage{graphicx}
@@ -110,19 +117,21 @@
 \frontmatter
 \pagenumbering{roman}
 
+%\ringraziamenti
+%Grazie a tutti
+
 % TODO ringraziamenti 
 % CITAZIONE - PERSONALIZZARE
 % VSPACE - PROPORZIONE USATA PER CENTRATURA VERTICALE DEL TESTO
 % FLUSHRIGHT - ALLINEAMENTO ORIZZONTALE A DESTRA
-%\vspace*{\stretch{1}}
-%\begin{flushright}
-%\noindent
-%%\textit{To my family, I will be forever in his debt.}
+\vspace*{\stretch{1}}
+\begin{flushright}
+\noindent
+\textit{To all the ones that supported me.}
 %\textit{To my family, I will be forever in their debt.}
-%
-%%\textit{Docker Book}
-%\end{flushright}
-%\vspace*{\stretch{6}}
+%\textit{Docker Book}
+\end{flushright}
+\vspace*{\stretch{6}}
 %
 %\cleardoublepage
 %%
@@ -193,8 +202,8 @@
 
 %\nocite{*} % uncomment to show also not cited ones
 % TODO use agsm with package natbib import
-\bibliographystyle{agsm} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
-%\bibliographystyle{acm}
+%\bibliographystyle{agsm} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{acm}
 \bibliography{references} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \end{document}

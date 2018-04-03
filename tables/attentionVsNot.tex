@@ -1,0 +1,14 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{Lcccc}
+    \toprule
+    & \textbf{ATIS} & \textbf{nlu-benchmark} & \textbf{wit\_en} & \textbf{wit\_it} \\
+    \midrule
+    With attention & \textbf{0.9649} & \textbf{0.9170} & \textbf{0.9689} & 0.6153 \\
+    Without attention & 0.9638 & 0.9132 & 0.9625 & \textbf{0.6956} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{The comparison between F1 scores for slots by using or not the attention}\label{tab:attentionVsNot}
+\end{table}

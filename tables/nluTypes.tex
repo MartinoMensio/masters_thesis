@@ -1,0 +1,32 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{lXX}
+    \textbf{Intent type} & \textbf{Example} & \textbf{Slots} \\
+    \toprule
+    \texttt{search\_bike} & Find me a bike near Central Park & \texttt{LOCATION('Central Park')} \\
+    \midrule
+    \texttt{search\_slot} & Where can I leave the bike near Big Ben &\texttt{LOCATION('Big Ben')} \\
+    \midrule
+    \texttt{plan\_trip} & I want to go from Piazza Castello to Porta Susa & \texttt{FROM.LOCATION('Piazza Castello') TO.LOCATION('Porta Susa')} \\
+    \midrule
+    \texttt{city\_supported} & Is Torino supported? & \texttt{LOCATION('Torino')} \\
+    \midrule
+    \texttt{set\_position} & I am in Rue de France, Nice & \texttt{LOCATION('Rue de France, Nice')} \\
+    \midrule
+    \texttt{ask\_position} & Locate me & \\
+    \midrule
+    \texttt{booking} & Please book me a bike near Piazza Navona & \texttt{LOCATION('Piazza Navona')} \\
+    \midrule
+    \texttt{greeting} & Hi there! & \\
+    \midrule
+    \texttt{info} & What can you do? & \\
+    \midrule
+    \texttt{end\_discussion} & Ok & \\
+    \midrule
+    \texttt{thank} & Thank you! & \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Intent types and examples}\label{tab:nluTypes}
+\end{table}

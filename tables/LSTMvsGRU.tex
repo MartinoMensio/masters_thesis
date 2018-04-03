@@ -1,0 +1,17 @@
+% !TEX encoding = utf8
+% !TEX root = ../main.tex
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{Lcccc}
+    \toprule
+    & \textbf{ATIS} & \textbf{nlu-benchmark} & \textbf{wit\_en} & \textbf{wit\_it} \\
+    \midrule
+    LSTM intents & \textbf{0.9860} & 0.9928 & 0.9714 & \textbf{0.8947} \\
+    GRU intents & 0.9820 & \textbf{0.9942} & \textbf{0.9809} & 0.8421 \\
+    \midrule
+    LSTM slots & 0.9649 & \textbf{0.9170} & \textbf{0.9689} & 0.6153 \\
+    GRU slots & \textbf{0.9678} & 0.9114 & 0.9565 & \textbf{0.6400} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{The F1 scores for intents and slots comparing LSTM vs GRU}\label{tab:LSTMvsGRU}
+\end{table}
