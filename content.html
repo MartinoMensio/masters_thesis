@@ -1823,7 +1823,7 @@
   </p>
   <p>
    <span>
-    The chapter of the Approach [REF:approach] instead focuses on the specific Chatbot use case: the bot for bike sharing information. The scenarios are delineed [REF:approachScenarios] and the high level model of the system is described [REF:approachModel] by also giving the motivation for having two different components that interact. Then moving to the Natural Language Understanding [REF:approachNLU], a description of the intent and entities chosen [REF:approachTypes] proceeds the analysis of the selected approach is given for single-turn interaction
+    The chapter of the Approach [REF:approach] is divided into two parts. The Section [REF:approachNLU] describes the chosen approach for managing different interaction environments: the State of the Art approach for single-turn described in
    </span>
    <sup>
     <a href="#ftnt71" id="ftnt_ref71">
@@ -1831,7 +1831,7 @@
     </a>
    </sup>
    <span>
-    in [REF:approachSingleTurn], and the proposed modifications for multi-turn interactions in [REF:approachMultiTurn]. On the topic of personalization [REF:approachPersonalization] two main needs emerge: provide content recommendation under the form of places near the path of the cyclist [REF:approachRec], and performing a tailored communication with the user in
+    is analyzed, and the proposed modifications for multi-turn interactions are exposed in [REF:approachMultiTurn]. The Section [REF:approachPrototype] instead focuses on the specific Chatbot use case: the bot for bike sharing information. The scenarios are delineed [REF:approachScenarios] and the high level model of the system is described [REF:approachModel] by also giving the motivation for having two different components that interact. Then a description is given of the intent and entities chosen for a simple interaction model in [REF:approachTypes]. On the topic of personalization [REF:approachPersonalization] two main needs emerge: provide content recommendation under the form of places near the path of the cyclist [REF:approachRec], and performing a tailored communication with the user in
    </span>
    <span>
     terms
@@ -1855,7 +1855,7 @@
     that
    </span>
    <span>
-    chapter, a description of the information retrieval techniques needed as dependencies to the presented approach are given [REF:approachIR].
+    section, a description of the information retrieval techniques needed as dependencies to the presented approach are given [REF:approachIR].
    </span>
   </p>
   <p>
@@ -7797,6 +7797,21 @@
     It is important to notice that not all the topics discussed in this chapter have been implemented. By comparing with the next chapter [REF:implementation] it can be seen that only the language understanding, the interface with the messenger platforms and the bike retrieval information have been brought to experimental environment.
    </span>
   </p>
+  <p>
+   <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 344.00px;">
+    <img alt="" src="https://lh4.googleusercontent.com/eo7Rx_sH0ePOPVPz8zwyssa9AyQ2APHcwjjdpDUfFsAkqoWDaUtkyjt1AuQC9qd-wY6PbZvAHiI5amhEFXzYICx3BTx-JM7CDfKhnJz28roMCR_Dw-zk-kJIFT-JZRwkqtASGfmW" style="width: 602.00px; height: 344.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""/>
+   </span>
+  </p>
+  <p>
+   <span>
+    [FIG:multiTurnImportance LABEL:An example of interaction where the interaction context is important for the intent classification]
+   </span>
+  </p>
+  <p>
+   <span>
+    Figure [REF FIG:multiTurnImportance] shows an example of interaction in the domain of bike sharing where the previous value of the intent is important to determine the intent of the last sentence, propagating over the dialogue.
+   </span>
+  </p>
   <h2 id="h.histkg36tof5">
    <span>
     NLU
@@ -11298,7 +11313,7 @@
   </p>
   <h5 id="h.ftgmlmugryqn">
    <span>
-    BotCycle multi turn
+    BotCycle multi-turn
    </span>
   </h5>
   <p>
@@ -11549,7 +11564,7 @@
   </p>
   <h4 id="h.ehit9qm9z1h9">
    <span>
-    Single turn variations
+    Single-turn variations
    </span>
   </h4>
   <p>
@@ -12703,7 +12718,7 @@
   </p>
   <p>
    <span>
-    TODO show results on the collected multi-turn datasets? Very poor datasets as noted before
+    //TODO show results on the collected multi-turn datasets? Very poor datasets as noted before
    </span>
   </p>
   <h2 id="h.p6nd11tbmizc">
@@ -12743,7 +12758,7 @@
    <span>
    </span>
   </p>
-  <a id="t.39463e873c782b30ef22fd733ff605373e2bc8c7">
+  <a id="t.ea0060f80c295fababecf4c1e826e671cc1d35cb">
   </a>
   <a id="t.10">
   </a>
@@ -12776,7 +12791,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        TODO compute
+        14.7
        </span>
       </p>
      </td>
@@ -12792,6 +12807,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        535
        </span>
       </p>
      </td>
@@ -12807,6 +12823,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        569
        </span>
       </p>
      </td>
@@ -12822,6 +12839,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        4.7 words
        </span>
       </p>
      </td>
@@ -12837,21 +12855,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-       </span>
-      </p>
-     </td>
-    </tr>
-    <tr>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
-        Average time from greeting intent to task completion
-       </span>
-      </p>
-     </td>
-     <td colspan="1" rowspan="1">
-      <p>
-       <span>
+        1.41 s
        </span>
       </p>
      </td>
@@ -12915,6 +12919,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        30 %
        </span>
       </p>
      </td>
@@ -12923,13 +12928,14 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
-        Number of errors while providing results
+        #Errors/#results while providing informations
        </span>
       </p>
      </td>
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        12 %
        </span>
       </p>
      </td>
@@ -12945,6 +12951,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        13
        </span>
       </p>
      </td>
@@ -12960,6 +12967,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        5
        </span>
       </p>
      </td>
@@ -12975,6 +12983,7 @@
      <td colspan="1" rowspan="1">
       <p>
        <span>
+        31
        </span>
       </p>
      </td>
@@ -14043,7 +14052,7 @@
      [71]
     </a>
     <span>
-     Key:liu2016attention Attention joint SoA
+     Key:liu2016attention Liu, B. and Lane, I. (2016). Attention-based recurrent neural network models for joint intent detection and slot filling. Proceedings of The 17th Annual Meeting of the International Speech Communication Association
     </span>
    </p>
   </div>
