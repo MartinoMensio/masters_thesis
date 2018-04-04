@@ -22,7 +22,7 @@ For the single-turn, a lot of datasets can be found online, each one with a diff
 \paragraph{ATIS}
 The first dataset, used historically for the tasks of intent detection and slot filling, is Air Travel Information System (ATIS)~\cite{hemphill1990atis}. This dataset contains transcriptions of questions obtained from
 
-the Official Airline Guide\footnote{\url{https://www.oag.com/}} in 1990: each question is annotated with its intent, over 18 different intent types, and with the relative slots, over 127 IOB slot types (corresponding to 80 slot types reducing the $``$\textit{B-}$"$  and $``$\textit{I-}$"$ ). The slot types correspond to entity types with a specific role: for example the slot type $``$\textit{fromloc.city\_name}$"$  corresponds to the entity type $``$\textit{city\_name}$"$  with the role $``$\textit{fromloc}$"$  that expresses that this is the source city in the sentence. The dataset notation is done using the IOB format. For this reason, the inputs and outputs of the dataset are provided already tokenized by using a whitespace tokenizer. This is the only dataset considered that constraints the division of words because the other ones usually represent slots as start and end indexes of the sentence.
+the Official Airline Guide\footnote{\url{https://www.oag.com/}} in 1990: each question is annotated with its intent, over 18 different intent types, and with the relative slots, over 127 \texttt{IOB} slot types (corresponding to 80 slot types reducing the $``$\textit{B-}$"$  and $``$\textit{I-}$"$ ). The slot types correspond to entity types with a specific role: for example the slot type $``$\textit{fromloc.city\_name}$"$  corresponds to the entity type $``$\textit{city\_name}$"$  with the role $``$\textit{fromloc}$"$  that expresses that this is the source city in the sentence. The dataset notation is done using the \texttt{IOB} format. For this reason, the inputs and outputs of the dataset are provided already tokenized by using a whitespace tokenizer. This is the only dataset considered that constraints the division of words because the other ones usually represent slots as start and end indexes of the sentence.
 
 The dataset has 4978 training samples and 893 test samples: the original division is only in two splits, no $``$development$"$  set is available. However some works have additionally divided the training set into two parts to leave the validation set on its own for the final evaluation and not for the hyperparameters optimization.
 
@@ -51,7 +51,7 @@ The only dataset found in literature is the Key-Value Retrieval~\cite{eric2017ke
 
 	\item slots annotated on later turns referring to previous turns: solved by reversing the look-up processing order on the sentences and annotations, in order to enable backward references to text;
 
-	\item multiple matches for the same word in a sentence: by keeping the forward slots to be referenced, sometimes multiple entities overlap partially in the sentences, that is not allowed by the IOB annotation scheme;
+	\item multiple matches for the same word in a sentence: by keeping the forward slots to be referenced, sometimes multiple entities overlap partially in the sentences, that is not allowed by the \texttt{IOB} annotation scheme;
 
 	\item incomplete slot value: for example $``$\textit{take my pills}$"$  in the sentence is annotated as $``$\textit{take pills}$"$ , and this is not solvable by simple look-up strategies;
 

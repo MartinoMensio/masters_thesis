@@ -8,9 +8,9 @@ This chapter describes the design and the approach that has been investigated an
 
 Then Section \ref{approachPrototype} describes the approach chosen for the selected applicative prototype, by starting from the target scenarios in \ref{approachScenarios}. A high level model is provided in \ref{approachModel} and then a personalization strategy is proposed in \ref{approachPersonalization} and the possible sources of information are described in \ref{approachIR}. The domain is the urban mobility: the bot goal is to provide a natural language interface towards the bike sharing service. Bike sharing is one of the projects for sustainable mobility that tries to address transportation replacement especially for the so called $``$last mile$"$ : cover more capillary with a public form of transport areas or trips that would be uncomfortable without using a private vehicle. With respect to car sharing, bikes have much little impact on the environment and are 100$\%$  \textit{green}. It is important to notice that not all the topics discussed in this chapter have been implemented. By comparing with the next chapter \ref{implementation} it can be seen that only the language understanding, the interface with the messenger platforms and the bike retrieval information have been brought to experimental environment.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/multiTurnImportance}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/multiTurnImportance}
     \caption{An example of interaction where the interaction context is important for the intent classification}\label{fig:multiTurnImportance}
 \end{figure}
 
@@ -44,13 +44,13 @@ As mentioned in the state of the art section, modeling the output dependencies i
 
 In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/outputDependencies}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/outputDependencies}
     \caption{The selected approach to model the output dependencies}\label{fig:outputDependencies}
 \end{figure}
 
-The choice is to use word embeddings. This time however, differently from what happens to input words, the embeddings are on a separate dictionary: the IOB labels. For this reason they are not used pretrained but are included as trainable parameters of the computational graph. As can be seen in Figure~\ref{fig:outputDependencies}, the embeddings values are concatenated with the current encoded word coming from the encoder. The rest of the graph does not change.
+The choice is to use word embeddings. This time however, differently from what happens to input words, the embeddings are on a separate dictionary: the \texttt{IOB} labels. For this reason they are not used pretrained but are included as trainable parameters of the computational graph. As can be seen in Figure~\ref{fig:outputDependencies}, the embeddings values are concatenated with the current encoded word coming from the encoder. The rest of the graph does not change.
 
 \subsection{Multi-turn NLU}
 \label{approachMultiTurn}
@@ -69,9 +69,9 @@ Three main challenges are addressed:
 	\item consider the current agent turn words: having a knowledge about what has been replied to the user can help contextualize the new sentence that may not have evident indicators of the intent.
 \end{itemize}
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/approachMultiTurn}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/approachMultiTurn}
     \caption{The selected Multi-turn approach}\label{fig:approachMultiTurn}
 \end{figure}
 
@@ -136,9 +136,9 @@ Those messages must be in some way controllable from the user. The suggested way
 
 Given the main scenarios and given the fact that no publicly available corpus exists for the selected domain, the choice of the approach could not be in favour of an end-to-end system with dynamic response generation, but towards a NLU-based understanding. About the Information Retrieval, the data comes from external fixed set of APIs so it has been chosen to keep this approach instead of turning all the information in explorable graph of connected entities. These choices, together with the delineed scenarios, require the presence and cooperation of different components.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/systemHighLevel}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/systemHighLevel}
     \caption{The high level model of the system}\label{fig:systemHighLevel}
 \end{figure}
 
@@ -198,9 +198,9 @@ It is very important to notice that the topics here discussed have been used in 
 
 For giving content recommendations, the objective of the recommender is to provide interesting places for the user around his trip. The area of search is therefore established by the results of the information: different strategies could be used to determine this surface, but the fastest one, that helps also querying providers of places information (e.g. Foursquare, Facebook Places, Google Places), is to use a circle determined by its center. As can be seen in Figure~\ref{fig:placesSearch}, the circle is centred in the mean point between the source and the destination, while its radius is chosen to cover the source and the destination plus an additional margin. The margin enables to provide also some places nearby the source or the destination that would be clipped out otherwise.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/placesSearch}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/placesSearch}
     \caption{The geographical constraints to search places for the recommendation}\label{fig:placesSearch}
 \end{figure}
 
@@ -224,9 +224,9 @@ Once these user features are collected, different recommendation paths have been
 \paragraph{The trainable relationship}
 The recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques. As can be seen in Figure~\ref{fig:recommendationPaths}, there are different entities involved, but the main goal is to learn the mapping from user features to place categories. This is the unknown relationship evidenced in red in the figure. The model needs to retrieve as many details on the two edges of this relation, in order to be more able to suggest the best places for each user.
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/recommendationPaths}
+    \includegraphics[max width=0.9\linewidth,max height=8cm,keepaspectratio]{figures/recommendationPaths}
     \caption{An overview of the possible recommendation paths between the user and the places}\label{fig:recommendationPaths}
 \end{figure}
 
