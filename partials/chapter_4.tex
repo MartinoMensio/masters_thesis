@@ -1,10 +1,6 @@
 % !TEX encoding = utf8
 % !TEX root = ../main.tex
 
-% This content has been generated automatically from https://www.docx2latex.com/docx2latex_free and https://github.com/MartinoMensio/doc2latex_process_chapters 
-% Consider editing the source Google Doc instead of this one!
-
-
 \chapter{Implementation}
 \label{implementation}
 
@@ -28,8 +24,6 @@ The whole implementation of the system is available as a open source repository,
 To interact with the chat platforms it was mentioned that a separate component has been designed to adapt to the different messaging platforms. This component, the Bot Server, on one side communicates with the Bot Core, that can be physically hosted on another machine, and on the other side interfaces with messaging platforms.
 
 The overall architecture of all the distributed components can be viewed in Figure~\ref{fig:physicalComponents}. In this figure different types of components can be seen. On the left the user devices are shown, that can interface with different messaging platforms and websites. Those red components, the channels, are not manageable from the bot developer. Usually an account is built for the bot, but the communication with the user is completely handled by the reference platform. A special case is played by the website in blue, that provides an additional platform to chat with the bot without requiring any messenger accounts. Going a bit on the right, we can see the concentration role of the Bot Framework server that handles dishomogeneous data on the left and transforms them to a more standardized form on the right. This component is configurable by the bot developer, who through a web graphical interface can add and configure the channels on the left and at the same moment configure the external webservice on the right (the Bot Server). The Bot Server, under the full control of the developer, applies extra transformations of messages and plays also the role of a web server. The intelligent part, containing the Bot Core, is deployed on another machine without being reachable from the outside.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 32 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -106,8 +100,6 @@ But when trying to implement less regular models, such as the encoder-decoder of
 
 For this reason a comparison has been done in order to choose what implementation path to follow. Table~\ref{tab:kerasVsTf} summarizes the main differences found between Keras and TensorFlow.
 
-%%%%%%%%%%%%%%%%%%%% Table No: 4 starts here %%%%%%%%%%%%%%%%%%%%
-
 \input{tables/kerasVsTf}
 
 Let us see in more details what is the support provided by both libraries for building recurrent neural networks in the following paragraphs.
@@ -162,7 +154,7 @@ First of all, the difference between defining a computational graph and actually
 
 If in a programming language we have two variables  \( a=3,b=1 \)  and we sum them, when the instruction of sum is executed  \( c=a+b \)  the resulting variable will contain the result  \( c=4 \) . Instead defining a sum between tensors  \( a=tf.Variable \left( 3 \right) ,b=tf.Variable \left( 1 \right)  \) , when the instruction of  \( c=a+b \)  is executed the resulting tensor will not contain  \( 4 \) . It will be stored that c can be computed by summing what is contained in  \( a \)  and  \( b \) . In this way the operations can be defined once and the same computational graph can be run different times. To actually run the graph it is necessary to build a session, that is the execution environment. But in order to have different inputs to the same graph, there is the need to define the starting tensors not as Variables but as placeholders. Later when running the session, the placeholder values can be fed to the graph and the results can be evaluated. The library is powerful in how allows to define variables that can be initialized and automatically optimized by internally using the packpropagation of gradients. The only things that the programmer needs to do is to define the graph with all the tunable variables and declare a loss function to be optimized. No manual calculation of gradients, it is handled by TensorFlow.
 
-The most difficult things to do while using this library are: \textit{(1)} know which operation to use, because there are so many classes available that only after a deep dive into documentation a solution is found; \textit{(2)} manipulate in the correct way multi-dimensional tensors, without making confusion. Both difficulties decrease by the increasing time used to experiment with it, but it is important to understand soon how to work with the $``$\textit{axes}$"$  parameter, crucial to perform reduction operation over the correct dimensions in nearly all the operations.
+The most difficult things to do while using this library are: \textit{i)} know which operation to use, because there are so many classes available that only after a deep dive into documentation a solution is found; \textit{ii)} manipulate in the correct way multi-dimensional tensors, without making confusion. Both difficulties decrease by the increasing time used to experiment with it, but it is important to understand soon how to work with the $``$\textit{axes}$"$  parameter, crucial to perform reduction operation over the correct dimensions in nearly all the operations.
 
 As has been discussed in the approach part, the chosen graph to be used in single-turn interactions is the encoder-decoder joint approach of~\cite{liu2016attention}. The paper comes with a TensorFlow implementation that is not complete:\footnote{\url{https://github.com/HadoopIt/rnn-nlu}} output label dependencies are not considered. Another negative property of the implementation is that it does not use a recent API, that would provide higher level functionalities and helper functions. Another implementation has been found that uses a more recent API and is really a lot more understandable that the original one.\footnote{\url{https://github.com/applenob/RNN-for-Joint-NLU}} It makes use of the \textit{seq2seq} native package,\footnote{\url{https://www.tensorflow.org/api\_guides/python/contrib.seq2seq}} that can be used for all the quite complicated networks that process sequences, like NMT or generative processing by employing classes that are relatively simple to use with respect to what they do.
 
@@ -183,8 +175,6 @@ The last kind of modifications that have been done are relative to saving the mo
 
 \subsubsection{Multi-turn}
 Relatively to the multi-turn implementation described in subsection \ref{approachMultiTurn}, the modifications for considering the previous agent turn are only on the preprocessing step, while for doing the top level intent RNN an addition has been done on the top of the intent logits. As can be seen in Figure~\ref{fig:approachMultiTurnDifferences}, instead of passing them to a softmax layer that estimates their value, the current turn intent logits are passed to a LSTM cell that receives as previous state the previous intent value. This specific point has been critical because the original idea was to propagate the previous state directly, as a vector of floating values, that would have allowed the backpropagation to go through the previous turns and optimize also tunable parameters of the past. But maintaining the state of this cell would have been difficult in the training phase specially. The training samples would have needed to be fed in the correct order (using the cell in stateful mode), or the whole discussion would have needed to be fed for each new user sentence. Both of these solution are not good for performance, so the decision has been to use directly the previous value of the intent instead of the state of the cell. This is something that is also done in sequence to sequence approaches, where previously generated words are fed as inputs to the decoding stages. In this case, the previous value of the intent is translated from string to an index (using the lookup table) and then transformed into a one hot encoding (a vector of zeros with a  \( 1 \) at the correct index).
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 33 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -230,6 +220,3 @@ Starting with the single-turn settings, it has been described in subsection \ref
 Instead for the collection of multi-turn dialogue sessions, a logging of all the incoming and outcoming messages has been done in the local database to capture as more dialogues as possible. With the basis of these dialogues, that are characterized by some features typical of a very restricted experimental setup (such as repetitivity and lack of variety, high ratio of wrong responses, preponderance of sentences sent to test the bot and not to really use the information provided), a successive cleaning has been done to only insert proper sentences in the training set. This cleaning has been done to identify the relevant dialogues that should contain multi-turn interactions, using a TSV format that allows an easy modification of values without requiring any special environment.
 
 But a big problem avoided collecting a good dataset: a circular dependency. The system was expected to collect a dataset for the multi-turn dialogues while it only provided single-turn capabilities. The most common example is when the user does not provide a required parameter (e.g. searches a bike without saying where), the bot asks for the location, the user provides it without forming a complete sentence (only the entity value provided, without the $``$\textit{i am in}$"$  prologue) and the bot fails because no intent has been detected (lack of the multi-turn model). To solve this problem other strategies may be applied, like building a restricted dataset by hand without an online setting, and proceeding with incremental cycles of testing, collecting and training. Or even better would be to enable a Reinforcement Learning based approach to increase the performance while conversing with the user.
-
- %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
-

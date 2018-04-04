@@ -1,18 +1,12 @@
 % !TEX encoding = utf8
 % !TEX root = ../main.tex
 
-% This content has been generated automatically from https://www.docx2latex.com/docx2latex_free and https://github.com/MartinoMensio/doc2latex_process_chapters 
-% Consider editing the source Google Doc instead of this one!
-
-
 \chapter{Approach}
 \label{approach}
 
 This chapter describes the design and the approach that has been investigated and developed to create a domain-specific bot. Section \ref{approachNLU} focuses on the major topic of this work, the Natural Language Understanding, treated as a really important component independent from the domain, by giving a description of the most relevant choices that have been done for the single-turn approach. These include word embeddings, that are really important to provide the proper meaning to words (from here the semantic denotation), and output dependency modeling, that enable to generate better output sequences for the slot tagging task. Then the novelty introduced for the multi-turn scenario is described to show the importance of the interaction context. The approach is defined as \textit{Deep Semantic Learning}, because the models are built from the observation of examples (\textit{Learning}) without manually selecting handcrafted features but relying on stacked recurrent layers (\textit{Deep}) that take as input the word embeddings that map words to a distributed representation that captures their meaning~\cite{sahlgren2008distributional} (\textit{Semantic}).
 
 Then Section \ref{approachPrototype} describes the approach chosen for the selected applicative prototype, by starting from the target scenarios in \ref{approachScenarios}. A high level model is provided in \ref{approachModel} and then a personalization strategy is proposed in \ref{approachPersonalization} and the possible sources of information are described in \ref{approachIR}. The domain is the urban mobility: the bot goal is to provide a natural language interface towards the bike sharing service. Bike sharing is one of the projects for sustainable mobility that tries to address transportation replacement especially for the so called $``$last mile$"$ : cover more capillary with a public form of transport areas or trips that would be uncomfortable without using a private vehicle. With respect to car sharing, bikes have much little impact on the environment and are 100$\%$  \textit{green}. It is important to notice that not all the topics discussed in this chapter have been implemented. By comparing with the next chapter \ref{implementation} it can be seen that only the language understanding, the interface with the messenger platforms and the bike retrieval information have been brought to experimental environment.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 26 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -50,8 +44,6 @@ As mentioned in the state of the art section, modeling the output dependencies i
 
 In the description of the network in the paper it is not described how the output sequence labels are fed into the decoder. Different methods can be used: using one-hot encoding, that has the problem of scalability when the output dictionary is big enough, and word embeddings, to have a size independent from the number of existing slot labels.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 27 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/outputDependencies}
@@ -76,8 +68,6 @@ Three main challenges are addressed:
 
 	\item consider the current agent turn words: having a knowledge about what has been replied to the user can help contextualize the new sentence that may not have evident indicators of the intent.
 \end{itemize}
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 28 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -146,8 +136,6 @@ Those messages must be in some way controllable from the user. The suggested way
 
 Given the main scenarios and given the fact that no publicly available corpus exists for the selected domain, the choice of the approach could not be in favour of an end-to-end system with dynamic response generation, but towards a NLU-based understanding. About the Information Retrieval, the data comes from external fixed set of APIs so it has been chosen to keep this approach instead of turning all the information in explorable graph of connected entities. These choices, together with the delineed scenarios, require the presence and cooperation of different components.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 29 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/systemHighLevel}
@@ -178,8 +166,6 @@ This is what is intended with the term \textit{Multichannel Support}: the core o
 From an analysis of the scenarios, an hypothesis of the common user intents has been done, and from them also the slot types have been modeled. Intent and slot types have been successively refined in successive iterations by observing the transcript of some test users.
 
 The results of some intents can be seen in Table~\ref{tab:nluTypes}.
-
-%%%%%%%%%%%%%%%%%%%% Table No: 3 starts here %%%%%%%%%%%%%%%%%%%%
 
 \input{tables/nluTypes}
 
@@ -212,8 +198,6 @@ It is very important to notice that the topics here discussed have been used in 
 
 For giving content recommendations, the objective of the recommender is to provide interesting places for the user around his trip. The area of search is therefore established by the results of the information: different strategies could be used to determine this surface, but the fastest one, that helps also querying providers of places information (e.g. Foursquare, Facebook Places, Google Places), is to use a circle determined by its center. As can be seen in Figure~\ref{fig:placesSearch}, the circle is centred in the mean point between the source and the destination, while its radius is chosen to cover the source and the destination plus an additional margin. The margin enables to provide also some places nearby the source or the destination that would be clipped out otherwise.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 30 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/placesSearch}
@@ -239,8 +223,6 @@ Once these user features are collected, different recommendation paths have been
 
 \paragraph{The trainable relationship}
 The recommendations of categories are given following an hybrid recommendation approach, combining content-based with collaborative techniques. As can be seen in Figure~\ref{fig:recommendationPaths}, there are different entities involved, but the main goal is to learn the mapping from user features to place categories. This is the unknown relationship evidenced in red in the figure. The model needs to retrieve as many details on the two edges of this relation, in order to be more able to suggest the best places for each user.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 31 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -357,6 +339,3 @@ Another third-party component, that is very useful for the personalization appro
 Other additional data sources can refer for example to the weather conditions. Being bikes vehicles subject to bad weather conditions, considering precipitations could be advantageous for the user. For example while retrieving the information for a trip, the bot could warn the user of an imminent storm.
 
 Different weather API are available online, and the criteria to choose which one to use should be the accuracy and the availability of detailed information.
-
- %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
-

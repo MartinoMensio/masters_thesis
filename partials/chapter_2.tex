@@ -1,10 +1,6 @@
 % !TEX encoding = utf8
 % !TEX root = ../main.tex
 
-% This content has been generated automatically from https://www.docx2latex.com/docx2latex_free and https://github.com/MartinoMensio/doc2latex_process_chapters 
-% Consider editing the source Google Doc instead of this one!
-
-
 \chapter{State of the Art}
 \label{soa}
 
@@ -46,8 +42,6 @@ Also virtual assistants mainly fall into this category. On pre-determined domain
 Since the fields of application and the possibilities are many, a search of classifications has been done in order to divide and find the main characteristics of this kind of bots.
 
 Chatbots, in their larger definition, are software agents with whom you can carry a conversation. Accordingly to Franklin et Graesser~\cite{franklin1996agent}, there exist three main types of autonomous software agents that have different \textbf{objectives}: task-specific, entertainment and viruses, as can be seen in Figure~\ref{fig:franklinClassification}.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 1 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -134,8 +128,6 @@ More recent approaches instead tend to abandon the handcrafted rules towards an 
 
 We can do a classification of chatbot systems based on how much has to be specified and defined in a static way versus a dynamic approach that learns from the examples provided. This choice can be done in three main tasks: understanding, information retrieval, response generation. Each of them can have three levels of dynamicity: the first one is completely rule-based, the second one is mixed, usually presenting a dynamic categorization over pre-defined types, while the third one is completely dynamic. In the following Table~\ref{tab:approachCombination}, the levels are shown for each task.
 
-%%%%%%%%%%%%%%%%%%%% Table No: 1 starts here %%%%%%%%%%%%%%%%%%%%
-
 \input{tables/approachCombination}
 
 The understanding task is the one related to turning the natural language sentences into something that can be understood by the machine: its output can be a pattern match for level 0, structured data for level 1 (NLU) or an encoded representation for level 2. 
@@ -143,8 +135,6 @@ The understanding task is the one related to turning the natural language senten
 The information retrieval task instead, if present, can use a fixed set of APIs or be more dynamic, interacting with information and their relations (graph knowledge bases).
 
 Instead the response generation can be fully governed by handcrafted rules (e.g. if a set of conditions apply, say that). Or decide the template response from a finite set using statistical approaches (using some proximity measures like \textit{TF-IDF}, \textit{Word2Vec}, \textit{Skip-Thoughts}). Or being generative, with responses that are built on the fly by a seq2seq model.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 2 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -176,8 +166,6 @@ This approach was firstly used by ELIZA~\cite{weizenbaum1966eliza}. Then, when u
 \textbf{AIML} stands for Artificial Intelligence Markup Language and is a language that describes how the bot replies to certain inputs. Inputs are evaluated against a set of patterns and the best matching (category) is chosen. The actions performed by the category can be a simple response or can also set the values of state variables and invoke other categories. Those rules determine together the classification of the sentences and the response generation.
 
 A rule (in the AIML jargon is called category) is made up of a pattern and a template. As can be seen in~\ref{fig:aimlExample}, the pattern is responsible to identify the sentences that activate the rule, while the template is the part that manages the response: a template can be both a sentence that will be sent to the user or can be a redirection towards another rule (\textit{srai} rules). In addition to those two elements, some actions to manage the state of the conversation can be added: variables can be set and read to to conditionally activate rules.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 3 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -293,8 +281,6 @@ As slot labels, the slot names can be used directly but, in order to better hand
 
 An example of inputs and expected outputs, showing the IOB annotation scheme, is represented in Figure~\ref{fig:iob}.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 4 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/iob}
@@ -302,8 +288,6 @@ An example of inputs and expected outputs, showing the IOB annotation scheme, is
 \end{figure}
 
 Instead of using simple feed-forward networks, a lot of studies make use of networks with recurrent components. The core idea behind RNN is to make use of sequential information. In feed-forward networks, the assumption is that each input-output pair is independent from the others. For RNN, the recurrence stays in performing the same task for every element of the sequence, making the output depending on the previous steps. This idea can be seen as the RNN having memory that keeps information from the past iterations. Specifically on the ability of remember and use in the correct way their memory, a lot of studies have been done to develop particular cells (a cell is the basic building block for RNNs).
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 5 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -348,8 +332,6 @@ As can be see in Figure~\ref{fig:bptt}, the loss function in backpropagation for
 
  \(  \frac{ \partial E_{2}}{ \partial x_{0}}=\frac{ \partial E_{2}}{ \partial s_{2}}\cdot \frac{ \partial s_{2}}{ \partial s_{1}}\cdot \frac{ \partial s_{1}}{ \partial s_{0}}\cdot \frac{ \partial s_{0}}{ \partial x_{0}} \) 
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 6 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/bptt}
@@ -361,8 +343,6 @@ This paragraph describes the  cell types used in this thesis. Such cells are the
 
 \subsubsection{Simple RNN}
 The simplest recurrent cell type is a block with two inputs and two outputs. As can be seen in Figure~\ref{fig:simpleRNN}, one input is the actual input at the current timestep while the other one comes from the previous timestep (or from initialization on the first time). The cell produces an output ( \( y_{t} \) ) that can be passed to the next layers of computation (recurrent or not) or be used as a probability distribution passing through a \textit{softmax}. For the next timestep the cell also produces the current state ( \( h_{t} \) ) that is used on the looping connection; the state has the same value as the output, and the different name is given only to to put the emphasis on the different destinations for each one of them.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 7 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -386,8 +366,6 @@ Those problems have the same origin: the simple RNN is not able to manage long-t
 
 \subsubsection{LSTM}
 LSTM~\cite{hochreiter1997long} is a solution that came out in 1997 in which a more complex cell is considered. The main idea is to have some gates that decide how much of the previous cell state to keep, and how much of the current input to consider for the calculation of the current state and current output.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 8 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -415,8 +393,6 @@ The LSTM addresses the problem of vanishing gradients very specifically. In the 
 
 \subsubsection{GRU}
 Later studies~\cite{cho2014learning} have proposed a new type of cell/unit GRU that has only two gates: reset gate and update gate that adaptively control how much each hidden unit remembers or forgets while processing a sequence. The hidden state and the state cell are merged together and therefore the output gate is no more required.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 9 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -478,8 +454,6 @@ The second family instead, direct prediction, puts the calculation of those vect
 
 Other algorithms do a hybrid approach, mixing count-based with direct predictions. This is the case of GloVe~\cite{pennington2014glove}. All these solutions work on the word level only. Instead some works have been done also to enrich the representations with subword features. In~\cite{bojanowski2016enriching}, following the idea that similar groups of letter convey similar meanings, each word is mapped to a set of \textit{n-grams} and the skip-gram model is changed to consider each word vector as the sum of its n-grams. Figure~\ref{fig:fastText} shows an example of extraction of n-grams (with  \( n=3 \) ), where the first and the last ones contain some special characters to indicate the beginning and end of words. The learning of the embeddings therefore is not done on the words but on the groups of letters. In this way it is possible to compute word vectors also on unknown words since they are composed of known n-grams.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 10 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/fastText}
@@ -512,8 +486,6 @@ First of all, given the word vectors for each word contained in the sentence, an
 
 This strategy however is not good because it does not consider the order and the relationships between the words. The order matters a lot in natural language.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 11 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/intentAverage}
@@ -524,8 +496,6 @@ Another problem of this approach is that actually every word counts the same, so
 
 \subsubsection{RNN approach}
 To consider the order, a RNN can be used to summarize the sentence and produce a sentence representation that can be used in another layer to classify on the intent types. The output of the RNN is taken only at the end of the sequence. This approach is able to capture some more information about the sequence that considers the relative order of words. Considering both a forward and a backward RNN, the output of the summarized output is not biased towards the end of the sentence as would happen for a forward-only RNN. Figure~\ref{fig:intentBidirectionalRNN} shows how the bidirectional encoding of the sentence substitutes the average operation with respect to the previous approach. The output projection layer finally performs the mapping to the intents spaces.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 12 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -548,8 +518,6 @@ The task of slot tagging instead consists of generating an output sequence in wh
 A lot of the architectures listed below have been created for the task of Neural Machine Translation. This task takes as input the sequence of words in the source language and outputs a sequence of words in another language. This is somehow similar to the task of sequence labeling, because it maps an input sequence to an output sequence, but has some differences that make it a lot different and require a different approach. The differences will be explained in details during the analysis.
 
 A common characteristic of them is the presence of two key elements: an encoder and a decoder. The encoder is responsible of collecting all the useful features on the input sequence. The decoder instead must generate the output sequence. The differences between the different models are on the way that the encoder provides input to the decoding stage. The general composition of such encoder-decoder approaches is shown in Figure~\ref{fig:encoderDecoder}
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 13 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -576,8 +544,6 @@ In the following paragraphs we give a description of some sequence-to-sequence a
 \subsubsection{Simple Encoder-Decoder}
 The most simple approach, illustrated in figure~\ref{fig:encoderDecoderRNN} is the one where the encoder collects all the word vectors and using a RNN computes a final representation of the sentence (as in the intent classification task). This representation is passed to the decoder RNN that for each timestep produces an output word.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 14 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/encoderDecoderRNN}
@@ -589,8 +555,6 @@ This model has some problems. First of all, the decoding part depends only on th
 \subsubsection{Encoder-decoder keeping sentence vector}
 This model comes from~\cite{cho2014learning}, a study on the task of neural machine translation. It is an enhanced version of the previously considered model because the sentence vector coming from the encoding stage is passed to all the decoding stages (see Figure~\ref{fig:encoderDecoderKeepC}).
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 15 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/encoderDecoderKeepC}
@@ -601,8 +565,6 @@ This approach helps the decoding stages that, receiving the sentence vector dire
 
 \subsubsection{Encoder-decoder with aligned inputs}
 This model was proposed~\cite{liu2016attention} for the sequence labeling problem (that can be applied to slot filling, POS tagging). In this model the encoder sends some information to the decoder for each input word instead of sending a single vector at the end (see figure~\ref{fig:encoderDecoderAligned}).
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 16 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -625,8 +587,6 @@ Using the attention~\cite{bahdanau2014neural}, that provides a dynamic alignment
 	\item Use them to provide a better translation.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 17 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/encoderDecoderAttention}
@@ -637,8 +597,6 @@ The attention, as can be seen in Figure~\ref{fig:encoderDecoderAttention}, adds 
 
 By looking inside at the \textit{attention} mechanism, in Figure~\ref{fig:attention} we can see that the encoded vectors  \( e \)  are used together with the previous hidden state of the decoder cell  \( h_{i-1} \) in some matricial multiplications and finally pass through a softmax. This part is responsible to learn the weights for each timestep of the decoder that represents how much relevant are the input words for the determination of the current output word. The matrices  \( W_{1} \) , \( W_{2} \)  and  \( V \) are used together with a  \( tanh \)  layer to determine dynamically those weights. This block, put inside a complex network architecture, learns all the parameters thanks to the backpropagation algorithm being end-to-end differentiable. The output  \( c_{i} \)  is then computed doing a weighted sum between the  \( e_{j} \)  encoded vectors.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 18 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/attention}
@@ -646,8 +604,6 @@ By looking inside at the \textit{attention} mechanism, in Figure~\ref{fig:attent
 \end{figure}
 
 With this network, used for translations, it is useful to show how the attention maps the words in the two languages. Figure~\ref{fig:attentionVisualization} shows a matrix representation that says which input words were used to provide the corresponding output words.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 19 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -666,8 +622,6 @@ In~\cite{liu2016attention} there are two different proposed architectures: one i
 
 The first one, as can be seen in Figure~\ref{fig:jointSLUAligned}, is a combination of the bidirectional RNN for intent classification and the encoder-decoder with attention for the slot filling. The two networks, having the encoder in common, are merged together, and fork for the following layers towards two different outputs.
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 20 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/jointSLUAligned}
@@ -677,8 +631,6 @@ The first one, as can be seen in Figure~\ref{fig:jointSLUAligned}, is a combinat
 The two branches consider different outputs of the encoder. The intent classifier is added as a branch that takes the last state of the encoder and then projects to the intent space with a single layer feedforward. Instead the slot filling decoder takes all the word-level outputs because it needs an aligned model.
 
 The other network proposed in the paper is a bit different. Instead of having a separate RNN for encoder and decoder, it has a single bidirectional RNN, that in the forward direction also has the modeling of slot label dependencies. As can be seen in Figure~\ref{fig:jointSLUrnn}, the intent classification is done on top of the bidirectional RNN output, doing a mean pooling on the states at each timestep or, if the attention is enabled, by using a weighted average.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 21 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -730,8 +682,6 @@ The following paragraphs explore the three levels of interaction context that ha
 \subsubsection{Multi-turn Understanding}
 As mentioned before, the goal of multi-turn SLU is simply to extract the intent and the entities when the user is not providing a single sentence with all the required parameters. In a second moment, it could be after the agent asks back for some parameters, other sentences complete the initial one with more entities that are used to refine the search. It can be seen as an iterative filling of a fixed-structure form. For this reason, a naive approach could be simply to classify the intent on the first sentence and then collecting the parameters in a key-value fashion (the key is the name of the slot, that is asked by the agent, and the value is the answer taken $``$as is$"$ , as can be seen in Figure~\ref{fig:multiTurnFilling}).
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 22 starts here %%%%%%%%%%%%%%%%%%%%
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[max width=\linewidth,max height=8cm,keepaspectratio]{figures/multiTurnFilling}
@@ -743,8 +693,6 @@ This approach is quite simple but has some problems: this is not natural languag
 Some first works in the direction of contextualized understanding have been done in~\cite{xu2014contextual} for classification of the domain (that can be seen as a coarse-grained intent). In that work, the previous output of the system is added to the inputs by enlarging the input word vectors. The authors choose as approach for single-turn developed using a  CNN~\cite{krizhevsky2012imagenet}, so the multi-turn adding the recurrent connections results in a RNN/CNN hybrid network.
 
 Another approach that has been studied for the multi-turn problem is~\cite{chen2016end}. The idea to additionally incorporate contextual knowledge is applied with a sentence encoder that considers also previous sentences. The current sentence is processed by a RNN like in~\cite{liu2016attention}, and the addition is the contextual sentence encoder that can be seen in Figure~\ref{fig:contextualSLUchen}.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 23 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -759,8 +707,6 @@ The results of this approach have been evaluated on a proprietary dataset and th
 A problem of this architecture is that the agent sentences are not considered. But the agent sentences could contain some keywords that may help to identify the slot in the decoding stage. For example if a trip requires a source and a destination, the agent asked for the source and the user answered with that, it is very relevant for the task of slot filling to know that the agent asked for source and not for the destination.
 
 Another work has been done in~\cite{chen2017dynamic} on the value of time and roles in conversation. About the time, the idea is that most recent sentences count more and an attention score is given with values that fade out as the time is more remote. Instead for the roles, two similar networks are used, one for each role.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 24 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -781,7 +727,7 @@ The problem of coreference resolution is one of the most difficult to solve in N
 
 The problem of coreference resolution has been analyzed in TREC10,\footnote{\url{https://trec.nist.gov/pubs/trec10/t10\_proceedings.html}} as the main purpose of using the context in the sentences. In~\cite{harabagiu2001answering} a set of elements in the question, that may indicate entities mentioned in previous questions and answers, are searched. Those can be split into explicit references (such as pronouns like $``$\textit{this/that/him}$"$ , use of definite nominals like $``$\textit{the state}$"$  that suggest having a previous knowledge of reference) or implicit ones (like ellipsis of something that logically needs to be kept into consideration). The proposed system tries to find in previous turns the ones that contain the referenced entity.
 
-A more complex approach has been analyzed by~\cite{sun2007discourse}, based on the Centering Theory~\cite{grosz1995centering} that models the local coherence of a discourse and how the transitions caused by a new sentence changes the center of the talk. In this work, two types of context are found: one depending on the user (analyzed by later TREC contextual tracks, corresponding to personalization techniques that will be analyzed in section \ref{soaPersonalization}) and the one of the discourse. The question processing should, according to the authors, perform three main tasks: \textit{(1)} question type analysis and categorization, \textit{(2)} detailed processing to build and expand queries, \textit{(3)} anaphora resolution. This theory is used to build a model that selectively retain query terms from previous interactions.
+A more complex approach has been analyzed by~\cite{sun2007discourse}, based on the Centering Theory~\cite{grosz1995centering} that models the local coherence of a discourse and how the transitions caused by a new sentence changes the center of the talk. In this work, two types of context are found: one depending on the user (analyzed by later TREC contextual tracks, corresponding to personalization techniques that will be analyzed in section \ref{soaPersonalization}) and the one of the discourse. The question processing should, according to the authors, perform three main tasks: \textit{i)} question type analysis and categorization, \textit{ii)} detailed processing to build and expand queries, \textit{iii)} anaphora resolution. This theory is used to build a model that selectively retain query terms from previous interactions.
 
 Going on more recent approaches to the coreference resolution problem,~\cite{de2015modeling}\ builds a model  for predicting the lifespan of discourse entities, in other words if one of them is a singleton entity or is referenced many times. The actual scores make clear that this is yet an open field of research, where only simple sentences achieve great accuracy. A detailed description of this model is explained in an interesting online article\footnote{\url{https://medium.com/huggingface/state-of-the-art-neural-coreference-resolution-for-chatbots-3302365dcf30}} and available as an online demo.\footnote{\url{https://huggingface.co/coref/}}
 
@@ -789,8 +735,6 @@ Going on more recent approaches to the coreference resolution problem,~\cite{de2
 Going beyond the quite simple tasks of entity recognition and coreference resolution, some more difficult challenges try to address the question-answering (QA) problem relatively to the discourse. The idea is to provide some sentences that contain factual information and then an easy question is asked about this. The system has to use correctly memory abilities and combine the different facts to provide the response.
 
 On the easiest problems proposed in~\cite{weston2015towards}, the information is contained in simple sentences that are composed by triples of subject, verb and object. Usually a model of memory~\cite{sukhbaatar2015end} is used to store the relationships between the entities expressed by the triples. From this memory the easiest questions can be directly provided, while for tasks like counting on temporal reasoning it is necessary to enable a process of machine reasoning to turn the facts into operational knowledge. Some examples can be seen in Figure~\ref{fig:toyQuestionsMemory}.
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 25 starts here %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htbp]
     \centering
@@ -830,8 +774,6 @@ As can be seen, all those approaches really combine the techniques of generative
 \subsection{NLU as a service}
 As of today, there are a lot of platforms that provide Natural Language Understanding in the form of Software as a Service (SaaS). Big companies have decided to invest on it, to be the ones that hold the technology. They made those topics extremely easy for the developers who via a web interface can create dialogue flows and annotate manually the data. There is no need to know about the technology that is inside. All it is needed for a developer is to understand the jargon used by the platform and configure a black box.
 
-%%%%%%%%%%%%%%%%%%%% Table No: 2 starts here %%%%%%%%%%%%%%%%%%%%
-
 \input{tables/soaNLUproviders}
 
 Those platforms usually provide intent classification and slot filling, with an approach that is not usually trainable in a end-to-end way. The provided features, as can be seen in Table~\ref{tab:soaNLUproviders}, turn the user sentences in structured data. Some platforms offer a way to force the user to provide some parameters (compulsory entities for some intents), managing the questions that the bot should ask when they are missing and call the fulfillment endpoint (the service owned by the developers of the bot, receiving the structured data) only when those parameters have been provided. The programmers are left to the role of handling the dialogue state, retrieving the information and providing a response.
@@ -841,8 +783,6 @@ But this does not scale well when the dialogue can have lots of different states
 This kind of end-to-end trainability is supported on the shelf by RASA,\footnote{\url{http://rasa.com/}} an open source tool that has two main components: the NLU and the dialogue management Core. The first one turns sentences into intents and entities, while the second one manages the state of the conversation and determines responses and API calls without handcrafted rules. The developers of a bot using this libraries have to define the intents, entities, the actions (that correspond to some methods) and templates (for the responses) and provide examples for training both the NLU and the core.
 
 There have been some efforts to compare the performances of all those systems by SNIPS,\footnote{\url{https://snips.ai/}} that tested a lot of those platforms to compare the results mainly on the intent detection task. The benchmark does also compare the results on out-of-domain samples, that are sentences that should be classified with none of the declared intents and managed with fallback options. The results are available both on their site,\footnote{\url{https://snips.ai/content/sdk-benchmark-visualisation/}}\footnote{\url{https://www.slideshare.net/KonstantinSavenkov/nlu-intent-detection-benchmark-by-intento-august-2017}} and most importantly the datasets used are available with an open license.\footnote{\url{https://github.com/snipsco/nlu-benchmark}}
-
- %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
 \section{Personalization}
 \label{soaPersonalization}
@@ -948,6 +888,3 @@ Those reason make necessary to employ other techniques. To solve the user-relati
 For this reason another technique is to use a \textit{bootstrap} phase in which the new user is required to answer some initial questions to give a general model of him. This short interview can be very effective if the questions themselves adapt to the responses. An approach of this kind has been proposed in~\cite{lika2014facing}, where a decision tree is built for the sentences to be prompted, enabling a grouping process that has as outputs some initial features of the user who can solve the cold start problem. In~\cite{sun2013learning} instead the authors examine how, instead of prompting a single question per screen, using multiple questions at each node of the decision tree can maximize the accuracy while minimizing the user efforts.
 
 What is important to notice of those bootstrap techniques is that the recommendation at the beginning will be not very accurate, because it is difficult to capture the personal traits from a limited set of questions. Then by interacting more and more the user model is refined and better recommendations can be given.
-
- %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
-
