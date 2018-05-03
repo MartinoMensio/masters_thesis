@@ -35,6 +35,13 @@
 \usepackage{pifont} % tick sign
 \usepackage{enumitem}
 \setlist[itemize,enumerate,description]{noitemsep,nolistsep} % removes ugly separation of itemize
+\usepackage[
+    type={CC},
+    modifier={by-nc-sa},
+    version={3.0},
+    lang=english,
+    imagewidth=8em,
+]{doclicense}
 
 \advance\voffset -5mm
 \advance\textheight 20mm
@@ -132,12 +139,13 @@ pdfstartview={FitH},
 % FLUSHRIGHT - ALLINEAMENTO ORIZZONTALE A DESTRA
 \vspace*{\stretch{1}}
 \begin{flushright}
-\noindent
-\textit{To all the ones that supported me.}
-%\textit{To my family, I will be forever in their debt.}
-%\textit{Docker Book}
+  \noindent
+  \textit{To all the ones that supported me.}
+  %\textit{To my family, I will be forever in their debt.}
+  %\textit{Docker Book}
 \end{flushright}
 \vspace*{\stretch{6}}
+\doclicenseThis
 %
 %\cleardoublepage
 %%
